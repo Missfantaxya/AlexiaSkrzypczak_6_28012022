@@ -1,3 +1,4 @@
+// TODO ajouter le photo choisi par le photographe
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section")
 
