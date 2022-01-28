@@ -7,6 +7,7 @@ function photographerFactory(data) {
     const article = document.createElement("article")
     // TODO ajouter la destination
     const link = document.createElement("a")
+    link.setAttribute("href", "/")
     // TODO changer pour la photo choisi par le photographe
     const img = document.createElement("img")
     img.setAttribute("src", picture)
