@@ -1,0 +1,9 @@
+.selectForm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.selectLabel {
+  padding: 1rem;
+}
