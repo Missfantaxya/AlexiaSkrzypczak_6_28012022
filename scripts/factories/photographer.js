@@ -7,6 +7,7 @@ function photographerFactory(data) {
     const article = document.createElement("article")
     const link = document.createElement("a")
     link.setAttribute("href", "/photographer.html")
+    link.setAttribute("aria-label", name)
     // TODO changer pour la photo choisi par le photographe
     const img = document.createElement("img")
     img.setAttribute("src", picture)
