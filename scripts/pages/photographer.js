@@ -25,6 +25,18 @@ async function displayData(media, photographers) {
   popularityOption.textContent = "Popularité"
   selectOption.appendChild(popularityOption)
 
+  const dateOption = document.createElement("option")
+  dateOption.className = "dateOption"
+  dateOption.setAttribute("value", "date")
+  dateOption.textContent = "Date"
+  selectOption.appendChild(dateOption)
+
+  const titreOption = document.createElement("option")
+  titreOption.className = "popularityOption"
+  titreOption.setAttribute("value", "titre")
+  titreOption.textContent = "Titre"
+  selectOption.appendChild(titreOption)
+
   media.forEach((picture) => {
     const mediaModel = mediaFactory(picture)
     const pictureDOM = mediaModel.getpictureCardDOM()
