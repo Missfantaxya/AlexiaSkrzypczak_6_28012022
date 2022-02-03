@@ -7,3 +7,16 @@
 .selectLabel {
   padding: 1rem;
 }
+
+.contenairLikes {
+  display: flex;
+  flex-direction: row;
+}
+
+.pictureLikes {
+  padding: 0.3em;
+}
+
+.heart {
+  width: 1rem;
+}
