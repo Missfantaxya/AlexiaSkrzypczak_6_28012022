@@ -1,10 +1,24 @@
 //Mettre le code JavaScript lié à la page photographer.html
+async function displayData(photographers) {
+  const photographHeader = document.querySelector(".photograph-header")
+  console.log("photographHeader :", photographHeader) //!
+  const contact = document.querySelector(".contact_button")
 
-async function displayData(media, photographers) {
-  const photographerSection = document.querySelector(".photograph-header")
+  console.log("photograpers :", photographers)
+  photographers.forEach((photographer) => {
+    const photographerModel = photographerFactory(photographer)
+    const UserProfilDOM = photographerModel.getUserProfilDOM()
+    photographHeader.appendChild(UserProfilDOM)
+  })
+}
 
-  const mediaSection = document.querySelector("#main")
-  console.log(mediaSection)
+async function displayData(media) {
+  const photographerSection = document.querySelector("#main")
+  // console.log("photographerSection :", photographerSection) //*ok
+
+  const mediaSection = document.createElement("div")
+  mediaSection.className = "mediaSection"
+  photographerSection.appendChild(mediaSection)
 
   const selectForm = document.createElement("form")
   selectForm.className = "selectForm"
@@ -37,9 +51,14 @@ async function displayData(media, photographers) {
   titreOption.textContent = "Titre"
   selectOption.appendChild(titreOption)
 
+  const pictures = document.createElement("div")
+  pictures.className = "pictures"
+  mediaSection.appendChild(pictures)
+
+  // TODO découper pour chaque photogrpher.id == media.photographerId
   media.forEach((picture) => {
     const mediaModel = mediaFactory(picture)
     const pictureDOM = mediaModel.getpictureCardDOM()
-    mediaSection.appendChild(pictureDOM)
+    pictures.appendChild(pictureDOM)
   })
 }

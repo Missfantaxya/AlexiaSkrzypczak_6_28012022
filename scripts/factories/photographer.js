@@ -35,5 +35,26 @@ function photographerFactory(data) {
     details.appendChild(prices)
     return article
   }
-  return { name, portrait, country, city, tagline, price, getUserCardDOM }
+
+  function getUserProfilDOM() {
+    const photographerDetails = document.createElement("div")
+    photographerDetails.className = "photographerDetails"
+
+    const photographerName = document.createElement("h1")
+    photographerName.className = "photographerName"
+    photographerName.textContent = "Nom"
+    photographerDetails.appendChild(photographerName)
+
+    return photographerDetails
+  }
+  return {
+    name,
+    portrait,
+    country,
+    city,
+    tagline,
+    price,
+    getUserCardDOM,
+    getUserProfilDOM,
+  }
 }
