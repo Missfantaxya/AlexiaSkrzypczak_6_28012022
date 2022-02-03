@@ -5,15 +5,13 @@ function photographerFactory(data) {
 
   function getUserCardDOM() {
     const article = document.createElement("article")
-    // TODO ajouter la destination
     const link = document.createElement("a")
-    link.setAttribute("href", "/")
+    link.setAttribute("href", "/photographer.html")
     // TODO changer pour la photo choisi par le photographe
     const img = document.createElement("img")
     img.setAttribute("src", picture)
     img.setAttribute("alt", " ")
     const h2 = document.createElement("h2")
-
     const details = document.createElement("p")
     details.className = "details"
     const location = document.createElement("p")
@@ -24,15 +22,12 @@ function photographerFactory(data) {
     prices.className = "prices"
 
     h2.textContent = name
-
     article.appendChild(link)
     link.appendChild(img)
     link.appendChild(h2)
-
     location.textContent = city + ", " + country
     slogan.textContent = tagline
     prices.textContent = price + "€/jour"
-
     article.appendChild(details)
     details.appendChild(location)
     details.appendChild(slogan)
