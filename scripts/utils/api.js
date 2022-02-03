@@ -10,10 +10,10 @@ const getMedia = async () => {
 async function init() {
   // Récupère les datas des photographes
   const { photographers } = await getPhotographers()
-  console.log(photographers)
+  console.log("photographers", photographers)
   const { media } = await getMedia()
-  console.log(media)
-  displayData(photographers)
+  console.log("media", media)
+  displayData(photographers, media)
 }
 
 init()
