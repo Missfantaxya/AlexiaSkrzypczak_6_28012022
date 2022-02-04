@@ -1,5 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
+// TODO faire fonctionner le bouton de contact
+
 // récupération de l'id du photographe dans l'url
 let urlRechercheParams = new URLSearchParams(window.location.search)
 let idUrl = parseInt(urlRechercheParams.get("id"))
@@ -43,6 +45,7 @@ async function displayData(photographers, media) {
   selectLabel.textContent = "Trier par"
   selectForm.appendChild(selectLabel)
 
+  // TODO style du select
   const selectOption = document.createElement("select")
   selectOption.className = "selectLabel"
   selectForm.appendChild(selectOption)

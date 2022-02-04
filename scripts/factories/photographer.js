@@ -75,6 +75,8 @@ function photographerFactory(data) {
     return photographerAvatar
   }
 
+  //TODO ajjout du tarif et des likes en bas de page
+
   return {
     name,
     portrait,
