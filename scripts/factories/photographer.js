@@ -1,12 +1,13 @@
 function photographerFactory(data) {
-  const { name, portrait, country, city, tagline, price } = data
+  const { name, portrait, country, city, tagline, price, id } = data
 
   const picture = `assets/photographers/${portrait}`
 
   function getUserCardDOM() {
+    // console.log(id)  //*ok
     const article = document.createElement("article")
     const link = document.createElement("a")
-    link.setAttribute("href", "/photographer.html")
+    link.setAttribute("href", `/photographer.html?id=${id}`)
     link.setAttribute("aria-label", name)
     // TODO changer pour la photo choisi par le photographe
     const img = document.createElement("img")
@@ -54,6 +55,7 @@ function photographerFactory(data) {
     city,
     tagline,
     price,
+    id,
     getUserCardDOM,
     getUserProfilDOM,
   }
