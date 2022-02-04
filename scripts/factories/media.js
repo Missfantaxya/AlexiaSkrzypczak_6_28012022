@@ -4,15 +4,15 @@ function mediaFactory(data) {
   const { date, description, image, likes, photographerId, price, title } = data
 
   const picture = `assets/photographies/${photographerId}/${image}`
-
   const heartSvg = "assets/icons/heart-solid.svg"
 
   function getpictureCardDOM() {
     const article = document.createElement("article")
     article.className = "photographie"
 
+    // TODO utiliser de factory si video ou si photo
     const img = document.createElement("img")
-    img.className = "picture"
+    img.className = "img"
     img.setAttribute("src", picture)
     img.setAttribute("alt", title)
     img.setAttribute("aria-label", description)

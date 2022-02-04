@@ -2,6 +2,7 @@ function photographerFactory(data) {
   const { name, portrait, country, city, tagline, price, id } = data
 
   const picture = `assets/photographers/${portrait}`
+  const avatar = `assets/photographers/${data[0].portrait}`
 
   function getUserCardDOM() {
     // console.log(id)  //*ok
@@ -38,16 +39,42 @@ function photographerFactory(data) {
   }
 
   function getUserProfilDOM() {
+    // console.log("name :", data[0].name) //*ok
+
     const photographerDetails = document.createElement("div")
     photographerDetails.className = "photographerDetails"
 
     const photographerName = document.createElement("h1")
     photographerName.className = "photographerName"
-    photographerName.textContent = "Nom"
+    photographerName.textContent = data[0].name
     photographerDetails.appendChild(photographerName)
+
+    const photographerContent = document.createElement("div")
+    photographerContent.className = "photographerContent"
+    photographerDetails.appendChild(photographerContent)
+
+    const photographerLocation = document.createElement("p")
+    photographerLocation.className = "photographerLocation"
+    photographerLocation.textContent = data[0].city + "," + data[0].country
+    photographerContent.appendChild(photographerLocation)
+
+    const photographerTagline = document.createElement("p")
+    photographerTagline.className = "photographerTagline"
+    photographerTagline.textContent = data[0].tagline
+    photographerContent.appendChild(photographerTagline)
 
     return photographerDetails
   }
+
+  function getUserAvatarDOM() {
+    const photographerAvatar = document.createElement("img")
+    photographerAvatar.className = "photographerAvatar"
+    photographerAvatar.setAttribute("src", avatar)
+    photographerAvatar.setAttribute("alt", " ")
+
+    return photographerAvatar
+  }
+
   return {
     name,
     portrait,
@@ -58,5 +85,6 @@ function photographerFactory(data) {
     id,
     getUserCardDOM,
     getUserProfilDOM,
+    getUserAvatarDOM,
   }
 }

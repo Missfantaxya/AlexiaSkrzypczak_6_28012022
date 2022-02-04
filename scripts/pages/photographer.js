@@ -1,27 +1,34 @@
 //Mettre le code JavaScript lié à la page photographer.html
+
+// récupération de l'id du photographe dans l'url
 let urlRechercheParams = new URLSearchParams(window.location.search)
 let idUrl = parseInt(urlRechercheParams.get("id"))
 // console.log(idUrl) //*ok
 
-// async function displayData(photographers) {
-//   console.log("photograpers2 :", photographers) //!
-
-//   const photographHeader = document.querySelector(".photograph-header")
-//   console.log("photographHeader :", photographHeader) //!
-//   const contact = document.querySelector(".contact_button")
-
-//   photographers.forEach((photographer) => {
-//     const photographerModel = photographerFactory(photographer)
-//     const UserProfilDOM = photographerModel.getUserProfilDOM()
-//     photographHeader.appendChild(UserProfilDOM)
-//   })
-// }
-
 async function displayData(photographers, media) {
+  // La parties avec le photographe :----------------------------------------
+
+  const photographHeader = document.querySelector(".photograph-header")
+  const contact = document.querySelector(".contact_button")
+
+  const photographer = photographers.filter(
+    (photographer) => photographer.id == idUrl
+  )
+  // console.log(photographer) //*ok
+
+  const photographerModel = photographerFactory(photographer)
+  const UserProfilDOM = photographerModel.getUserProfilDOM()
+  photographHeader.insertBefore(UserProfilDOM, contact)
+
+  const photographerAvatarModel = photographerFactory(photographer)
+  const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM()
+  photographHeader.appendChild(UserAvatarDOM)
+
+  // La partie avec les médias :--------------------------------------
+
   const photographerSection = document.querySelector("#main")
   // console.log("photographerSection :", photographerSection) //*ok
-
-  console.log(idUrl)
+  // console.log(idUrl) //*ok
 
   const mediaSection = document.createElement("div")
   mediaSection.className = "mediaSection"
@@ -62,26 +69,17 @@ async function displayData(photographers, media) {
   pictures.className = "pictures"
   mediaSection.appendChild(pictures)
 
-  // TODO découper pour chaque photogrpher.id == media.photographerId
-  console.log(media)
-
-  console.log("id", idUrl)
-
-  // media.filter((mediaElement => mediaElement.photographerId == idUrl) => {
-  //   const mediaModel = mediaFactory(mediaElement)
-  //   const mediaElementDOM = mediaModel.getpictureCardDOM()
-  //   pictures.appendChild(mediaElementDOM)
-  // })
+  // console.log(media) //*ok
+  // console.log("id", idUrl) //*ok
 
   const elementsMedia = media.filter(
     (elementsMedia) => elementsMedia.photographerId == idUrl
   )
-  console.log(elementsMedia)
+  // console.log(elementsMedia) //*ok
 
-  elementsMedia.forEach( elementMedia ) => {
-  //   const mediaModel = mediaFactory(elementMedia)
-  //   const elementMediaDOM = mediaModel.getpictureCardDOM()
-  // pictures.appendChild(elementMediaDOM)
-    // !
-  }
+  elementsMedia.forEach((elementMedia) => {
+    const mediaModel = mediaFactory(elementMedia)
+    const elementMediaDOM = mediaModel.getpictureCardDOM()
+    pictures.appendChild(elementMediaDOM)
+  })
 }

@@ -8,6 +8,22 @@
   padding: 1rem;
 }
 
+.pictures {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.photographie {
+  width: 33%;
+}
+
+/* //TODO dimensionner les media voir le travaille sur Merseille*/
+.img {
+  width: 80%;
+}
+
 .contenairLikes {
   display: flex;
   flex-direction: row;
