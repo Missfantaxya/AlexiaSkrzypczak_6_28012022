@@ -5,7 +5,7 @@ function mediaFactory(data) {
   // TODO voir pour ne l'appliquer qu'à un indice
 
   // TODO voir pour les mp4
-  const picture = `assets/photographies/${photographerId}/${image}.jpg`
+  const picture = `assets/photographies/${photographerId}/${image}`
 
   const heartSvg = "assets/icons/heart-solid.svg"
 

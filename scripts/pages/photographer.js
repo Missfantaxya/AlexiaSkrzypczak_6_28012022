@@ -1,10 +1,11 @@
 //Mettre le code JavaScript lié à la page photographer.html
 async function displayData(photographers) {
+  console.log("photograpers2 :", photographers) //!
+
   const photographHeader = document.querySelector(".photograph-header")
   console.log("photographHeader :", photographHeader) //!
   const contact = document.querySelector(".contact_button")
 
-  console.log("photograpers :", photographers)
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer)
     const UserProfilDOM = photographerModel.getUserProfilDOM()
