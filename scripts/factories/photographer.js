@@ -2,7 +2,6 @@ function photographerFactory(data) {
   const { name, portrait, country, city, tagline, price, id } = data
 
   const picture = `assets/photographers/${portrait}`
-  const avatar = `assets/photographers/${data[0].portrait}`
 
   function getUserCardDOM() {
     // console.log(id)  //*ok
@@ -67,6 +66,8 @@ function photographerFactory(data) {
   }
 
   function getUserAvatarDOM() {
+    const avatar = `assets/photographers/${data[0].portrait}`
+    console.log("avatar :", avatar) //*ok
     const photographerAvatar = document.createElement("img")
     photographerAvatar.className = "photographerAvatar"
     photographerAvatar.setAttribute("src", avatar)
