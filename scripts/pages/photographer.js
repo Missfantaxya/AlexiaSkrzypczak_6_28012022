@@ -98,6 +98,11 @@ async function displayData(photographers, media) {
   selectButton.addEventListener("click", function () {
     selection.classList.remove("hidden")
     selectButton.classList.remove("close")
+    popularityOption.classList.add("open")
+    dateOption.classList.add("open")
+    titleOption.classList.add("open")
+    selectArrow.classList.remove("down")
+    selectArrow.classList.add("up")
   })
 
   const selectOptions = document.createElement("div")
@@ -105,9 +110,9 @@ async function displayData(photographers, media) {
   selection.appendChild(selectOptions)
 
   const selectArrow = document.createElement("div")
-  selectArrow.className = "selectArrow"
+  selectArrow.className = "selectArrow down"
   selectArrow.textContent = ">"
-  selectOptions.appendChild(selectArrow)
+  selection.appendChild(selectArrow)
 
   // TODO ajouter avec fontAwesome
   // const chevron = document.createElement("i")
@@ -121,7 +126,15 @@ async function displayData(photographers, media) {
 
   popularityOption.addEventListener("click", function () {
     selection.classList.add("hidden")
+    popularityOption.classList.remove("open")
+    dateOption.classList.remove("open")
+    titleOption.classList.remove("open")
+    selectOptions.classList.remove("title")
+    selectOptions.classList.remove("date")
     selectButton.classList.add("close")
+    // TODO meilleur méthode : changer l'orde des éléments selectOption
+    selectArrow.classList.remove("up")
+    selectArrow.classList.add("down")
     //TODO classer les image par popularité (en fonction des likes)
   })
 
@@ -132,7 +145,14 @@ async function displayData(photographers, media) {
 
   dateOption.addEventListener("click", function () {
     selection.classList.add("hidden")
+    popularityOption.classList.remove("open")
+    dateOption.classList.remove("open")
+    titleOption.classList.remove("open")
+    selectOptions.classList.remove("title")
+    selectOptions.classList.add("date")
     selectButton.classList.add("close")
+    selectArrow.classList.remove("up")
+    selectArrow.classList.add("down")
     // TODO positionner le select pour rendre visible le selectOption
     //   //TODO classer les image par date
   })
@@ -144,7 +164,14 @@ async function displayData(photographers, media) {
 
   titleOption.addEventListener("click", function () {
     selection.classList.add("hidden")
+    popularityOption.classList.remove("open")
+    dateOption.classList.remove("open")
+    titleOption.classList.remove("open")
+    selectOptions.classList.remove("date")
+    selectOptions.classList.add("title")
     selectButton.classList.add("close")
+    selectArrow.classList.remove("up")
+    selectArrow.classList.add("down")
     // TODO positionner le select pour rendre visible le selectOption
     //   //TODO classer les image par titre (alphabétique)
   })
