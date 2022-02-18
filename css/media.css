@@ -26,23 +26,6 @@
 }
 
 /* média */
-.selectForm {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-weight: 600;
-  /* TODO */
-  margin-left: 5em;
-}
-
-.selectLabel {
-  padding: 1rem;
-}
-
-.selctOption {
-  padding: 1rem;
-}
-
 .pictures {
   display: flex;
   flex-flow: row wrap;

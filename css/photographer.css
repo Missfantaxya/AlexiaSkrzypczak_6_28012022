@@ -24,7 +24,8 @@
   font-size: 1.2em;
 }
 
-.contact_button {
+.contact_button,
+.selectOption {
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -71,10 +72,10 @@ form {
   align-items: flex-start;
 }
 
-/* form label {
+form label {
   color: #312e2e;
   font-size: 36px;
-} */
+}
 
 form div {
   display: flex;
@@ -89,4 +90,28 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.selectForm {
+  display: flex;
+  flex-direction: row;
+  /* font-weight: 600; */
+  margin-top: 1rem;
+  /* TODO aligne avec le headerPhotographer et les média*/
+}
+
+.selectLabel {
+  margin-right: 1rem;
+}
+
+/* .selectOption {
+  
+} */
+
+.dateOption {
+  display: none;
+}
+
+.titreOption {
+  display: none;
 }

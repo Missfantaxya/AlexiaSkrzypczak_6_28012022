@@ -90,24 +90,24 @@ async function displayData(photographers, media) {
   selectForm.appendChild(selectLabel)
 
   // TODO style du select
-  const selectOption = document.createElement("select")
+  const selectOption = document.createElement("div")
   selectOption.className = "selectOption"
   selectForm.appendChild(selectOption)
 
-  const popularityOption = document.createElement("option")
+  const popularityOption = document.createElement("div")
   popularityOption.className = "popularityOption"
   popularityOption.setAttribute("value", "popularité")
   popularityOption.textContent = "Popularité"
   selectOption.appendChild(popularityOption)
 
-  const dateOption = document.createElement("option")
+  const dateOption = document.createElement("div")
   dateOption.className = "dateOption"
   dateOption.setAttribute("value", "date")
   dateOption.textContent = "Date"
   selectOption.appendChild(dateOption)
 
-  const titreOption = document.createElement("option")
-  titreOption.className = "popularityOption"
+  const titreOption = document.createElement("div")
+  titreOption.className = "titreOption"
   titreOption.setAttribute("value", "titre")
   titreOption.textContent = "Titre"
   selectOption.appendChild(titreOption)
