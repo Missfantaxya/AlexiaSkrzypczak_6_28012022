@@ -59,6 +59,12 @@
   justify-content: space-between;
   width: 80%;
   color: #901c1c;
+  padding-top: 0.5em;
+}
+
+.pictureName {
+  font-weight: normal;
+  font-size: 1em;
 }
 
 .contenairLikes {

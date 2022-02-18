@@ -67,7 +67,7 @@ async function displayData(photographers, media) {
 
   const photographerPrice = document.createElement("p")
   photographerPrice.className = "photographerPrice"
-  photographerPrice.textContent = photographer[0].price + "€/jour"
+  photographerPrice.textContent = photographer[0].price + "€ / jour"
   priceAndLike.appendChild(photographerPrice)
 
   // La partie avec les médias :--------------------------------------
