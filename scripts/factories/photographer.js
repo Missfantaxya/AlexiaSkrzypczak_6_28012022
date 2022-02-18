@@ -54,7 +54,7 @@ function photographerFactory(data) {
 
     const photographerLocation = document.createElement("p")
     photographerLocation.className = "photographerLocation"
-    photographerLocation.textContent = data[0].city + "," + data[0].country
+    photographerLocation.textContent = data[0].city + ", " + data[0].country
     photographerContent.appendChild(photographerLocation)
 
     const photographerTagline = document.createElement("p")
