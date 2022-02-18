@@ -30,15 +30,13 @@ async function displayData(photographers, media) {
   const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM()
   photographHeader.appendChild(UserAvatarDOM)
 
-  // tableau avec les médias du photographe
-  const photographerMedias = media.filter(
-    (photographerMedia) => photographerMedia.photographerId == idUrl
+  //récupération des média du photographe
+  const elementsMedia = media.filter(
+    (elementsMedia) => elementsMedia.photographerId == idUrl
   )
 
   // récupération des likes de chaque média du photographe
-  const mediasLikes = photographerMedias.map(
-    (oneMediaLikes) => oneMediaLikes.likes
-  )
+  const mediasLikes = elementsMedia.map((oneMediaLikes) => oneMediaLikes.likes)
 
   // addition de tous les likes du photographe
   let initialLike = 0
@@ -46,6 +44,7 @@ async function displayData(photographers, media) {
     (previousValue, currentValue) => previousValue + currentValue,
     initialLike
   )
+  // TODO attention à chq incrémentation(function ++ a faire sur total)
 
   const priceAndLike = document.createElement("div")
   priceAndLike.className = "priceAndLike"
@@ -73,56 +72,86 @@ async function displayData(photographers, media) {
   // La partie avec les médias :--------------------------------------
 
   const photographerSection = document.querySelector("#main")
-  // console.log("photographerSection :", photographerSection) //*ok
-  // console.log(idUrl) //*ok
 
   const mediaSection = document.createElement("div")
   mediaSection.className = "mediaSection"
   photographerSection.appendChild(mediaSection)
 
-  const selectForm = document.createElement("form")
+  const selectForm = document.createElement("div")
   selectForm.className = "selectForm"
   mediaSection.appendChild(selectForm)
 
-  const selectLabel = document.createElement("label")
+  const selectLabel = document.createElement("p")
   selectLabel.className = "selectLabel"
   selectLabel.textContent = "Trier par"
   selectForm.appendChild(selectLabel)
 
-  // TODO style du select
-  const selectOption = document.createElement("div")
-  selectOption.className = "selectOption"
-  selectForm.appendChild(selectOption)
+  const selection = document.createElement("div")
+  selection.className = "selection hidden"
+  selectForm.appendChild(selection)
 
-  const popularityOption = document.createElement("div")
-  popularityOption.className = "popularityOption"
-  popularityOption.setAttribute("value", "popularité")
+  const selectButton = document.createElement("button")
+  selectButton.className = "selectButton close"
+  selection.appendChild(selectButton)
+
+  //ouverture de la selection
+  selectButton.addEventListener("click", function () {
+    selection.classList.remove("hidden")
+    selectButton.classList.remove("close")
+  })
+
+  const selectOptions = document.createElement("div")
+  selectOptions.className = "selectOptions"
+  selection.appendChild(selectOptions)
+
+  const selectArrow = document.createElement("div")
+  selectArrow.className = "selectArrow"
+  selectArrow.textContent = ">"
+  selectOptions.appendChild(selectArrow)
+
+  // TODO ajouter avec fontAwesome
+  // const chevron = document.createElement("i")
+  // chevron.className = "fa-solid fa-chevron-down"
+  // chevron.appendChild(selectArrow)
+
+  const popularityOption = document.createElement("p")
+  popularityOption.className = "selectOption popularityOption"
   popularityOption.textContent = "Popularité"
-  selectOption.appendChild(popularityOption)
+  selectOptions.appendChild(popularityOption)
 
-  const dateOption = document.createElement("div")
-  dateOption.className = "dateOption"
-  dateOption.setAttribute("value", "date")
+  popularityOption.addEventListener("click", function () {
+    selection.classList.add("hidden")
+    selectButton.classList.add("close")
+    //TODO classer les image par popularité (en fonction des likes)
+  })
+
+  const dateOption = document.createElement("p")
+  dateOption.className = "selectOption dateOption"
   dateOption.textContent = "Date"
-  selectOption.appendChild(dateOption)
+  selectOptions.appendChild(dateOption)
 
-  const titreOption = document.createElement("div")
-  titreOption.className = "titreOption"
-  titreOption.setAttribute("value", "titre")
-  titreOption.textContent = "Titre"
-  selectOption.appendChild(titreOption)
+  dateOption.addEventListener("click", function () {
+    selection.classList.add("hidden")
+    selectButton.classList.add("close")
+    // TODO positionner le select pour rendre visible le selectOption
+    //   //TODO classer les image par date
+  })
+
+  const titleOption = document.createElement("p")
+  titleOption.className = "selectOption titleOption"
+  titleOption.textContent = "Titre"
+  selectOptions.appendChild(titleOption)
+
+  titleOption.addEventListener("click", function () {
+    selection.classList.add("hidden")
+    selectButton.classList.add("close")
+    // TODO positionner le select pour rendre visible le selectOption
+    //   //TODO classer les image par titre (alphabétique)
+  })
 
   const pictures = document.createElement("div")
   pictures.className = "pictures"
   mediaSection.appendChild(pictures)
-
-  // console.log(media) //*ok
-  // console.log("id", idUrl) //*ok
-
-  const elementsMedia = media.filter(
-    (elementsMedia) => elementsMedia.photographerId == idUrl
-  )
-  // console.log(elementsMedia) //*ok
 
   elementsMedia.forEach((elementMedia) => {
     const mediaModel = mediaFactory(elementMedia)
