@@ -1,6 +1,5 @@
 function photographerFactory(data) {
   const { name, portrait, country, city, tagline, price, id } = data
-
   const picture = `assets/photographers/${portrait}`
 
   function getUserCardDOM() {
@@ -9,10 +8,11 @@ function photographerFactory(data) {
     const link = document.createElement("a")
     link.setAttribute("href", `/photographer.html?id=${id}`)
     link.setAttribute("aria-label", name)
-    // TODO changer pour la photo choisi par le photographe
+
     const img = document.createElement("img")
     img.setAttribute("src", picture)
     img.setAttribute("alt", " ")
+
     const h2 = document.createElement("h2")
     const details = document.createElement("p")
     details.className = "details"
@@ -67,7 +67,7 @@ function photographerFactory(data) {
 
   function getUserAvatarDOM() {
     const avatar = `assets/photographers/${data[0].portrait}`
-    console.log("avatar :", avatar) //*ok
+    // console.log("avatar :", avatar) //*ok
     const photographerAvatar = document.createElement("img")
     photographerAvatar.className = "photographerAvatar"
     photographerAvatar.setAttribute("src", avatar)
@@ -75,8 +75,6 @@ function photographerFactory(data) {
 
     return photographerAvatar
   }
-
-  //TODO ajjout du tarif et des likes en bas de page
 
   return {
     name,
