@@ -91,7 +91,7 @@ async function displayData(photographers, media) {
 
   // TODO style du select
   const selectOption = document.createElement("select")
-  selectOption.className = "selectLabel"
+  selectOption.className = "selectOption"
   selectForm.appendChild(selectOption)
 
   const popularityOption = document.createElement("option")
