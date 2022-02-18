@@ -1,9 +1,8 @@
-//TODO vérifier car les data sont undéfined
-
 function mediaFactory(data) {
-  const { date, description, image, likes, photographerId, price, title } = data
+  let { date, description, image, likes, photographerId, price, title } = data
 
   const picture = `assets/photographies/${photographerId}/${image}`
+  // TODO afficher le coeur différement pour pouvoirchanger la couleur
   const heartSvg = "assets/icons/heart-solid.svg"
 
   function getpictureCardDOM() {
@@ -36,10 +35,15 @@ function mediaFactory(data) {
     pictureLikes.textContent = likes
     contenairLikes.appendChild(pictureLikes)
 
-    const heart = document.createElement("img")
-    heart.className = "heart"
-    heart.setAttribute("src", heartSvg)
-    contenairLikes.appendChild(heart)
+    //incrémentations au click des likes des medias
+    contenairLikes.addEventListener("click", function () {
+      pictureLikes.textContent = ++likes
+    })
+
+    const heartmedia = document.createElement("img")
+    heartmedia.className = "heart"
+    heartmedia.setAttribute("src", heartSvg)
+    contenairLikes.appendChild(heartmedia)
 
     return article
   }
