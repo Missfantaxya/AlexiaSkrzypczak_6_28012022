@@ -34,6 +34,7 @@ async function displayData(photographers, media) {
   const elementsMedia = media.filter(
     (elementsMedia) => elementsMedia.photographerId == idUrl
   )
+  console.log("elementsMedia :", elementsMedia)
 
   // récupération des likes de chaque média du photographe
   const mediasLikes = elementsMedia.map((oneMediaLikes) => oneMediaLikes.likes)
@@ -44,7 +45,6 @@ async function displayData(photographers, media) {
     (previousValue, currentValue) => previousValue + currentValue,
     initialLike
   )
-  // TODO attention à chq incrémentation(function ++ a faire sur total)
 
   const priceAndLike = document.createElement("div")
   priceAndLike.className = "priceAndLike"
@@ -58,6 +58,10 @@ async function displayData(photographers, media) {
   photographerLike.className = "photographerLike"
   photographerLike.textContent = photographerAllLikes
   wrapperLikes.appendChild(photographerLike)
+
+  // TODO incrémentation du nombre totale de like au click sur un like (function ++ a faire sur total)
+  // const numberOfLikes = document.querySelectorAll(".pictureLikes")
+  // console.log("numberOfLikes :", numberOfLikes) //!
 
   const heartphotographer = document.createElement("img")
   heartphotographer.className = "heart"
@@ -93,6 +97,33 @@ async function displayData(photographers, media) {
   const selectButton = document.createElement("button")
   selectButton.className = "selectButton close"
   selection.appendChild(selectButton)
+
+  const pictures = document.createElement("div")
+  pictures.className = "pictures"
+  mediaSection.appendChild(pictures)
+
+  // classement des média par popularité
+  elementsMedia.sort(function (a, b) {
+    return a.likes - b.likes
+  })
+
+  // // affichage des medias
+  // elementsMedia.forEach((elementMedia) => {
+  //   const mediaModel = mediaFactory(elementMedia)
+  //   const elementMediaDOM = mediaModel.getpictureCardDOM()
+  //   pictures.appendChild(elementMediaDOM)
+  // })
+
+  function displayMedia() {
+    elementsMedia.forEach((elementMedia) => {
+      const mediaModel = mediaFactory(elementMedia)
+      const elementMediaDOM = mediaModel.getpictureCardDOM()
+      pictures.appendChild(elementMediaDOM)
+    })
+  }
+  console.log("displayMedia : ", displayMedia) //* ok
+
+  displayMedia()
 
   //ouverture de la selection
   selectButton.addEventListener("click", function () {
@@ -135,12 +166,18 @@ async function displayData(photographers, media) {
     // TODO meilleur méthode : changer l'orde des éléments selectOption
     selectArrow.classList.remove("up")
     selectArrow.classList.add("down")
-    //TODO classer les image par popularité (en fonction des likes)
+
+    // classement des média par popularité
+    elementsMedia.sort((a, b) => a.likes - b.likes)
+    console.log("elementsMedia by popularity :", elementsMedia) //* ok
+
+    displayMedia()
   })
 
   const dateOption = document.createElement("p")
   dateOption.className = "selectOption dateOption"
   dateOption.textContent = "Date"
+  // dateOption.setAttribute("onClick", displayMedia)
   selectOptions.appendChild(dateOption)
 
   dateOption.addEventListener("click", function () {
@@ -153,8 +190,16 @@ async function displayData(photographers, media) {
     selectButton.classList.add("close")
     selectArrow.classList.remove("up")
     selectArrow.classList.add("down")
+    dateOption.insertBefore
     // TODO positionner le select pour rendre visible le selectOption
-    //   //TODO classer les image par date
+    // TODO convertir la date en timestamp
+    //TODO classer les images par date
+    // console.log("date : ", elementsMedia[0].date) //* ok
+    // console.log("date parse : ", Date.parse(elementsMedia[0].date)) //* ok
+    elementsMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+    console.log("elementsMedia by date :", elementsMedia)
+
+    displayMedia() //!
   })
 
   const titleOption = document.createElement("p")
@@ -170,19 +215,16 @@ async function displayData(photographers, media) {
     selectOptions.classList.remove("date")
     selectOptions.classList.add("title")
     selectButton.classList.add("close")
-    selectArrow.classList.remove("up")
-    selectArrow.classList.add("down")
-    // TODO positionner le select pour rendre visible le selectOption
-    //   //TODO classer les image par titre (alphabétique)
-  })
-
-  const pictures = document.createElement("div")
-  pictures.className = "pictures"
-  mediaSection.appendChild(pictures)
-
-  elementsMedia.forEach((elementMedia) => {
-    const mediaModel = mediaFactory(elementMedia)
-    const elementMediaDOM = mediaModel.getpictureCardDOM()
-    pictures.appendChild(elementMediaDOM)
+    // TODO changer l'odre des select meilleur méthode que glisser la selection
+    selectArrow.classList.remove("up") //~
+    selectArrow.classList.add("down") //~
+    // classer elementsMedia par titre (alphabétique)
+    elementsMedia.sort(function compoare(a, b) {
+      if (a.title < b.title) return -1
+      if (a.title > b.title) return 1
+      return 0
+    })
+    console.log("elementsMedia by title :", elementsMedia) //* ok
+    displayMedia() //!
   })
 }
