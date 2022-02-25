@@ -59,7 +59,8 @@ async function displayData(photographers, media) {
   photographerLike.textContent = photographerAllLikes
   wrapperLikes.appendChild(photographerLike)
 
-  // TODO incrémentation du nombre totale de like au click sur un like (function ++ a faire sur total)
+  // TODO incrémentation du nombre totale de like au click sur un like (function ++ a faire sur total) :
+
   // const numberOfLikes = document.querySelectorAll(".pictureLikes")
   // console.log("numberOfLikes :", numberOfLikes) //! array lenght ! 0
 
@@ -114,6 +115,7 @@ async function displayData(photographers, media) {
   //   pictures.appendChild(elementMediaDOM)
   // })
 
+  // function pour afficher les media
   function displayMedia() {
     elementsMedia.forEach((elementMedia) => {
       const mediaModel = mediaFactory(elementMedia)

@@ -9,17 +9,34 @@ function mediaFactory(data) {
     const article = document.createElement("article")
     article.className = "photographie"
 
-    const containerImg = document.createElement("div")
-    containerImg.className = "containerImg"
-    article.appendChild(containerImg)
+    const containerMedia = document.createElement("div")
+    containerMedia.className = "containerMedia"
+    article.appendChild(containerMedia)
 
     // TODO utiliser de factory si video ou si photo
+
+    // du cours :
+    // class MoviesFactory {
+    //   constructor(data, type) {
+    //     // Si le type correspond à l'ancienne API, alors retourne-moi l'ancien formatage
+    //     if (type === "oldApi") {
+    //       return new OldMovie(data)
+    //       // Sinon retourne-moi le nouveau formatage
+    //     } else if (type === "newApi") {
+    //       return new Movie(data)
+    //       // Une bonne pratique est de déclencher une erreur si le format n'est pas reconnu
+    //     } else {
+    //       throw "Unknown type format"
+    //     }
+    //   }
+    // }
+
     const img = document.createElement("img")
     img.className = "img"
     img.setAttribute("src", picture)
     img.setAttribute("alt", title)
     img.setAttribute("aria-label", description)
-    containerImg.appendChild(img)
+    containerMedia.appendChild(img)
 
     const pictureDetails = document.createElement("div")
     pictureDetails.className = "pictureDetails"

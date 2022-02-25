@@ -138,13 +138,6 @@
   padding-bottom: 1rem;
 }
 
-.containerImg {
-  width: 375px;
-  height: 325px;
-  overflow: hidden;
-  border-radius: 5px;
-}
-
 .img {
   width: 375px;
   height: 325px;
