@@ -108,15 +108,9 @@ async function displayData(photographers, media) {
     return a.likes - b.likes
   })
 
-  // // affichage des medias
-  // elementsMedia.forEach((elementMedia) => {
-  //   const mediaModel = mediaFactory(elementMedia)
-  //   const elementMediaDOM = mediaModel.getpictureCardDOM()
-  //   pictures.appendChild(elementMediaDOM)
-  // })
-
   // function pour afficher les media
   function displayMedia() {
+    pictures.textContent = ""
     elementsMedia.forEach((elementMedia) => {
       const mediaModel = mediaFactory(elementMedia)
       const elementMediaDOM = mediaModel.getpictureCardDOM()
@@ -174,7 +168,7 @@ async function displayData(photographers, media) {
     elementsMedia.sort((a, b) => a.likes - b.likes)
     console.log("elementsMedia by popularity :", elementsMedia) //* ok
 
-    // displayMedia() //!undefined
+    displayMedia()
   })
 
   const dateOption = document.createElement("p")
@@ -202,7 +196,7 @@ async function displayData(photographers, media) {
     elementsMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
     console.log("elementsMedia by date :", elementsMedia)
 
-    // displayMedia() //! undefined
+    displayMedia()
   })
 
   const titleOption = document.createElement("p")
@@ -229,6 +223,6 @@ async function displayData(photographers, media) {
       return 0
     })
     console.log("elementsMedia by title :", elementsMedia) //* ok
-    // displayMedia() //!undefined
+    displayMedia()
   })
 }
