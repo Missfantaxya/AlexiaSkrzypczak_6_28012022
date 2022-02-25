@@ -61,7 +61,7 @@ async function displayData(photographers, media) {
 
   // TODO incrémentation du nombre totale de like au click sur un like (function ++ a faire sur total)
   // const numberOfLikes = document.querySelectorAll(".pictureLikes")
-  // console.log("numberOfLikes :", numberOfLikes) //!
+  // console.log("numberOfLikes :", numberOfLikes) //! array lenght ! 0
 
   const heartphotographer = document.createElement("img")
   heartphotographer.className = "heart"
@@ -121,7 +121,7 @@ async function displayData(photographers, media) {
       pictures.appendChild(elementMediaDOM)
     })
   }
-  console.log("displayMedia : ", displayMedia) //* ok
+  // console.log("displayMedia : ", displayMedia) //* ok
 
   displayMedia()
 
@@ -153,6 +153,7 @@ async function displayData(photographers, media) {
   const popularityOption = document.createElement("p")
   popularityOption.className = "selectOption popularityOption"
   popularityOption.textContent = "Popularité"
+  popularityOption.setAttribute("onClick", "displayMedia()") //!
   selectOptions.appendChild(popularityOption)
 
   popularityOption.addEventListener("click", function () {
@@ -171,13 +172,13 @@ async function displayData(photographers, media) {
     elementsMedia.sort((a, b) => a.likes - b.likes)
     console.log("elementsMedia by popularity :", elementsMedia) //* ok
 
-    displayMedia()
+    // displayMedia() //!undefined
   })
 
   const dateOption = document.createElement("p")
   dateOption.className = "selectOption dateOption"
   dateOption.textContent = "Date"
-  // dateOption.setAttribute("onClick", displayMedia)
+  dateOption.setAttribute("onClick", "displayMedia()") //!
   selectOptions.appendChild(dateOption)
 
   dateOption.addEventListener("click", function () {
@@ -199,12 +200,13 @@ async function displayData(photographers, media) {
     elementsMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
     console.log("elementsMedia by date :", elementsMedia)
 
-    displayMedia() //!
+    // displayMedia() //! undefined
   })
 
   const titleOption = document.createElement("p")
   titleOption.className = "selectOption titleOption"
   titleOption.textContent = "Titre"
+  titleOption.setAttribute("onClick", "displayMedia()") //!
   selectOptions.appendChild(titleOption)
 
   titleOption.addEventListener("click", function () {
@@ -225,6 +227,6 @@ async function displayData(photographers, media) {
       return 0
     })
     console.log("elementsMedia by title :", elementsMedia) //* ok
-    displayMedia() //!
+    // displayMedia() //!undefined
   })
 }
