@@ -9,13 +9,17 @@ function mediaFactory(data) {
     const article = document.createElement("article")
     article.className = "photographie"
 
+    const containerImg = document.createElement("div")
+    containerImg.className = "containerImg"
+    article.appendChild(containerImg)
+
     // TODO utiliser de factory si video ou si photo
     const img = document.createElement("img")
     img.className = "img"
     img.setAttribute("src", picture)
     img.setAttribute("alt", title)
     img.setAttribute("aria-label", description)
-    article.appendChild(img)
+    containerImg.appendChild(img)
 
     const pictureDetails = document.createElement("div")
     pictureDetails.className = "pictureDetails"

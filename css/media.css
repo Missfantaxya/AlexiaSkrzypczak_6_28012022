@@ -32,10 +32,8 @@
   display: flex;
   flex-direction: row;
   font-size: 20px;
-
+  margin-left: 100px;
   margin-top: 1rem;
-  /* TODO aligne avec le headerPhotographer et les média*/
-  margin-left: 1rem;
 }
 
 .selectLabel {
@@ -125,6 +123,7 @@
 /*  média du photogrape */
 
 .pictures {
+  margin-top: 2rem;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -136,18 +135,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 1rem;
 }
 
 /* //TODO dimensionner les media voir le travaille sur Marseille*/
+.containerImg {
+  width: 375px;
+  height: 325px;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
 .img {
-  width: 80%;
+  width: 375px;
+  height: 325px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .pictureDetails {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 80%;
+  width: 375px;
   color: #901c1c;
   padding-top: 0.5em;
 }
