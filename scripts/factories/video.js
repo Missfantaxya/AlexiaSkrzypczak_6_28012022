@@ -5,7 +5,7 @@ function videoFactory(data) {
   const picture = `assets/photographies/${photographerId}/${image}`
 
   const video = document.createElement("object")
-  video.className = "video"
+  video.className = "media"
   video.setAttribute("type", "video/mp4")
   video.setAttribute("data", picture)
   video.setAttribute("alt", title)

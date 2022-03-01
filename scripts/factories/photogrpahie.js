@@ -5,7 +5,7 @@ function photographiesFactory(data) {
   const picture = `assets/photographies/${photographerId}/${image}`
 
   const img = document.createElement("img")
-  img.className = "img"
+  img.className = "media"
   img.setAttribute("src", picture)
   img.setAttribute("alt", title)
   img.setAttribute("aria-label", description)

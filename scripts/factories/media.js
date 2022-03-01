@@ -1,7 +1,12 @@
 function mediaFactory(data) {
-  let { date, description, image, likes, photographerId, price, title } = data
+  let { date, description, image, video, likes, photographerId, price, title } =
+    data
+
+  // console.log("data : ", data) //*ok
 
   const picture = `assets/photographies/${photographerId}/${image}`
+  // const video = `assets/photographies/${photographerId}/${video}`
+
   // TODO afficher le coeur différement pour pouvoir changer la couleur
   const heartSvg = "assets/icons/heart-solid.svg"
 
@@ -13,19 +18,26 @@ function mediaFactory(data) {
     containerMedia.className = "containerMedia"
     article.appendChild(containerMedia)
 
-    // TODO utiliser de factory si video ou si photo
-    // if ( extension===image )
-    // {
-    const img = document.createElement("img")
-    img.className = "media"
-    img.setAttribute("src", picture)
-    img.setAttribute("alt", title)
-    img.setAttribute("aria-label", description)
-    containerMedia.appendChild(img)
-    //       // Sinon retourne-moi faormatage vidéo
-    //     } else if (extension===mp4) {
-    //       videoFactory()
-    // }
+    // TODO afficher miniature de la video
+    if (data.hasOwnProperty("image")) {
+      console.log("picture :", picture) //*ok
+      console.log("video :", video) //*okdata.keys()
+
+      const img = document.createElement("img")
+      img.className = "media"
+      img.setAttribute("src", picture)
+      img.setAttribute("alt", title)
+      img.setAttribute("aria-label", description)
+      containerMedia.appendChild(img)
+    } else if (data.hasOwnProperty("video")) {
+      const video = document.createElement("video")
+      video.className = "media"
+      video.setAttribute("type", "video/mp4")
+      video.setAttribute("src", video)
+      video.setAttribute("alt", title)
+      video.setAttribute("aria-label", description)
+      containerMedia.appendChild(video)
+    }
 
     const pictureDetails = document.createElement("div")
     pictureDetails.className = "pictureDetails"
@@ -50,7 +62,7 @@ function mediaFactory(data) {
       pictureLikes.textContent = ++likes
       const allLikes = document.querySelector(".photographerLike")
       // console.log("allLikes :", allLikes) //*ok
-      // console.log("allLikes.innerHTML : ", allLikes.innerHTML)
+      // console.log("allLikes.innerHTML : ", allLikes.innerHTML) //*ok
       var allLikesValueNumber = parseInt(allLikes.innerHTML, 10)
       ++allLikesValueNumber
       // console.log("allLikesValueNumber :", allLikesValueNumber) //*ok
