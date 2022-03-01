@@ -2,7 +2,7 @@ function mediaFactory(data) {
   let { date, description, image, likes, photographerId, price, title } = data
 
   const picture = `assets/photographies/${photographerId}/${image}`
-  // TODO afficher le coeur différement pour pouvoirchanger la couleur
+  // TODO afficher le coeur différement pour pouvoir changer la couleur
   const heartSvg = "assets/icons/heart-solid.svg"
 
   function getpictureCardDOM() {
@@ -23,9 +23,9 @@ function mediaFactory(data) {
     img.setAttribute("aria-label", description)
     containerMedia.appendChild(img)
     //       // Sinon retourne-moi faormatage vidéo
-     //     } else if (extension===mp4) {
+    //     } else if (extension===mp4) {
     //       videoFactory()
-  }
+    // }
 
     const pictureDetails = document.createElement("div")
     pictureDetails.className = "pictureDetails"

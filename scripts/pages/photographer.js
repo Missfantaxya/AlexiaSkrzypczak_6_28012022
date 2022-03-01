@@ -59,11 +59,6 @@ async function displayData(photographers, media) {
   photographerLike.textContent = photographerAllLikes
   wrapperLikes.appendChild(photographerLike)
 
-  // TODO incrémentation du nombre totale de like au click sur un like (function ++ a faire sur total) :
-
-  // const numberOfLikes = document.querySelectorAll(".pictureLikes")
-  // console.log("numberOfLikes :", numberOfLikes) //! array lenght ! 0
-
   const heartphotographer = document.createElement("img")
   heartphotographer.className = "heart"
   heartphotographer.setAttribute("src", heartSvg)
@@ -110,6 +105,7 @@ async function displayData(photographers, media) {
 
   // function pour afficher les media
   function displayMedia() {
+    //vidage de pictures avant son remplissage pour permettre de le classer en fonction de la selection
     pictures.textContent = ""
     elementsMedia.forEach((elementMedia) => {
       const mediaModel = mediaFactory(elementMedia)
@@ -149,7 +145,7 @@ async function displayData(photographers, media) {
   const popularityOption = document.createElement("p")
   popularityOption.className = "selectOption popularityOption"
   popularityOption.textContent = "Popularité"
-  popularityOption.setAttribute("onClick", "displayMedia()") //!
+  popularityOption.setAttribute("onClick", "displayMedia()")
   selectOptions.appendChild(popularityOption)
 
   popularityOption.addEventListener("click", function () {
@@ -166,7 +162,7 @@ async function displayData(photographers, media) {
 
     // classement des média par popularité
     elementsMedia.sort((a, b) => a.likes - b.likes)
-    console.log("elementsMedia by popularity :", elementsMedia) //* ok
+    console.log("elementsMedia by popularity :", elementsMedia)
 
     displayMedia()
   })
@@ -174,7 +170,7 @@ async function displayData(photographers, media) {
   const dateOption = document.createElement("p")
   dateOption.className = "selectOption dateOption"
   dateOption.textContent = "Date"
-  dateOption.setAttribute("onClick", "displayMedia()") //!
+  dateOption.setAttribute("onClick", "displayMedia()")
   selectOptions.appendChild(dateOption)
 
   dateOption.addEventListener("click", function () {
@@ -188,9 +184,6 @@ async function displayData(photographers, media) {
     selectArrow.classList.remove("up")
     selectArrow.classList.add("down")
     dateOption.insertBefore
-    // TODO positionner le select pour rendre visible le selectOption
-    // TODO convertir la date en timestamp
-    //TODO classer les images par date
     // console.log("date : ", elementsMedia[0].date) //* ok
     // console.log("date parse : ", Date.parse(elementsMedia[0].date)) //* ok
     elementsMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
@@ -202,7 +195,7 @@ async function displayData(photographers, media) {
   const titleOption = document.createElement("p")
   titleOption.className = "selectOption titleOption"
   titleOption.textContent = "Titre"
-  titleOption.setAttribute("onClick", "displayMedia()") //!
+  titleOption.setAttribute("onClick", "displayMedia()")
   selectOptions.appendChild(titleOption)
 
   titleOption.addEventListener("click", function () {
@@ -222,7 +215,7 @@ async function displayData(photographers, media) {
       if (a.title > b.title) return 1
       return 0
     })
-    console.log("elementsMedia by title :", elementsMedia) //* ok
+    console.log("elementsMedia by title :", elementsMedia)
     displayMedia()
   })
 }
