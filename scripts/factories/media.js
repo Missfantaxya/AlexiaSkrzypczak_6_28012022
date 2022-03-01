@@ -48,6 +48,14 @@ function mediaFactory(data) {
     //incrémentations au click des likes des medias
     contenairLikes.addEventListener("click", function () {
       pictureLikes.textContent = ++likes
+      const allLikes = document.querySelector(".photographerLike")
+      // console.log("allLikes :", allLikes) //*ok
+      // console.log("allLikes.innerHTML : ", allLikes.innerHTML)
+      var allLikesValueNumber = parseInt(allLikes.innerHTML, 10)
+      ++allLikesValueNumber
+      // console.log("allLikesValueNumber :", allLikesValueNumber) //*ok
+      allLikes.innerHTML = ""
+      allLikes.innerHTML = allLikesValueNumber
     })
 
     const heartmedia = document.createElement("img")
