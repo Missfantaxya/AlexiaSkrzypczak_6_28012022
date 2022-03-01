@@ -2,12 +2,9 @@ function mediaFactory(data) {
   let { date, description, image, video, likes, photographerId, price, title } =
     data
 
-  // console.log("data : ", data) //*ok
-
   const picture = `assets/photographies/${photographerId}/${image}`
 
   const videoThumbnail = `assets/thumbnails/${title}.png`
-  console.log("videoThumbnail : ", videoThumbnail)
 
   // TODO afficher le coeur différement pour pouvoir changer la couleur
   const heartSvg = "assets/icons/heart-solid.svg"
@@ -20,11 +17,7 @@ function mediaFactory(data) {
     containerMedia.className = "containerMedia"
     article.appendChild(containerMedia)
 
-    // TODO afficher miniature de la video
     if (data.hasOwnProperty("image")) {
-      console.log("picture :", picture) //*ok
-      console.log("video :", video) //*okdata.keys()
-
       const img = document.createElement("img")
       img.className = "media"
       img.setAttribute("src", picture)

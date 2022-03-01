@@ -113,7 +113,6 @@ async function displayData(photographers, media) {
       pictures.appendChild(elementMediaDOM)
     })
   }
-  // console.log("displayMedia : ", displayMedia) //* ok
 
   displayMedia()
 
@@ -136,11 +135,6 @@ async function displayData(photographers, media) {
   selectArrow.className = "selectArrow down"
   selectArrow.textContent = ">"
   selection.appendChild(selectArrow)
-
-  // TODO ajouter avec fontAwesome
-  // const chevron = document.createElement("i")
-  // chevron.className = "fa-solid fa-chevron-down"
-  // chevron.appendChild(selectArrow)
 
   const popularityOption = document.createElement("p")
   popularityOption.className = "selectOption popularityOption"
@@ -184,8 +178,6 @@ async function displayData(photographers, media) {
     selectArrow.classList.remove("up")
     selectArrow.classList.add("down")
     dateOption.insertBefore
-    // console.log("date : ", elementsMedia[0].date) //* ok
-    // console.log("date parse : ", Date.parse(elementsMedia[0].date)) //* ok
     elementsMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
     console.log("elementsMedia by date :", elementsMedia)
 
