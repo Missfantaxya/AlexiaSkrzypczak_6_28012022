@@ -5,7 +5,9 @@ function mediaFactory(data) {
   // console.log("data : ", data) //*ok
 
   const picture = `assets/photographies/${photographerId}/${image}`
-  // const video = `assets/photographies/${photographerId}/${video}`
+
+  const videoThumbnail = `assets/thumbnails/${title}.png`
+  console.log("videoThumbnail : ", videoThumbnail)
 
   // TODO afficher le coeur différement pour pouvoir changer la couleur
   const heartSvg = "assets/icons/heart-solid.svg"
@@ -30,13 +32,12 @@ function mediaFactory(data) {
       img.setAttribute("aria-label", description)
       containerMedia.appendChild(img)
     } else if (data.hasOwnProperty("video")) {
-      const video = document.createElement("video")
-      video.className = "media"
-      video.setAttribute("type", "video/mp4")
-      video.setAttribute("src", video)
-      video.setAttribute("alt", title)
-      video.setAttribute("aria-label", description)
-      containerMedia.appendChild(video)
+      const thumbnail = document.createElement("img")
+      thumbnail.className = "media"
+      thumbnail.setAttribute("src", videoThumbnail)
+      thumbnail.setAttribute("alt", title)
+      thumbnail.setAttribute("aria-label", description)
+      containerMedia.appendChild(thumbnail)
     }
 
     const pictureDetails = document.createElement("div")
