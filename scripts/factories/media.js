@@ -13,25 +13,27 @@ function mediaFactory(data) {
     const article = document.createElement("article")
     article.className = "photographie"
 
-    const containerMedia = document.createElement("div")
-    containerMedia.className = "containerMedia"
-    article.appendChild(containerMedia)
-
     if (data.hasOwnProperty("image")) {
       const img = document.createElement("img")
       img.className = "media"
       img.setAttribute("src", picture)
       img.setAttribute("alt", title)
       img.setAttribute("aria-label", description)
-      containerMedia.appendChild(img)
+      article.appendChild(img)
     } else if (data.hasOwnProperty("video")) {
       const thumbnail = document.createElement("img")
       thumbnail.className = "media"
       thumbnail.setAttribute("src", videoThumbnail)
       thumbnail.setAttribute("alt", title)
       thumbnail.setAttribute("aria-label", description)
-      containerMedia.appendChild(thumbnail)
+      article.appendChild(thumbnail)
     }
+
+    const media = article.querySelector(".media")
+    console.log("media :", media)
+    media.addEventListener("click", function () {
+      console.log("click on media")
+    })
 
     const pictureDetails = document.createElement("div")
     pictureDetails.className = "pictureDetails"
