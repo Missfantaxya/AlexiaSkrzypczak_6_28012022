@@ -1,1 +1,2 @@
-// code pour si c'est une vidéo
+// code de la modal si c'est une vidéo
+// console.log("video.js") //*ok

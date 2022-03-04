@@ -156,7 +156,7 @@ async function displayData(photographers, media) {
 
     // classement des média par popularité
     elementsMedia.sort((a, b) => a.likes - b.likes)
-    console.log("elementsMedia by popularity :", elementsMedia)
+    // console.log("elementsMedia by popularity :", elementsMedia) //* ok
 
     displayMedia()
   })
@@ -179,7 +179,7 @@ async function displayData(photographers, media) {
     selectArrow.classList.add("down")
     dateOption.insertBefore
     elementsMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
-    console.log("elementsMedia by date :", elementsMedia)
+    // console.log("elementsMedia by date :", elementsMedia) //* ok
 
     displayMedia()
   })
@@ -207,7 +207,7 @@ async function displayData(photographers, media) {
       if (a.title > b.title) return 1
       return 0
     })
-    console.log("elementsMedia by title :", elementsMedia)
+    // console.log("elementsMedia by title :", elementsMedia) //*ok
     displayMedia()
   })
 }

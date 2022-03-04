@@ -6,6 +6,8 @@ function mediaFactory(data) {
 
   const videoThumbnail = `assets/thumbnails/${title}.png`
 
+  const videoMedia = `assets/photographies/${photographerId}/${video}`
+
   // TODO afficher le coeur différement pour pouvoir changer la couleur
   const heartSvg = "assets/icons/heart-solid.svg"
 
@@ -21,18 +23,24 @@ function mediaFactory(data) {
       img.setAttribute("aria-label", description)
       article.appendChild(img)
     } else if (data.hasOwnProperty("video")) {
-      const thumbnail = document.createElement("img")
+      // TODO effacer les thumbnails.
+      const thumbnail = document.createElement("video")
       thumbnail.className = "media"
-      thumbnail.setAttribute("src", videoThumbnail)
+      thumbnail.setAttribute("src", videoMedia)
+      thumbnail.setAttribute("type", "video/mp4")
       thumbnail.setAttribute("alt", title)
+
       thumbnail.setAttribute("aria-label", description)
       article.appendChild(thumbnail)
     }
 
     const media = article.querySelector(".media")
-    console.log("media :", media)
+    // console.log("media :", media) //*ok
     media.addEventListener("click", function () {
       console.log("click on media")
+      //factory à faire
+      // itération sur tous les média avec navigation gche/droite
+      // cf Graphikart Lightbox
     })
 
     const pictureDetails = document.createElement("div")
