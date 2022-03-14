@@ -23,7 +23,6 @@ function mediaFactory(data) {
       img.setAttribute("aria-label", description)
       article.appendChild(img)
     } else if (data.hasOwnProperty("video")) {
-      // TODO effacer les thumbnails.
       const thumbnail = document.createElement("video")
       thumbnail.className = "media"
       thumbnail.setAttribute("src", videoMedia)
