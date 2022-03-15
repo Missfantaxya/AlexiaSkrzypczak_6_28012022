@@ -272,6 +272,7 @@ async function displayData(photographers, media) {
 
   function followingMedia() {
     // carousel.style.transform = "translate(1000px)" //!
+    // TODO ajouter la trnslation à chaque clik et pas dans le css
     console.log("following media") //*ok
   }
 
