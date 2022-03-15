@@ -172,3 +172,66 @@
 .heart {
   width: 1rem;
 }
+
+/* Lightbox */
+
+#lightbox {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background-color: white;
+  display: none;
+}
+.dialog {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 100px 150px;
+}
+
+.viewOneMedia {
+  width: 1000px;
+  height: 1100px;
+  margin: auto;
+  overflow-x: hidden;
+}
+
+.previous {
+  color: #901c1c;
+}
+
+.following {
+  color: #901c1c;
+}
+
+.carousel {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.oneMediaCarousel {
+  width: 1000px;
+  height: 1000px;
+}
+
+.mediaCarousel {
+  width: 1000px;
+  height: 1000px;
+}
+
+.mediaName {
+  color: #901c1c;
+}
+
+.closeLightbox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background-color: white;
+  color: #901c1c;
+}

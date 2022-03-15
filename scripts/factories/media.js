@@ -4,8 +4,6 @@ function mediaFactory(data) {
 
   const picture = `assets/photographies/${photographerId}/${image}`
 
-  const videoThumbnail = `assets/thumbnails/${title}.png`
-
   const videoMedia = `assets/photographies/${photographerId}/${video}`
 
   // TODO afficher le coeur différement pour pouvoir changer la couleur
@@ -36,7 +34,9 @@ function mediaFactory(data) {
     const media = article.querySelector(".media")
     // console.log("media :", media) //*ok
     media.addEventListener("click", function () {
-      console.log("click on media")
+      lightbox.style.display = "block"
+      // console.log("ouverture de la lightbox") //*ok
+      // console.log("click on media")//* ok
       //factory à faire
       // itération sur tous les média avec navigation gche/droite
       // cf Graphikart Lightbox
@@ -80,6 +80,37 @@ function mediaFactory(data) {
 
     return article
   }
+
+  function getMediaCarousel() {
+    const oneMediaCarousel = document.createElement("li")
+    oneMediaCarousel.className = "oneMediaCarousel"
+
+    if (data.hasOwnProperty("image")) {
+      const imgCarousel = document.createElement("img")
+      imgCarousel.className = "mediaCarousel"
+      imgCarousel.setAttribute("src", picture)
+      imgCarousel.setAttribute("alt", title)
+      imgCarousel.setAttribute("aria-label", description)
+      oneMediaCarousel.appendChild(imgCarousel)
+    } else if (data.hasOwnProperty("video")) {
+      const videoCarousel = document.createElement("video")
+      videoCarousel.className = "mediaCarousel"
+      videoCarousel.setAttribute("src", videoMedia)
+      videoCarousel.setAttribute("type", "video/mp4")
+      videoCarousel.setAttribute("alt", title)
+      // TODO ajouter la lecture automatique quand visible
+      videoCarousel.setAttribute("aria-label", description)
+      oneMediaCarousel.appendChild(videoCarousel)
+    }
+
+    const mediaName = document.createElement("p")
+    mediaName.className = "mediaName"
+    mediaName.textContent = title
+    oneMediaCarousel.appendChild(mediaName)
+
+    return oneMediaCarousel
+  }
+
   return {
     date,
     description,
@@ -89,5 +120,6 @@ function mediaFactory(data) {
     price,
     title,
     getpictureCardDOM,
+    getMediaCarousel,
   }
 }

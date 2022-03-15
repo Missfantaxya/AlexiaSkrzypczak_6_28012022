@@ -72,6 +72,7 @@ async function displayData(photographers, media) {
   // La partie avec les médias :--------------------------------------
 
   const photographerSection = document.querySelector("#main")
+  // console.log("photographerSection : ", photographerSection) //*ok
 
   const mediaSection = document.createElement("div")
   mediaSection.className = "mediaSection"
@@ -210,4 +211,96 @@ async function displayData(photographers, media) {
     // console.log("elementsMedia by title :", elementsMedia) //*ok
     displayMedia()
   })
+
+  // La Lightbox-----------------------------------
+
+  function displayMediaCarousel() {
+    // //vidage de pictures avant son remplissage pour permettre de le classer en fonction de la selection
+    // carousel.textContent = ""
+    elementsMedia.forEach((elementMedia) => {
+      const mediaModel = mediaFactory(elementMedia)
+      const elementMediaCarouselDOM = mediaModel.getMediaCarousel()
+      carousel.appendChild(elementMediaCarouselDOM)
+    })
+  }
+
+  const lightbox = document.createElement("aside")
+  lightbox.id = "lightbox"
+  photographerSection.after(lightbox)
+
+  const dialog = document.createElement("div")
+  dialog.className = "dialog"
+  lightbox.appendChild(dialog)
+
+  function stopLink(event) {
+    event.preventDefault()
+    // console.log("stop link") //*ok
+  }
+
+  const previous = document.createElement("a")
+  previous.className = "previous"
+  previous.setAttribute("href", "media précédent")
+  previous.textContent = "<"
+  dialog.appendChild(previous)
+
+  function previousMedia() {
+    // carousel.style.transform = "translate(-1000px)" //!
+    console.log("previous media") //* ok
+  }
+
+  function previousClick() {
+    stopLink(event)
+    previousMedia()
+  }
+
+  previous.addEventListener("click", previousClick)
+
+  const viewOneMedia = document.createElement("div")
+  viewOneMedia.className = "viewOneMedia"
+  dialog.appendChild(viewOneMedia)
+
+  const carousel = document.createElement("ul")
+  carousel.className = "carousel"
+  viewOneMedia.appendChild(carousel)
+  displayMediaCarousel()
+
+  const following = document.createElement("a")
+  following.setAttribute("href", "media suivant")
+  following.className = "following"
+  following.textContent = ">"
+  dialog.appendChild(following)
+
+  function followingMedia() {
+    // carousel.style.transform = "translate(1000px)" //!
+    console.log("following media") //*ok
+  }
+
+  function followingClick() {
+    stopLink(event)
+    followingMedia()
+  }
+
+  following.addEventListener("click", followingClick)
+
+  const closeLightbox = document.createElement("button")
+  closeLightbox.className = "closeLightbox"
+  closeLightbox.textContent = "X"
+  dialog.appendChild(closeLightbox)
+
+  function stopLightboxSubmit(event) {
+    event.preventDefault()
+    // console.log("stop Submit") //*ok
+  }
+
+  function closeLightboxButton() {
+    lightbox.style.display = "none"
+    // console.log("close lightbox") //*ok
+  }
+
+  function closeLightboxClick() {
+    stopLightboxSubmit(event)
+    closeLightboxButton()
+  }
+
+  closeLightbox.addEventListener("click", closeLightboxClick)
 }
