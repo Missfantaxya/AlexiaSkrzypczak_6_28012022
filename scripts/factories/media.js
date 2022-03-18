@@ -35,6 +35,9 @@ function mediaFactory(data) {
     // console.log("media :", media) //*ok
     media.addEventListener("click", function () {
       lightbox.style.display = "block"
+      const main = document.querySelector("#main")
+      // console.log(main)//*ok
+      main.style.display = "none"
       // console.log("ouverture de la lightbox") //*ok
       // console.log("click on media")//* ok
       //factory à faire

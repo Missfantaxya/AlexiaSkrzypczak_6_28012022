@@ -215,8 +215,7 @@ async function displayData(photographers, media) {
   // La Lightbox-----------------------------------
 
   function displayMediaCarousel() {
-    // //vidage de pictures avant son remplissage pour permettre de le classer en fonction de la selection
-    // carousel.textContent = ""
+    // TODO afficher le média cliqué
     elementsMedia.forEach((elementMedia) => {
       const mediaModel = mediaFactory(elementMedia)
       const elementMediaCarouselDOM = mediaModel.getMediaCarousel()
@@ -244,6 +243,7 @@ async function displayData(photographers, media) {
   dialog.appendChild(previous)
 
   function previousMedia() {
+    // TODO
     // carousel.style.transform = "translate(-1000px)" //!
     console.log("previous media") //* ok
   }
@@ -271,8 +271,7 @@ async function displayData(photographers, media) {
   dialog.appendChild(following)
 
   function followingMedia() {
-    // carousel.style.transform = "translate(1000px)" //!
-    // TODO ajouter la trnslation à chaque clik et pas dans le css
+    // TODO avec index (lenght-1)
     console.log("following media") //*ok
   }
 
@@ -295,6 +294,7 @@ async function displayData(photographers, media) {
 
   function closeLightboxButton() {
     lightbox.style.display = "none"
+    main.style.display = "block"
     // console.log("close lightbox") //*ok
   }
 
