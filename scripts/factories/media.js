@@ -40,7 +40,9 @@ function mediaFactory(data) {
       main.style.display = "none"
       // console.log("ouverture de la lightbox") //*ok
       // console.log("click on media")//* ok
-      //factory à faire
+      // console.log(title) // *ok
+      // console.log(mediaId)
+      // TODO factory à faire
       // itération sur tous les média avec navigation gche/droite
       // cf Graphikart Lightbox
     })

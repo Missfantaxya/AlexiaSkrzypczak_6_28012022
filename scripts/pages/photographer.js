@@ -34,7 +34,7 @@ async function displayData(photographers, media) {
   const elementsMedia = media.filter(
     (elementsMedia) => elementsMedia.photographerId == idUrl
   )
-  console.log("elementsMedia :", elementsMedia)
+  // console.log("elementsMedia :", elementsMedia) //*ok
 
   // récupération des likes de chaque média du photographe
   const mediasLikes = elementsMedia.map((oneMediaLikes) => oneMediaLikes.likes)
@@ -112,6 +112,7 @@ async function displayData(photographers, media) {
       const mediaModel = mediaFactory(elementMedia)
       const elementMediaDOM = mediaModel.getpictureCardDOM()
       pictures.appendChild(elementMediaDOM)
+      // console.log(elementMedia.title) //*ok
     })
   }
 
@@ -160,6 +161,7 @@ async function displayData(photographers, media) {
     // console.log("elementsMedia by popularity :", elementsMedia) //* ok
 
     displayMedia()
+    displayMediaCarousel()
   })
 
   const dateOption = document.createElement("p")
@@ -183,6 +185,7 @@ async function displayData(photographers, media) {
     // console.log("elementsMedia by date :", elementsMedia) //* ok
 
     displayMedia()
+    displayMediaCarousel()
   })
 
   const titleOption = document.createElement("p")
@@ -210,12 +213,15 @@ async function displayData(photographers, media) {
     })
     // console.log("elementsMedia by title :", elementsMedia) //*ok
     displayMedia()
+    displayMediaCarousel()
   })
 
   // La Lightbox-----------------------------------
 
   function displayMediaCarousel() {
-    // TODO afficher le média cliqué
+    // TODO afficher le média cliqué (récup id ds [elementsMedia] et place le media ==id  dans viewOneMedia : (id+1)x1000px sur la gauche.)
+    carousel.textContent = ""
+    console.log("elementsMedia :", elementsMedia) // *ok
     elementsMedia.forEach((elementMedia) => {
       const mediaModel = mediaFactory(elementMedia)
       const elementMediaCarouselDOM = mediaModel.getMediaCarousel()
