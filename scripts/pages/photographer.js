@@ -7,6 +7,10 @@ let urlRechercheParams = new URLSearchParams(window.location.search)
 let idUrl = parseInt(urlRechercheParams.get("id"))
 // console.log(idUrl) //*ok
 
+function TestId(id) {
+  console.log(id)
+}
+
 async function displayData(photographers, media) {
   // La parties avec le photographe :----------------------------------------
 
@@ -115,6 +119,8 @@ async function displayData(photographers, media) {
       // console.log(elementMedia.title) //*ok
     })
   }
+
+  // indexOf ou filter pour récup id de [elementsMedia] == id du média cliqué (cf data dans media) et servir de l'id +1 ou -1 pour suivant et précédent.
 
   displayMedia()
 

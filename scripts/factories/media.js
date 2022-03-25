@@ -1,6 +1,15 @@
 function mediaFactory(data) {
-  let { date, description, image, video, likes, photographerId, price, title } =
-    data
+  let {
+    id,
+    date,
+    description,
+    image,
+    video,
+    likes,
+    photographerId,
+    price,
+    title,
+  } = data
 
   const picture = `assets/photographies/${photographerId}/${image}`
 
@@ -34,14 +43,16 @@ function mediaFactory(data) {
     const media = article.querySelector(".media")
     // console.log("media :", media) //*ok
     media.addEventListener("click", function () {
-      lightbox.style.display = "block"
+      lightbox.style.display = "block" //! appeler la modal avec ;l'id en paramètre
+      console.log(data)
       const main = document.querySelector("#main")
       // console.log(main)//*ok
       main.style.display = "none"
       // console.log("ouverture de la lightbox") //*ok
       // console.log("click on media")//* ok
       // console.log(title) // *ok
-      // console.log(mediaId)
+      console.log(id) // *ok
+      TestId(id) // *ok s'en servir
       // TODO factory à faire
       // itération sur tous les média avec navigation gche/droite
       // cf Graphikart Lightbox
