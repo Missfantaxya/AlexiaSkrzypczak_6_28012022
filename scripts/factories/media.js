@@ -40,23 +40,24 @@ function mediaFactory(data) {
       article.appendChild(thumbnail)
     }
 
-    const media = article.querySelector(".media")
+    // const media = article.querySelector(".media")
     // console.log("media :", media) //*ok
-    media.addEventListener("click", function () {
-      lightbox.style.display = "block" //! appeler la modal avec ;l'id en paramètre
-      console.log(data)
-      const main = document.querySelector("#main")
-      // console.log(main)//*ok
-      main.style.display = "none"
-      // console.log("ouverture de la lightbox") //*ok
-      // console.log("click on media")//* ok
-      // console.log(title) // *ok
-      console.log(id) // *ok
-      TestId(id) // *ok s'en servir
-      // TODO factory à faire
-      // itération sur tous les média avec navigation gche/droite
-      // cf Graphikart Lightbox
-    })
+    // media.addEventListener("click", function () {
+    //   lightbox.style.display = "block"
+    //! appeler la modal avec ;l'id en paramètre
+    //   console.log(data)
+    //   const main = document.querySelector("#main")
+    // console.log(main)//*ok
+    //   main.style.display = "none"
+    // console.log("ouverture de la lightbox") //*ok
+    // console.log("click on media")//* ok
+    // console.log(title) // *ok
+    //   console.log(id) // *ok
+    //   TestId(id) // *ok s'en servir
+    // TODO factory à faire
+    // TODO itération sur tous les média avec navigation gche/droite
+    // cf Graphikart Lightbox
+    // })
 
     const pictureDetails = document.createElement("div")
     pictureDetails.className = "pictureDetails"

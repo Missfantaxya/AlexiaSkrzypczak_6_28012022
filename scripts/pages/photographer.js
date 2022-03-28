@@ -120,8 +120,6 @@ async function displayData(photographers, media) {
     })
   }
 
-  // indexOf ou filter pour récup id de [elementsMedia] == id du média cliqué (cf data dans media) et servir de l'id +1 ou -1 pour suivant et précédent.
-
   displayMedia()
 
   //ouverture de la selection
@@ -167,7 +165,7 @@ async function displayData(photographers, media) {
     // console.log("elementsMedia by popularity :", elementsMedia) //* ok
 
     displayMedia()
-    displayMediaCarousel()
+    // displayMediaCarousel()
   })
 
   const dateOption = document.createElement("p")
@@ -191,7 +189,7 @@ async function displayData(photographers, media) {
     // console.log("elementsMedia by date :", elementsMedia) //* ok
 
     displayMedia()
-    displayMediaCarousel()
+    // displayMediaCarousel()
   })
 
   const titleOption = document.createElement("p")
@@ -219,101 +217,103 @@ async function displayData(photographers, media) {
     })
     // console.log("elementsMedia by title :", elementsMedia) //*ok
     displayMedia()
-    displayMediaCarousel()
+    // displayMediaCarousel()
   })
 
   // La Lightbox-----------------------------------
 
-  function displayMediaCarousel() {
-    // TODO afficher le média cliqué (récup id ds [elementsMedia] et place le media ==id  dans viewOneMedia : (id+1)x1000px sur la gauche.)
-    carousel.textContent = ""
-    console.log("elementsMedia :", elementsMedia) // *ok
-    elementsMedia.forEach((elementMedia) => {
-      const mediaModel = mediaFactory(elementMedia)
-      const elementMediaCarouselDOM = mediaModel.getMediaCarousel()
-      carousel.appendChild(elementMediaCarouselDOM)
-    })
-  }
+  // TODO indexOf ou filter pour récup id de [elementsMedia] == id du média cliqué (cf data dans media) et servir de l'id +1 ou -1 pour suivant et précédent.
 
-  const lightbox = document.createElement("aside")
-  lightbox.id = "lightbox"
-  photographerSection.after(lightbox)
+  // function displayMediaCarousel() {
+  // TODO afficher le média cliqué (récup id ds [elementsMedia] et place le media ==id  dans viewOneMedia : (id+1)x1000px sur la gauche.)
+  //   carousel.textContent = ""
+  //   console.log("elementsMedia :", elementsMedia) // *ok
+  //   elementsMedia.forEach((elementMedia) => {
+  //     const mediaModel = mediaFactory(elementMedia)
+  //     const elementMediaCarouselDOM = mediaModel.getMediaCarousel()
+  //     carousel.appendChild(elementMediaCarouselDOM)
+  //   })
+  // }
 
-  const dialog = document.createElement("div")
-  dialog.className = "dialog"
-  lightbox.appendChild(dialog)
+  // const lightbox = document.createElement("aside")
+  // lightbox.id = "lightbox"
+  // photographerSection.after(lightbox)
 
-  function stopLink(event) {
-    event.preventDefault()
-    // console.log("stop link") //*ok
-  }
+  // const dialog = document.createElement("div")
+  // dialog.className = "dialog"
+  // lightbox.appendChild(dialog)
 
-  const previous = document.createElement("a")
-  previous.className = "previous"
-  previous.setAttribute("href", "media précédent")
-  previous.textContent = "<"
-  dialog.appendChild(previous)
+  // function stopLink(event) {
+  //   event.preventDefault()
+  // console.log("stop link") //*ok
+  // }
 
-  function previousMedia() {
-    // TODO
-    // carousel.style.transform = "translate(-1000px)" //!
-    console.log("previous media") //* ok
-  }
+  // const previous = document.createElement("a")
+  // previous.className = "previous"
+  // previous.setAttribute("href", "media précédent")
+  // previous.textContent = "<"
+  // dialog.appendChild(previous)
 
-  function previousClick() {
-    stopLink(event)
-    previousMedia()
-  }
+  // function previousMedia() {
+  // TODO se sevir de id-1
+  // carousel.style.transform = "translate(-1000px)" //!
+  //   console.log("previous media") //* ok
+  // }
 
-  previous.addEventListener("click", previousClick)
+  // function previousClick() {
+  //   stopLink(event)
+  //   previousMedia()
+  // }
 
-  const viewOneMedia = document.createElement("div")
-  viewOneMedia.className = "viewOneMedia"
-  dialog.appendChild(viewOneMedia)
+  // previous.addEventListener("click", previousClick)
 
-  const carousel = document.createElement("ul")
-  carousel.className = "carousel"
-  viewOneMedia.appendChild(carousel)
-  displayMediaCarousel()
+  // const viewOneMedia = document.createElement("div")
+  // viewOneMedia.className = "viewOneMedia"
+  // dialog.appendChild(viewOneMedia)
 
-  const following = document.createElement("a")
-  following.setAttribute("href", "media suivant")
-  following.className = "following"
-  following.textContent = ">"
-  dialog.appendChild(following)
+  // const carousel = document.createElement("ul")
+  // carousel.className = "carousel"
+  // viewOneMedia.appendChild(carousel)
+  // displayMediaCarousel()
 
-  function followingMedia() {
-    // TODO avec index (lenght-1)
-    console.log("following media") //*ok
-  }
+  // const following = document.createElement("a")
+  // following.setAttribute("href", "media suivant")
+  // following.className = "following"
+  // following.textContent = ">"
+  // dialog.appendChild(following)
 
-  function followingClick() {
-    stopLink(event)
-    followingMedia()
-  }
+  // function followingMedia() {
+  // TODO se sevir de id+1
+  //   console.log("following media") //*ok
+  // }
 
-  following.addEventListener("click", followingClick)
+  // function followingClick() {
+  //   stopLink(event)
+  //   followingMedia()
+  // }
 
-  const closeLightbox = document.createElement("button")
-  closeLightbox.className = "closeLightbox"
-  closeLightbox.textContent = "X"
-  dialog.appendChild(closeLightbox)
+  // following.addEventListener("click", followingClick)
 
-  function stopLightboxSubmit(event) {
-    event.preventDefault()
-    // console.log("stop Submit") //*ok
-  }
+  // const closeLightbox = document.createElement("button")
+  // closeLightbox.className = "closeLightbox"
+  // closeLightbox.textContent = "X"
+  // dialog.appendChild(closeLightbox)
 
-  function closeLightboxButton() {
-    lightbox.style.display = "none"
-    main.style.display = "block"
-    // console.log("close lightbox") //*ok
-  }
+  // function stopLightboxSubmit(event) {
+  //   event.preventDefault()
+  // console.log("stop Submit") //*ok
+  // }
 
-  function closeLightboxClick() {
-    stopLightboxSubmit(event)
-    closeLightboxButton()
-  }
+  // function closeLightboxButton() {
+  //   lightbox.style.display = "none"
+  //   main.style.display = "block"
+  // console.log("close lightbox") //*ok
+  // }
 
-  closeLightbox.addEventListener("click", closeLightboxClick)
+  // function closeLightboxClick() {
+  //   stopLightboxSubmit(event)
+  //   closeLightboxButton()
+  // }
+
+  // closeLightbox.addEventListener("click", closeLightboxClick)
 }
