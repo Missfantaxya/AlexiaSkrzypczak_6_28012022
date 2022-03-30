@@ -19,10 +19,11 @@ function mediaFactory(data) {
   const heartSvg = "assets/icons/heart-solid.svg"
 
   function getpictureCardDOM() {
-    const article = document.createElement("article")
+    const article = document.createElement("a")
     article.className = "photographie"
 
     if (data.hasOwnProperty("image")) {
+      article.setAttribute("href", picture)
       const img = document.createElement("img")
       img.className = "media"
       img.setAttribute("src", picture)
@@ -30,6 +31,7 @@ function mediaFactory(data) {
       img.setAttribute("aria-label", description)
       article.appendChild(img)
     } else if (data.hasOwnProperty("video")) {
+      article.setAttribute("href", videoMedia)
       const thumbnail = document.createElement("video")
       thumbnail.className = "media"
       thumbnail.setAttribute("src", videoMedia)

@@ -85,6 +85,10 @@
   object-position: 50% 35%;
 }
 
-/* .lightbox__title{
-  TODO placer à gauche
-} */
+.lightbox__title {
+  width: 100%;
+  text-align: left;
+  padding-top: 1em;
+  font-weight: 400;
+  font-size: 24px;
+}
