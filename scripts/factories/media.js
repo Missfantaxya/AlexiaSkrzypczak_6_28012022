@@ -42,9 +42,9 @@ function mediaFactory(data) {
       article.appendChild(thumbnail)
     }
 
-    // const media = article.querySelector(".media")
-    // console.log("media :", media) //*ok
-    // media.addEventListener("click", function () {
+    // const medio = article.querySelector(".media")
+    // console.log("medio :", medio) //*ok
+    // medio.addEventListener("click", function () {
     //   lightbox.style.display = "block"
     //! appeler la modal avec ;l'id en paramètre
     //   console.log(data)
@@ -58,8 +58,104 @@ function mediaFactory(data) {
     //   TestId(id) // *ok s'en servir
     // TODO factory à faire
     // TODO itération sur tous les média avec navigation gche/droite
-    // cf Graphikart Lightbox
     // })
+
+    // cf Graphikart Lightbox
+    /**
+     * @property {HTMLElement} element
+     */
+    // TODO ATTENTION la lightbox se créer plusieur fois
+    class Lightbox {
+      static init() {
+        const media = main.querySelectorAll(".photographie")
+        console.log("media", media) //* ok
+        media.forEach((media) =>
+          media.addEventListener("click", (e) => {
+            e.preventDefault()
+            // console.log(e.currentTarget.getAttribute("href")) //*ok
+            new Lightbox(e.currentTarget.getAttribute("href"))
+          })
+        )
+      }
+
+      /**
+       * @param {string} url URL de l'image
+       */
+      constructor(url) {
+        const body = document.querySelector("body")
+        // console.log("body : ", body) //* ok
+        const element = this.buildDom(url)
+        // console.log("element :", element) //*ok
+        body.appendChild(element)
+      }
+
+      // TODO ok mais n'en ferme qu'une à la fois et il y a plusieurs lightbox
+      /**
+       * Ferme le lightbox
+       * @param {MouseEvent} e
+       */
+      close(e) {
+        event.preventDefault()
+        // console.log("close => this : ", this) //* lightbox objet
+        // console.log("close => element : ", element) //! error is not defined
+        // console.log("close => this.element : ", this.element) //! undefioned
+        const element = document.querySelector(".lightbox")
+        // console.log("close => element : ", element) //* ok
+        element.classList.add("fadeOut")
+        window.setTimeout(() => {
+          element.parentElement.removeChild(element)
+        }, 500)
+      }
+
+      /**
+       * @param {string} url URL de l'image
+       * @return {HTMLelement}
+       */
+      buildDom(url) {
+        const dom = document.createElement("div")
+        dom.className = "lightbox"
+        dom.innerHTML = `<div class="lightbox__wrapper">
+        <button class="lightbox__close">
+          Fermer
+          <img
+            class="lightbox__cross"
+            src="assets/images/cross.svg"
+            alt="chevron vers la droite"
+          />
+        </button>
+        <button class="lightbox__prev">
+          précédent
+          <img
+            class="lightbox__arrow lightbox__arrow--prev"
+            src="assets/images/arrow.svg"
+            alt="chevron vers la gauche"
+          />
+        </button>
+        <div class="lightbox__container">
+          <img
+            src="${url}"
+            // TODO mettre un alt
+            alt=""
+          />
+           // TODO mettre le titre
+          <p class="lightbox__title">Arc-en-ciel</p>
+        </div>
+        <button class="lightbox__next">
+          suivant
+          <img
+            class="lightbox__arrow lightbox__arrow--next"
+            src="assets/images/arrow.svg"
+            alt="chevron vers la droite"
+          />
+        </button>`
+        dom
+          .querySelector(".lightbox__close")
+          .addEventListener("click", this.close.bind(this))
+        return dom
+      }
+    }
+
+    Lightbox.init()
 
     const pictureDetails = document.createElement("div")
     pictureDetails.className = "pictureDetails"
@@ -100,37 +196,38 @@ function mediaFactory(data) {
     return article
   }
 
-  function getMediaCarousel() {
-    const oneMediaCarousel = document.createElement("li")
-    oneMediaCarousel.className = "oneMediaCarousel"
+  // function getMediaCarousel() {
+  //   const oneMediaCarousel = document.createElement("li")
+  //   oneMediaCarousel.className = "oneMediaCarousel"
 
-    if (data.hasOwnProperty("image")) {
-      const imgCarousel = document.createElement("img")
-      imgCarousel.className = "mediaCarousel"
-      imgCarousel.setAttribute("src", picture)
-      imgCarousel.setAttribute("alt", title)
-      imgCarousel.setAttribute("aria-label", description)
-      oneMediaCarousel.appendChild(imgCarousel)
-    } else if (data.hasOwnProperty("video")) {
-      const videoCarousel = document.createElement("video")
-      videoCarousel.className = "mediaCarousel"
-      videoCarousel.setAttribute("src", videoMedia)
-      videoCarousel.setAttribute("type", "video/mp4")
-      videoCarousel.setAttribute("alt", title)
-      // TODO ajouter la lecture automatique quand visible
-      videoCarousel.setAttribute("aria-label", description)
-      oneMediaCarousel.appendChild(videoCarousel)
-    }
+  //   if (data.hasOwnProperty("image")) {
+  //     const imgCarousel = document.createElement("img")
+  //     imgCarousel.className = "mediaCarousel"
+  //     imgCarousel.setAttribute("src", picture)
+  //     imgCarousel.setAttribute("alt", title)
+  //     imgCarousel.setAttribute("aria-label", description)
+  //     oneMediaCarousel.appendChild(imgCarousel)
+  //   } else if (data.hasOwnProperty("video")) {
+  //     const videoCarousel = document.createElement("video")
+  //     videoCarousel.className = "mediaCarousel"
+  //     videoCarousel.setAttribute("src", videoMedia)
+  //     videoCarousel.setAttribute("type", "video/mp4")
+  //     videoCarousel.setAttribute("alt", title)
+  //     // TODO ajouter la lecture automatique quand visible
+  //     videoCarousel.setAttribute("aria-label", description)
+  //     oneMediaCarousel.appendChild(videoCarousel)
+  //   }
 
-    const mediaName = document.createElement("p")
-    mediaName.className = "mediaName"
-    mediaName.textContent = title
-    oneMediaCarousel.appendChild(mediaName)
+  //   const mediaName = document.createElement("p")
+  //   mediaName.className = "mediaName"
+  //   mediaName.textContent = title
+  //   oneMediaCarousel.appendChild(mediaName)
 
-    return oneMediaCarousel
-  }
+  //   return oneMediaCarousel
+  // }
 
   return {
+    id,
     date,
     description,
     image,
@@ -139,6 +236,6 @@ function mediaFactory(data) {
     price,
     title,
     getpictureCardDOM,
-    getMediaCarousel,
+    // getMediaCarousel,
   }
 }
