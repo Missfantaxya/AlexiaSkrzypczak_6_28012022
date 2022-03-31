@@ -60,7 +60,7 @@ function mediaFactory(data) {
     // TODO itération sur tous les média avec navigation gche/droite
     // })
 
-    // cf Graphikart Lightbox
+    // cf Graphikart Lightbox pause à 34:24
     /**
      * @property {HTMLElement} element
      */

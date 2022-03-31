@@ -227,7 +227,7 @@ async function displayData(photographers, media) {
   // TODO indexOf ou filter pour récup id de [elementsMedia] == id du média cliqué (cf data dans media) et servir de l'id +1 ou -1 pour suivant et précédent.
 
   // function displayMediaCarousel() {
-  // TODO afficher le média cliqué (récup id ds [elementsMedia] et place le media ==id  dans viewOneMedia : (id+1)x1000px sur la gauche.)
+  // TODO afficher le média cliqué (récup id ds [elementsMedia] et place le media ==id
   //   carousel.textContent = ""
   //   console.log("elementsMedia :", elementsMedia) // *ok
   //   elementsMedia.forEach((elementMedia) => {
