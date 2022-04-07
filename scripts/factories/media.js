@@ -133,8 +133,10 @@ function mediaFactory(data) {
   //   return oneMediaCarousel
   // }
 
+  // TODO attention plusieurs lightBox sont générées.
   /**
    * @property {HTMLElement} element
+   * @property {string[]} gallery Chemins des images de la lightbox
    */
   class Lightbox {
     static init() {
@@ -142,49 +144,86 @@ function mediaFactory(data) {
       //   console.log(el)
       // })
       // window.alert("alerte") //*ok
-      console.log(document) //*ok (structure html du document)
-      const test = document.querySelector('#main')
-      console.log(test) //* ok
-      console.log(document.querySelectorAll('.photographie')) //! vide Nodelist
-      console.log(document.querySelectorAll('div'))
-      const media = document.querySelectorAll('.photographie')
-      console.log('media', media) //! vide Nodelist
-      media.forEach((media) =>
-        media.addEventListener('click', (e) => {
+      // console.log(document) //*ok (structure html du document)
+      // const test = document.querySelector('#main')
+      // console.log("test : ", test) //* ok
+      // // console.log("document.querySelectorAll('.photographie') : ", document.querySelectorAll('.photographie')) //*ok dans média
+      // // console.log("document.querySelectorAll('div') : ",document.querySelectorAll('div'))//*ok dans média
+      const links = Array.from(document.querySelectorAll('.photographie'))
+      console.log( 'links', links ) //*ok dans média
+      const gallery = links.map( link => link.getAttribute( 'href' ) )
+      // debugger
+      links.forEach((links) =>
+        links.addEventListener('click', (e) => {
           e.preventDefault()
-          window.alert('alerte')
-          // console.log(e.currentTarget.getAttribute("href")) //*ok
-          new Lightbox(e.currentTarget.getAttribute('href'))
+          // window.alert('alerte') //*ok 
+          // console.log("e.currentTarget.getAttribute('href') : ", e.currentTarget.getAttribute("href")) //*ok
+          new Lightbox(e.currentTarget.getAttribute('href'), gallery)
         })
       )
     }
     /**
      * @param {string} url URL de l'image
+     * @param {string[]} gallery Chemins des images de la lightbox
      */
-    constructor(url) {
+    constructor ( url, gallery )
+    {
+      // console.log( "gallery :", gallery ) //* ok
       const body = document.querySelector('body')
       // console.log("body : ", body) //* ok
-      const element = this.buildDom(url)
-      // console.log("element :", element) //*ok
-      body.appendChild(element)
+      this.element = this.buildDom(url)
+      // console.log("this.element :", this.element) //* ok
+      // this.loadImage(url)
+      this.onKeyUp = this.onKeyUp.bind(this)
+      body.appendChild( this.element )
+      document.addEventListener( 'keyup', this.onKeyUp ) //*ok ferme toutes les lightbox
+      // press escape => message : media.js:201 Uncaught TypeError: Cannot read properties of null (reading 'removeChild') media.js:201
     }
+
+    // //~ 40:14
+    // /**
+    //  * @param {string} url URL de l'image
+    //  *
+    //  */
+    // loadImage ( url )
+    // {
+    //   const image = new Image()
+    //   const container = this.element.querySelctor( ".lightbox__container" )
+    //   const loader = document.createElement( "div" )
+    //   loader.classList.add( "lightbox__loader" )
+    //   container.appendChild( loader )
+    //   image.onload = function ()
+    //   {
+    //     container.removeChild( loader )
+    //     container.appendChild(image)
+    //   }
+    //   image.src=url
+    // }
+
+    /**
+     * @param {keyboardEvent} e
+     */
+    onKeyUp ( e )
+    {
+      if ( e.key === 'Escape' )
+      {
+        this.close(e)
+      }
+    }
+
 
     // TODO ok mais n'en ferme qu'une à la fois et il y a plusieurs lightbox
     /**
-     * Ferme le lightbox
+     * Ferme la lightbox
      * @param {MouseEvent} e
      */
     close(e) {
       event.preventDefault()
-      // console.log("close => this : ", this) //* lightbox objet
-      // console.log("close => element : ", element) //! error is not defined
-      // console.log("close => this.element : ", this.element) //! undefioned
-      const element = document.querySelector('.lightbox')
-      // console.log("close => element : ", element) //* ok
-      element.classList.add('fadeOut')
+      this.element.classList.add('fadeOut')
       window.setTimeout(() => {
-        element.parentElement.removeChild(element)
-      }, 500)
+        this.element.parentElement.removeChild(this.element)
+      }, 500 ) //* ok une à la fois
+      document.removeEventListener( 'keyup', this.onKeyUp ) //* ok
     }
 
     /**
@@ -212,7 +251,7 @@ function mediaFactory(data) {
           />
         </button>
         <div class="lightbox__container">
-        // TODO prévoir pour la vidéo
+         // TODO prévoir pour la vidéo
           <img
             src="${url}"
             // TODO mettre un alt
@@ -235,11 +274,11 @@ function mediaFactory(data) {
       return dom
     }
   }
-  // Lightbox.init()
+  Lightbox.init() //*ok si dans média.js
 
-  document.addEventListener('DOMContentLoaded', function () {
-    Lightbox.init()
-  })
+  // document.addEventListener('DOMContentLoaded', function () {
+    // Lightbox.init()
+  // }) //* ok si dans lightbox.js
 
   return {
     id,
