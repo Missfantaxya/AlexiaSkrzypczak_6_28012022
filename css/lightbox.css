@@ -96,3 +96,10 @@
   font-weight: 400;
   font-size: 24px;
 }
+
+.lightbox__loader {
+  width: 38px;
+  height: 38px;
+  opacity: .5;
+  background: url("../assets/images/loader.svg") center center no-repeat;
+}

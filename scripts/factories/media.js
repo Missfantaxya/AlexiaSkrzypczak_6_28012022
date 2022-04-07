@@ -137,6 +137,7 @@ function mediaFactory(data) {
   /**
    * @property {HTMLElement} element
    * @property {string[]} gallery Chemins des images de la lightbox
+   * @property {string} url Image actuellement affichée
    */
   class Lightbox {
     static init() {
@@ -145,13 +146,12 @@ function mediaFactory(data) {
       // })
       // window.alert("alerte") //*ok
       // console.log(document) //*ok (structure html du document)
-      // const test = document.querySelector('#main')
-      // console.log("test : ", test) //* ok
       // // console.log("document.querySelectorAll('.photographie') : ", document.querySelectorAll('.photographie')) //*ok dans média
       // // console.log("document.querySelectorAll('div') : ",document.querySelectorAll('div'))//*ok dans média
       const links = Array.from(document.querySelectorAll('.photographie'))
-      console.log( 'links', links ) //*ok dans média
+      console.log( 'links', links ) //* ok dans media.js
       const gallery = links.map( link => link.getAttribute( 'href' ) )
+      console.log("gallery :", gallery) //* ok dans media.js
       // debugger
       links.forEach((links) =>
         links.addEventListener('click', (e) => {
@@ -173,11 +173,11 @@ function mediaFactory(data) {
       // console.log("body : ", body) //* ok
       this.element = this.buildDom(url)
       // console.log("this.element :", this.element) //* ok
-      // this.loadImage(url)
+      this.gallery = gallery
+      this.loadImage(url)
       this.onKeyUp = this.onKeyUp.bind(this)
       body.appendChild( this.element )
       document.addEventListener( 'keyup', this.onKeyUp ) //*ok ferme toutes les lightbox
-      // press escape => message : media.js:201 Uncaught TypeError: Cannot read properties of null (reading 'removeChild') media.js:201
     }
 
     // //~ 40:14
@@ -185,20 +185,24 @@ function mediaFactory(data) {
     //  * @param {string} url URL de l'image
     //  *
     //  */
-    // loadImage ( url )
-    // {
-    //   const image = new Image()
-    //   const container = this.element.querySelctor( ".lightbox__container" )
-    //   const loader = document.createElement( "div" )
-    //   loader.classList.add( "lightbox__loader" )
-    //   container.appendChild( loader )
-    //   image.onload = function ()
-    //   {
-    //     container.removeChild( loader )
-    //     container.appendChild(image)
-    //   }
-    //   image.src=url
-    // }
+    loadImage ( url )
+    {
+      this.url = null
+      const image = new Image()
+      const container = this.element.querySelector( ".lightbox__container" )
+      const loader = document.createElement( "div" )
+      loader.className = "lightbox__loader"
+      container.innerHTML = ""
+      container.appendChild(loader)
+      image.onload = () => 
+      {
+        container.removeChild(loader)
+        container.appendChild(image)
+        this.url = url
+      }
+      
+      image.src = url
+    }
 
     /**
      * @param {keyboardEvent} e
@@ -208,6 +212,12 @@ function mediaFactory(data) {
       if ( e.key === 'Escape' )
       {
         this.close(e)
+      } else if ( e.key === 'ArrowLeft' )
+      {
+        this.prev(e)
+      }else if ( e.key === 'ArrowRight' )
+      {
+        this.next(e)
       }
     }
 
@@ -215,7 +225,7 @@ function mediaFactory(data) {
     // TODO ok mais n'en ferme qu'une à la fois et il y a plusieurs lightbox
     /**
      * Ferme la lightbox
-     * @param {MouseEvent} e
+     * @param {MouseEvent/KeyboardEvent} e
      */
     close(e) {
       event.preventDefault()
@@ -224,6 +234,36 @@ function mediaFactory(data) {
         this.element.parentElement.removeChild(this.element)
       }, 500 ) //* ok une à la fois
       document.removeEventListener( 'keyup', this.onKeyUp ) //* ok
+    }
+
+    /**
+     * Passe au média suivante
+     * @param {MouseEvent/KeyboardEvent} e
+     */
+    next(e)
+    {
+      e.preventDefault()
+      let i = this.gallery.findIndex( media => media === this.url )
+      if ( i === this.gallery.length - 1 )
+      {
+        i= -1
+      }
+      this.loadImage( this.gallery[ i + 1 ] )
+    }
+
+    /**
+     * Passe au média précedant
+     * @param {MouseEvent/KeyboardEvent} e
+     */
+    prev(e)
+    {
+      e.preventDefault()
+      let i = this.gallery.findIndex( media => media === this.url )
+      if ( i === 0)
+      {
+        i = this.gallery.length
+      }
+      this.loadImage( this.gallery[ i - 1 ] )
     }
 
     /**
@@ -270,7 +310,13 @@ function mediaFactory(data) {
         </button>`
       dom
         .querySelector('.lightbox__close')
-        .addEventListener('click', this.close.bind(this))
+        .addEventListener( 'click', this.close.bind( this ) )
+      dom
+        .querySelector('.lightbox__next')
+        .addEventListener( 'click', this.next.bind( this ) )
+       dom
+        .querySelector('.lightbox__prev')
+        .addEventListener('click', this.prev.bind(this))
       return dom
     }
   }
