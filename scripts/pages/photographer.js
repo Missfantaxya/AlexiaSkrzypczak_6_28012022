@@ -167,7 +167,6 @@ async function displayData(photographers, media) {
     // console.log("elementsMedia by popularity :", elementsMedia) //* ok
 
     displayMedia()
-    // displayMediaCarousel()
   })
 
   const dateOption = document.createElement("p")
