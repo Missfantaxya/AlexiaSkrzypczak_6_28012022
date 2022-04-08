@@ -78,6 +78,10 @@ function mediaFactory(data) {
     heartmedia.setAttribute('src', heartSvg)
     contenairLikes.appendChild(heartmedia)
 
+    article.addEventListener('click', function () {
+      alertDisplay()
+    })
+
     return article
   }
 
@@ -104,6 +108,7 @@ function mediaFactory(data) {
         })
       )
     }
+
     /**
      * @param {string} url URL de l'image
      * @param {string[]} gallery Chemins des images de la lightbox
@@ -124,7 +129,7 @@ function mediaFactory(data) {
      */
     loadImage(url) {
       this.url = null
-      const image = new Image()
+      const image = new Image() //? demander pour comprendre
       const container = this.element.querySelector('.lightbox__container')
       const loader = document.createElement('div')
       loader.className = 'lightbox__loader'
@@ -152,7 +157,7 @@ function mediaFactory(data) {
       }
     }
 
-    // TODO ok mais n'en ferme qu'une à la fois avec la souris et il y a plusieurs lightbox
+    // TODO ok mais n'en ferme qu'une à la fois avec la souris et il y a plusieurs lightbox (cf condition au init)
     /**
      * Ferme la lightbox
      * @param {MouseEvent/KeyboardEvent} e
@@ -246,11 +251,8 @@ function mediaFactory(data) {
       return dom
     }
   }
+  // si .lightbox" n'existe pas alors initier la lightbox sinon rien faire
   Lightbox.init() //*ok si dans média.js
-
-  // document.addEventListener('DOMContentLoaded', function () {
-  // Lightbox.init()
-  // }) //* ok si dans lightbox.js
 
   return {
     id,
