@@ -64,7 +64,7 @@
       "likes": 62,
       "date": "2011-12-08",
       "price": 55,
-      "description": "Femme qui prend la pause debout en jogging jaune et bottines blanches à talon haut devant devant un terrain de basquet et avec la mer qui se fond dans le ciel bleu"
+      "description": "Femme avec un jogging jaune"
     },
     {
       "id": 8520927,
@@ -74,7 +74,7 @@
       "likes": 11,
       "date": "2011-11-06",
       "price": 55,
-      "description": "Femme qui prend la pause près du sol en tenu imprimée avec des feuilles de la jungle vertes dans un décor urbain"
+      "description": "Femme en tenu verte"
     },
     {
       "id": 9025895,
@@ -84,7 +84,7 @@
       "likes": 72,
       "date": "2013-08-12",
       "price": 55,
-      "description": "Femme qui prend la pause vue en tenu rayée devant un mur carrelé de gros losanges"
+      "description": "Femme avec des vêtements rayés"
     },
     {
       "id": 9275938,
@@ -104,7 +104,7 @@
       "likes": 2,
       "date": "2020-05-25",
       "price": 55,
-      "description": "Couple de mariés vu de dos avec pour décor en flou les invités tenant des étincelles"
+      "description": "Mariage la nuit"
     },
     {
       "id": 7324238,
@@ -114,7 +114,7 @@
       "likes": 33,
       "date": "2019-06-12",
       "price": 55,
-      "description": "décor d'annniversaire avec ballons dorée  18 en objet central vue de la table dressé pour le repas"
+      "description": "table d'anniversaire"
     },
     {
       "id": 8328953,
@@ -134,7 +134,7 @@
       "likes": 88,
       "date": "2007-05-07",
       "price": 55,
-      "description": "façade peinte avec une silhouete et un triangle blanc sur fond bleu  "
+      "description": "un Triangle blanc sur fond bleu  "
     },
     {
       "id": 8523492,
@@ -144,7 +144,7 @@
       "likes": 24,
       "date": "2018-05-05",
       "price": 55,
-      "description": "Tunnel avec des tags sur les murs et ayant une lueur violette"
+      "description": "Tunnel avec des tags"
     },
     {
       "id": 75902334,
@@ -154,7 +154,7 @@
       "likes": 75,
       "date": "2019-11-25",
       "price": 55,
-      "description": "façade peinte avec des lignes de têtes de volatiles alternant le bleu et la rouge"
+      "description": "peinture moderne de têtes d'oiseaux"
     },
 
     {
@@ -175,7 +175,7 @@
       "likes": 58,
       "date": "2018-07-17",
       "price": 70,
-      "description": "photo d'une femme en robe bleu pastel, levant le bras gauche, devant un homme habillé d'un costume beige, levant le bras droit "
+      "description": "un duo en vêtement pâle"
     },
     {
       "id": 32958383,
@@ -185,7 +185,7 @@
       "likes": 11,
       "date": "2019-08-12",
       "price": 70,
-      "description": "femme descendant des escaliers en robe rouge et chaussures blanches plates"
+      "description": "femme en robe rouge"
     },
     {
       "id": 928587383,
@@ -195,7 +195,7 @@
       "likes": 2,
       "date": "2019-01-02",
       "price": 70,
-      "description": "réunion professionnelle avec des notes autocollantes colorées sur le mur"
+      "description": "réunion professionnelle"
     },
     {
       "id": 725639493,
@@ -205,7 +205,7 @@
       "likes": 3,
       "date": "2019-05-20",
       "price": 70,
-      "description": "présentation d'un produit à une équipe professionnelle"
+      "description": "présentation professionnel"
     },
     {
       "id": 23394384,
@@ -215,7 +215,7 @@
       "likes": 52,
       "date": "2019-07-18",
       "price": 70,
-      "description": "Femme assise devant une table de mixage"
+      "description": "pianiste devant un synthétiseur"
     },
     {
       "id": 87367293,
@@ -225,7 +225,7 @@
       "likes": 23,
       "date": "2018-02-22",
       "price": 70,
-      "description": "Femme avec un micro devant la bouche"
+      "description": "Chanteuse"
     },
     {
       "id": 593834784,
@@ -235,7 +235,7 @@
       "likes": 52,
       "date": "2017-03-13",
       "price": 70,
-      "description": "vidéo d'un chiot qui joue sur la plage"
+      "description": "Un cerf qui regarde l'objectif"
     },
     {
       "id": 83958935,
@@ -245,7 +245,7 @@
       "likes": 52,
       "date": "2016-06-12",
       "price": 70,
-      "description": "un cerf qui regarde l'objectif"
+      "description": "Vidéo d'un chiot qui joue sur la plage"
     },
     {
       "id": 394583434,
