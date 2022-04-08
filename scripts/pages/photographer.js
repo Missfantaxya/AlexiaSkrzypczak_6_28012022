@@ -191,7 +191,6 @@ async function displayData(photographers, media) {
     // console.log("elementsMedia by date :", elementsMedia) //* ok
 
     displayMedia()
-    // displayMediaCarousel()
   })
 
   const titleOption = document.createElement("p")
@@ -219,103 +218,5 @@ async function displayData(photographers, media) {
     })
     // console.log("elementsMedia by title :", elementsMedia) //*ok
     displayMedia()
-    // displayMediaCarousel()
   })
-
-  // La Lightbox-----------------------------------
-
-  // TODO indexOf ou filter pour récup id de [elementsMedia] == id du média cliqué (cf data dans media) et servir de l'id +1 ou -1 pour suivant et précédent.
-
-  // function displayMediaCarousel() {
-  // TODO afficher le média cliqué (récup id ds [elementsMedia] et place le media ==id
-  //   carousel.textContent = ""
-  //   console.log("elementsMedia :", elementsMedia) // *ok
-  //   elementsMedia.forEach((elementMedia) => {
-  //     const mediaModel = mediaFactory(elementMedia)
-  //     const elementMediaCarouselDOM = mediaModel.getMediaCarousel()
-  //     carousel.appendChild(elementMediaCarouselDOM)
-  //   })
-  // }
-
-  // const lightbox = document.createElement("aside")
-  // lightbox.id = "lightbox"
-  // photographerSection.after(lightbox)
-
-  // const dialog = document.createElement("div")
-  // dialog.className = "dialog"
-  // lightbox.appendChild(dialog)
-
-  // function stopLink(event) {
-  //   event.preventDefault()
-  // console.log("stop link") //*ok
-  // }
-
-  // const previous = document.createElement("a")
-  // previous.className = "previous"
-  // previous.setAttribute("href", "media précédent")
-  // previous.textContent = "<"
-  // dialog.appendChild(previous)
-
-  // function previousMedia() {
-  // TODO se sevir de id-1
-  // carousel.style.transform = "translate(-1000px)" //!
-  //   console.log("previous media") //* ok
-  // }
-
-  // function previousClick() {
-  //   stopLink(event)
-  //   previousMedia()
-  // }
-
-  // previous.addEventListener("click", previousClick)
-
-  // const viewOneMedia = document.createElement("div")
-  // viewOneMedia.className = "viewOneMedia"
-  // dialog.appendChild(viewOneMedia)
-
-  // const carousel = document.createElement("ul")
-  // carousel.className = "carousel"
-  // viewOneMedia.appendChild(carousel)
-  // displayMediaCarousel()
-
-  // const following = document.createElement("a")
-  // following.setAttribute("href", "media suivant")
-  // following.className = "following"
-  // following.textContent = ">"
-  // dialog.appendChild(following)
-
-  // function followingMedia() {
-  // TODO se sevir de id+1
-  //   console.log("following media") //*ok
-  // }
-
-  // function followingClick() {
-  //   stopLink(event)
-  //   followingMedia()
-  // }
-
-  // following.addEventListener("click", followingClick)
-
-  // const closeLightbox = document.createElement("button")
-  // closeLightbox.className = "closeLightbox"
-  // closeLightbox.textContent = "X"
-  // dialog.appendChild(closeLightbox)
-
-  // function stopLightboxSubmit(event) {
-  //   event.preventDefault()
-  // console.log("stop Submit") //*ok
-  // }
-
-  // function closeLightboxButton() {
-  //   lightbox.style.display = "none"
-  //   main.style.display = "block"
-  // console.log("close lightbox") //*ok
-  // }
-
-  // function closeLightboxClick() {
-  //   stopLightboxSubmit(event)
-  //   closeLightboxButton()
-  // }
-
-  // closeLightbox.addEventListener("click", closeLightboxClick)
 }

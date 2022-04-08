@@ -15,7 +15,7 @@ function mediaFactory(data) {
 
   const videoMedia = `assets/photographies/${photographerId}/${video}`
 
-  // TODO afficher le coeur différement pour pouvoir changer la couleur
+  // TODO afficher le coeur différement pour pouvoir changer la couleur voir comme les croos de la lightbox en passant par figma
   const heartSvg = 'assets/icons/heart-solid.svg'
 
   function getpictureCardDOM() {
@@ -41,26 +41,6 @@ function mediaFactory(data) {
       thumbnail.setAttribute('aria-label', description)
       article.appendChild(thumbnail)
     }
-
-    // const medio = article.querySelector(".media")
-    // console.log("medio :", medio) //*ok
-    // medio.addEventListener("click", function () {
-    //   lightbox.style.display = "block"
-    //! appeler la modal avec ;l'id en paramètre
-    //   console.log(data)
-    //   const main = document.querySelector("#main")
-    // console.log(main)//*ok
-    //   main.style.display = "none"
-    // console.log("ouverture de la lightbox") //*ok
-    // console.log("click on media")//* ok
-    // console.log(title) // *ok
-    //   console.log(id) // *ok
-    //   TestId(id) // *ok s'en servir
-    // TODO factory à faire
-    // TODO itération sur tous les média avec navigation gche/droite
-    // })
-
-    // cf Graphikart Lightbox pause à 34:24
 
     const pictureDetails = document.createElement('div')
     pictureDetails.className = 'pictureDetails'
@@ -101,38 +81,6 @@ function mediaFactory(data) {
     return article
   }
 
-  // TODO ATTENTION la lightbox se créer plusieur fois
-
-  // function getMediaCarousel() {
-  //   const oneMediaCarousel = document.createElement("li")
-  //   oneMediaCarousel.className = "oneMediaCarousel"
-
-  //   if (data.hasOwnProperty("image")) {
-  //     const imgCarousel = document.createElement("img")
-  //     imgCarousel.className = "mediaCarousel"
-  //     imgCarousel.setAttribute("src", picture)
-  //     imgCarousel.setAttribute("alt", title)
-  //     imgCarousel.setAttribute("aria-label", description)
-  //     oneMediaCarousel.appendChild(imgCarousel)
-  //   } else if (data.hasOwnProperty("video")) {
-  //     const videoCarousel = document.createElement("video")
-  //     videoCarousel.className = "mediaCarousel"
-  //     videoCarousel.setAttribute("src", videoMedia)
-  //     videoCarousel.setAttribute("type", "video/mp4")
-  //     videoCarousel.setAttribute("alt", title)
-  //     // TODO ajouter la lecture automatique quand visible
-  //     videoCarousel.setAttribute("aria-label", description)
-  //     oneMediaCarousel.appendChild(videoCarousel)
-  //   }
-
-  //   const mediaName = document.createElement("p")
-  //   mediaName.className = "mediaName"
-  //   mediaName.textContent = title
-  //   oneMediaCarousel.appendChild(mediaName)
-
-  //   return oneMediaCarousel
-  // }
-
   // TODO attention plusieurs lightBox sont générées.
   /**
    * @property {HTMLElement} element
@@ -141,23 +89,13 @@ function mediaFactory(data) {
    */
   class Lightbox {
     static init() {
-      // document.querySelectorAll(".photographie").forEach((el) => {
-      //   console.log(el)
-      // })
-      // window.alert("alerte") //*ok
-      // console.log(document) //*ok (structure html du document)
-      // // console.log("document.querySelectorAll('.photographie') : ", document.querySelectorAll('.photographie')) //*ok dans média
-      // // console.log("document.querySelectorAll('div') : ",document.querySelectorAll('div'))//*ok dans média
       const links = Array.from(document.querySelectorAll('.photographie'))
       console.log( 'links', links ) //* ok dans media.js
       const gallery = links.map( link => link.getAttribute( 'href' ) )
       console.log("gallery :", gallery) //* ok dans media.js
-      // debugger
       links.forEach((links) =>
         links.addEventListener('click', (e) => {
           e.preventDefault()
-          // window.alert('alerte') //*ok 
-          // console.log("e.currentTarget.getAttribute('href') : ", e.currentTarget.getAttribute("href")) //*ok
           new Lightbox(e.currentTarget.getAttribute('href'), gallery)
         })
       )
@@ -168,23 +106,19 @@ function mediaFactory(data) {
      */
     constructor ( url, gallery )
     {
-      // console.log( "gallery :", gallery ) //* ok
       const body = document.querySelector('body')
-      // console.log("body : ", body) //* ok
       this.element = this.buildDom(url)
-      // console.log("this.element :", this.element) //* ok
       this.gallery = gallery
       this.loadImage(url)
       this.onKeyUp = this.onKeyUp.bind(this)
       body.appendChild( this.element )
-      document.addEventListener( 'keyup', this.onKeyUp ) //*ok ferme toutes les lightbox
+      document.addEventListener( 'keyup', this.onKeyUp )
     }
-
-    // //~ 40:14
-    // /**
-    //  * @param {string} url URL de l'image
-    //  *
-    //  */
+   
+    /**
+     * @param {string} url URL de l'image
+     *
+     */
     loadImage ( url )
     {
       this.url = null
@@ -222,7 +156,7 @@ function mediaFactory(data) {
     }
 
 
-    // TODO ok mais n'en ferme qu'une à la fois et il y a plusieurs lightbox
+    // TODO ok mais n'en ferme qu'une à la fois avec la souris et il y a plusieurs lightbox
     /**
      * Ferme la lightbox
      * @param {MouseEvent/KeyboardEvent} e
@@ -252,7 +186,7 @@ function mediaFactory(data) {
     }
 
     /**
-     * Passe au média précedant
+     * Passe au média précedent
      * @param {MouseEvent/KeyboardEvent} e
      */
     prev(e)
