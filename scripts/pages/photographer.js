@@ -4,7 +4,6 @@
 
 // TODO faire fonctionner le bouton de contact
 
-
 // récupération de l'id du photographe dans l'url
 let urlRechercheParams = new URLSearchParams(window.location.search)
 let idUrl = parseInt(urlRechercheParams.get("id"))
