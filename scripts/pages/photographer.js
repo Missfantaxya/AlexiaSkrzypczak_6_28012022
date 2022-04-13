@@ -4,218 +4,416 @@
 
 // TODO faire fonctionner le bouton de contact
 
+const photographerInPagesTest = "je suis dans la page photographer"
+
+// console.log( "dans photographer pages :", mediaInFactoriesTest ) //! error not defined
+
 // récupération de l'id du photographe dans l'url
-let urlRechercheParams = new URLSearchParams(window.location.search)
-let idUrl = parseInt(urlRechercheParams.get("id"))
+let urlRechercheParams = new URLSearchParams( window.location.search )
+let idUrl = parseInt( urlRechercheParams.get( "id" ) )
 // console.log(idUrl) //*ok
 
-function TestId(id) {
-  console.log(id)
-}
+async function displayData ( photographers, media )
+{
+  // console.log( "dans photographer pages :", lightboxInUtilsTest ) //*ok
+  // console.log( "dans photographer pages :", mediaInFactoriesTest ) //! error not defined
+  // console.log( "dans photographer pages :", mediaInFactoriesTesthorsMediaFactory ) //*ok
 
-async function displayData(photographers, media) {
   // La parties avec le photographe :----------------------------------------
 
   const heartSvg = "assets/icons/heart-solid.svg"
 
-  const photographHeader = document.querySelector(".photograph-header")
-  const contact = document.querySelector(".contact_button")
+  const photographHeader = document.querySelector( ".photograph-header" )
+  const contact = document.querySelector( ".contact_button" )
 
   // tableau du photographe
   const photographer = photographers.filter(
-    (photographer) => photographer.id == idUrl
+    ( photographer ) => photographer.id == idUrl
   )
 
   // Utilisation de la factory photographer pour afficher les détails du photographe
-  const photographerModel = photographerFactory(photographer)
+  const photographerModel = photographerFactory( photographer )
   const UserProfilDOM = photographerModel.getUserProfilDOM()
-  photographHeader.insertBefore(UserProfilDOM, contact)
+  photographHeader.insertBefore( UserProfilDOM, contact )
 
   // Utilisation de la factory photographer pour afficher l'avatar du photographe
-  const photographerAvatarModel = photographerFactory(photographer)
+  const photographerAvatarModel = photographerFactory( photographer )
   const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM()
-  photographHeader.appendChild(UserAvatarDOM)
+  photographHeader.appendChild( UserAvatarDOM )
 
   //récupération des média du photographe
+
   const elementsMedia = media.filter(
-    (elementsMedia) => elementsMedia.photographerId == idUrl
+    ( elementsMedia ) => elementsMedia.photographerId == idUrl
   )
   // console.log("elementsMedia :", elementsMedia) //*ok
 
   // récupération des likes de chaque média du photographe
-  const mediasLikes = elementsMedia.map((oneMediaLikes) => oneMediaLikes.likes)
+  const mediasLikes = elementsMedia.map( ( oneMediaLikes ) => oneMediaLikes.likes )
 
   // addition de tous les likes du photographe
   let initialLike = 0
   const photographerAllLikes = mediasLikes.reduce(
-    (previousValue, currentValue) => previousValue + currentValue,
+    ( previousValue, currentValue ) => previousValue + currentValue,
     initialLike
   )
 
-  const priceAndLike = document.createElement("div")
+  const priceAndLike = document.createElement( "div" )
   priceAndLike.className = "priceAndLike"
-  photographHeader.appendChild(priceAndLike)
+  photographHeader.appendChild( priceAndLike )
 
-  const wrapperLikes = document.createElement("div")
+  const wrapperLikes = document.createElement( "div" )
   wrapperLikes.className = "wrapperLikes"
-  priceAndLike.appendChild(wrapperLikes)
+  priceAndLike.appendChild( wrapperLikes )
 
-  const photographerLike = document.createElement("p")
+  const photographerLike = document.createElement( "p" )
   photographerLike.className = "photographerLike"
   photographerLike.textContent = photographerAllLikes
-  wrapperLikes.appendChild(photographerLike)
+  wrapperLikes.appendChild( photographerLike )
 
-  const heartphotographer = document.createElement("img")
+  const heartphotographer = document.createElement( "img" )
   heartphotographer.className = "heart"
-  heartphotographer.setAttribute("src", heartSvg)
-  wrapperLikes.appendChild(heartphotographer)
+  heartphotographer.setAttribute( "src", heartSvg )
+  wrapperLikes.appendChild( heartphotographer )
 
-  const photographerPrice = document.createElement("p")
+  const photographerPrice = document.createElement( "p" )
   photographerPrice.className = "photographerPrice"
-  photographerPrice.textContent = photographer[0].price + "€ / jour"
-  priceAndLike.appendChild(photographerPrice)
+  photographerPrice.textContent = photographer[ 0 ].price + "€ / jour"
+  priceAndLike.appendChild( photographerPrice )
 
   // La partie avec les médias :--------------------------------------
 
-  const photographerSection = document.querySelector("#main")
+  const photographerSection = document.querySelector( "#main" )
   // console.log("photographerSection : ", photographerSection) //*ok
 
-  const mediaSection = document.createElement("div")
+  const mediaSection = document.createElement( "div" )
   mediaSection.className = "mediaSection"
-  photographerSection.appendChild(mediaSection)
+  photographerSection.appendChild( mediaSection )
 
-  const selectForm = document.createElement("div")
+  const selectForm = document.createElement( "div" )
   selectForm.className = "selectForm"
-  mediaSection.appendChild(selectForm)
+  mediaSection.appendChild( selectForm )
 
-  const selectLabel = document.createElement("p")
+  const selectLabel = document.createElement( "p" )
   selectLabel.className = "selectLabel"
   selectLabel.textContent = "Trier par"
-  selectForm.appendChild(selectLabel)
+  selectForm.appendChild( selectLabel )
 
-  const selection = document.createElement("div")
+  const selection = document.createElement( "div" )
   selection.className = "selection hidden"
-  selectForm.appendChild(selection)
+  selectForm.appendChild( selection )
 
-  const selectButton = document.createElement("button")
+  const selectButton = document.createElement( "button" )
   selectButton.className = "selectButton close"
-  selection.appendChild(selectButton)
+  selection.appendChild( selectButton )
 
-  const pictures = document.createElement("div")
+  const pictures = document.createElement( "div" )
   pictures.className = "pictures"
-  mediaSection.appendChild(pictures)
+  mediaSection.appendChild( pictures )
 
   // classement des média par popularité
-  elementsMedia.sort(function (a, b) {
+  elementsMedia.sort( function ( a, b )
+  {
     return a.likes - b.likes
-  })
+  } )
 
   // function pour afficher les media
-  function displayMedia() {
+  function displayMedia ()
+  {
     //vidage de pictures avant son remplissage pour permettre de le classer en fonction de la selection
     pictures.textContent = ""
-    elementsMedia.forEach((elementMedia) => {
-      const mediaModel = mediaFactory(elementMedia)
+    elementsMedia.forEach( ( elementMedia ) =>
+    {
+      const mediaModel = mediaFactory( elementMedia )
       const elementMediaDOM = mediaModel.getpictureCardDOM()
-      pictures.appendChild(elementMediaDOM)
+      pictures.appendChild( elementMediaDOM )
       // console.log(elementMedia.title) //*ok
-    })
+    } )
   }
 
   displayMedia()
 
   //ouverture de la selection
-  selectButton.addEventListener("click", function () {
-    selection.classList.remove("hidden")
-    selectButton.classList.remove("close")
-    popularityOption.classList.add("open")
-    dateOption.classList.add("open")
-    titleOption.classList.add("open")
-    selectArrow.classList.remove("down")
-    selectArrow.classList.add("up")
-  })
+  selectButton.addEventListener( "click", function ()
+  {
+    selection.classList.remove( "hidden" )
+    selectButton.classList.remove( "close" )
+    popularityOption.classList.add( "open" )
+    dateOption.classList.add( "open" )
+    titleOption.classList.add( "open" )
+    selectArrow.classList.remove( "down" )
+    selectArrow.classList.add( "up" )
+  } )
 
-  const selectOptions = document.createElement("div")
+  const selectOptions = document.createElement( "div" )
   selectOptions.className = "selectOptions"
-  selection.appendChild(selectOptions)
+  selection.appendChild( selectOptions )
 
-  const selectArrow = document.createElement("div")
+  const selectArrow = document.createElement( "div" )
   selectArrow.className = "selectArrow down"
   selectArrow.textContent = ">"
-  selection.appendChild(selectArrow)
+  selection.appendChild( selectArrow )
 
-  const popularityOption = document.createElement("p")
+  const popularityOption = document.createElement( "p" )
   popularityOption.className = "selectOption popularityOption"
   popularityOption.textContent = "Popularité"
-  popularityOption.setAttribute("onClick", "displayMedia()")
-  selectOptions.appendChild(popularityOption)
+  popularityOption.setAttribute( "onClick", "displayMedia()" )
+  selectOptions.appendChild( popularityOption )
 
-  popularityOption.addEventListener("click", function () {
-    selection.classList.add("hidden")
-    popularityOption.classList.remove("open")
-    dateOption.classList.remove("open")
-    titleOption.classList.remove("open")
-    selectOptions.classList.remove("title")
-    selectOptions.classList.remove("date")
-    selectButton.classList.add("close")
+  popularityOption.addEventListener( "click", function ()
+  {
+    selection.classList.add( "hidden" )
+    popularityOption.classList.remove( "open" )
+    dateOption.classList.remove( "open" )
+    titleOption.classList.remove( "open" )
+    selectOptions.classList.remove( "title" )
+    selectOptions.classList.remove( "date" )
+    selectButton.classList.add( "close" )
     // TODO meilleur méthode : changer l'orde des éléments selectOption
-    selectArrow.classList.remove("up")
-    selectArrow.classList.add("down")
+    selectArrow.classList.remove( "up" )
+    selectArrow.classList.add( "down" )
 
     // classement des média par popularité
-    elementsMedia.sort((a, b) => a.likes - b.likes)
+    elementsMedia.sort( ( a, b ) => a.likes - b.likes )
     // console.log("elementsMedia by popularity :", elementsMedia) //* ok
 
     displayMedia()
-  })
+  } )
 
-  const dateOption = document.createElement("p")
+  const dateOption = document.createElement( "p" )
   dateOption.className = "selectOption dateOption"
   dateOption.textContent = "Date"
-  dateOption.setAttribute("onClick", "displayMedia()")
-  selectOptions.appendChild(dateOption)
+  dateOption.setAttribute( "onClick", "displayMedia()" )
+  selectOptions.appendChild( dateOption )
 
-  dateOption.addEventListener("click", function () {
-    selection.classList.add("hidden")
-    popularityOption.classList.remove("open")
-    dateOption.classList.remove("open")
-    titleOption.classList.remove("open")
-    selectOptions.classList.remove("title")
-    selectOptions.classList.add("date")
-    selectButton.classList.add("close")
-    selectArrow.classList.remove("up")
-    selectArrow.classList.add("down")
+  dateOption.addEventListener( "click", function ()
+  {
+    selection.classList.add( "hidden" )
+    popularityOption.classList.remove( "open" )
+    dateOption.classList.remove( "open" )
+    titleOption.classList.remove( "open" )
+    selectOptions.classList.remove( "title" )
+    selectOptions.classList.add( "date" )
+    selectButton.classList.add( "close" )
+    selectArrow.classList.remove( "up" )
+    selectArrow.classList.add( "down" )
     dateOption.insertBefore
-    elementsMedia.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
+    elementsMedia.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
     // console.log("elementsMedia by date :", elementsMedia) //* ok
 
     displayMedia()
-  })
+  } )
 
-  const titleOption = document.createElement("p")
+  const titleOption = document.createElement( "p" )
   titleOption.className = "selectOption titleOption"
   titleOption.textContent = "Titre"
-  titleOption.setAttribute("onClick", "displayMedia()")
-  selectOptions.appendChild(titleOption)
+  titleOption.setAttribute( "onClick", "displayMedia()" )
+  selectOptions.appendChild( titleOption )
 
-  titleOption.addEventListener("click", function () {
-    selection.classList.add("hidden")
-    popularityOption.classList.remove("open")
-    dateOption.classList.remove("open")
-    titleOption.classList.remove("open")
-    selectOptions.classList.remove("date")
-    selectOptions.classList.add("title")
-    selectButton.classList.add("close")
+  titleOption.addEventListener( "click", function ()
+  {
+    selection.classList.add( "hidden" )
+    popularityOption.classList.remove( "open" )
+    dateOption.classList.remove( "open" )
+    titleOption.classList.remove( "open" )
+    selectOptions.classList.remove( "date" )
+    selectOptions.classList.add( "title" )
+    selectButton.classList.add( "close" )
     // TODO changer l'odre des select meilleur méthode que glisser la selection
-    selectArrow.classList.remove("up") //~
-    selectArrow.classList.add("down") //~
+    selectArrow.classList.remove( "up" ) //~
+    selectArrow.classList.add( "down" ) //~
     // classer elementsMedia par titre (alphabétique)
-    elementsMedia.sort(function compoare(a, b) {
-      if (a.title < b.title) return -1
-      if (a.title > b.title) return 1
+    elementsMedia.sort( function compoare ( a, b )
+    {
+      if ( a.title < b.title ) return -1
+      if ( a.title > b.title ) return 1
       return 0
-    })
+    } )
     // console.log("elementsMedia by title :", elementsMedia) //*ok
     displayMedia()
-  })
+  } )
+
+  console.log( "dans photographer pages :", document.querySelectorAll( '.photographie' ) ) //*ok
+
+  /**
+   * @property {HTMLElement} element
+   * @property {string[]} gallery Chemins des images de la lightbox
+   * @property {string} url Image actuellement affichée
+   */
+  class Lightbox
+  {
+    static init ()
+    {
+      const links = Array.from( document.querySelectorAll( '.photographie' ) )
+      // console.log('links', links) //* ok dans media.js
+      const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
+      // console.log('gallery :', gallery) //* ok dans media.js
+      links.forEach( ( links ) =>
+        links.addEventListener( 'click', ( e ) =>
+        {
+          e.preventDefault()
+          new Lightbox( e.currentTarget.getAttribute( 'href' ), gallery )
+        } )
+      )
+    }
+
+    /**
+     * @param {string} url URL de l'image
+     * @param {string[]} gallery Chemins des images de la lightbox
+     */
+    constructor ( url, gallery )
+    {
+      const body = document.querySelector( 'body' )
+      // if ( document.getElementsByClassName( "lightbox" ).length == 0 )
+      // { this.element = this.buildDom( url ) } //! 1 lightbox mais pas tous les média dedans selon position du média cliqué
+      this.element = this.buildDom( url )
+      this.gallery = gallery
+      this.loadImage( url )
+      this.onKeyUp = this.onKeyUp.bind( this )
+      body.appendChild( this.element )
+      document.addEventListener( 'keyup', this.onKeyUp )
+    }
+
+    /**
+     * @param {string} url URL de l'image
+     *
+     */
+    loadImage ( url )
+    {
+      this.url = null
+      const image = new Image() //? demander pour comprendre
+      const container = this.element.querySelector( '.lightbox__container' )
+      const loader = document.createElement( 'div' )
+      loader.className = 'lightbox__loader'
+      container.innerHTML = ''
+      container.appendChild( loader )
+      image.onload = () =>
+      {
+        container.removeChild( loader )
+        container.appendChild( image )
+        this.url = url
+      }
+
+      image.src = url
+    }
+
+    /**
+     * @param {keyboardEvent} e
+     */
+    onKeyUp ( e )
+    {
+      if ( e.key === 'Escape' )
+      {
+        this.close( e )
+      } else if ( e.key === 'ArrowLeft' )
+      {
+        this.prev( e )
+      } else if ( e.key === 'ArrowRight' )
+      {
+        this.next( e )
+      }
+    }
+
+    // TODO ok mais n'en ferme qu'une à la fois avec la souris et il y a plusieurs lightbox (cf condition au init)
+    /**
+     * Ferme la lightbox
+     * @param {MouseEvent/KeyboardEvent} e
+     */
+    close ( e )
+    {
+      event.preventDefault()
+      this.element.classList.add( 'fadeOut' )
+      window.setTimeout( () =>
+      {
+        this.element.parentElement.removeChild( this.element )
+      }, 500 ) //* ok une à la fois
+      document.removeEventListener( 'keyup', this.onKeyUp ) //* ok
+    }
+
+    /**
+     * Passe au média suivante
+     * @param {MouseEvent/KeyboardEvent} e
+     */
+    next ( e )
+    {
+      e.preventDefault()
+      let i = this.gallery.findIndex( ( media ) => media === this.url )
+      if ( i === this.gallery.length - 1 )
+      {
+        i = -1
+      }
+      this.loadImage( this.gallery[ i + 1 ] )
+    }
+
+    /**
+     * Passe au média précedent
+     * @param {MouseEvent/KeyboardEvent} e
+     */
+    prev ( e )
+    {
+      e.preventDefault()
+      let i = this.gallery.findIndex( ( media ) => media === this.url )
+      if ( i === 0 )
+      {
+        i = this.gallery.length
+      }
+      this.loadImage( this.gallery[ i - 1 ] )
+    }
+
+    /**
+     * @param {string} url URL de l'image
+     * @return {HTMLelement}
+     */
+    buildDom ( url )
+    {
+      const dom = document.createElement( 'div' )
+      dom.className = 'lightbox'
+      dom.innerHTML = `<div class="lightbox__wrapper">
+        <button class="lightbox__close">
+          Fermer
+          <img
+            class="lightbox__cross"
+            src="assets/images/cross.svg"
+            alt="chevron vers la droite"
+          />
+        </button>
+        <button class="lightbox__prev">
+          précédent
+          <img
+            class="lightbox__arrow lightbox__arrow--prev"
+            src="assets/images/arrow.svg"
+            alt="chevron vers la gauche"
+          />
+        </button>
+        <div class="lightbox__container">
+         // TODO prévoir pour la vidéo
+          <img
+            src="${ url }"
+            // TODO mettre un alt
+            alt=""
+          />
+           // TODO mettre le titre
+          <p class="lightbox__title">Arc-en-ciel</p>
+        </div>
+        <button class="lightbox__next">
+          suivant
+          <img
+            class="lightbox__arrow lightbox__arrow--next"
+            src="assets/images/arrow.svg"
+            alt="chevron vers la droite"
+          />
+        </button>`
+      dom
+        .querySelector( '.lightbox__close' )
+        .addEventListener( 'click', this.close.bind( this ) )
+      dom
+        .querySelector( '.lightbox__next' )
+        .addEventListener( 'click', this.next.bind( this ) )
+      dom
+        .querySelector( '.lightbox__prev' )
+        .addEventListener( 'click', this.prev.bind( this ) )
+      return dom
+    }
+  }
+  Lightbox.init() //*ok si dans média.js
 }
