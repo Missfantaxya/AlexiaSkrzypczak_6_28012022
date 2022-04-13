@@ -22,7 +22,7 @@ function mediaFactory ( data )
   // console.log( "dans media :", lightboxInUtilsTest ) //*ok
   // console.log( "dans media :", photographerInPagesTest ) //* ok
 
-  // TODO afficher le coeur différement pour pouvoir changer la couleur voir comme les croos de la lightbox en passant par figma
+  // TODO mettre de la bonne couleur (attention le même asset est noir ailleur)
   const heartSvg = 'assets/icons/heart-solid.svg'
 
   function getpictureCardDOM ()
@@ -70,9 +70,11 @@ function mediaFactory ( data )
     pictureLikes.textContent = likes
     contenairLikes.appendChild( pictureLikes )
 
+    // TODO faire en sorte que ça n'ouvre pas la lightbox (Z-index en css non suffisant)
     //incrémentations au click des likes des medias
-    contenairLikes.addEventListener( 'click', function ()
+    contenairLikes.addEventListener( 'click', function ( e )
     {
+      // e.preventDefault() //! n'empêche pas la lightBox
       pictureLikes.textContent = ++likes
       const allLikes = document.querySelector( '.photographerLike' )
       // console.log("allLikes :", allLikes) //*ok

@@ -5,7 +5,6 @@
 // TODO faire fonctionner le bouton de contact
 
 const photographerInPagesTest = "je suis dans la page photographer"
-
 // console.log( "dans photographer pages :", mediaInFactoriesTest ) //! error not defined
 
 // récupération de l'id du photographe dans l'url
@@ -21,6 +20,7 @@ async function displayData ( photographers, media )
 
   // La parties avec le photographe :----------------------------------------
 
+  // TODO
   const heartSvg = "assets/icons/heart-solid.svg"
 
   const photographHeader = document.querySelector( ".photograph-header" )

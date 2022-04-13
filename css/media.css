@@ -1,6 +1,7 @@
 /* photographer ------------------------------------------------*/
 
 .priceAndLike {
+  z-index: 10;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -137,6 +138,7 @@
   align-items: center;
   padding-bottom: 1rem;
   cursor: pointer;
+  z-index:4;
 }
 
 .media {
@@ -161,6 +163,7 @@
 }
 
 .contenairLikes {
+  z-index: 5;
   display: flex;
   flex-direction: row;
 }

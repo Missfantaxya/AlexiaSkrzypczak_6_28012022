@@ -1,10 +1,8 @@
-// TODO faire fonctionner sur les vidéos
-
 const lightboxInUtilsTest = "je suis dans lightbox"
 // console.log( "dans lightbox :", mediaInFactoriesTest ) //! error not defined
 // console.log( "dans lightbox :", photographerInPagesTest ) //*ok
-// console.log( "dans lightBox : ", document.querySelectorAll( '.photographie' ) ) //! length == 0
 
+// TODO faire fonctionner sur les vidéos (pattern Factory)
 /**
  * @property {HTMLElement} element
  * @property {string[]} gallery Chemins des images de la lightbox
@@ -34,8 +32,6 @@ class Lightbox
   constructor ( url, gallery )
   {
     const body = document.querySelector( 'body' )
-    // if ( document.getElementsByClassName( "lightbox" ).length == 0 )
-    // { this.element = this.buildDom( url ) } //! 1 lightbox mais pas tous les média dedans selon position du média cliqué
     this.element = this.buildDom( url )
     this.gallery = gallery
     this.loadImage( url )
@@ -84,7 +80,6 @@ class Lightbox
     }
   }
 
-  // TODO ok mais n'en ferme qu'une à la fois avec la souris et il y a plusieurs lightbox (cf condition au init)
   /**
    * Ferme la lightbox
    * @param {MouseEvent/KeyboardEvent} e
