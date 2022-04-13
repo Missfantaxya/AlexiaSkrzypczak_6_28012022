@@ -4,7 +4,6 @@
 
 // TODO faire fonctionner le bouton de contact
 
- //*TEST git push new pc
 
 // récupération de l'id du photographe dans l'url
 let urlRechercheParams = new URLSearchParams(window.location.search)
