@@ -29,7 +29,7 @@ function mediaFactory ( data )
   {
     const article = document.createElement( 'a' )
     article.className = 'photographie'
-
+    // TODO séparer le code dans fichier model pour expliquer la factory: création d'objets dynamiquement.
     if ( data.hasOwnProperty( 'image' ) )
     {
       article.setAttribute( 'href', picture )
@@ -71,6 +71,7 @@ function mediaFactory ( data )
     contenairLikes.appendChild( pictureLikes )
 
     // TODO faire en sorte que ça n'ouvre pas la lightbox (Z-index en css non suffisant)
+    // isoler (absolute) le like des photo pour pas qu'ils soit intégrer dans le a
     //incrémentations au click des likes des medias
     contenairLikes.addEventListener( 'click', function ( e )
     {
