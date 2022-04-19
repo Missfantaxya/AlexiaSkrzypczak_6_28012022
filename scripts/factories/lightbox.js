@@ -1,6 +1,7 @@
 const lightboxInUtilsTest = "je suis dans lightbox"
 // console.log( "dans lightbox :", mediaInFactoriesTest ) //! error not defined
 // console.log( "dans lightbox :", photographerInPagesTest ) //*ok
+// console.log( "dans lightbox :", lightboxInPhotographieModelTest ) //*ok
 
 // TODO faire fonctionner sur les vidéos (pattern Factory)
 /**
@@ -131,7 +132,9 @@ class Lightbox
    */
   buildDom ( url )
   {
-    console.log( url )
+    // console.log( "dans buildom de lightbox :", lightboxInPhotographieModelTest )// *ok
+    console.log( "url dans buildDom : ", url ) // *ok
+    PhotographyModels()
     const dom = document.createElement( 'div' )
     dom.className = 'lightbox'
     dom.innerHTML = `<div class="lightbox__wrapper">
