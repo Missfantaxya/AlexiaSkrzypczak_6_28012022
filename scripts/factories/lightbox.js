@@ -1,7 +1,7 @@
-const lightboxInUtilsTest = "je suis dans lightbox"
+const lightboxInFactory = "je suis dans lightbox"
 // console.log( "dans lightbox :", mediaInFactoriesTest ) //! error not defined
-// console.log( "dans lightbox :", photographerInPagesTest ) //*ok
-// console.log( "dans lightbox :", lightboxInPhotographieModelTest ) //*ok
+console.log( "dans lightbox :", photographerInPagesTest ) //*ok
+console.log( "dans lightbox :", lightboxInPhotographieModelTest ) //*ok
 
 // TODO faire fonctionner sur les vidéos (pattern Factory)
 /**
@@ -13,27 +13,34 @@ class Lightbox
 {
   static init ()
   {
+    const Teststaticinit = "je suis dans static init"
+    // console.log( "dans lightbox dans la class lightbox static init :", lightboxInPhotographieModelTest ) //* ok
     const links = Array.from( document.querySelectorAll( '.photographie' ) )
     // console.log('links', links) //* ok dans media.js
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
+    // const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
+    // console.log( "lightboxTitle :", lightboxTitle ) // *ok => un tableau
     // console.log('gallery :', gallery) //* ok dans media.js
     links.forEach( ( links ) =>
       links.addEventListener( 'click', ( e ) =>
       {
         e.preventDefault()
-        new Lightbox( e.currentTarget.getAttribute( 'href' ), gallery )
+        new Lightbox( e.currentTarget.getAttribute( 'href' ), e.currentTarget.getAttribute( 'aria-label' ), gallery )
       } )
     )
   }
 
   /**
    * @param {string} url URL de l'image
+   * @param {string} lightboxTitle Titre de l'image
    * @param {string[]} gallery Chemins des images de la lightbox
    */
-  constructor ( url, gallery )
+  constructor ( url, lightboxTitle, gallery )
   {
+    const Testconstructor = "je suis dans constructor"
+    // console.log( "dans lightbox dans la class lightbox constructor :", lightboxInPhotographieModelTest ) //*ok
     const body = document.querySelector( 'body' )
-    this.element = this.buildDom( url )
+    this.element = this.buildDom( url, lightboxTitle )
     this.gallery = gallery
     this.loadImage( url )
     this.onKeyUp = this.onKeyUp.bind( this )
@@ -47,6 +54,8 @@ class Lightbox
    */
   loadImage ( url )
   {
+    const TestloadImage = "je suis dans loadImage"
+    // console.log( "dans lightbox dans la class lightbox loadImage :", lightboxInPhotographieModelTest ) //* ok
     this.url = null
     const image = new Image() //? demander pour comprendre
     const container = this.element.querySelector( '.lightbox__container' )
@@ -128,13 +137,14 @@ class Lightbox
 
   /**
    * @param {string} url URL de l'image
+   * @param {string} lightboxTitle Titre de l'image
    * @return {HTMLelement}
    */
-  buildDom ( url )
+  buildDom ( url, lightboxTitle )
   {
+    const TestBuildDom = "je suis dans buildDom"
     // console.log( "dans buildom de lightbox :", lightboxInPhotographieModelTest )// *ok
     console.log( "url dans buildDom : ", url ) // *ok
-    PhotographyModels()
     const dom = document.createElement( 'div' )
     dom.className = 'lightbox'
     dom.innerHTML = `<div class="lightbox__wrapper">
@@ -155,14 +165,13 @@ class Lightbox
           />
         </button>
         <div class="lightbox__container">
-         // TODO prévoir pour la vidéo
           <img
             src="${ url }"
-            // TODO mettre un alt
-            alt=""
+            alt="titre de l'image"
           />
-           // TODO mettre le titre
-          <p class="lightbox__title">Arc-en-ciel</p>
+          <p class="lightbox__title">
+            titre : 
+          </p>
         </div>
         <button class="lightbox__next">
           suivant

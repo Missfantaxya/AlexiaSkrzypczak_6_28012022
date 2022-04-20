@@ -14,7 +14,7 @@ let idUrl = parseInt( urlRechercheParams.get( "id" ) )
 
 async function displayData ( photographers, media )
 {
-  // console.log( "dans photographer pages :", lightboxInUtilsTest ) //*ok
+  // console.log( "dans photographer pages :", lightboxInFactory ) //*ok
   // console.log( "dans photographer pages :", mediaInFactoriesTest ) //! error not defined
   // console.log( "dans photographer pages :", mediaInFactoriesTesthorsMediaFactory ) //*ok
 

@@ -1,4 +1,5 @@
 const mediaInFactoriesTesthorsMediaFactory = "je suis dans media hors mediaFactory"
+// console.log( "Dans factories/media :", lightboxInPhotographieModelTest )  //! not defined
 
 function mediaFactory ( data )
 {
@@ -14,12 +15,14 @@ function mediaFactory ( data )
     title,
   } = data
 
+  // console.log( "Dans factories/media dans la function mediaFactory :", lightboxInPhotographieModelTest ) //* ok
+
   const picture = `assets/photographies/${ photographerId }/${ image }`
 
   const videoMedia = `assets/photographies/${ photographerId }/${ video }`
 
   const mediaInFactoriesTest = "je suis dans media"
-  // console.log( "dans media :", lightboxInUtilsTest ) //*ok
+  // console.log( "dans media :", lightboxInFactory ) //*ok
   // console.log( "dans media :", photographerInPagesTest ) //* ok
 
   // TODO mettre de la bonne couleur (attention le même asset est noir ailleur)
@@ -29,6 +32,7 @@ function mediaFactory ( data )
   {
     const article = document.createElement( 'a' )
     article.className = 'photographie'
+    article.setAttribute( "aria-label", title )
     // TODO séparer le code dans fichier model pour expliquer la factory: création d'objets dynamiquement.
     if ( data.hasOwnProperty( 'image' ) )
     {
