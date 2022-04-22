@@ -96,8 +96,6 @@ function mediaFactory ( data )
     heartmedia.setAttribute( 'src', heartSvg )
     contenairLikes.appendChild( heartmedia )
 
-
-
     return article
   }
 

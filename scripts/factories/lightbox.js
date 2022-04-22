@@ -6,8 +6,8 @@ const lightboxInFactory = "je suis dans lightbox"
 // TODO faire fonctionner sur les vidéos (pattern Factory)
 /**
  * @property {HTMLElement} element
- * @property {string[]} gallery Chemins des images de la lightbox
- * @property {string} url Image actuellement affichée
+ * @property {string[]} gallery Chemins des medias de la lightbox
+ * @property {string} url média actuellement affichée
  */
 class Lightbox
 {
@@ -19,8 +19,8 @@ class Lightbox
     // console.log('links', links) //* ok dans media.js
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
     const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
-    console.log( "lightboxTitle :", lightboxTitle ) // *ok => un tableau
-    console.log( 'gallery :', gallery ) //* ok dans media.js
+    // console.log( "lightboxTitle :", lightboxTitle ) // *ok => un tableau
+    // console.log( 'gallery :', gallery ) //* ok dans media.js
     links.forEach( ( links ) =>
       links.addEventListener( 'click', ( e ) =>
       {
@@ -31,10 +31,10 @@ class Lightbox
   }
 
   /**
-   * @param {string} url URL de l'image
-   * @param {string} title Titre de l'image
-   * @param {string[]} gallery Chemins des images de la lightbox
-   * @param {string[]} lightboxTitle Titres des media de la lightbox
+   * @param {string} url URL du média
+   * @param {string} title Titre de l'média
+   * @param {string[]} gallery Chemins des médias de la lightbox
+   * @param {string[]} lightboxTitle Titres des medias de la lightbox
    */
   constructor ( url, title, gallery, lightboxTitle )
   {
@@ -45,41 +45,50 @@ class Lightbox
     this.element = this.buildDom( url )
     this.gallery = gallery
     this.lightboxTitle = lightboxTitle
-    this.loadImage( url, title )
+    this.loadMedia( url, title )
     this.onKeyUp = this.onKeyUp.bind( this )
     body.appendChild( this.element )
     document.addEventListener( 'keyup', this.onKeyUp )
   }
 
   /**
-   * @param {string} url URL de l'image
-   * @param {string} title Titre de l'image
+   * @param {string} url URL du média
+   * @param {string} title Titre du média
    */
-  loadImage ( url, title )
+  loadMedia ( url, title )
   {
-    const TestloadImage = "je suis dans loadImage"
-    // console.log( "dans lightbox dans la class lightbox loadImage :", lightboxInPhotographieModelTest ) //* ok
+    const TestloadImage = "je suis dans loadMedia"
+    // console.log( "dans lightbox dans la class lightbox loadMedia :", lightboxInPhotographieModelTest ) //* ok
     this.url = null
     this.title = null
-    const image = new Image()
-    const imageTitle = document.createElement( 'p' )
-    imageTitle.className = "lightbox__title"
-    imageTitle.textContent = title
+
+    console.log( "extension :", url.split( "." ).pop() ) //*ok
+
+    // if ( url.split( "." ).pop() === "mp4" ) { } else if ( url.split( "." ).pop() === "jpg" )
+    // {
+    const media = new Image()
+    // }
+
+    const mediaTitle = document.createElement( 'p' )
+    mediaTitle.className = "lightbox__title"
+    mediaTitle.textContent = title
     const container = this.element.querySelector( '.lightbox__container' )
     const loader = document.createElement( 'div' )
     loader.className = 'lightbox__loader'
     container.innerHTML = ''
     container.appendChild( loader )
-    image.onload = () =>
+    media.onload = () =>
     {
       container.removeChild( loader )
-      container.appendChild( image )
-      container.appendChild( imageTitle )
+
+      container.appendChild( media )
+
+      container.appendChild( mediaTitle )
       this.url = url
       this.title = title
     }
-    image.alt = title
-    image.src = url
+    media.alt = title
+    media.src = url
   }
 
   /**
@@ -126,7 +135,7 @@ class Lightbox
     {
       i = -1
     }
-    this.loadImage( this.gallery[ i + 1 ], this.lightboxTitle[ i + 1 ] )
+    this.loadMedia( this.gallery[ i + 1 ], this.lightboxTitle[ i + 1 ] )
   }
 
   /**
@@ -141,11 +150,12 @@ class Lightbox
     {
       i = this.gallery.length
     }
-    this.loadImage( this.gallery[ i - 1 ], this.lightboxTitle[ i - 1 ] )
+    this.loadMedia( this.gallery[ i - 1 ], this.lightboxTitle[ i - 1 ] )
   }
 
   /**
-   * @param {string} url URL de l'image
+   * @param {string} url URL du media
+   * @param {string} title Titre du média
    * @return {HTMLelement}
    */
   buildDom ( url, title )
@@ -172,8 +182,7 @@ class Lightbox
             alt="chevron vers la gauche"
           />
         </button>
-        <div class="lightbox__container">
-        </div>
+        <div class="lightbox__container"></div>
         <button class="lightbox__next">
           suivant
           <img
