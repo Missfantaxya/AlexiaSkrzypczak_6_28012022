@@ -166,7 +166,7 @@ class Lightbox
         <div class="lightbox__container">
         <div>coucou</div> // ! n'apparaît pas
         // ! le alt n'apparaît pas
-          
+         
           // ! la balise p n'apparait pas
           <p class="lightbox__title">titre de l'image satique</p>
         </div>
@@ -178,8 +178,12 @@ class Lightbox
             alt="chevron vers la droite"
           />
         </button>`
+
     const modelsImg = document.createElement( 'img' )
-    modelsImg.setAttribute( src, url )
+    modelsImg.setAttribute( 'src', url )
+    const lightboxContainer = document.getElementsByClassName( "lightbox__container" )
+    const lightboxTitle = document.getElementsByClassName( 'lightboc__title' )
+
     dom
       .querySelector( '.lightbox__close' )
       .addEventListener( 'click', this.close.bind( this ) )
