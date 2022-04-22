@@ -1,7 +1,7 @@
 const lightboxInFactory = "je suis dans lightbox"
 // console.log( "dans lightbox :", mediaInFactoriesTest ) //! error not defined
-console.log( "dans lightbox :", photographerInPagesTest ) //*ok
-console.log( "dans lightbox :", lightboxInPhotographieModelTest ) //*ok
+// console.log( "dans lightbox :", photographerInPagesTest ) //*ok
+// console.log( "dans lightbox :", lightboxInPhotographieModelTest ) //*ok
 
 // TODO faire fonctionner sur les vidéos (pattern Factory)
 /**
@@ -20,45 +20,51 @@ class Lightbox
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
     const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
     console.log( "lightboxTitle :", lightboxTitle ) // *ok => un tableau
-    // console.log('gallery :', gallery) //* ok dans media.js
+    console.log( 'gallery :', gallery ) //* ok dans media.js
     links.forEach( ( links ) =>
       links.addEventListener( 'click', ( e ) =>
       {
         e.preventDefault()
-        new Lightbox( e.currentTarget.getAttribute( 'href' ), e.currentTarget.getAttribute( 'aria-label' ), gallery )
+        new Lightbox( e.currentTarget.getAttribute( 'href' ), e.currentTarget.getAttribute( 'aria-label' ), gallery, lightboxTitle )
       } )
     )
   }
 
   /**
    * @param {string} url URL de l'image
+   * @param {string} title Titre de l'image
    * @param {string[]} gallery Chemins des images de la lightbox
+   * @param {string[]} lightboxTitle Titres des media de la lightbox
    */
-  constructor ( url, gallery, data )
+  constructor ( url, title, gallery, lightboxTitle )
   {
     const Testconstructor = "je suis dans constructor"
     // console.log( "dans lightbox dans la class lightbox constructor :", lightboxInPhotographieModelTest ) //*ok
+    // console.log( "titleConstructor :", title )  //ok
     const body = document.querySelector( 'body' )
     this.element = this.buildDom( url )
     this.gallery = gallery
-    console.log( "constructor data", data ) // *ok
-    this.loadImage( url )
+    this.lightboxTitle = lightboxTitle
+    this.loadImage( url, title )
     this.onKeyUp = this.onKeyUp.bind( this )
     body.appendChild( this.element )
     document.addEventListener( 'keyup', this.onKeyUp )
-    test( data ) //*ok
   }
 
   /**
    * @param {string} url URL de l'image
-   *
+   * @param {string} title Titre de l'image
    */
-  loadImage ( url, data )
+  loadImage ( url, title )
   {
     const TestloadImage = "je suis dans loadImage"
     // console.log( "dans lightbox dans la class lightbox loadImage :", lightboxInPhotographieModelTest ) //* ok
     this.url = null
-    const image = new Image() //objet natif js
+    this.title = null
+    const image = new Image()
+    const imageTitle = document.createElement( 'p' )
+    imageTitle.className = "lightbox__title"
+    imageTitle.textContent = title
     const container = this.element.querySelector( '.lightbox__container' )
     const loader = document.createElement( 'div' )
     loader.className = 'lightbox__loader'
@@ -68,9 +74,11 @@ class Lightbox
     {
       container.removeChild( loader )
       container.appendChild( image )
+      container.appendChild( imageTitle )
       this.url = url
+      this.title = title
     }
-    image.alt = "titre test"
+    image.alt = title
     image.src = url
   }
 
@@ -118,7 +126,7 @@ class Lightbox
     {
       i = -1
     }
-    this.loadImage( this.gallery[ i + 1 ] )
+    this.loadImage( this.gallery[ i + 1 ], this.lightboxTitle[ i + 1 ] )
   }
 
   /**
@@ -133,14 +141,14 @@ class Lightbox
     {
       i = this.gallery.length
     }
-    this.loadImage( this.gallery[ i - 1 ] )
+    this.loadImage( this.gallery[ i - 1 ], this.lightboxTitle[ i - 1 ] )
   }
 
   /**
    * @param {string} url URL de l'image
    * @return {HTMLelement}
    */
-  buildDom ( url )
+  buildDom ( url, title )
   {
     const TestBuildDom = "je suis dans buildDom"
     // console.log( "dans buildom de lightbox :", lightboxInPhotographieModelTest )// *ok
@@ -164,10 +172,7 @@ class Lightbox
             alt="chevron vers la gauche"
           />
         </button>
-        <div class="lightbox__box">
         <div class="lightbox__container">
-        </div>
-        <p class="lightbox__title">titre de l'image statique</p>
         </div>
         <button class="lightbox__next">
           suivant
