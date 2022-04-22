@@ -32,15 +32,14 @@ class Lightbox
 
   /**
    * @param {string} url URL de l'image
-   * @param {string} lightboxTitle Titre de l'image
    * @param {string[]} gallery Chemins des images de la lightbox
    */
-  constructor ( url, lightboxTitle, gallery )
+  constructor ( url, gallery )
   {
     const Testconstructor = "je suis dans constructor"
     // console.log( "dans lightbox dans la class lightbox constructor :", lightboxInPhotographieModelTest ) //*ok
     const body = document.querySelector( 'body' )
-    this.element = this.buildDom( url, lightboxTitle )
+    this.element = this.buildDom( url )
     this.gallery = gallery
     this.loadImage( url )
     this.onKeyUp = this.onKeyUp.bind( this )
@@ -137,10 +136,9 @@ class Lightbox
 
   /**
    * @param {string} url URL de l'image
-   * @param {string} lightboxTitle Titre de l'image
    * @return {HTMLelement}
    */
-  buildDom ( url, lightboxTitle )
+  buildDom ( url )
   {
     const TestBuildDom = "je suis dans buildDom"
     // console.log( "dans buildom de lightbox :", lightboxInPhotographieModelTest )// *ok
@@ -148,6 +146,7 @@ class Lightbox
     const dom = document.createElement( 'div' )
     dom.className = 'lightbox'
     dom.innerHTML = `<div class="lightbox__wrapper">
+    <div>coucou</div> //*ok
         <button class="lightbox__close">
           Fermer
           <img
@@ -165,13 +164,11 @@ class Lightbox
           />
         </button>
         <div class="lightbox__container">
-          <img
-            src="${ url }"
-            alt="titre de l'image"
-          />
-          <p class="lightbox__title">
-            titre : 
-          </p>
+        <div>coucou</div> // ! n'apparaît pas
+        // ! le alt n'apparaît pas
+          
+          // ! la balise p n'apparait pas
+          <p class="lightbox__title">titre de l'image satique</p>
         </div>
         <button class="lightbox__next">
           suivant
@@ -181,6 +178,8 @@ class Lightbox
             alt="chevron vers la droite"
           />
         </button>`
+    const modelsImg = document.createElement( 'img' )
+    modelsImg.setAttribute( src, url )
     dom
       .querySelector( '.lightbox__close' )
       .addEventListener( 'click', this.close.bind( this ) )

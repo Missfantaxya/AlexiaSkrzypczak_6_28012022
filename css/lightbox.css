@@ -79,15 +79,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+   /* ~test pour faire apparaître le titre*/
+  /* TODO a effacer */
+  width: 1100px;
+  height: 500px;
+  background-color: blueviolet;
 }
 
 .lightbox__container img,
 .lightbox__container video {
-  width: 1050px;
-  /* modifier la height mised à 200 pour test du tire de l'image */
-  height: 200px;
   object-fit: cover;
   object-position: 50% 35%;
+  width: 1050px;
+  /* ~test pour faire apparaître le titre*/
+  /* TODO modifier la height et la remettre à 900*/
+  height: 200px;
 }
 
 .lightbox__title {
@@ -96,6 +102,9 @@
   padding-top: 1em;
   font-weight: 400;
   font-size: 24px;
+  /* ~test pour faire apparaître le titre*/
+  /* TODO a effacer */
+  color:red;
 }
 
 .lightbox__loader {
