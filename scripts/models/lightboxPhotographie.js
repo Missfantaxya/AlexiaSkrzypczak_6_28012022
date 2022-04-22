@@ -16,3 +16,9 @@ console.log( "dans models/lightboxPhotogrpahie => mediaFactory.data de factories
 
 // console.log( Data ) // !not defined
 
+function test ( data )
+{
+  alert( "test" )
+  console.log( "dataTest", data )
+}
+

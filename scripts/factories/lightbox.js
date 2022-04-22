@@ -18,8 +18,8 @@ class Lightbox
     const links = Array.from( document.querySelectorAll( '.photographie' ) )
     // console.log('links', links) //* ok dans media.js
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
-    // const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
-    // console.log( "lightboxTitle :", lightboxTitle ) // *ok => un tableau
+    const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
+    console.log( "lightboxTitle :", lightboxTitle ) // *ok => un tableau
     // console.log('gallery :', gallery) //* ok dans media.js
     links.forEach( ( links ) =>
       links.addEventListener( 'click', ( e ) =>
@@ -34,29 +34,31 @@ class Lightbox
    * @param {string} url URL de l'image
    * @param {string[]} gallery Chemins des images de la lightbox
    */
-  constructor ( url, gallery )
+  constructor ( url, gallery, data )
   {
     const Testconstructor = "je suis dans constructor"
     // console.log( "dans lightbox dans la class lightbox constructor :", lightboxInPhotographieModelTest ) //*ok
     const body = document.querySelector( 'body' )
     this.element = this.buildDom( url )
     this.gallery = gallery
+    console.log( "constructor data", data ) // *ok
     this.loadImage( url )
     this.onKeyUp = this.onKeyUp.bind( this )
     body.appendChild( this.element )
     document.addEventListener( 'keyup', this.onKeyUp )
+    test( data ) //*ok
   }
 
   /**
    * @param {string} url URL de l'image
    *
    */
-  loadImage ( url )
+  loadImage ( url, data )
   {
     const TestloadImage = "je suis dans loadImage"
     // console.log( "dans lightbox dans la class lightbox loadImage :", lightboxInPhotographieModelTest ) //* ok
     this.url = null
-    const image = new Image() //? demander pour comprendre
+    const image = new Image() //objet natif js
     const container = this.element.querySelector( '.lightbox__container' )
     const loader = document.createElement( 'div' )
     loader.className = 'lightbox__loader'
@@ -68,7 +70,7 @@ class Lightbox
       container.appendChild( image )
       this.url = url
     }
-
+    image.alt = "titre test"
     image.src = url
   }
 
@@ -146,7 +148,6 @@ class Lightbox
     const dom = document.createElement( 'div' )
     dom.className = 'lightbox'
     dom.innerHTML = `<div class="lightbox__wrapper">
-    <div>coucou</div> //*ok
         <button class="lightbox__close">
           Fermer
           <img
@@ -163,12 +164,10 @@ class Lightbox
             alt="chevron vers la gauche"
           />
         </button>
+        <div class="lightbox__box">
         <div class="lightbox__container">
-        <div>coucou</div> // ! n'apparaît pas
-        // ! le alt n'apparaît pas
-         
-          // ! la balise p n'apparait pas
-          <p class="lightbox__title">titre de l'image satique</p>
+        </div>
+        <p class="lightbox__title">titre de l'image statique</p>
         </div>
         <button class="lightbox__next">
           suivant
@@ -177,12 +176,8 @@ class Lightbox
             src="assets/images/arrow.svg"
             alt="chevron vers la droite"
           />
-        </button>`
-
-    const modelsImg = document.createElement( 'img' )
-    modelsImg.setAttribute( 'src', url )
-    const lightboxContainer = document.getElementsByClassName( "lightbox__container" )
-    const lightboxTitle = document.getElementsByClassName( 'lightboc__title' )
+        </button>
+        </div>`
 
     dom
       .querySelector( '.lightbox__close' )
