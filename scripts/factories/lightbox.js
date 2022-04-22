@@ -62,13 +62,6 @@ class Lightbox
     this.url = null
     this.title = null
 
-    console.log( "extension :", url.split( "." ).pop() ) //*ok
-
-    // if ( url.split( "." ).pop() === "mp4" ) { } else if ( url.split( "." ).pop() === "jpg" )
-    // {
-    const media = new Image()
-    // }
-
     const mediaTitle = document.createElement( 'p' )
     mediaTitle.className = "lightbox__title"
     mediaTitle.textContent = title
@@ -77,18 +70,43 @@ class Lightbox
     loader.className = 'lightbox__loader'
     container.innerHTML = ''
     container.appendChild( loader )
-    media.onload = () =>
+
+    if ( url.split( "." ).pop() === "jpg" ) //*ok
     {
-      container.removeChild( loader )
-
-      container.appendChild( media )
-
-      container.appendChild( mediaTitle )
-      this.url = url
-      this.title = title
+      console.log( "c'est une image" )
+      const media = new Image()
+      media.alt = title
+      media.src = url
+      console.log( "mediaImage :", media ) //*ok
+      media.onload = () =>
+      {
+        console.log( "j'efface le loader et affiche l'image" ) // *ok
+        container.removeChild( loader )
+        container.appendChild( media )
+        container.appendChild( mediaTitle )
+        this.url = url
+        this.title = title
+      }
+    } else ( url.split( "." ).pop() === "mp4" )
+    {
+      console.log( "c'est une video" ) //*ok
+      console.log( "url :", url ) //*ok
+      const media = document.createElement( 'video' )
+      media.setAttribute( "src", url )
+      media.setAttribute( "type", "video/mp4" )
+      media.setAttribute( "alt", title )
+      console.log( "mediaVidéo :", media ) //*ok
+      //! ne fonctionne pas
+      media.addEventListener( 'load', () =>
+      {
+        console.log( "j'efface le loader et affiche la vidéo" ) //! ne s'affiche pas
+        container.removeChild( loader )
+        container.appendChild( media )
+        container.appendChild( mediaTitle )
+        this.url = url
+        this.title = title
+      } )
     }
-    media.alt = title
-    media.src = url
   }
 
   /**
@@ -137,6 +155,11 @@ class Lightbox
     }
     this.loadMedia( this.gallery[ i + 1 ], this.lightboxTitle[ i + 1 ] )
   }
+
+  // TODO quand je clique sur prev et que je suis sur le mp4
+  //! lightbox.js:74 Uncaught TypeError: Cannot read properties of undefined (reading 'split')
+  //! at Lightbox.loadMedia ( lightbox.js: 74:14 )
+  //! at Lightbox.prev ( lightbox.js: 168:10 )
 
   /**
    * Passe au média précedent
