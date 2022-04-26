@@ -69,26 +69,20 @@ class Lightbox
     container.innerHTML = ''
     if ( url.split( "." ).pop() === "jpg" ) //*ok
     {
-      console.log( "c'est une image" )
       const image = new Image()
       image.alt = title
       image.src = url
-      console.log( "mediaImage :", image ) //*ok
       container.appendChild( image )
       container.appendChild( mediaTitle )
       this.url = url
       this.title = title
     } else if ( url.split( "." ).pop() === "mp4" )
     {
-      console.log( "c'est une video" ) //*ok
-      console.log( "url :", url ) //*ok
       const video = document.createElement( 'video' )
-      video.autoplay
-      // video.controls
+      video.setAttribute( "autoplay", "true" )
       video.setAttribute( "alt", title )
       video.setAttribute( "src", url )
       video.setAttribute( "type", "video/mp4" )
-      console.log( "mediaVidéo :", video ) //*ok
       container.appendChild( video )
       container.appendChild( mediaTitle )
       this.url = url
