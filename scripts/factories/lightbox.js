@@ -66,46 +66,33 @@ class Lightbox
     mediaTitle.className = "lightbox__title"
     mediaTitle.textContent = title
     const container = this.element.querySelector( '.lightbox__container' )
-    const loader = document.createElement( 'div' )
-    loader.className = 'lightbox__loader'
     container.innerHTML = ''
-    container.appendChild( loader )
-
     if ( url.split( "." ).pop() === "jpg" ) //*ok
     {
       console.log( "c'est une image" )
-      const media = new Image()
-      media.alt = title
-      media.src = url
-      console.log( "mediaImage :", media ) //*ok
-      media.onload = () =>
-      {
-        console.log( "j'efface le loader et affiche l'image" ) // *ok
-        container.removeChild( loader )
-        container.appendChild( media )
-        container.appendChild( mediaTitle )
-        this.url = url
-        this.title = title
-      }
-    } else ( url.split( "." ).pop() === "mp4" )
+      const image = new Image()
+      image.alt = title
+      image.src = url
+      console.log( "mediaImage :", image ) //*ok
+      container.appendChild( image )
+      container.appendChild( mediaTitle )
+      this.url = url
+      this.title = title
+    } else if ( url.split( "." ).pop() === "mp4" )
     {
       console.log( "c'est une video" ) //*ok
       console.log( "url :", url ) //*ok
-      const media = document.createElement( 'video' )
-      media.setAttribute( "src", url )
-      media.setAttribute( "type", "video/mp4" )
-      media.setAttribute( "alt", title )
-      console.log( "mediaVidéo :", media ) //*ok
-      //! ne fonctionne pas
-      media.addEventListener( 'load', () =>
-      {
-        console.log( "j'efface le loader et affiche la vidéo" ) //! ne s'affiche pas
-        container.removeChild( loader )
-        container.appendChild( media )
-        container.appendChild( mediaTitle )
-        this.url = url
-        this.title = title
-      } )
+      const video = document.createElement( 'video' )
+      video.autoplay
+      // video.controls
+      video.setAttribute( "alt", title )
+      video.setAttribute( "src", url )
+      video.setAttribute( "type", "video/mp4" )
+      console.log( "mediaVidéo :", video ) //*ok
+      container.appendChild( video )
+      container.appendChild( mediaTitle )
+      this.url = url
+      this.title = title
     }
   }
 
