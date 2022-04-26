@@ -17,7 +17,9 @@ function mediaFactory ( data )
 
   // console.log( "Dans factories/media dans la function mediaFactory :", lightboxInPhotographieModelTest ) //* ok
 
-  const picture = `assets/photographies/${ photographerId }/${ image }`
+  //~mis dans le models-------------------
+  // const picture = `assets/photographies/${ photographerId }/${ image }` 
+  //~-----------------------------------------
 
   const videoMedia = `assets/photographies/${ photographerId }/${ video }`
 
@@ -33,16 +35,21 @@ function mediaFactory ( data )
     const article = document.createElement( 'a' )
     article.className = 'photographie'
     article.setAttribute( "aria-label", title )
+
     // TODO séparer le code dans fichier model pour expliquer la factory: création d'objets dynamiquement.
     if ( data.hasOwnProperty( 'image' ) )
     {
-      article.setAttribute( 'href', picture )
-      const img = document.createElement( 'img' )
-      img.className = 'media'
-      img.setAttribute( 'src', picture )
-      img.setAttribute( 'alt', title )
-      img.setAttribute( 'aria-label', description )
-      article.appendChild( img )
+      window.alert( "factory en cours de construction pour remplace la condition" )
+      mediaPhotographie( data )
+      //~mis dans le models-------------------
+      // article.setAttribute( 'href', picture ) 
+      // const img = document.createElement( 'img' ) 
+      // img.className = 'media' 
+      // img.setAttribute( 'src', picture ) 
+      // img.setAttribute( 'alt', title )
+      // img.setAttribute( 'aria-label', description )
+      // article.appendChild( img )
+      //~-----------------------------------------
     } else if ( data.hasOwnProperty( 'video' ) )
     {
       article.setAttribute( 'href', videoMedia )
