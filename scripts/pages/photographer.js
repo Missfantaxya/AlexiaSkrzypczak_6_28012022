@@ -21,7 +21,7 @@ async function displayData ( photographers, media )
   // La parties avec le photographe :----------------------------------------
 
   // TODO
-  const heartSvg = "assets/icons/heart-solid.svg"
+  const heartSvg = "assets/icons/heart-solid-black.svg"
 
   const photographHeader = document.querySelector( ".photograph-header" )
   const contact = document.querySelector( ".contact_button" )

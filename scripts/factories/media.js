@@ -21,7 +21,7 @@ function mediaFactory ( data )
   // console.log( "dans media :", photographerInPagesTest ) //* ok
 
   // TODO mettre de la bonne couleur (attention le même asset est noir ailleur)
-  const heartSvg = 'assets/icons/heart-solid.svg'
+  const heartSvg = 'assets/icons/heart-solid-brown.svg'
 
   function getpictureCardDOM ()
   {
