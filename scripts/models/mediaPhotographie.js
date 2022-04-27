@@ -1,12 +1,12 @@
-const lightboxInPhotographieModelTest = "je suis dans models/lightboxPhotographie"
-// console.log( "je suis dans models/lightboxPhotographie" ) //*ok
-// console.log( "dans models/lightboxPhotogrpahie :", photographerInPagesTest ) //* ok
-// console.log( "dans models/lightboxPhotogrpahie :", mediaInFactoriesTesthorsMediaFactory ) // *ok
-
-// fonctionne en appelant la fonction dans un autree fichier, une autre fonction et en passant data en paramètre
-function test ( data )
+function mediaPhotographie ( data, article )
 {
-  alert( "test" )
-  console.log( "dataTest", data )
+  const picture = `assets/photographies/${ data.photographerId }/${ data.image }`
+  article.setAttribute( 'href', picture )
+  const img = document.createElement( 'img' )
+  img.className = 'media'
+  img.setAttribute( 'src', picture )
+  img.setAttribute( 'alt', data.title )
+  img.setAttribute( 'aria-label', data.description )
+  article.appendChild( img )
 }
 

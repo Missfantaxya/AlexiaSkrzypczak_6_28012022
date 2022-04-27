@@ -1,9 +1,3 @@
-const lightboxInFactory = "je suis dans lightbox"
-// console.log( "dans lightbox :", mediaInFactoriesTest ) //! error not defined
-// console.log( "dans lightbox :", photographerInPagesTest ) //*ok
-// console.log( "dans lightbox :", lightboxInPhotographieModelTest ) //*ok
-
-// TODO faire fonctionner sur les vidéos (pattern Factory)
 /**
  * @property {HTMLElement} element
  * @property {string[]} gallery Chemins des medias de la lightbox
@@ -14,13 +8,9 @@ class Lightbox
   static init ()
   {
     const Teststaticinit = "je suis dans static init"
-    // console.log( "dans lightbox dans la class lightbox static init :", lightboxInPhotographieModelTest ) //* ok
     const links = Array.from( document.querySelectorAll( '.photographie' ) )
-    // console.log('links', links) //* ok dans media.js
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
     const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
-    // console.log( "lightboxTitle :", lightboxTitle ) // *ok => un tableau
-    // console.log( 'gallery :', gallery ) //* ok dans media.js
     links.forEach( ( links ) =>
       links.addEventListener( 'click', ( e ) =>
       {
@@ -39,8 +29,6 @@ class Lightbox
   constructor ( url, title, gallery, lightboxTitle )
   {
     const Testconstructor = "je suis dans constructor"
-    // console.log( "dans lightbox dans la class lightbox constructor :", lightboxInPhotographieModelTest ) //*ok
-    // console.log( "titleConstructor :", title )  //ok
     const body = document.querySelector( 'body' )
     this.element = this.buildDom( url )
     this.gallery = gallery
@@ -58,7 +46,6 @@ class Lightbox
   loadMedia ( url, title )
   {
     const TestloadImage = "je suis dans loadMedia"
-    // console.log( "dans lightbox dans la class lightbox loadMedia :", lightboxInPhotographieModelTest ) //* ok
     this.url = null
     this.title = null
 
@@ -118,8 +105,8 @@ class Lightbox
     window.setTimeout( () =>
     {
       this.element.parentElement.removeChild( this.element )
-    }, 500 ) //* ok une à la fois
-    document.removeEventListener( 'keyup', this.onKeyUp ) //* ok
+    }, 500 )
+    document.removeEventListener( 'keyup', this.onKeyUp )
   }
 
   /**
@@ -136,11 +123,6 @@ class Lightbox
     }
     this.loadMedia( this.gallery[ i + 1 ], this.lightboxTitle[ i + 1 ] )
   }
-
-  // TODO quand je clique sur prev et que je suis sur le mp4
-  //! lightbox.js:74 Uncaught TypeError: Cannot read properties of undefined (reading 'split')
-  //! at Lightbox.loadMedia ( lightbox.js: 74:14 )
-  //! at Lightbox.prev ( lightbox.js: 168:10 )
 
   /**
    * Passe au média précedent
@@ -165,8 +147,6 @@ class Lightbox
   buildDom ( url, title )
   {
     const TestBuildDom = "je suis dans buildDom"
-    // console.log( "dans buildom de lightbox :", lightboxInPhotographieModelTest )// *ok
-    console.log( "url dans buildDom : ", url ) // *ok
     const dom = document.createElement( 'div' )
     dom.className = 'lightbox'
     dom.innerHTML = `<div class="lightbox__wrapper">

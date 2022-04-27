@@ -16,44 +16,25 @@ function mediaFactory ( data )
   } = data
 
   // console.log( "Dans factories/media dans la function mediaFactory :", lightboxInPhotographieModelTest ) //* ok
-
-  const picture = `assets/photographies/${ photographerId }/${ image }`
-
-  const videoMedia = `assets/photographies/${ photographerId }/${ video }`
-
   const mediaInFactoriesTest = "je suis dans media"
   // console.log( "dans media :", lightboxInFactory ) //*ok
   // console.log( "dans media :", photographerInPagesTest ) //* ok
 
   // TODO mettre de la bonne couleur (attention le même asset est noir ailleur)
-  const heartSvg = 'assets/icons/heart-solid.svg'
+  const heartSvg = 'assets/icons/heart-solid-brown.svg'
 
   function getpictureCardDOM ()
   {
     const article = document.createElement( 'a' )
     article.className = 'photographie'
     article.setAttribute( "aria-label", title )
-    // TODO séparer le code dans fichier model pour expliquer la factory: création d'objets dynamiquement.
+
     if ( data.hasOwnProperty( 'image' ) )
     {
-      article.setAttribute( 'href', picture )
-      const img = document.createElement( 'img' )
-      img.className = 'media'
-      img.setAttribute( 'src', picture )
-      img.setAttribute( 'alt', title )
-      img.setAttribute( 'aria-label', description )
-      article.appendChild( img )
+      mediaPhotographie( data, article )
     } else if ( data.hasOwnProperty( 'video' ) )
     {
-      article.setAttribute( 'href', videoMedia )
-      const thumbnail = document.createElement( 'video' )
-      thumbnail.className = 'media'
-      thumbnail.setAttribute( 'src', videoMedia )
-      thumbnail.setAttribute( 'type', 'video/mp4' )
-      thumbnail.setAttribute( 'alt', title )
-
-      thumbnail.setAttribute( 'aria-label', description )
-      article.appendChild( thumbnail )
+      mediaMovie( data, article )
     }
 
     const pictureDetails = document.createElement( 'div' )
