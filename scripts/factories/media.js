@@ -29,7 +29,6 @@ function mediaFactory ( data )
     article.className = 'photographie'
     article.setAttribute( "aria-label", title )
 
-    // TODO séparer le code dans fichier model pour expliquer la factory: création d'objets dynamiquement.
     if ( data.hasOwnProperty( 'image' ) )
     {
       mediaPhotographie( data, article )
