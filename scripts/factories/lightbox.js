@@ -7,7 +7,6 @@ class Lightbox
 {
   static init ()
   {
-    const Teststaticinit = "je suis dans static init"
     const links = Array.from( document.querySelectorAll( '.photographie' ) )
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
     const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
