@@ -42,19 +42,23 @@
 }
 
 /* selection de l'affichage des médias */
-.media__sort {
+/* .media__sort {
   display: flex;
   flex-direction: row;
   font-size: 20px;
   margin-left: 100px;
   margin-top: 1rem;
-}
+  z-index: 300;
+}*/
 
 .media__sortLabel {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
   margin-right: 1em;
   padding-top: 1.3rem;
 }
+
+/* TODO styliser le select voir maquette*/
 
 .media__sortSelection {
   position: relative;
@@ -62,45 +66,18 @@
   width: 170px;
   height: 70px;
   border-radius: 5px;
+  background-color: #911C1C;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 18px;
 }
 
+/*
 .hidden {
   overflow: hidden;
-}
+}*/
 
-.media__selectButton {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  position: absolute;
-  border-radius: 5px;
-  width: 100%;
-  height: 100%;
-}
-
-.media__selectClose {
-  z-index: 10;
-}
-
-.media__selectOptions {
-  font-weight: bold;
-  color: white;
-  width: 170px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
-}
-
-.media__selectOption--date {
-  top: -70px;
-}
-
-.media__selectOption--title {
-  top: -140px;
-}
-
+/*
 .media__selectArrow {
   position: absolute;
   top: 25px;
@@ -109,15 +86,9 @@
   font-weight: 700;
   font-size: 20px;
 }
+*/
 
-.media__selectArrow--down {
-  transform: rotate(90deg);
-}
-
-.media__selectArrow--up {
-  transform: rotate(-90deg);
-}
-
+/*
 .media__selectOption {
   display: flex;
   justify-content: flex-start;
@@ -126,17 +97,16 @@
   margin: auto 11px;
   padding-left: 0.5em;
 }
+*/
 
-.media__selectOpen {
-  border-top: 1px solid white;
-}
+/*
 .media__selectOpen:first-child {
   border-top: none;
-}
+} */
 
-/*  média du photogrape */
+/*  médias du photogrape */
 
-.pictures {
+.medias {
   margin-top: 2rem;
   display: flex;
   flex-flow: row wrap;

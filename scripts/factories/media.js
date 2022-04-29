@@ -14,8 +14,9 @@ function mediaFactory ( data )
   } = data
 
   const heartSvg = 'assets/icons/heart-solid-brown.svg'
+
   // La factorie permet un affichage dynamique des medias en fonction des propriétés photo ou vidéo.
-  function getpictureCardDOM ()
+  function getMediaCardDOM ()
   {
     const article = document.createElement( 'a' )
     article.className = 'photographie'
@@ -81,6 +82,6 @@ function mediaFactory ( data )
     photographerId,
     price,
     title,
-    getpictureCardDOM,
+    getMediaCardDOM,
   }
 }
