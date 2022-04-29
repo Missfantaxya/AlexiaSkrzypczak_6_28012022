@@ -1,7 +1,7 @@
 /**
  * @property {HTMLElement} element
- * @property {string[]} gallery Chemins des medias de la lightbox
- * @property {string} url média actuellement affichée
+ * @property {string[]} gallery - Chemins des medias de la lightbox
+ * @property {string} url - média actuellement affichée
  */
 class Lightbox
 {

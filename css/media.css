@@ -1,6 +1,6 @@
 /* photographer ------------------------------------------------*/
 
-.priceAndLike {
+.photograph__priceAndLike {
   z-index: 10;
   position: fixed;
   bottom: 0;
@@ -17,19 +17,32 @@
   border-top-right-radius: 4px;
 }
 
-.wrapperLikes {
+.photograph__wrapperLikes {
   display: flex;
   flex-direction: row;
 }
 
-.photographerLike {
+.photograph__likes {
   padding-right: 0.5em;
 }
 
 /* média -------------------------------------*/
 
+
+.media__title{
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 /* selection de l'affichage des médias */
-.selectForm {
+.media__sort {
   display: flex;
   flex-direction: row;
   font-size: 20px;
@@ -37,13 +50,13 @@
   margin-top: 1rem;
 }
 
-.selectLabel {
+.media__sortLabel {
   font-weight: 600;
   margin-right: 1em;
   padding-top: 1.3rem;
 }
 
-.selection {
+.media__sortSelection {
   position: relative;
   display: inline-block;
   width: 170px;
@@ -55,7 +68,7 @@
   overflow: hidden;
 }
 
-.selectButton {
+.media__selectButton {
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -65,11 +78,11 @@
   height: 100%;
 }
 
-.close {
+.media__selectClose {
   z-index: 10;
 }
 
-.selectOptions {
+.media__selectOptions {
   font-weight: bold;
   color: white;
   width: 170px;
@@ -80,15 +93,15 @@
   position: relative;
 }
 
-.date {
+.media__selectOption--date {
   top: -70px;
 }
 
-.title {
+.media__selectOption--title {
   top: -140px;
 }
 
-.selectArrow {
+.media__selectArrow {
   position: absolute;
   top: 25px;
   right: 20px;
@@ -97,15 +110,15 @@
   font-size: 20px;
 }
 
-.down {
+.media__selectArrow--down {
   transform: rotate(90deg);
 }
 
-.up {
+.media__selectArrow--up {
   transform: rotate(-90deg);
 }
 
-.selectOption {
+.media__selectOption {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -114,10 +127,10 @@
   padding-left: 0.5em;
 }
 
-.open {
+.media__selectOpen {
   border-top: 1px solid white;
 }
-.open:first-child {
+.media__selectOpen:first-child {
   border-top: none;
 }
 
