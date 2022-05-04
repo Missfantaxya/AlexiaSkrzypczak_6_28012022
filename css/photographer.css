@@ -1,7 +1,3 @@
-#contact__modal {
-  display: none;
-}
-
 .photograph__header {
   background-color: #fafafa;
   height: 300px;
@@ -23,7 +19,7 @@
   margin-bottom: 1em;
   font-size: 1.2em;
 }
-
+/* TODO voir maquette hover et focus */
 .contact__button {
   font-size: 20px;
   font-weight: bold;

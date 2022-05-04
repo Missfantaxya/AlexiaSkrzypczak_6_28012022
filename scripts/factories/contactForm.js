@@ -1,7 +1,7 @@
 function modalDOM ( data )
 {
   //----- construction du DOM -----
-
+  // TODO vérifier avec la maquette la sémantique
   const modal = document.querySelector( ".modal" )
   const modalHeader = modal.firstElementChild
   modalHeader.className = "modal__header"

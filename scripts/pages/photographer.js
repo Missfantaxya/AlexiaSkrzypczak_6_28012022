@@ -2,6 +2,13 @@
 
 // TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
 
+// // ----- construction du DOM de base pour la page -----
+
+// const main = document.querySelector( "#main" )
+// const wrapper = document.createElement( "div" )
+// wrapper.className = "wrapper"
+// main.appendChild( wrapper )
+
 // ----- récupération de l'id du photographe dans l'url -----
 
 /**
@@ -28,6 +35,7 @@ async function displayData ( photographers, media )
   const heartSvg = "assets/icons/heart-solid-black.svg"
 
   const photographHeader = document.querySelector( ".photograph__header" )
+  // wrapper.appendChild( photographHeader )
   const photographContact = document.querySelector( ".contact__button" )
 
   /**
@@ -110,6 +118,7 @@ async function displayData ( photographers, media )
 
   const mediaSection = document.createElement( "section" )
   mediaSection.className = "media__section"
+  // wrapper.appendChild( mediaSection )
   main.appendChild( mediaSection )
 
   const mediaTitle = document.createElement( "h2" )
@@ -165,31 +174,42 @@ async function displayData ( photographers, media )
   mediaSortLabel.textContent = "Trier par"
   mediaSort.appendChild( mediaSortLabel )
 
+  const mediaSortContainer = document.createElement( "div" )
+  mediaSortContainer.className = "media__sortContainer"
+  mediaSort.appendChild( mediaSortContainer )
+
   const mediaSortSelection = document.createElement( "select" )
   mediaSortSelection.id = "media__sortSelection"
   mediaSortSelection.className = "media__sortSelection"
   mediaSortSelection.setAttribute( "name", "classement des medias" )
-  mediaSort.appendChild( mediaSortSelection )
+  mediaSortContainer.appendChild( mediaSortSelection )
+
+  const dropdownArrow = document.createElement( "div" )
+  dropdownArrow.className = "dropdownArrow"
+  mediaSortContainer.appendChild( dropdownArrow )
+
+  const arrowSvg = document.createElement( "img" )
+  arrowSvg.className = "dropdownArrow__img"
+  arrowSvg.setAttribute( "src", "assets/icons/dropdown.svg" )
+  arrowSvg.setAttribute( "alt", "chevron" )
+  dropdownArrow.appendChild( arrowSvg )
 
   const mediaOptionPopularity = document.createElement( "option" )
   mediaOptionPopularity.className = "media__selectOption media__selectOption--popularity"
   mediaOptionPopularity.setAttribute( "value", "popularity" )
   mediaOptionPopularity.textContent = "Popularité"
-  // mediaOptionPopularity.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionPopularity )
 
   const mediaOptionDate = document.createElement( "option" )
   mediaOptionDate.className = "media__selectOption media__selectOption--date"
   mediaOptionDate.setAttribute( "value", "date" )
   mediaOptionDate.textContent = "Date"
-  // mediaOptionDate.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionDate )
 
   const mediaOptionTitle = document.createElement( "option" )
   mediaOptionTitle.className = "media__selectOption media__selectOption--title"
   mediaOptionTitle.setAttribute( "value", "title" )
   mediaOptionTitle.textContent = "Titre"
-  // mediaOptionTitle.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionTitle )
 
   // ----- fonctionnement du tri des médias -----

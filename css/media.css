@@ -41,29 +41,27 @@
   width: 1px;
 }
 
-
-
 .medias {
   margin-top: 2rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
+  padding: 0 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
 }
 
 .photographie {
-  width: 33%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 350px;
   padding-bottom: 1rem;
   cursor: pointer;
   z-index:4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+
 .media {
-  width: 375px;
-  height: 325px;
+  width: 350px;
+  height: 300px;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -72,26 +70,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 375px;
+  width: 350px;
   color: #901c1c;
   padding-top: 0.5em;
 }
 
 .pictureName {
-  font-weight: normal;
-  font-size: 1.2em;
+  font-weight: 400;
+  font-size: 24px;
 }
 
 .contenairLikes {
   z-index: 5;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  font-weight: 400;
 }
 
 .pictureLikes {
   padding: 0.3em;
+  font-size: 16px;
 }
 
 .heart {
-  width: 1rem;
+  width: 17.5px;
+  height: 18.35px;
 }

@@ -27,7 +27,6 @@ class Lightbox
    */
   constructor ( url, title, gallery, lightboxTitle )
   {
-    const Testconstructor = "je suis dans constructor"
     const body = document.querySelector( 'body' )
     this.element = this.buildDom( url )
     this.gallery = gallery
@@ -44,10 +43,8 @@ class Lightbox
    */
   loadMedia ( url, title )
   {
-    const TestloadImage = "je suis dans loadMedia"
     this.url = null
     this.title = null
-
     const mediaTitle = document.createElement( 'p' )
     mediaTitle.className = "lightbox__title"
     mediaTitle.textContent = title
@@ -145,7 +142,6 @@ class Lightbox
    */
   buildDom ( url, title )
   {
-    const TestBuildDom = "je suis dans buildDom"
     const dom = document.createElement( 'div' )
     dom.className = 'lightbox'
     dom.innerHTML = `<div class="lightbox__wrapper">
