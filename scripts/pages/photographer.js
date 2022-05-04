@@ -2,8 +2,6 @@
 
 // TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
 
-// TODO faire fonctionner le bouton de contact
-
 // ----- récupération de l'id du photographe dans l'url -----
 
 /**
