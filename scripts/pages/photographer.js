@@ -226,4 +226,20 @@ async function displayData ( photographers, media )
 
   // ----- construction du DOM -----
   modalDOM( photograph )
+
+  // ----- inscrption du contenu des input en cosole -----
+  const modal = document.querySelector( ".modal" )
+  const register = modal.querySelector( ".contact__button" )
+  register.addEventListener( "click", function ( event )
+  {
+    // evite la soumission par default du formulaire
+    event.preventDefault()
+
+
+    logInput()
+
+    // function temporaire en attendant une soumission fonctionnelle du formulaire
+    eraseInput()
+  } )
+
 }

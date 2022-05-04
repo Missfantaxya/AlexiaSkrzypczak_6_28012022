@@ -1,7 +1,5 @@
 function modalDOM ( data )
 {
-  console.log( "data de modalDOM :", data ) // *ok
-  console.log( "name dans modalDOM :", data[ 0 ].name ) // *ok
   //----- construction du DOM -----
 
   const modal = document.querySelector( ".modal" )
