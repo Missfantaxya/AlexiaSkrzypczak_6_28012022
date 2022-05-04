@@ -41,70 +41,7 @@
   width: 1px;
 }
 
-/* selection de l'affichage des médias */
-/* .media__sort {
-  display: flex;
-  flex-direction: row;
-  font-size: 20px;
-  margin-left: 100px;
-  margin-top: 1rem;
-  z-index: 300;
-}*/
 
-.media__sortLabel {
-  font-weight: 700;
-  font-size: 18px;
-  margin-right: 1em;
-  padding-top: 1.3rem;
-}
-
-/* TODO styliser le select voir maquette*/
-
-.media__sortSelection {
-  position: relative;
-  display: inline-block;
-  width: 170px;
-  height: 70px;
-  border-radius: 5px;
-  background-color: #911C1C;
-  color: #FFFFFF;
-  font-weight: 700;
-  font-size: 18px;
-}
-
-/*
-.hidden {
-  overflow: hidden;
-}*/
-
-/*
-.media__selectArrow {
-  position: absolute;
-  top: 25px;
-  right: 20px;
-  color: white;
-  font-weight: 700;
-  font-size: 20px;
-}
-*/
-
-/*
-.media__selectOption {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 70px;
-  margin: auto 11px;
-  padding-left: 0.5em;
-}
-*/
-
-/*
-.media__selectOpen:first-child {
-  border-top: none;
-} */
-
-/*  médias du photogrape */
 
 .medias {
   margin-top: 2rem;
