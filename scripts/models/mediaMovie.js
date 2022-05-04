@@ -1,6 +1,5 @@
 function mediaMovie ( data, article )
 {
-  console.log( "data mediaMovie:", data )
   const videoMedia = `assets/photographies/${ data.photographerId }/${ data.video }`
   article.setAttribute( 'href', videoMedia )
   const thumbnail = document.createElement( 'video' )

@@ -221,4 +221,9 @@ async function displayData ( photographers, media )
 
   // initialisation de la lightbox:
   Lightbox.init()
+
+  // ========== La parties avec la modal ==========
+
+  // ----- construction du DOM -----
+  modalDOM( photograph )
 }

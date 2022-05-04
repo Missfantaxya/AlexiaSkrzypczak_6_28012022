@@ -1,4 +1,5 @@
-#contact__modal{
+ /* TODO vérifier le styme et le layout par rapport à la maquette */
+ #contact__modal{
     display: none;
     justify-content: center;
     position: fixed;

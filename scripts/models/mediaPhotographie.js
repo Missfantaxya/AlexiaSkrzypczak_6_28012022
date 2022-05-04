@@ -1,5 +1,6 @@
 function mediaPhotographie ( data, article )
 {
+  // console.log( "data mediaPhotographie : ", data ) //*ok
   const picture = `assets/photographies/${ data.photographerId }/${ data.image }`
   article.setAttribute( 'href', picture )
   const img = document.createElement( 'img' )
