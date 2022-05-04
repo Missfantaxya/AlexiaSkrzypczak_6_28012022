@@ -1,13 +1,12 @@
 /**
  * @property {HTMLElement} element
- * @property {string[]} gallery Chemins des medias de la lightbox
- * @property {string} url média actuellement affichée
+ * @property {string[]} gallery - Chemins des medias de la lightbox
+ * @property {string} url - média actuellement affichée
  */
 class Lightbox
 {
   static init ()
   {
-    const Teststaticinit = "je suis dans static init"
     const links = Array.from( document.querySelectorAll( '.photographie' ) )
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
     const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )

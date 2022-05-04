@@ -25,13 +25,15 @@
       </a>
     </header>
     <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
+      <section class="photograph__header">
+        <!-- TODO récupérer la data pour afficher le nom du photographe dans le contact form-->
+        <button class="contact__button" onclick="displayModal()">
+           <!-- <button class="contact__button"> -->
           Contactez-moi
         </button>
-      </div>
+      </section>
     </main>
-    <div id="contact_modal">
+    <div id="contact__modal">
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
@@ -42,11 +44,12 @@
             <label>Prénom</label>
             <input />
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact__button">Envoyer</button>
         </form>
       </div>
     </div>
     </div>
+    <script src="scripts/factories/contactForm.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/utils/api.js"></script>
     <script src="scripts/factories/photographer.js"></script>

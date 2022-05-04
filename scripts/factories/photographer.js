@@ -1,77 +1,96 @@
-function photographerFactory(data) {
+
+/**
+ * @param {object} data 
+ * @returns 
+ */
+function photographerFactory ( data )
+{
   const { name, portrait, country, city, tagline, price, id } = data
-  const picture = `assets/photographers/${portrait}`
+  const avatar = `assets/photographers/${ portrait }`
 
-  function getUserCardDOM() {
-    // console.log(id)  //*ok
-    const article = document.createElement("article")
-    const link = document.createElement("a")
-    link.setAttribute("href", `/photographer.html?id=${id}`)
-    link.setAttribute("aria-label", name)
+  /**
+   * Construction du DOM pour les détails d'un photogarphe sur la page d'accueil
+   * @returns {HTMLelement}
+   */
+  function getPhotographerCardDOM ()
+  {
+    const photographerArticle = document.createElement( "article" )
+    photographerArticle.className = "photographer__article"
+    const photographerLink = document.createElement( "a" )
+    photographerLink.setAttribute( "href", `/photographer.html?id=${ id }` )
+    photographerLink.className = "photographer__link"
+    photographerLink.setAttribute( "aria-label", name )
 
-    const img = document.createElement("img")
-    img.setAttribute("src", picture)
-    img.setAttribute("alt", " ")
+    const photographerAvatar = document.createElement( "img" )
+    photographerAvatar.setAttribute( "src", avatar )
+    photographerAvatar.className = "photographer__avatar"
+    photographerAvatar.setAttribute( "alt", name )
 
-    const h2 = document.createElement("h2")
-    const details = document.createElement("p")
-    details.className = "details"
-    const location = document.createElement("p")
-    location.className = "location"
-    const slogan = document.createElement("p")
-    slogan.className = "slogan"
-    const prices = document.createElement("p")
-    prices.className = "prices"
+    const photographerName = document.createElement( "h2" )
+    photographerName.className = "photographer__name"
+    const photographerDetails = document.createElement( "p" )
+    photographerDetails.className = "photographer__details"
+    const photographerLocation = document.createElement( "p" )
+    photographerLocation.className = "photographer__location"
+    const photographerSlogan = document.createElement( "p" )
+    photographerSlogan.className = "photographer__slogan"
+    const photographerPrice = document.createElement( "p" )
+    photographerPrice.className = "photographer__price"
 
-    h2.textContent = name
-    article.appendChild(link)
-    link.appendChild(img)
-    link.appendChild(h2)
-    location.textContent = city + ", " + country
-    slogan.textContent = tagline
-    prices.textContent = price + "€/jour"
-    article.appendChild(details)
-    details.appendChild(location)
-    details.appendChild(slogan)
-    details.appendChild(prices)
-    return article
+    photographerName.textContent = name
+    photographerArticle.appendChild( photographerLink )
+    photographerLink.appendChild( photographerAvatar )
+    photographerLink.appendChild( photographerName )
+    photographerLocation.textContent = city + ", " + country
+    photographerSlogan.textContent = tagline
+    photographerPrice.textContent = price + "€/jour"
+    photographerArticle.appendChild( photographerDetails )
+    photographerDetails.appendChild( photographerLocation )
+    photographerDetails.appendChild( photographerSlogan )
+    photographerDetails.appendChild( photographerPrice )
+    return photographerArticle
   }
 
-  function getUserProfilDOM() {
+  /**
+   * Construction du DOM pour les détails d'un photographe sur sa page
+   * @returns {HTMLElement}
+   */
+  function getPhotographProfilDOM ()
+  {
     // console.log("name :", data[0].name) //*ok
 
-    const photographerDetails = document.createElement("div")
+    const photographerDetails = document.createElement( "div" )
     photographerDetails.className = "photographerDetails"
 
-    const photographerName = document.createElement("h1")
+    const photographerName = document.createElement( "h1" )
     photographerName.className = "photographerName"
-    photographerName.textContent = data[0].name
-    photographerDetails.appendChild(photographerName)
+    photographerName.textContent = data[ 0 ].name
+    photographerDetails.appendChild( photographerName )
 
-    const photographerContent = document.createElement("div")
+    const photographerContent = document.createElement( "div" )
     photographerContent.className = "photographerContent"
-    photographerDetails.appendChild(photographerContent)
+    photographerDetails.appendChild( photographerContent )
 
-    const photographerLocation = document.createElement("p")
+    const photographerLocation = document.createElement( "p" )
     photographerLocation.className = "photographerLocation"
-    photographerLocation.textContent = data[0].city + ", " + data[0].country
-    photographerContent.appendChild(photographerLocation)
+    photographerLocation.textContent = data[ 0 ].city + ", " + data[ 0 ].country
+    photographerContent.appendChild( photographerLocation )
 
-    const photographerTagline = document.createElement("p")
+    const photographerTagline = document.createElement( "p" )
     photographerTagline.className = "photographerTagline"
-    photographerTagline.textContent = data[0].tagline
-    photographerContent.appendChild(photographerTagline)
+    photographerTagline.textContent = data[ 0 ].tagline
+    photographerContent.appendChild( photographerTagline )
 
     return photographerDetails
   }
 
-  function getUserAvatarDOM() {
-    const avatar = `assets/photographers/${data[0].portrait}`
-    // console.log("avatar :", avatar) //*ok
-    const photographerAvatar = document.createElement("img")
+  function getUserAvatarDOM ()
+  {
+    const avatar = `assets/photographers/${ data[ 0 ].portrait }`
+    const photographerAvatar = document.createElement( "img" )
     photographerAvatar.className = "photographerAvatar"
-    photographerAvatar.setAttribute("src", avatar)
-    photographerAvatar.setAttribute("alt", " ")
+    photographerAvatar.setAttribute( "src", avatar )
+    photographerAvatar.setAttribute( "alt", " " )
 
     return photographerAvatar
   }
@@ -84,8 +103,8 @@ function photographerFactory(data) {
     tagline,
     price,
     id,
-    getUserCardDOM,
-    getUserProfilDOM,
+    getPhotographerCardDOM,
+    getPhotographProfilDOM,
     getUserAvatarDOM,
   }
 }

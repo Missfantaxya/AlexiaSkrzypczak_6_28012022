@@ -1,6 +1,6 @@
 /* photographer ------------------------------------------------*/
 
-.priceAndLike {
+.photograph__priceAndLike {
   z-index: 10;
   position: fixed;
   bottom: 0;
@@ -17,78 +17,68 @@
   border-top-right-radius: 4px;
 }
 
-.wrapperLikes {
+.photograph__wrapperLikes {
   display: flex;
   flex-direction: row;
 }
 
-.photographerLike {
+.photograph__likes {
   padding-right: 0.5em;
 }
 
 /* média -------------------------------------*/
 
+
+.media__title{
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 /* selection de l'affichage des médias */
-.selectForm {
+/* .media__sort {
   display: flex;
   flex-direction: row;
   font-size: 20px;
   margin-left: 100px;
   margin-top: 1rem;
-}
+  z-index: 300;
+}*/
 
-.selectLabel {
-  font-weight: 600;
+.media__sortLabel {
+  font-weight: 700;
+  font-size: 18px;
   margin-right: 1em;
   padding-top: 1.3rem;
 }
 
-.selection {
+/* TODO styliser le select voir maquette*/
+
+.media__sortSelection {
   position: relative;
   display: inline-block;
   width: 170px;
   height: 70px;
   border-radius: 5px;
+  background-color: #911C1C;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 18px;
 }
 
+/*
 .hidden {
   overflow: hidden;
-}
+}*/
 
-.selectButton {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  position: absolute;
-  border-radius: 5px;
-  width: 100%;
-  height: 100%;
-}
-
-.close {
-  z-index: 10;
-}
-
-.selectOptions {
-  font-weight: bold;
-  color: white;
-  width: 170px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
-  position: relative;
-}
-
-.date {
-  top: -70px;
-}
-
-.title {
-  top: -140px;
-}
-
-.selectArrow {
+/*
+.media__selectArrow {
   position: absolute;
   top: 25px;
   right: 20px;
@@ -96,16 +86,10 @@
   font-weight: 700;
   font-size: 20px;
 }
+*/
 
-.down {
-  transform: rotate(90deg);
-}
-
-.up {
-  transform: rotate(-90deg);
-}
-
-.selectOption {
+/*
+.media__selectOption {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -113,17 +97,16 @@
   margin: auto 11px;
   padding-left: 0.5em;
 }
+*/
 
-.open {
-  border-top: 1px solid white;
-}
-.open:first-child {
+/*
+.media__selectOpen:first-child {
   border-top: none;
-}
+} */
 
-/*  média du photogrape */
+/*  médias du photogrape */
 
-.pictures {
+.medias {
   margin-top: 2rem;
   display: flex;
   flex-flow: row wrap;

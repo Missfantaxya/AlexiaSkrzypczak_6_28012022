@@ -1,5 +1,3 @@
-const mediaInFactoriesTesthorsMediaFactory = "je suis dans media hors mediaFactory"
-// console.log( "Dans factories/media :", lightboxInPhotographieModelTest )  //! not defined
 
 function mediaFactory ( data )
 {
@@ -15,15 +13,10 @@ function mediaFactory ( data )
     title,
   } = data
 
-  // console.log( "Dans factories/media dans la function mediaFactory :", lightboxInPhotographieModelTest ) //* ok
-  const mediaInFactoriesTest = "je suis dans media"
-  // console.log( "dans media :", lightboxInFactory ) //*ok
-  // console.log( "dans media :", photographerInPagesTest ) //* ok
-
-  // TODO mettre de la bonne couleur (attention le même asset est noir ailleur)
   const heartSvg = 'assets/icons/heart-solid-brown.svg'
 
-  function getpictureCardDOM ()
+  // La factorie permet un affichage dynamique des medias en fonction des propriétés photo ou vidéo.
+  function getMediaCardDOM ()
   {
     const article = document.createElement( 'a' )
     article.className = 'photographie'
@@ -89,6 +82,6 @@ function mediaFactory ( data )
     photographerId,
     price,
     title,
-    getpictureCardDOM,
+    getMediaCardDOM,
   }
 }

@@ -1,6 +1,3 @@
-const lightboxInMovieModelTest = "je suis dans models/lightboxMovie"
-console.log( "models/lightboxMovie" )
-
 function mediaMovie ( data, article )
 {
   const videoMedia = `assets/photographies/${ data.photographerId }/${ data.video }`
