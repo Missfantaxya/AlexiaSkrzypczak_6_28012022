@@ -121,11 +121,16 @@ async function displayData ( photographers, media )
   medias.className = "medias"
   mediaSection.appendChild( medias )
 
-  // classement des médias par popularité
-  photographMedias.sort( function ( a, b )
+  /**
+   * Classe les media par popularité
+   */
+  function popularitySort ()
   {
-    return a.likes - b.likes
-  } )
+    photographMedias.sort( function ( a, b )
+    {
+      return a.likes - b.likes
+    } )
+  }
 
   /**
    * Affichage des médias
@@ -143,6 +148,7 @@ async function displayData ( photographers, media )
     } )
   }
 
+  popularitySort()
   displayMedias()
 
   //=========== La selection du classement ==========
@@ -169,52 +175,49 @@ async function displayData ( photographers, media )
   mediaOptionPopularity.className = "media__selectOption media__selectOption--popularity"
   mediaOptionPopularity.setAttribute( "value", "popularity" )
   mediaOptionPopularity.textContent = "Popularité"
-  mediaOptionPopularity.setAttribute( "onClick", "displayMedia()" )
+  // mediaOptionPopularity.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionPopularity )
 
   const mediaOptionDate = document.createElement( "option" )
   mediaOptionDate.className = "media__selectOption media__selectOption--date"
   mediaOptionDate.setAttribute( "value", "date" )
   mediaOptionDate.textContent = "Date"
-  mediaOptionDate.setAttribute( "onClick", "displayMedia()" )
+  // mediaOptionDate.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionDate )
 
   const mediaOptionTitle = document.createElement( "option" )
   mediaOptionTitle.className = "media__selectOption media__selectOption--title"
   mediaOptionTitle.setAttribute( "value", "title" )
   mediaOptionTitle.textContent = "Titre"
-  mediaOptionTitle.setAttribute( "onClick", "displayMedia()" )
+  // mediaOptionTitle.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionTitle )
 
-  // ----- fonctionnement de la selection -----
+  // ----- fonctionnement du tri des médias -----
 
-  // TODO faire fonctionner le select
-
-  mediaOptionPopularity.addEventListener( "click", function ()
+  mediaSortSelection.addEventListener( "change", function ()
   {
-
-    // classement des média par popularité
-    photographMedia.sort( ( a, b ) => a.likes - b.likes )
-    displayMedia()
-  } )
-
-  mediaOptionDate.addEventListener( "click", function ()
-  {
-    // classement des média par date
-    photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
-    displayMedia()
-  } )
-
-  mediaOptionTitle.addEventListener( "click", function ()
-  {
-    // classer photographMedias par titre
-    photographMedias.sort( function compoare ( a, b )
+    if ( mediaOptionPopularity.selected )
     {
-      if ( a.title < b.title ) return -1
-      if ( a.title > b.title ) return 1
-      return 0
-    } )
-    displayMedia()
+      popularitySort()
+      console.log( "photographMedias :", photographMedias )
+      displayMedias()
+    }
+    else if ( mediaOptionDate.selected )
+    {
+      photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
+      console.log( "photographMedias :", photographMedias )
+      displayMedias()
+    } else if ( mediaOptionTitle.selected )
+    {
+      photographMedias.sort( function compare ( a, b )
+      {
+        if ( a.title < b.title ) return -1
+        if ( a.title > b.title ) return 1
+        return 0
+      } )
+      console.log( "photographMedias :", photographMedias )
+      displayMedias()
+    }
   } )
 
   // initialisation de la lightbox:
