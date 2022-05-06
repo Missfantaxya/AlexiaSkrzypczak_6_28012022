@@ -2,7 +2,12 @@
 
 // TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
 
-// TODO faire fonctionner le bouton de contact
+// // ----- construction du DOM de base pour la page -----
+
+// const main = document.querySelector( "#main" )
+// const wrapper = document.createElement( "div" )
+// wrapper.className = "wrapper"
+// main.appendChild( wrapper )
 
 // ----- récupération de l'id du photographe dans l'url -----
 
@@ -30,6 +35,7 @@ async function displayData ( photographers, media )
   const heartSvg = "assets/icons/heart-solid-black.svg"
 
   const photographHeader = document.querySelector( ".photograph__header" )
+  // wrapper.appendChild( photographHeader )
   const photographContact = document.querySelector( ".contact__button" )
 
   /**
@@ -112,6 +118,7 @@ async function displayData ( photographers, media )
 
   const mediaSection = document.createElement( "section" )
   mediaSection.className = "media__section"
+  // wrapper.appendChild( mediaSection )
   main.appendChild( mediaSection )
 
   const mediaTitle = document.createElement( "h2" )
@@ -123,11 +130,16 @@ async function displayData ( photographers, media )
   medias.className = "medias"
   mediaSection.appendChild( medias )
 
-  // classement des médias par popularité
-  photographMedias.sort( function ( a, b )
+  /**
+   * Classe les media par popularité
+   */
+  function popularitySort ()
   {
-    return a.likes - b.likes
-  } )
+    photographMedias.sort( function ( a, b )
+    {
+      return a.likes - b.likes
+    } )
+  }
 
   /**
    * Affichage des médias
@@ -145,6 +157,7 @@ async function displayData ( photographers, media )
     } )
   }
 
+  popularitySort()
   displayMedias()
 
   //=========== La selection du classement ==========
@@ -161,62 +174,70 @@ async function displayData ( photographers, media )
   mediaSortLabel.textContent = "Trier par"
   mediaSort.appendChild( mediaSortLabel )
 
+  const mediaSortContainer = document.createElement( "div" )
+  mediaSortContainer.className = "media__sortContainer"
+  mediaSort.appendChild( mediaSortContainer )
+
   const mediaSortSelection = document.createElement( "select" )
   mediaSortSelection.id = "media__sortSelection"
   mediaSortSelection.className = "media__sortSelection"
   mediaSortSelection.setAttribute( "name", "classement des medias" )
-  mediaSort.appendChild( mediaSortSelection )
+  mediaSortContainer.appendChild( mediaSortSelection )
+
+  const dropdownArrow = document.createElement( "div" )
+  dropdownArrow.className = "dropdownArrow"
+  mediaSortContainer.appendChild( dropdownArrow )
+
+  const arrowSvg = document.createElement( "img" )
+  arrowSvg.className = "dropdownArrow__img"
+  arrowSvg.setAttribute( "src", "assets/icons/dropdown.svg" )
+  arrowSvg.setAttribute( "alt", "chevron" )
+  dropdownArrow.appendChild( arrowSvg )
 
   const mediaOptionPopularity = document.createElement( "option" )
   mediaOptionPopularity.className = "media__selectOption media__selectOption--popularity"
   mediaOptionPopularity.setAttribute( "value", "popularity" )
   mediaOptionPopularity.textContent = "Popularité"
-  mediaOptionPopularity.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionPopularity )
 
   const mediaOptionDate = document.createElement( "option" )
   mediaOptionDate.className = "media__selectOption media__selectOption--date"
   mediaOptionDate.setAttribute( "value", "date" )
   mediaOptionDate.textContent = "Date"
-  mediaOptionDate.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionDate )
 
   const mediaOptionTitle = document.createElement( "option" )
   mediaOptionTitle.className = "media__selectOption media__selectOption--title"
   mediaOptionTitle.setAttribute( "value", "title" )
   mediaOptionTitle.textContent = "Titre"
-  mediaOptionTitle.setAttribute( "onClick", "displayMedia()" )
   mediaSortSelection.appendChild( mediaOptionTitle )
 
-  // ----- fonctionnement de la selection -----
+  // ----- fonctionnement du tri des médias -----
 
-  // TODO faire fonctionner le select
-
-  mediaOptionPopularity.addEventListener( "click", function ()
+  mediaSortSelection.addEventListener( "change", function ()
   {
-
-    // classement des média par popularité
-    photographMedia.sort( ( a, b ) => a.likes - b.likes )
-    displayMedia()
-  } )
-
-  mediaOptionDate.addEventListener( "click", function ()
-  {
-    // classement des média par date
-    photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
-    displayMedia()
-  } )
-
-  mediaOptionTitle.addEventListener( "click", function ()
-  {
-    // classer photographMedias par titre
-    photographMedias.sort( function compoare ( a, b )
+    if ( mediaOptionPopularity.selected )
     {
-      if ( a.title < b.title ) return -1
-      if ( a.title > b.title ) return 1
-      return 0
-    } )
-    displayMedia()
+      popularitySort()
+      console.log( "photographMedias :", photographMedias )
+      displayMedias()
+    }
+    else if ( mediaOptionDate.selected )
+    {
+      photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
+      console.log( "photographMedias :", photographMedias )
+      displayMedias()
+    } else if ( mediaOptionTitle.selected )
+    {
+      photographMedias.sort( function compare ( a, b )
+      {
+        if ( a.title < b.title ) return -1
+        if ( a.title > b.title ) return 1
+        return 0
+      } )
+      console.log( "photographMedias :", photographMedias )
+      displayMedias()
+    }
   } )
 
   // initialisation de la lightbox:

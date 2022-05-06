@@ -1,0 +1,62 @@
+/* selection de l'affichage des médias */
+/* TODO styliser le select voir maquette*/
+
+
+.media__sort {
+  display: flex;
+  flex-direction: row;
+  font-size: 20px;
+  margin-left: 100px;
+  margin-top: 1rem;
+}
+
+.media__sortLabel{
+  width:74px;
+  height:23px;
+  font-weight: 700;
+  font-size: 18;
+}
+
+
+.media__sortContainer {
+  position: relative;
+  width: 170px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+
+.media__sortSelection {
+  display: inline-block;
+  width: 200px;
+  height: 70px;
+  background-color: #911C1C;
+  color: #FFF;
+  font-weight: 700;
+  font-size: 18px;
+  border:none;
+  cursor: pointer;
+  padding-left: 0.5em;
+}
+
+.dropdownArrow__img {
+  position: absolute;
+  top: 28.67px;
+  left : 75%;
+  right: -25%;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  width:16px;
+  height: 9.88px;
+}
+
+option{
+  min-height: 70px;
+  width:170px;
+  margin: 15px 11px;
+  padding: 1em 0.5em;
+  font-weight: 700;
+  font-size: 18px;
+}

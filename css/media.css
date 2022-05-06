@@ -41,92 +41,27 @@
   width: 1px;
 }
 
-/* selection de l'affichage des médias */
-/* .media__sort {
-  display: flex;
-  flex-direction: row;
-  font-size: 20px;
-  margin-left: 100px;
-  margin-top: 1rem;
-  z-index: 300;
-}*/
-
-.media__sortLabel {
-  font-weight: 700;
-  font-size: 18px;
-  margin-right: 1em;
-  padding-top: 1.3rem;
-}
-
-/* TODO styliser le select voir maquette*/
-
-.media__sortSelection {
-  position: relative;
-  display: inline-block;
-  width: 170px;
-  height: 70px;
-  border-radius: 5px;
-  background-color: #911C1C;
-  color: #FFFFFF;
-  font-weight: 700;
-  font-size: 18px;
-}
-
-/*
-.hidden {
-  overflow: hidden;
-}*/
-
-/*
-.media__selectArrow {
-  position: absolute;
-  top: 25px;
-  right: 20px;
-  color: white;
-  font-weight: 700;
-  font-size: 20px;
-}
-*/
-
-/*
-.media__selectOption {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 70px;
-  margin: auto 11px;
-  padding-left: 0.5em;
-}
-*/
-
-/*
-.media__selectOpen:first-child {
-  border-top: none;
-} */
-
-/*  médias du photogrape */
-
 .medias {
   margin-top: 2rem;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
+  padding: 0 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr)
 }
 
 .photographie {
-  width: 33%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 350px;
   padding-bottom: 1rem;
   cursor: pointer;
   z-index:4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+
 .media {
-  width: 375px;
-  height: 325px;
+  width: 350px;
+  height: 300px;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -135,26 +70,30 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 375px;
+  width: 350px;
   color: #901c1c;
   padding-top: 0.5em;
 }
 
 .pictureName {
-  font-weight: normal;
-  font-size: 1.2em;
+  font-weight: 400;
+  font-size: 24px;
 }
 
 .contenairLikes {
   z-index: 5;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  font-weight: 400;
 }
 
 .pictureLikes {
   padding: 0.3em;
+  font-size: 16px;
 }
 
 .heart {
-  width: 1rem;
+  width: 17.5px;
+  height: 18.35px;
 }
