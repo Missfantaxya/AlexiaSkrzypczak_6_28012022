@@ -163,6 +163,7 @@ async function displayData ( photographers, media )
   //=========== La selection du classement ==========
 
   // ----- construction du DOM -----
+  // TODO revoir la sémantique du tri car option de select instilisable (utiliser button voir maquette)
 
   const mediaSort = document.createElement( "div" )
   mediaSort.className = "media__sort"
