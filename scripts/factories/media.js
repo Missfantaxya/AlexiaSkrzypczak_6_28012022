@@ -18,46 +18,49 @@ function mediaFactory ( data )
   // La factorie permet un affichage dynamique des medias en fonction des propriétés photo ou vidéo.
   function getMediaCardDOM ()
   {
-    const article = document.createElement( 'a' )
-    article.className = 'photographie'
-    article.setAttribute( "aria-label", title )
+    const mediaArticle = document.createElement( 'article' )
+    mediaArticle.className = 'media__article'
+
+    const mediaLink = document.createElement( 'a' )
+    mediaLink.className = 'media__link'
+    mediaLink.setAttribute( "aria-label", title )
+    mediaArticle.appendChild( mediaLink )
+
 
     if ( data.hasOwnProperty( 'image' ) )
     {
-      mediaPhotographie( data, article )
+      mediaPhotographie( data, mediaLink )
     } else if ( data.hasOwnProperty( 'video' ) )
     {
-      mediaMovie( data, article )
+      mediaMovie( data, mediaLink )
     }
 
-    const pictureDetails = document.createElement( 'div' )
-    pictureDetails.className = 'pictureDetails'
-    article.appendChild( pictureDetails )
+    const mediaDetails = document.createElement( 'div' )
+    mediaDetails.className = 'media__details'
+    mediaArticle.appendChild( mediaDetails )
 
-    const pictureName = document.createElement( 'h2' )
-    pictureName.className = 'pictureName'
-    pictureName.textContent = title
-    pictureDetails.appendChild( pictureName )
+    const mediaName = document.createElement( 'h2' )
+    mediaName.className = 'media__name'
+    mediaName.textContent = title
+    mediaName.setAttribute( "aria-description", "nom du média" )
+    mediaDetails.appendChild( mediaName )
 
-    const contenairLikes = document.createElement( 'div' )
-    contenairLikes.className = 'contenairLikes'
-    pictureDetails.appendChild( contenairLikes )
+    const mediaContenairLikes = document.createElement( 'div' )
+    mediaContenairLikes.className = 'media__contenairLikes'
+    mediaDetails.appendChild( mediaContenairLikes )
 
-    const pictureLikes = document.createElement( 'p' )
-    pictureLikes.className = 'pictureLikes'
-    pictureLikes.textContent = likes
-    contenairLikes.appendChild( pictureLikes )
+    const mediaLikes = document.createElement( 'p' )
+    mediaLikes.className = 'media__likes'
+    mediaLikes.textContent = likes
+    mediaContenairLikes.appendChild( mediaLikes )
 
-    // TODO faire en sorte que ça n'ouvre pas la lightbox (Z-index en css non suffisant)
-    // isoler (absolute) le like des photo pour pas qu'ils soit intégrer dans le a
     //incrémentations au click des likes des medias
-    contenairLikes.addEventListener( 'click', function ( e )
+    mediaContenairLikes.addEventListener( 'click', function ( e )
     {
-      // e.preventDefault() //! n'empêche pas la lightBox
-      pictureLikes.textContent = ++likes
-      const allLikes = document.querySelector( '.photographerLike' )
-      // console.log("allLikes :", allLikes) //*ok
-      // console.log("allLikes.innerHTML : ", allLikes.innerHTML) //*ok
+      mediaLikes.textContent = ++likes
+      const allLikes = document.querySelector( '.photograph__likes' )
+      console.log( "allLikes :", allLikes ) //*ok
+      console.log( "allLikes.innerHTML : ", allLikes.innerHTML ) //*ok
       var allLikesValueNumber = parseInt( allLikes.innerHTML, 10 )
       ++allLikesValueNumber
       // console.log("allLikesValueNumber :", allLikesValueNumber) //*ok
@@ -65,12 +68,12 @@ function mediaFactory ( data )
       allLikes.innerHTML = allLikesValueNumber
     } )
 
-    const heartmedia = document.createElement( 'img' )
-    heartmedia.className = 'heart'
-    heartmedia.setAttribute( 'src', heartSvg )
-    contenairLikes.appendChild( heartmedia )
+    const mediaHeart = document.createElement( 'img' )
+    mediaHeart.className = 'media__heart'
+    mediaHeart.setAttribute( 'src', heartSvg )
+    mediaContenairLikes.appendChild( mediaHeart )
 
-    return article
+    return mediaArticle
   }
 
   return {

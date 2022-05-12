@@ -2,13 +2,6 @@
 
 // TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
 
-// // ----- construction du DOM de base pour la page -----
-
-// const main = document.querySelector( "#main" )
-// const wrapper = document.createElement( "div" )
-// wrapper.className = "wrapper"
-// main.appendChild( wrapper )
-
 // ----- récupération de l'id du photographe dans l'url -----
 
 /**
@@ -97,6 +90,7 @@ async function displayData ( photographers, media )
 
   const photographLike = document.createElement( "p" )
   photographLike.className = "photograph__likes"
+  photographLike.setAttribute( "aria-description", "nombre de likes du photographe" )
   photographLike.textContent = photographerAllLikes
   photographWrapperLikes.appendChild( photographLike )
 
@@ -107,22 +101,22 @@ async function displayData ( photographers, media )
 
   const photographPrice = document.createElement( "p" )
   photographPrice.className = "photograph__price"
+  photographPrice.setAttribute( "aria-description", "tarif du photographe" )
   photographPrice.textContent = photograph[ 0 ].price + "€ / jour"
   photographPriceAndLike.appendChild( photographPrice )
 
   // ========== La parties avec les médias ==========
 
   // ----- construction du DOM -----
-
+  // TODO revoir l'accessibilité (aria) quand tri refait et stylisé
   const main = document.querySelector( "#main" )
 
   const mediaSection = document.createElement( "section" )
-  mediaSection.className = "media__section"
-  // wrapper.appendChild( mediaSection )
+  mediaSection.className = "medias__section"
   main.appendChild( mediaSection )
 
   const mediaTitle = document.createElement( "h2" )
-  mediaTitle.className = "media__title"
+  mediaTitle.className = "medias__title"
   mediaTitle.textContent = "Les médias du photographe"
   mediaSection.appendChild( mediaTitle )
 

@@ -16,6 +16,7 @@ function photographerFactory ( data )
   {
     const photographerArticle = document.createElement( "article" )
     photographerArticle.className = "photographer__article"
+    photographerArticle.setAttribute( "aria-description", "détails du photographe" )
     const photographerLink = document.createElement( "a" )
     photographerLink.setAttribute( "href", `/photographer.html?id=${ id }` )
     photographerLink.className = "photographer__link"
@@ -24,7 +25,7 @@ function photographerFactory ( data )
     const photographerAvatar = document.createElement( "img" )
     photographerAvatar.setAttribute( "src", avatar )
     photographerAvatar.className = "photographer__avatar"
-    photographerAvatar.setAttribute( "alt", name )
+    photographerAvatar.setAttribute( "alt", " " )
 
     const photographerName = document.createElement( "h2" )
     photographerName.className = "photographer__name"
@@ -32,10 +33,13 @@ function photographerFactory ( data )
     photographerDetails.className = "photographer__details"
     const photographerLocation = document.createElement( "p" )
     photographerLocation.className = "photographer__location"
+    photographerLocation.setAttribute( "aria-description", `localisation du photographe ${ name }` )
     const photographerSlogan = document.createElement( "p" )
     photographerSlogan.className = "photographer__slogan"
+    photographerSlogan.setAttribute( "aria-description", `phrase d'accroche du photographe ${ name }` )
     const photographerPrice = document.createElement( "p" )
     photographerPrice.className = "photographer__price"
+    photographerPrice.setAttribute( "aria-description", `tarifs du photographe ${ name }` )
 
     photographerName.textContent = name
     photographerArticle.appendChild( photographerLink )
@@ -57,13 +61,12 @@ function photographerFactory ( data )
    */
   function getPhotographProfilDOM ()
   {
-    // console.log("name :", data[0].name) //*ok
-
     const photographerDetails = document.createElement( "div" )
     photographerDetails.className = "photographerDetails"
 
     const photographerName = document.createElement( "h1" )
     photographerName.className = "photographerName"
+    photographerName.setAttribute( "aria-description", "nom du photographe" )
     photographerName.textContent = data[ 0 ].name
     photographerDetails.appendChild( photographerName )
 
@@ -73,11 +76,13 @@ function photographerFactory ( data )
 
     const photographerLocation = document.createElement( "p" )
     photographerLocation.className = "photographerLocation"
+    photographerLocation.setAttribute( "aria-description", "localisation du photographe" )
     photographerLocation.textContent = data[ 0 ].city + ", " + data[ 0 ].country
     photographerContent.appendChild( photographerLocation )
 
     const photographerTagline = document.createElement( "p" )
     photographerTagline.className = "photographerTagline"
+    photographerTagline.setAttribute( "aria-description", "phrase d'accroche du photographe" )
     photographerTagline.textContent = data[ 0 ].tagline
     photographerContent.appendChild( photographerTagline )
 
@@ -90,7 +95,7 @@ function photographerFactory ( data )
     const photographerAvatar = document.createElement( "img" )
     photographerAvatar.className = "photographerAvatar"
     photographerAvatar.setAttribute( "src", avatar )
-    photographerAvatar.setAttribute( "alt", " " )
+    photographerAvatar.setAttribute( "alt", data[ 0 ].name )
 
     return photographerAvatar
   }
