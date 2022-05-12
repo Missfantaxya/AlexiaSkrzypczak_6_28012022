@@ -51,6 +51,7 @@ function mediaFactory ( data )
 
     const mediaLikes = document.createElement( 'p' )
     mediaLikes.className = 'media__likes'
+    mediaLikes.setAttribute( "aria-label", `nombre de like du média ${ title }` )
     mediaLikes.textContent = likes
     mediaContenairLikes.appendChild( mediaLikes )
 
