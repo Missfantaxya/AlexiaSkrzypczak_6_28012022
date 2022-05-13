@@ -71,7 +71,8 @@ function photographerFactory ( data )
 
     const photographerName = document.createElement( "h1" )
     photographerName.className = "photographerName"
-    photographerName.setAttribute( "aria-description", "nom du photographe" )
+    // TODO aria-description FAUX
+    // photographerName.setAttribute( "aria-description", "nom du photographe" )
     photographerName.textContent = data[ 0 ].name
     photographerDetails.appendChild( photographerName )
 
@@ -81,13 +82,15 @@ function photographerFactory ( data )
 
     const photographerLocation = document.createElement( "p" )
     photographerLocation.className = "photographerLocation"
-    photographerLocation.setAttribute( "aria-description", "localisation du photographe" )
+    // TODO aria-description FAUX
+    // photographerLocation.setAttribute( "aria-description", "localisation du photographe" )
     photographerLocation.textContent = data[ 0 ].city + ", " + data[ 0 ].country
     photographerContent.appendChild( photographerLocation )
 
     const photographerTagline = document.createElement( "p" )
     photographerTagline.className = "photographerTagline"
-    photographerTagline.setAttribute( "aria-description", "phrase d'accroche du photographe" )
+    // TODO aria-description FAUX
+    // photographerTagline.setAttribute( "aria-description", "phrase d'accroche du photographe" )
     photographerTagline.textContent = data[ 0 ].tagline
     photographerContent.appendChild( photographerTagline )
 

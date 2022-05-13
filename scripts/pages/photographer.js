@@ -90,18 +90,21 @@ async function displayData ( photographers, media )
 
   const photographLike = document.createElement( "p" )
   photographLike.className = "photograph__likes"
-  photographLike.setAttribute( "aria-description", "nombre de likes du photographe" )
+  // TODO aria-description FAUX
+  // photographLike.setAttribute( "aria-description", "nombre de likes du photographe" )
   photographLike.textContent = photographerAllLikes
   photographWrapperLikes.appendChild( photographLike )
 
   const photographHeart = document.createElement( "img" )
   photographHeart.className = "photograph__heart"
   photographHeart.setAttribute( "src", heartSvg )
+  photographHeart.setAttribute( "alt", "likes" )
   photographWrapperLikes.appendChild( photographHeart )
 
   const photographPrice = document.createElement( "p" )
   photographPrice.className = "photograph__price"
-  photographPrice.setAttribute( "aria-description", "tarif du photographe" )
+  // TODO aria-description FAUX
+  // photographPrice.setAttribute( "aria-description", "tarif du photographe" )
   photographPrice.textContent = photograph[ 0 ].price + "€ / jour"
   photographPriceAndLike.appendChild( photographPrice )
 

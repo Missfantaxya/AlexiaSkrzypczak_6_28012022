@@ -42,7 +42,8 @@ function mediaFactory ( data )
     const mediaName = document.createElement( 'h2' )
     mediaName.className = 'media__name'
     mediaName.textContent = title
-    mediaName.setAttribute( "aria-description", "nom du média" )
+    // TODO aria-description FAUX
+    // mediaName.setAttribute( "aria-description", "nom du média" )
     mediaDetails.appendChild( mediaName )
 
     const mediaContenairLikes = document.createElement( 'div' )
@@ -51,7 +52,8 @@ function mediaFactory ( data )
 
     const mediaLikes = document.createElement( 'p' )
     mediaLikes.className = 'media__likes'
-    mediaLikes.setAttribute( "aria-label", `nombre de like du média ${ title }` )
+    // TODO "L'attribut aria-label n'est pas bien pris en charge sur un p sans attribut de rôle valide."
+    // mediaLikes.setAttribute( "aria-label", `nombre de like du média ${ title }` )
     mediaLikes.textContent = likes
     mediaContenairLikes.appendChild( mediaLikes )
 
@@ -72,6 +74,7 @@ function mediaFactory ( data )
     const mediaHeart = document.createElement( 'img' )
     mediaHeart.className = 'media__heart'
     mediaHeart.setAttribute( 'src', heartSvg )
+    mediaHeart.setAttribute( "alt", "likes" )
     mediaContenairLikes.appendChild( mediaHeart )
 
     return mediaArticle
