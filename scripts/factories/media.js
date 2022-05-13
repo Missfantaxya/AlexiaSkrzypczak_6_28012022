@@ -50,6 +50,7 @@ function mediaFactory ( data )
     mediaContenairLikes.className = 'media__contenairLikes'
     mediaDetails.appendChild( mediaContenairLikes )
 
+    //TODO voir si mettre un <button></button> n'esy pas mieux niveaux accessibilité
     const mediaLikes = document.createElement( 'p' )
     mediaLikes.className = 'media__likes'
     // TODO "L'attribut aria-label n'est pas bien pris en charge sur un p sans attribut de rôle valide."
