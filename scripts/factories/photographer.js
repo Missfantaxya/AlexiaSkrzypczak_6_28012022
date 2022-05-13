@@ -25,7 +25,7 @@ function photographerFactory ( data )
     const photographerAvatar = document.createElement( "img" )
     photographerAvatar.setAttribute( "src", avatar )
     photographerAvatar.className = "photographer__avatar"
-    photographerAvatar.setAttribute( "alt", " " )
+    photographerAvatar.setAttribute( "alt", "" )
 
     const photographerName = document.createElement( "h2" )
     photographerName.className = "photographer__name"
