@@ -1,4 +1,5 @@
 
+
 /**
  * @param {object} data 
  * @returns 
@@ -16,7 +17,8 @@ function photographerFactory ( data )
   {
     const photographerArticle = document.createElement( "article" )
     photographerArticle.className = "photographer__article"
-    photographerArticle.setAttribute( "aria-description", "détails du photographe" )
+    // TODO aria-description FAUX
+    // photographerArticle.setAttribute( "aria-description", "détails du photographe" )
     const photographerLink = document.createElement( "a" )
     photographerLink.setAttribute( "href", `/photographer.html?id=${ id }` )
     photographerLink.className = "photographer__link"
@@ -33,13 +35,16 @@ function photographerFactory ( data )
     photographerDetails.className = "photographer__details"
     const photographerLocation = document.createElement( "p" )
     photographerLocation.className = "photographer__location"
-    photographerLocation.setAttribute( "aria-description", `localisation du photographe ${ name }` )
+    // TODO aria-description FAUX
+    // photographerLocation.setAttribute( "aria-description", `localisation du photographe ${ name }` )
     const photographerSlogan = document.createElement( "p" )
     photographerSlogan.className = "photographer__slogan"
-    photographerSlogan.setAttribute( "aria-description", `phrase d'accroche du photographe ${ name }` )
+    // TODO aria-description FAUX
+    // photographerSlogan.setAttribute( "aria-description", `phrase d'accroche du photographe ${ name }` )
     const photographerPrice = document.createElement( "p" )
     photographerPrice.className = "photographer__price"
-    photographerPrice.setAttribute( "aria-description", `tarifs du photographe ${ name }` )
+    // TODO aria-description FAUX
+    // photographerPrice.setAttribute( "aria-description", `tarifs du photographe ${ name }` )
 
     photographerName.textContent = name
     photographerArticle.appendChild( photographerLink )

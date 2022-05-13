@@ -11,6 +11,7 @@ class Lightbox
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
     const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
     links.forEach( ( links ) =>
+      // TODO rendre possible l'ouverture au clavier
       links.addEventListener( 'click', ( e ) =>
       {
         e.preventDefault()
