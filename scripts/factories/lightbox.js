@@ -3,15 +3,16 @@
  * @property {string[]} gallery - Chemins des medias de la lightbox
  * @property {string} url - média actuellement affichée
  */
+// TODO rendre possible l'ouverture au clavier
 class Lightbox
 {
   static init ()
   {
-    const links = Array.from( document.querySelectorAll( '.photographie' ) )
+    const links = Array.from( document.querySelectorAll( '.media__link' ) )
     const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
     const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
     links.forEach( ( links ) =>
-      // TODO rendre possible l'ouverture au clavier
+
       links.addEventListener( 'click', ( e ) =>
       {
         e.preventDefault()
@@ -141,6 +142,7 @@ class Lightbox
    * @param {string} title Titre du média
    * @return {HTMLelement}
    */
+  //TODO /lightbox-- contnaier : "Contenu non imbriqué dans une région ARIA"
   buildDom ( url, title )
   {
     const dom = document.createElement( 'div' )
