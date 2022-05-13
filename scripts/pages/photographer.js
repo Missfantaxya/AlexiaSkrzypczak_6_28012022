@@ -109,6 +109,7 @@ async function displayData ( photographers, media )
   photographPriceAndLike.appendChild( photographPrice )
 
   // ========== La parties avec les médias ==========
+  // TODO https://www.w3schools.com/howto/howto_custom_select.asp style du select
 
   // ----- construction du DOM -----
   // TODO revoir l'accessibilité (aria) quand tri refait et stylisé
