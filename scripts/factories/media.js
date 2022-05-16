@@ -61,8 +61,6 @@ function mediaFactory ( data )
     {
       mediaLikes.textContent = ++likes
       const allLikes = document.querySelector( '.photograph__likes' )
-      console.log( "allLikes :", allLikes ) //*ok
-      console.log( "allLikes.innerHTML : ", allLikes.innerHTML ) //*ok
       var allLikesValueNumber = parseInt( allLikes.innerHTML, 10 )
       ++allLikesValueNumber
       // console.log("allLikesValueNumber :", allLikesValueNumber) //*ok
