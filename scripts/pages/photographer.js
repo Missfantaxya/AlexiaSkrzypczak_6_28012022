@@ -218,14 +218,18 @@ async function displayData ( photographers, media )
     if ( mediaOptionPopularity.selected )
     {
       popularitySort()
-      console.log( "photographMedias :", photographMedias )
+      //affichage des média après le tri
       displayMedias()
+      //réinitialisation de la lightbox après le tri
+      Lightbox.init()
     }
     else if ( mediaOptionDate.selected )
     {
       photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
-      console.log( "photographMedias :", photographMedias )
+      //affichage des média après le tri
       displayMedias()
+      //réinitialisation de la lightbox après le tri
+      Lightbox.init()
     } else if ( mediaOptionTitle.selected )
     {
       photographMedias.sort( function compare ( a, b )
@@ -234,8 +238,10 @@ async function displayData ( photographers, media )
         if ( a.title > b.title ) return 1
         return 0
       } )
-      console.log( "photographMedias :", photographMedias )
+      //affichage des média après le tri
       displayMedias()
+      //réinitialisation de la lightbox après le tri
+      Lightbox.init()
     }
   } )
 
