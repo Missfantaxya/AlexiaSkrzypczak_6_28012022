@@ -4,7 +4,7 @@ function mediaMovie ( data, mediaLink )
   mediaLink.setAttribute( 'href', videoMedia )
   const thumbnail = document.createElement( 'video' )
   thumbnail.className = 'media'
-  //TODO "Aucune piste de sous-titres n’a pu être trouvée pour cet élément"
+  //TODO "Aucune piste de sous-titres n’a pu être trouvée pour cet élément" (pas un critère d'évaluation)
   thumbnail.setAttribute( 'src', videoMedia )
   thumbnail.setAttribute( 'type', 'video/mp4' )
   thumbnail.setAttribute( 'alt', data.title )

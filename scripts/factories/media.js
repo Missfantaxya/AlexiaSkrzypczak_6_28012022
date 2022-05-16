@@ -50,11 +50,9 @@ function mediaFactory ( data )
     mediaContenairLikes.className = 'media__contenairLikes'
     mediaDetails.appendChild( mediaContenairLikes )
 
-    //TODO voir pour mettre un role="button" ou convertir en <button></button> pour l'accessibilité
-    const mediaLikes = document.createElement( 'p' )
+    const mediaLikes = document.createElement( 'button' )
     mediaLikes.className = 'media__likes'
-    // TODO "L'attribut aria-label n'est pas bien pris en charge sur un p sans attribut de rôle valide."
-    // mediaLikes.setAttribute( "aria-label", `nombre de like du média ${ title }` )
+    mediaLikes.setAttribute( "aria-label", `nombre de like du média ${ title }` )
     mediaLikes.textContent = likes
     mediaContenairLikes.appendChild( mediaLikes )
 
