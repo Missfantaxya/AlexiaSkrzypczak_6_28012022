@@ -63,7 +63,6 @@ function mediaFactory ( data )
       const allLikes = document.querySelector( '.photograph__likes' )
       var allLikesValueNumber = parseInt( allLikes.innerHTML, 10 )
       ++allLikesValueNumber
-      // console.log("allLikesValueNumber :", allLikesValueNumber) //*ok
       allLikes.innerHTML = ''
       allLikes.innerHTML = allLikesValueNumber
     } )
