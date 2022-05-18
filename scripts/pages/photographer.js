@@ -183,7 +183,6 @@ async function displayData ( photographers, media )
   selectOptions.className = "selectOptions"
   selection.appendChild( selectOptions )
 
-  //~~~~~~~~~~~~~~~~~~~~
   options = [
     {
       content: "Popularité",
@@ -210,8 +209,6 @@ async function displayData ( photographers, media )
   } )
   console.log( "selectA : ", selectA ) //*ok un tableau des 3 éléments html
 
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
   const selectArrow = document.createElement( "div" )
   selectArrow.className = "selectArrow"
   selectArrow.textContent = ">"
@@ -222,16 +219,14 @@ async function displayData ( photographers, media )
   // chevron.className = "fa-solid fa-chevron-down"
   // chevron.appendChild(selectArrow)
 
-  const popularityOption = document.createElement( "p" )
-  popularityOption.className = "selectOption popularityOption"
-  popularityOption.textContent = "Popular"
-  selectOptions.appendChild( popularityOption )
+  const option = document.getElementsByClassName( "selectOption" )
+  console.log( "option : ", option )
 
+  const popularityOption = document.querySelector( ".popularityOption" )
+  console.log( "popularityOption : ", popularityOption )// *ok
 
   console.log( "selectOptions : ", selectOptions ) //* ok
-  // TODO cible un élément créer avec le forEach
-  const pop = selectOptions.getElementsByClassName( popularityOption )
-  console.log( "pop : ", pop ) //! HTMLCollection VIDE
+
 
   popularityOption.addEventListener( "click", function ()
   {
@@ -246,10 +241,8 @@ async function displayData ( photographers, media )
     popularitySort()
   } )
 
-  const dateOption = document.createElement( "p" )
-  dateOption.className = "selectOption dateOption"
-  dateOption.textContent = "Chrono"
-  selectOptions.appendChild( dateOption )
+  const dateOption = document.querySelector( ".dateOption" )
+  console.log( "dateOption : ", dateOption ) //*ok
 
   dateOption.addEventListener( "click", function ()
   {
@@ -265,10 +258,8 @@ async function displayData ( photographers, media )
 
     displayMedias()
   } )
-  const titleOption = document.createElement( "p" )
-  titleOption.className = "selectOption titleOption"
-  titleOption.textContent = "Nom"
-  selectOptions.appendChild( titleOption )
+  const titleOption = document.querySelector( ".titleOption" )
+  console.log( "titleOption : ", titleOption ) //*ok
 
   titleOption.addEventListener( "click", function ()
   {
