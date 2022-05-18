@@ -163,7 +163,7 @@ async function displayData ( photographers, media )
   //=========== La selection du classement ==========
 
   // ----- construction du DOM -----
-  // TODO revoir la sémantique du tri car option de select instilisable (utiliser button voir maquette)
+  // TODO faire les ARIA cf maquette
   const selectForm = document.createElement( "div" )
   selectForm.className = "selectForm"
   mediaSection.insertBefore( selectForm, medias )
@@ -178,21 +178,39 @@ async function displayData ( photographers, media )
   selectButton.className = "selectButton close"
   selection.appendChild( selectButton )
 
-  //ouverture de la selection
-  selectButton.addEventListener( "click", function ()
-  {
-    selection.classList.remove( "hidden" )
-    selectButton.classList.remove( "close" )
-    popularityOption.classList.add( "open" )
-    dateOption.classList.add( "open" )
-    titleOption.classList.add( "open" )
-    selectArrow.classList.remove( "down" )
-    selectArrow.classList.add( "up" )
-  } )
 
   const selectOptions = document.createElement( "div" )
   selectOptions.className = "selectOptions"
   selection.appendChild( selectOptions )
+
+  //~~~~~~~~~~~~~~~~~~~~
+  options = [
+    {
+      content: "Popularitééé",
+      classe: "popularityOption"
+    },
+    {
+      content: "Dateeee",
+      classe: "dateOption"
+    }, {
+      content: "Titreeee",
+      classe: "titleOption"
+    }
+  ]
+
+  function selectOptionA ()
+  {
+    options.forEach( ( selectOption ) =>
+    {
+      const option = document.createElement( "p" )
+      option.className = `selectOption ${ selectOption.classe }`
+      option.textContent = selectOption.content
+      selectOptions.appendChild( option )
+      console.log( "option dans le forEach : ", option ) // *ok
+    } )
+  }
+
+  selectOptionA()
 
   const selectArrow = document.createElement( "div" )
   selectArrow.className = "selectArrow down"
@@ -203,10 +221,15 @@ async function displayData ( photographers, media )
   // const chevron = document.createElement("i")
   // chevron.className = "fa-solid fa-chevron-down"
   // chevron.appendChild(selectArrow)
+
   const popularityOption = document.createElement( "p" )
   popularityOption.className = "selectOption popularityOption"
   popularityOption.textContent = "Popularité"
   selectOptions.appendChild( popularityOption )
+
+  console.log( "selectOptions : ", selectOptions ) //* ok
+  const pop = selectOptions.getElementsByClassName( popularityOption )
+  console.log( "pop : ", pop ) //! HTMLCollection VIDE
 
   popularityOption.addEventListener( "click", function ()
   {
@@ -273,6 +296,18 @@ async function displayData ( photographers, media )
     } )
     console.log( "photographMedias by title :", photographMedias )
     displayMedias()
+  } )
+
+  //ouverture de la selection
+  selectButton.addEventListener( "click", function ()
+  {
+    selection.classList.remove( "hidden" )
+    selectButton.classList.remove( "close" )
+    popularityOption.classList.add( "open" )
+    dateOption.classList.add( "open" )
+    titleOption.classList.add( "open" )
+    selectArrow.classList.remove( "down" )
+    selectArrow.classList.add( "up" )
   } )
 
   // ========== La parties avec la modal ==========
