@@ -231,10 +231,22 @@ async function displayData ( photographers, media )
   popularityOption.addEventListener( "click", function ()
   {
     selection.classList.add( "hidden" )
-    selectOptions.classList.remove( "title" )
-    selectOptions.classList.remove( "date" )
     selectButton.classList.add( "close" )
     // TODO meilleur méthode : changer l'orde des éléments selectOption
+    //TODO récupere l'index de l'option et suprimer l'option choisi du tableau puis la remttre en premier (.splice)?
+    // options = [
+    //   {
+    //     content: "Popularité",
+    //     classe: "popularityOption"
+    //   },
+    //   {
+    //     content: "Date",
+    //     classe: "dateOption"
+    //   }, {
+    //     content: "Titre",
+    //     classe: "titleOption"
+    //   }
+    // ]
     selectArrow.classList.remove( "up" )
 
 
@@ -247,8 +259,6 @@ async function displayData ( photographers, media )
   dateOption.addEventListener( "click", function ()
   {
     selection.classList.add( "hidden" )
-    selectOptions.classList.remove( "title" )
-    selectOptions.classList.add( "date" )
     selectButton.classList.add( "close" )
     selectArrow.classList.remove( "up" )
 
@@ -264,8 +274,6 @@ async function displayData ( photographers, media )
   titleOption.addEventListener( "click", function ()
   {
     selection.classList.add( "hidden" )
-    selectOptions.classList.remove( "date" )
-    selectOptions.classList.add( "title" )
     selectButton.classList.add( "close" )
     selectArrow.classList.remove( "up" )
 
