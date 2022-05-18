@@ -186,14 +186,14 @@ async function displayData ( photographers, media )
   //~~~~~~~~~~~~~~~~~~~~
   options = [
     {
-      content: "Popularitééé",
+      content: "Popularité",
       classe: "popularityOption"
     },
     {
-      content: "Dateeee",
+      content: "Date",
       classe: "dateOption"
     }, {
-      content: "Titreeee",
+      content: "Titre",
       classe: "titleOption"
     }
   ]
@@ -224,10 +224,12 @@ async function displayData ( photographers, media )
 
   const popularityOption = document.createElement( "p" )
   popularityOption.className = "selectOption popularityOption"
-  popularityOption.textContent = "Popularité"
+  popularityOption.textContent = "Popular"
   selectOptions.appendChild( popularityOption )
 
+
   console.log( "selectOptions : ", selectOptions ) //* ok
+  // TODO cible un élément créer avec le forEach
   const pop = selectOptions.getElementsByClassName( popularityOption )
   console.log( "pop : ", pop ) //! HTMLCollection VIDE
 
@@ -249,7 +251,7 @@ async function displayData ( photographers, media )
 
   const dateOption = document.createElement( "p" )
   dateOption.className = "selectOption dateOption"
-  dateOption.textContent = "Date"
+  dateOption.textContent = "Chrono"
   selectOptions.appendChild( dateOption )
 
   dateOption.addEventListener( "click", function ()
@@ -272,7 +274,7 @@ async function displayData ( photographers, media )
   } )
   const titleOption = document.createElement( "p" )
   titleOption.className = "selectOption titleOption"
-  titleOption.textContent = "Titre"
+  titleOption.textContent = "Nom"
   selectOptions.appendChild( titleOption )
 
   titleOption.addEventListener( "click", function ()
