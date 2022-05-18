@@ -177,6 +177,7 @@ async function displayData ( photographers, media )
   const selectButton = document.createElement( "button" )
   selectButton.className = "selectButton close"
   selection.appendChild( selectButton )
+
   //ouverture de la selection
   selectButton.addEventListener( "click", function ()
   {
@@ -219,7 +220,8 @@ async function displayData ( photographers, media )
     // TODO meilleur méthode : changer l'orde des éléments selectOption
     selectArrow.classList.remove( "up" )
     selectArrow.classList.add( "down" )
-    //TODO classer les image par popularité (en fonction des likes)
+
+    popularitySort()
   } )
 
   const dateOption = document.createElement( "p" )
@@ -238,8 +240,12 @@ async function displayData ( photographers, media )
     selectButton.classList.add( "close" )
     selectArrow.classList.remove( "up" )
     selectArrow.classList.add( "down" )
-    // TODO positionner le select pour rendre visible le selectOption
-    //   //TODO classer les image par date
+
+    // classer photographMedias par date
+    photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
+    console.log( "photographMedias by date :", photographMedias )
+
+    displayMedias()
   } )
   const titleOption = document.createElement( "p" )
   titleOption.className = "selectOption titleOption"
@@ -257,8 +263,16 @@ async function displayData ( photographers, media )
     selectButton.classList.add( "close" )
     selectArrow.classList.remove( "up" )
     selectArrow.classList.add( "down" )
-    // TODO positionner le select pour rendre visible le selectOption
-    //   //TODO classer les image par titre (alphabétique)
+
+    // classer photographMedias par titre (alphabétique)
+    photographMedias.sort( function compare ( a, b )
+    {
+      if ( a.title < b.title ) return -1
+      if ( a.title > b.title ) return 1
+      return 0
+    } )
+    console.log( "photographMedias by title :", photographMedias )
+    displayMedias()
   } )
 
   // ========== La parties avec la modal ==========
