@@ -1,3 +1,5 @@
+//TODO pb avec gitHub Page
+
 //Mettre le code JavaScript lié à la page photographer.html
 
 // TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
@@ -112,7 +114,7 @@ async function displayData ( photographers, media )
   // TODO https://www.w3schools.com/howto/howto_custom_select.asp style du select
 
   // ----- construction du DOM -----
-  // TODO revoir l'accessibilité (aria) quand tri refait et stylisé
+
   const main = document.querySelector( "#main" )
 
   const mediaSection = document.createElement( "section" )
@@ -162,222 +164,102 @@ async function displayData ( photographers, media )
 
   // ----- construction du DOM -----
   // TODO revoir la sémantique du tri car option de select instilisable (utiliser button voir maquette)
-
-  const mediaSort = document.createElement( "div" )
-  mediaSort.className = "media__sort"
-  mediaSection.insertBefore( mediaSort, medias )
-
-  const mediaSortLabel = document.createElement( "label" )
-  mediaSortLabel.setAttribute( "for", "media__sortSelection" )
-  mediaSortLabel.className = "media__sortLabel"
-  mediaSortLabel.textContent = "Trier par"
-  mediaSort.appendChild( mediaSortLabel )
-
-  const mediaSortContainer = document.createElement( "div" )
-  mediaSortContainer.className = "media__sortContainer"
-  mediaSort.appendChild( mediaSortContainer )
-
-  const mediaSortSelection = document.createElement( "select" )
-  mediaSortSelection.id = "media__sortSelection"
-  mediaSortSelection.className = "media__sortSelection"
-  mediaSortSelection.setAttribute( "name", "classement des medias" )
-  mediaSortContainer.appendChild( mediaSortSelection )
-
-  // const dropdownArrow = document.createElement( "div" )
-  // dropdownArrow.className = "dropdownArrow"
-  // mediaSortContainer.appendChild( dropdownArrow )
-
-  // const arrowSvg = document.createElement( "img" )
-  // arrowSvg.className = "dropdownArrow__img"
-  // arrowSvg.setAttribute( "src", "assets/icons/dropdown.svg" )
-  // arrowSvg.setAttribute( "alt", "chevron" )
-  // dropdownArrow.appendChild( arrowSvg )
-
-  const mediaOptionPopularity = document.createElement( "option" )
-  mediaOptionPopularity.className = "media__selectOption media__selectOption--popularity"
-  mediaOptionPopularity.setAttribute( "value", "popularity" )
-  mediaOptionPopularity.textContent = "Popularité"
-  mediaSortSelection.appendChild( mediaOptionPopularity )
-
-  // // TODO le retirer quand select fixé 
-  // const mediaOptionPopularity2 = document.createElement( "option" )
-  // mediaOptionPopularity2.className = "media__selectOption media__selectOption--popularity"
-  // mediaOptionPopularity2.setAttribute( "value", "popularity" )
-  // mediaOptionPopularity2.textContent = "Popularité"
-  // mediaSortSelection.appendChild( mediaOptionPopularity2 )
-
-  const mediaOptionDate = document.createElement( "option" )
-  mediaOptionDate.className = "media__selectOption media__selectOption--date"
-  mediaOptionDate.setAttribute( "value", "date" )
-  mediaOptionDate.textContent = "Date"
-  mediaSortSelection.appendChild( mediaOptionDate )
-
-  const mediaOptionTitle = document.createElement( "option" )
-  mediaOptionTitle.className = "media__selectOption media__selectOption--title"
-  mediaOptionTitle.setAttribute( "value", "title" )
-  mediaOptionTitle.textContent = "Titre"
-  mediaSortSelection.appendChild( mediaOptionTitle )
-
-  // ----- style -----
-  //TODO voir pour ne pas avoir l'option sélectioné dans les options selectionnable et pour avoir "popularité" selectionnable quand au tri tri en cours.
-  var x, i, j, l, ll, selElmnt, a, b, c
-  x = document.getElementsByClassName( "media__sortContainer" )
-  console.log( "x : ", x ) //* ok =[hdiv.media__sortContainer] HTMLCollection
-  l = x.length
-  console.log( "l : ", l ) //* ok =1
-  for ( i = 0; i < l; i++ )
+  const selectForm = document.createElement( "div" )
+  selectForm.className = "selectForm"
+  mediaSection.insertBefore( selectForm, medias )
+  const selectLabel = document.createElement( "p" )
+  selectLabel.className = "selectLabel"
+  selectLabel.textContent = "Trier par"
+  selectForm.appendChild( selectLabel )
+  const selection = document.createElement( "div" )
+  selection.className = "selection hidden"
+  selectForm.appendChild( selection )
+  const selectButton = document.createElement( "button" )
+  selectButton.className = "selectButton close"
+  selection.appendChild( selectButton )
+  //ouverture de la selection
+  selectButton.addEventListener( "click", function ()
   {
-    selElmnt = x[ i ].getElementsByTagName( "select" )[ 0 ]
-    console.log( "selElmnt: ", selElmnt ) //*ok =le select élément html 
-    ll = selElmnt.length
-    console.log( "ll : ", ll ) //*ok =3
-    /* pour chaque élément, créez un nouveau DIV qui agira comme l'élément sélectionné : */
-    a = document.createElement( "div" )
-    a.className = "select-selected"
-    a.innerHTML = selElmnt.options[ selElmnt.selectedIndex ].innerHTML
-    x[ i ].appendChild( a )
-    console.log( "a : ", a ) //*ok =div "popularité"
-    /* pour chaque élément, créez un nouveau DIV qui contiendra la liste d'options : */
-    b = document.createElement( "div" )
-    b.className = "select-items select-hide"
-    for ( j = 1; j < ll; j++ )
-    {
-      /* pour chaque option de l'élément de sélection d'origine, créez un nouveau DIV qui agira comme un élément d'option : */
-      c = document.createElement( "div" )
-      console.log( "c : ", c )
-      c.innerHTML = selElmnt.options[ j ].innerHTML
-      c.addEventListener( "click", function ( e )
-      {
-        /* lorsqu'un élément est cliqué, mettre à jour la boîte de sélection d'origine, et l'élément sélectionné : */
-        var y, i, k, s, h, sl, yl
-        s = this.parentNode.parentNode.getElementsByTagName( "select" )[ 0 ]
-        console.log( "s : ", s ) //*ok
-        sl = s.length
-        console.log( "sl : ", sl ) //*ok
-        h = this.parentNode.previousSibling
-        console.log( "h : ", h ) //*ok
-        for ( i = 0; i < sl; i++ )
-        {
-          if ( s.options[ i ].innerHTML == this.innerHTML )
-          {
-            s.selectedIndex = i
-            console.log( "s.selectedIndex  du if : ", s.selectedIndex ) //*ok
-            h.innerHTML = this.innerHTML
-            console.log( "h.innerHTML du if : ", h.innerHTML ) //* ok
-            y = this.parentNode.getElementsByClassName( "same-as-selected" )
-            console.log( "y du if : ", y ) //*ok
-            yl = y.length
-            console.log( "yl du if : ", yl ) //*ok (o ou 1)
-            // retrait dela class "same-as-selected" de l'élément qui n'est plus sélectionné
-            for ( k = 0; k < yl; k++ )
-            {
-              y[ k ].removeAttribute( "class" )
-            }
-            this.className = "same-as-selected"
-            break
-          }
-        }
-        h.click()
-        console.log( "h du clic : ", h )
-      } )
-      b.appendChild( c )
-      console.log( "b : ", b ) //* ok élément selctionné (div)
-    }
-    x[ i ].appendChild( b ) //TODO voir si à refaire après chaque selection
-    console.log( "b après : ", b )
-    console.log( "a après : ", a )
-    a.addEventListener( "click", function ( e )
-    {
-      /* lorsque la case de sélection est cliquée, fermez toutes les autres cases de sélection, et ouvrir/fermer la boîte de sélection actuelle : */
-      e.stopPropagation()
-      closeAllSelect( this )
-      this.nextSibling.classList.toggle( "select-hide" )
-      this.classList.toggle( "select-arrow-active" )
-    } )
-  }
-
-  /**
-   * Ferme toutes les case de selection du document sauf la boite actuelle
-   * @param {*} elmnt 
-   */
-  function closeAllSelect ( elmnt )
-  {
-    var x, y, i, xl, yl, arrNo = []
-    x = document.getElementsByClassName( "select-items" )
-    console.log( "x du close : ", x )
-    y = document.getElementsByClassName( "select-selected" )
-    console.log( "y du close : ", y )
-    xl = x.length
-    console.log( "xl du close : ", xl )
-    yl = y.length
-    console.log( "yl du close : ", yl )
-    for ( i = 0; i < yl; i++ )
-    {
-      console.log( "i : ", i )
-      console.log( "y[ i ] du close (else) avant: ", y[ i ] )
-      console.log( "elmnt du if : ", elmnt )
-      if ( elmnt == y[ i ] )
-      {
-        console.log( "elmnt du close : ", elmnt )
-        arrNo.push( i )
-        console.log( "arrNo : ", arrNo )
-      } else
-      {
-
-        y[ i ].classList.remove( "select-arrow-active" )
-        console.log( "y[ i ] du close (else) après: ", y[ i ] )
-      }
-    }
-    for ( i = 0; i < xl; i++ )
-    {
-      if ( arrNo.indexOf( i ) )
-      {
-        console.log( "arrNo.indexOf( i ) : ", arrNo.indexOf( i ) )
-        x[ i ].classList.add( "select-hide" )
-        console.log( "x[ i ] : ", x[ i ] )
-      }
-    }
-  }
-
-  /* si l'utilisateur clique n'importe où en dehors de la zone de sélection, puis fermez toutes les cases de sélection : */
-  document.addEventListener( "click", closeAllSelect )
-
-  // ----- fonctionnement du tri des médias -----
-
-  mediaSortSelection.addEventListener( "change", function ()
-  {
-    if ( mediaOptionPopularity.selected )
-    {
-      popularitySort()
-      //affichage des média après le tri
-      displayMedias()
-      //réinitialisation de la lightbox après le tri
-      Lightbox.init()
-    }
-    else if ( mediaOptionDate.selected )
-    {
-      photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
-      //affichage des média après le tri
-      displayMedias()
-      //réinitialisation de la lightbox après le tri
-      Lightbox.init()
-    } else if ( mediaOptionTitle.selected )
-    {
-      photographMedias.sort( function compare ( a, b )
-      {
-        if ( a.title < b.title ) return -1
-        if ( a.title > b.title ) return 1
-        return 0
-      } )
-      //affichage des média après le tri
-      displayMedias()
-      //réinitialisation de la lightbox après le tri
-      Lightbox.init()
-    }
+    selection.classList.remove( "hidden" )
+    selectButton.classList.remove( "close" )
+    popularityOption.classList.add( "open" )
+    dateOption.classList.add( "open" )
+    titleOption.classList.add( "open" )
+    selectArrow.classList.remove( "down" )
+    selectArrow.classList.add( "up" )
   } )
 
-  // initialisation de la lightbox:
-  Lightbox.init()
+  const selectOptions = document.createElement( "div" )
+  selectOptions.className = "selectOptions"
+  selection.appendChild( selectOptions )
+
+  const selectArrow = document.createElement( "div" )
+  selectArrow.className = "selectArrow down"
+  selectArrow.textContent = ">"
+  selection.appendChild( selectArrow )
+
+  // TODO ajouter avec fontAwesome
+  // const chevron = document.createElement("i")
+  // chevron.className = "fa-solid fa-chevron-down"
+  // chevron.appendChild(selectArrow)
+  const popularityOption = document.createElement( "p" )
+  popularityOption.className = "selectOption popularityOption"
+  popularityOption.textContent = "Popularité"
+  selectOptions.appendChild( popularityOption )
+
+  popularityOption.addEventListener( "click", function ()
+  {
+    selection.classList.add( "hidden" )
+    popularityOption.classList.remove( "open" )
+    dateOption.classList.remove( "open" )
+    titleOption.classList.remove( "open" )
+    selectOptions.classList.remove( "title" )
+    selectOptions.classList.remove( "date" )
+    selectButton.classList.add( "close" )
+    // TODO meilleur méthode : changer l'orde des éléments selectOption
+    selectArrow.classList.remove( "up" )
+    selectArrow.classList.add( "down" )
+    //TODO classer les image par popularité (en fonction des likes)
+  } )
+
+  const dateOption = document.createElement( "p" )
+  dateOption.className = "selectOption dateOption"
+  dateOption.textContent = "Date"
+  selectOptions.appendChild( dateOption )
+
+  dateOption.addEventListener( "click", function ()
+  {
+    selection.classList.add( "hidden" )
+    popularityOption.classList.remove( "open" )
+    dateOption.classList.remove( "open" )
+    titleOption.classList.remove( "open" )
+    selectOptions.classList.remove( "title" )
+    selectOptions.classList.add( "date" )
+    selectButton.classList.add( "close" )
+    selectArrow.classList.remove( "up" )
+    selectArrow.classList.add( "down" )
+    // TODO positionner le select pour rendre visible le selectOption
+    //   //TODO classer les image par date
+  } )
+  const titleOption = document.createElement( "p" )
+  titleOption.className = "selectOption titleOption"
+  titleOption.textContent = "Titre"
+  selectOptions.appendChild( titleOption )
+
+  titleOption.addEventListener( "click", function ()
+  {
+    selection.classList.add( "hidden" )
+    popularityOption.classList.remove( "open" )
+    dateOption.classList.remove( "open" )
+    titleOption.classList.remove( "open" )
+    selectOptions.classList.remove( "date" )
+    selectOptions.classList.add( "title" )
+    selectButton.classList.add( "close" )
+    selectArrow.classList.remove( "up" )
+    selectArrow.classList.add( "down" )
+    // TODO positionner le select pour rendre visible le selectOption
+    //   //TODO classer les image par titre (alphabétique)
+  } )
 
   // ========== La parties avec la modal ==========
 
