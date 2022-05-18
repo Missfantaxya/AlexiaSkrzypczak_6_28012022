@@ -198,22 +198,22 @@ async function displayData ( photographers, media )
     }
   ]
 
-  function selectOptionA ()
-  {
-    options.forEach( ( selectOption ) =>
-    {
-      const option = document.createElement( "p" )
-      option.className = `selectOption ${ selectOption.classe }`
-      option.textContent = selectOption.content
-      selectOptions.appendChild( option )
-      console.log( "option dans le forEach : ", option ) // *ok
-    } )
-  }
 
-  selectOptionA()
+  const selectA = options.map( selectOption =>
+  {
+    const optionSelect = document.createElement( "p" )
+    optionSelect.className = `selectOption ${ selectOption.classe }`
+    optionSelect.textContent = selectOption.content
+    selectOptions.appendChild( optionSelect )
+    console.log( "option dans le map : ", optionSelect ) // *ok
+    return optionSelect
+  } )
+  console.log( "selectA : ", selectA ) //*ok un tableau des 3 éléments html
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   const selectArrow = document.createElement( "div" )
-  selectArrow.className = "selectArrow down"
+  selectArrow.className = "selectArrow"
   selectArrow.textContent = ">"
   selection.appendChild( selectArrow )
 
@@ -236,15 +236,12 @@ async function displayData ( photographers, media )
   popularityOption.addEventListener( "click", function ()
   {
     selection.classList.add( "hidden" )
-    popularityOption.classList.remove( "open" )
-    dateOption.classList.remove( "open" )
-    titleOption.classList.remove( "open" )
     selectOptions.classList.remove( "title" )
     selectOptions.classList.remove( "date" )
     selectButton.classList.add( "close" )
     // TODO meilleur méthode : changer l'orde des éléments selectOption
     selectArrow.classList.remove( "up" )
-    selectArrow.classList.add( "down" )
+
 
     popularitySort()
   } )
@@ -257,14 +254,10 @@ async function displayData ( photographers, media )
   dateOption.addEventListener( "click", function ()
   {
     selection.classList.add( "hidden" )
-    popularityOption.classList.remove( "open" )
-    dateOption.classList.remove( "open" )
-    titleOption.classList.remove( "open" )
     selectOptions.classList.remove( "title" )
     selectOptions.classList.add( "date" )
     selectButton.classList.add( "close" )
     selectArrow.classList.remove( "up" )
-    selectArrow.classList.add( "down" )
 
     // classer photographMedias par date
     photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
@@ -280,14 +273,10 @@ async function displayData ( photographers, media )
   titleOption.addEventListener( "click", function ()
   {
     selection.classList.add( "hidden" )
-    popularityOption.classList.remove( "open" )
-    dateOption.classList.remove( "open" )
-    titleOption.classList.remove( "open" )
     selectOptions.classList.remove( "date" )
     selectOptions.classList.add( "title" )
     selectButton.classList.add( "close" )
     selectArrow.classList.remove( "up" )
-    selectArrow.classList.add( "down" )
 
     // classer photographMedias par titre (alphabétique)
     photographMedias.sort( function compare ( a, b )
@@ -305,10 +294,6 @@ async function displayData ( photographers, media )
   {
     selection.classList.remove( "hidden" )
     selectButton.classList.remove( "close" )
-    popularityOption.classList.add( "open" )
-    dateOption.classList.add( "open" )
-    titleOption.classList.add( "open" )
-    selectArrow.classList.remove( "down" )
     selectArrow.classList.add( "up" )
   } )
 
