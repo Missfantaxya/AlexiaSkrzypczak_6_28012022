@@ -233,7 +233,7 @@ async function displayData ( photographers, media )
     selection.classList.add( "hidden" )
     selectButton.classList.add( "close" )
     // TODO meilleur méthode : changer l'orde des éléments selectOption
-    //TODO récupere l'index de l'option et suprimer l'option choisi du tableau puis la remttre en premier (.splice)?
+    //TODO récupere l'index de l'option (.findIndex) et suprimer l'option choisi (.splice ?) du tableau puis la remttre en premier (.unshift)
     // options = [
     //   {
     //     content: "Popularité",
