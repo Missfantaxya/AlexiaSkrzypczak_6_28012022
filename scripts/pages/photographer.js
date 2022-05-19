@@ -178,10 +178,16 @@ async function displayData ( photographers, media )
   selectButton.className = "selectButton close"
   selection.appendChild( selectButton )
 
-
   const selectOptions = document.createElement( "div" )
   selectOptions.className = "selectOptions"
   selection.appendChild( selectOptions )
+
+  // TODO ajouter la flêche avec fontAwesome
+  const selectArrow = document.createElement( "div" )
+  selectArrow.className = "selectArrow"
+  selectArrow.textContent = ">"
+  selection.appendChild( selectArrow )
+
 
   options = [
     {
@@ -197,8 +203,11 @@ async function displayData ( photographers, media )
     }
   ]
 
-
-  function selectA ()
+  /**
+   * construction de la selection pour le classement des médias
+   * @return {HTMLelement}
+   */
+  function select ()
   {
     selectOptions.innerHTML = ""
     options.map( selectOption =>
@@ -207,50 +216,17 @@ async function displayData ( photographers, media )
       optionSelect.className = `selectOption ${ selectOption.classe }`
       optionSelect.textContent = selectOption.content
       selectOptions.appendChild( optionSelect )
-      // console.log( "option dans le map : ", optionSelect ) // *ok
       return optionSelect
     } )
   }
 
-  selectA()
+  select()
 
-  const selectArrow = document.createElement( "div" )
-  selectArrow.className = "selectArrow"
-  selectArrow.textContent = ">"
-  selection.appendChild( selectArrow )
+  // ----- Fonctionnement de la selection -----
 
-  // TODO ajouter avec fontAwesome
-  // const chevron = document.createElement("i")
-  // chevron.className = "fa-solid fa-chevron-down"
-  // chevron.appendChild(selectArrow)
-
-
-
-  // const popularityOption = document.querySelector( ".popularityOption" )
-  // console.log( "popularityOption : ", popularityOption )// *ok
-
-  console.log( "selectOptions : ", selectOptions ) //* ok
-
-
-  // popularityOption.addEventListener( "click", function ()
-  // {
-  //   selection.classList.add( "hidden" )
-  //   selectButton.classList.add( "close" )
-
-  //   const indice = options.findIndex( option => option.content === "Popularité" )
-  //   console.log( "indice popularité : ", indice )
-
-  //   selectArrow.classList.remove( "up" )
-
-
-  //   popularitySort()
-  // } )
-
-  // ~~~~~~~~ TEST ~~~~~~~~~~~~~~
-
+  // TODO rendre les options selectionnable au clavier
   // TODO ne marche qu'une seule fois : voir pourquoi
   const selectOption = document.querySelectorAll( ".selectOption" )
-  console.log( "selectOption : ", selectOption ) //*
   selectOption.forEach( item =>
   {
     item.addEventListener( "click", function ()
@@ -258,12 +234,13 @@ async function displayData ( photographers, media )
       selection.classList.add( "hidden" )
       selectButton.classList.add( "close" )
       selectArrow.classList.remove( "up" )
-      console.log( "selectOption.textContent du forEach : ", item.textContent ) //* ok
+      // récupère l'indice de l'élément cliqué 
       const indice = options.findIndex( oneOption => oneOption.content === item.textContent )
-      console.log( "indice date: ", indice ) // *ok
+      // suppression de l'élément cliqué du tableau
       const optionMove = options.splice( indice, 1 )
+      // ajout de l'élément supprimé au début du tableau (à l'index 0)
       const optionMoved = options.splice( 0, 0, optionMove[ 0 ] )
-      console.log( "options après splice: ", options )// *ok
+      // classement des médias en fonctione de l'option cliqué
       if ( item.textContent === "Date" )
       {
         // classer photographMedias par date
@@ -286,58 +263,14 @@ async function displayData ( photographers, media )
         popularitySort()
         displayMedias()
       }
-      selectA()
-
+      select()
     } )
+
     // TODO suprimmer l'écoute du click en dehors de la selection quand elle est fermée 
-    // item.removeEventListener( "click", function ())
+    // TARGET.removeEventListener( "click", function ())
   } )
   // TODO fermer la selection si on clique en dehor de celle-ci
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  // const dateOption = document.querySelector( ".dateOption" )
-  // // console.log( "dateOption : ", dateOption ) //*ok
-
-  // dateOption.addEventListener( "click", function ()
-  // {
-  // selection.classList.add( "hidden" )
-  // selectButton.classList.add( "close" )
-  // selectArrow.classList.remove( "up" )
-
-  // const indice = options.findIndex( option => option.content === "Date" )
-  // console.log( "indice date: ", indice ) // *ok
-  // const optionMove = options.splice( indice, 1 )
-  // const optionMoved = options.splice( 0, 0, optionMove[ 0 ] )
-  // console.log( "options après splice: ", options )// *ok
-  // selectA()
-
-
-  // // classer photographMedias par date
-  // photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
-  // console.log( "photographMedias by date :", photographMedias )
-
-  // displayMedias()
-  // } )
-
-  // const titleOption = document.querySelector( ".titleOption" )
-  // // console.log( "titleOption : ", titleOption ) //*ok
-  // titleOption.addEventListener( "click", function ()
-  // {
-  // selection.classList.add( "hidden" )
-  // selectButton.classList.add( "close" )
-  // selectArrow.classList.remove( "up" )
-
-
-  // // classer photographMedias par titre (alphabétique)
-  // photographMedias.sort( function compare ( a, b )
-  // {
-  //   if ( a.title < b.title ) return -1
-  //   if ( a.title > b.title ) return 1
-  //   return 0
-  // } )
-  // console.log( "photographMedias by title :", photographMedias )
-  // displayMedias()
-  // } )
 
   //ouverture de la selection
   selectButton.addEventListener( "click", function ()
