@@ -230,8 +230,7 @@ async function displayData ( photographers, media )
   function sortMedia ()
   {
 
-    // TODO rendre les options selectionnable au clavier
-    // TODO ne marche qu'une seule fois : voir pourquoi
+    // TODO rendre les options selectionnablent au clavier
     const selectOption = document.querySelectorAll( ".selectOption" )
     selectOption.forEach( item =>
     {
