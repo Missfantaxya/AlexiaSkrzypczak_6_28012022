@@ -252,7 +252,6 @@ async function displayData ( photographers, media )
           // classer photographMedias par date
           photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
           displayMedias()
-          console.log( "photographMedias by date :", photographMedias )
         } else if ( item.textContent === "Titre" )
         {
           // classer photographMedias par titre (alphabétique)
@@ -263,7 +262,6 @@ async function displayData ( photographers, media )
             return 0
           } )
           displayMedias()
-          console.log( "photographMedias by title :", photographMedias )
         } else if ( item.textContent === "Popularité" )
         {
           popularitySort()
