@@ -223,53 +223,61 @@ async function displayData ( photographers, media )
   select()
 
   // ----- Fonctionnement de la selection -----
-
-  // TODO rendre les options selectionnable au clavier
-  // TODO ne marche qu'une seule fois : voir pourquoi
-  const selectOption = document.querySelectorAll( ".selectOption" )
-  selectOption.forEach( item =>
+  /**
+   * Permet de faire le tri des médias selon la selection choisi
+   * @function
+   */
+  function sortMedia ()
   {
-    item.addEventListener( "click", function ()
-    {
-      selection.classList.add( "hidden" )
-      selectButton.classList.add( "close" )
-      selectArrow.classList.remove( "up" )
-      // récupère l'indice de l'élément cliqué 
-      const indice = options.findIndex( oneOption => oneOption.content === item.textContent )
-      // suppression de l'élément cliqué du tableau
-      const optionMove = options.splice( indice, 1 )
-      // ajout de l'élément supprimé au début du tableau (à l'index 0)
-      const optionMoved = options.splice( 0, 0, optionMove[ 0 ] )
-      // classement des médias en fonctione de l'option cliqué
-      if ( item.textContent === "Date" )
-      {
-        // classer photographMedias par date
-        photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
-        displayMedias()
-        console.log( "photographMedias by date :", photographMedias )
-      } else if ( item.textContent === "Titre" )
-      {
-        // classer photographMedias par titre (alphabétique)
-        photographMedias.sort( function compare ( a, b )
-        {
-          if ( a.title < b.title ) return -1
-          if ( a.title > b.title ) return 1
-          return 0
-        } )
-        displayMedias()
-        console.log( "photographMedias by title :", photographMedias )
-      } else if ( item.textContent === "Popularité" )
-      {
-        popularitySort()
-        displayMedias()
-      }
-      select()
-    } )
 
-    // TODO suprimmer l'écoute du click en dehors de la selection quand elle est fermée 
-    // TARGET.removeEventListener( "click", function ())
-  } )
+    // TODO rendre les options selectionnable au clavier
+    // TODO ne marche qu'une seule fois : voir pourquoi
+    const selectOption = document.querySelectorAll( ".selectOption" )
+    selectOption.forEach( item =>
+    {
+      item.addEventListener( "click", function ()
+      {
+        selection.classList.add( "hidden" )
+        selectButton.classList.add( "close" )
+        selectArrow.classList.remove( "up" )
+        // récupère l'indice de l'élément cliqué 
+        const indice = options.findIndex( oneOption => oneOption.content === item.textContent )
+        // suppression de l'élément cliqué du tableau
+        const optionMove = options.splice( indice, 1 )
+        // ajout de l'élément supprimé au début du tableau (à l'index 0)
+        const optionMoved = options.splice( 0, 0, optionMove[ 0 ] )
+        // classement des médias en fonctione de l'option cliqué
+        if ( item.textContent === "Date" )
+        {
+          // classer photographMedias par date
+          photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
+          displayMedias()
+          console.log( "photographMedias by date :", photographMedias )
+        } else if ( item.textContent === "Titre" )
+        {
+          // classer photographMedias par titre (alphabétique)
+          photographMedias.sort( function compare ( a, b )
+          {
+            if ( a.title < b.title ) return -1
+            if ( a.title > b.title ) return 1
+            return 0
+          } )
+          displayMedias()
+          console.log( "photographMedias by title :", photographMedias )
+        } else if ( item.textContent === "Popularité" )
+        {
+          popularitySort()
+          displayMedias()
+        }
+        select()
+      } )
+    } )
+  }
+
   // TODO fermer la selection si on clique en dehor de celle-ci
+  // TODO suprimmer l'écoute du click en dehors de la selection quand elle est fermée
+  // TARGET.removeEventListener( "click", function ())
+
 
 
   //ouverture de la selection
@@ -278,6 +286,7 @@ async function displayData ( photographers, media )
     selection.classList.remove( "hidden" )
     selectButton.classList.remove( "close" )
     selectArrow.classList.add( "up" )
+    sortMedia()
   } )
 
   // ========== La parties avec la modal ==========
