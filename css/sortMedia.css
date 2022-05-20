@@ -26,6 +26,12 @@
   overflow: hidden;
 }
 
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.select{
+  display:none;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .selectButton {
   border: none;
   cursor: pointer;

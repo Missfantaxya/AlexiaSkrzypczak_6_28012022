@@ -175,18 +175,6 @@ async function displayData ( photographers, media )
   const selection = document.createElement( "div" )
   selection.className = "selection hidden"
   selectForm.appendChild( selection )
-  const selectButton = document.createElement( "button" )
-  selectButton.className = "selectButton"
-  selectButton.setAttribute( "type", "button" )
-  selection.appendChild( selectButton )
-
-  const selectOptions = document.createElement( "div" )
-  selectOptions.className = "selectOptions"
-  selection.appendChild( selectOptions )
-
-  const selectArrow = document.createElement( "div" )
-  selectArrow.className = "selectArrow"
-  selection.appendChild( selectArrow )
 
   options = [
     {
@@ -202,11 +190,39 @@ async function displayData ( photographers, media )
     }
   ]
 
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  const select = document.createElement( "select" )
+  select.className = "select"
+  selection.appendChild( select )
+
+  options.map( oneOption =>
+  {
+    const option = document.createElement( "p" )
+    option.className = `option ${ oneOption.classe }`
+    option.textContent = oneOption.content
+    select.appendChild( option )
+  } )
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const selectButton = document.createElement( "button" )
+  selectButton.className = "selectButton"
+  selectButton.setAttribute( "type", "button" )
+  selection.appendChild( selectButton )
+
+  const selectOptions = document.createElement( "div" )
+  selectOptions.className = "selectOptions"
+  selection.appendChild( selectOptions )
+
+  const selectArrow = document.createElement( "div" )
+  selectArrow.className = "selectArrow"
+  selection.appendChild( selectArrow )
+
   /**
-   * construction de la selection pour le classement des médias
+   * construction du DOM de la selection pour le classement des médias
    * @return {HTMLelement}
    */
-  function select ()
+  function selectionDOM ()
   {
     selectOptions.innerHTML = ""
     options.map( selectOption =>
@@ -219,7 +235,7 @@ async function displayData ( photographers, media )
     } )
   }
 
-  select()
+  selectionDOM()
 
   // ----- Fonctionnement de la selection -----
 
@@ -229,6 +245,12 @@ async function displayData ( photographers, media )
     selectButton.classList.remove( "open" )
     selectArrow.classList.remove( "up" )
   }
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   /**
    * Permet de faire le tri des médias selon la selection choisi
@@ -271,7 +293,7 @@ async function displayData ( photographers, media )
           popularitySort()
           displayMedias()
         }
-        select()
+        selectionDOM()
       } )
     } )
   }
