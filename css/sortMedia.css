@@ -75,15 +75,29 @@
   transform: rotate(180deg);
 }
 
+.hidden>.selectOptions>.selectOption:first-child {
+height: 70px;
+}
+
 .selectOption {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  height: 70px;
+  height : 69 px;
   margin: auto 11px;
   padding-left: 0.5em;
   border-top: 1px solid white;
 }
 .selectOption:first-child{
   border-top: none;
+  height:60px;
+}
+
+.selectOption:nth-child(0n+2) {
+  height: 53px;
+}
+
+
+.selectOption:last-child {
+  height: 57px;
 }
