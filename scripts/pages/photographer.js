@@ -175,7 +175,7 @@ async function displayData ( photographers, media )
   selection.className = "selection hidden"
   selectForm.appendChild( selection )
   const selectButton = document.createElement( "button" )
-  selectButton.className = "selectButton close"
+  selectButton.className = "selectButton"
   selection.appendChild( selectButton )
 
   const selectOptions = document.createElement( "div" )
@@ -237,7 +237,7 @@ async function displayData ( photographers, media )
       item.addEventListener( "click", function ()
       {
         selection.classList.add( "hidden" )
-        selectButton.classList.add( "close" )
+        selectButton.classList.remove( "open" )
         selectArrow.classList.remove( "up" )
         // récupère l'indice de l'élément cliqué 
         const indice = options.findIndex( oneOption => oneOption.content === item.textContent )
@@ -275,13 +275,33 @@ async function displayData ( photographers, media )
   // TODO suprimmer l'écoute du click en dehors de la selection quand elle est fermée
   // TARGET.removeEventListener( "click", function ())
 
+
+
+
+
   //ouverture de la selection
   selectButton.addEventListener( "click", function ()
   {
     selection.classList.remove( "hidden" )
-    selectButton.classList.remove( "close" )
+    selectButton.classList.add( "open" )
     selectArrow.classList.add( "up" )
     sortMedia()
+
+    //  hors critère évaluation
+    const classButtonSort = selectButton.classList
+    console.log( "classButtonSort : ", classButtonSort )//*ok
+    const buttonSort = classButtonSort.contains( "open" )
+    console.log( "buttonSort : ", buttonSort ) //*ok
+    // if ( buttonSort )
+    // {
+    //  TODO revoir la target car le referme aussitot (exclure la selection de la cible)(élément hors dehors du dos = > appelle une fonction)
+    //   selection.onblur =
+    //     selection.classList.add( "hidden" )
+    //     selectButton.classList.remove( "open" )
+    //     selectArrow.classList.remove( "up" )
+    //     console.log( "classButtonSort : ", classButtonSort )
+
+
   } )
 
   // initialisation de la lightbox:

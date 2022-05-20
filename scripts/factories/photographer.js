@@ -20,7 +20,7 @@ function photographerFactory ( data )
     // TODO aria-description FAUX
     // photographerArticle.setAttribute( "aria-description", "détails du photographe" )
     const photographerLink = document.createElement( "a" )
-    photographerLink.setAttribute( "href", `/photographer.html?id=${ id }` )
+    photographerLink.setAttribute( "href", `photographer.html?id=${ id }` )
     photographerLink.className = "photographer__link"
     photographerLink.setAttribute( "aria-label", name )
 
