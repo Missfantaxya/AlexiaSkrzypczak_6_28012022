@@ -223,6 +223,14 @@ async function displayData ( photographers, media )
   select()
 
   // ----- Fonctionnement de la selection -----
+
+  function closeSelection ()
+  {
+    selection.classList.add( "hidden" )
+    selectButton.classList.remove( "open" )
+    selectArrow.classList.remove( "up" )
+  }
+
   /**
    * Permet de faire le tri des médias selon la selection choisi
    * @function
@@ -236,9 +244,7 @@ async function displayData ( photographers, media )
     {
       item.addEventListener( "click", function ()
       {
-        selection.classList.add( "hidden" )
-        selectButton.classList.remove( "open" )
-        selectArrow.classList.remove( "up" )
+        closeSelection()
         // récupère l'indice de l'élément cliqué 
         const indice = options.findIndex( oneOption => oneOption.content === item.textContent )
         // suppression de l'élément cliqué du tableau
@@ -271,14 +277,6 @@ async function displayData ( photographers, media )
     } )
   }
 
-  // TODO fermer la selection si on clique en dehor de celle-ci
-  // TODO suprimmer l'écoute du click en dehors de la selection quand elle est fermée
-  // TARGET.removeEventListener( "click", function ())
-
-
-
-
-
   //ouverture de la selection
   selectButton.addEventListener( "click", function ()
   {
@@ -286,22 +284,6 @@ async function displayData ( photographers, media )
     selectButton.classList.add( "open" )
     selectArrow.classList.add( "up" )
     sortMedia()
-
-    //  hors critère évaluation
-    const classButtonSort = selectButton.classList
-    console.log( "classButtonSort : ", classButtonSort )//*ok
-    const buttonSort = classButtonSort.contains( "open" )
-    console.log( "buttonSort : ", buttonSort ) //*ok
-    // if ( buttonSort )
-    // {
-    //  TODO revoir la target car le referme aussitot (exclure la selection de la cible)(élément hors dehors du dos = > appelle une fonction)
-    //   selection.onblur =
-    //     selection.classList.add( "hidden" )
-    //     selectButton.classList.remove( "open" )
-    //     selectArrow.classList.remove( "up" )
-    //     console.log( "classButtonSort : ", classButtonSort )
-
-
   } )
 
   // initialisation de la lightbox:
