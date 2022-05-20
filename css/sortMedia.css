@@ -30,6 +30,7 @@
   border: none;
   cursor: pointer;
   background-color: transparent;
+  color: transparent;
   position: absolute;
   border-radius: 5px;
   width: 100%;
@@ -68,6 +69,7 @@
   width: 16px;
   height:9.88px;
   background-image: url("../assets/icons/dropdown.svg");
+  cursor:pointer;
 }
 
 
