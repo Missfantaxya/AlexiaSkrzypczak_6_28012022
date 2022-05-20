@@ -275,8 +275,6 @@ async function displayData ( photographers, media )
   // TODO suprimmer l'écoute du click en dehors de la selection quand elle est fermée
   // TARGET.removeEventListener( "click", function ())
 
-
-
   //ouverture de la selection
   selectButton.addEventListener( "click", function ()
   {
@@ -285,6 +283,9 @@ async function displayData ( photographers, media )
     selectArrow.classList.add( "up" )
     sortMedia()
   } )
+
+  // initialisation de la lightbox:
+  Lightbox.init()
 
   // ========== La parties avec la modal ==========
 
