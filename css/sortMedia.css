@@ -18,7 +18,7 @@
   position: relative;
   display: inline-block;
   width: 170px;
-  height: 70px;
+  height: 69px;
   border-radius: 5px;
 }
 
@@ -45,6 +45,7 @@
   font-weight: bold;
   color: white;
   width: 170px;
+  height: 170px;
   border: none;
   background-color: #901c1c;
   border-radius: 5px;
@@ -62,16 +63,15 @@
 
 .selectArrow {
   position: absolute;
-  top: 25px;
-  right: 20px;
+  top: 45%;
+  right: 10px;
   color: white;
-  font-weight: 700;
-  font-size: 20px;
-  transform: rotate(90deg);
+  width: 16px;
+
 }
 
 .up {
-  transform: rotate(-90deg);
+  transform: rotate(180deg);
 }
 
 .selectOption {

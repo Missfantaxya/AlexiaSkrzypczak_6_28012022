@@ -8,13 +8,14 @@ function photographerFactory ( data )
 {
   const { name, portrait, country, city, tagline, price, id } = data
   const avatar = `assets/photographers/${ portrait }`
-
+  // console.log( "data 1: ", data )//*ok
   /**
    * Construction du DOM pour les détails d'un photogarphe sur la page d'accueil
    * @returns {HTMLelement}
    */
   function getPhotographerCardDOM ()
   {
+    // console.log( "data 2: ", data )//*ok
     const photographerArticle = document.createElement( "article" )
     photographerArticle.className = "photographer__article"
     // TODO aria-description FAUX
@@ -66,6 +67,7 @@ function photographerFactory ( data )
    */
   function getPhotographProfilDOM ()
   {
+    // console.log( "data 3: ", data )//*ok 
     const photographerDetails = document.createElement( "div" )
     photographerDetails.className = "photographerDetails"
 

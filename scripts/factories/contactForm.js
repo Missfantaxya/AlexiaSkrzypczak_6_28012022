@@ -17,7 +17,7 @@ function modalDOM ( data )
   modalDetails.appendChild( modalPhotographerName )
 
 
-  const form = document.querySelector( 'form' )
+  const form = document.querySelector( 'div.modal form' )
   form.className = "contact__form"
   const formFields = form.firstElementChild
 

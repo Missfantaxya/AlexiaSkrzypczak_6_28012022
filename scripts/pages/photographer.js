@@ -163,11 +163,12 @@ async function displayData ( photographers, media )
   //=========== La selection du classement ==========
 
   // ----- construction du DOM -----
+
   // TODO faire les ARIA cf maquette
-  const selectForm = document.createElement( "div" )
+  const selectForm = document.createElement( "form" )
   selectForm.className = "selectForm"
   mediaSection.insertBefore( selectForm, medias )
-  const selectLabel = document.createElement( "p" )
+  const selectLabel = document.createElement( "label" )
   selectLabel.className = "selectLabel"
   selectLabel.textContent = "Trier par"
   selectForm.appendChild( selectLabel )
@@ -176,6 +177,7 @@ async function displayData ( photographers, media )
   selectForm.appendChild( selection )
   const selectButton = document.createElement( "button" )
   selectButton.className = "selectButton"
+  selectButton.setAttribute( "type", "button" )
   selection.appendChild( selectButton )
 
   const selectOptions = document.createElement( "div" )
@@ -185,8 +187,13 @@ async function displayData ( photographers, media )
   // TODO ajouter la flêche avec fontAwesome
   const selectArrow = document.createElement( "div" )
   selectArrow.className = "selectArrow"
-  selectArrow.textContent = ">"
   selection.appendChild( selectArrow )
+
+  const chevron = "assets/icons/dropdown.svg"
+  const dropdown = document.createElement( "img" )
+  dropdown.className = "dropdown"
+  dropdown.setAttribute( "src", chevron )
+  selectArrow.appendChild( dropdown )
 
 
   options = [
