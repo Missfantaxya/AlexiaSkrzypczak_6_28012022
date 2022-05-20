@@ -184,17 +184,9 @@ async function displayData ( photographers, media )
   selectOptions.className = "selectOptions"
   selection.appendChild( selectOptions )
 
-  // TODO ajouter la flêche avec fontAwesome
   const selectArrow = document.createElement( "div" )
   selectArrow.className = "selectArrow"
   selection.appendChild( selectArrow )
-
-  const chevron = "assets/icons/dropdown.svg"
-  const dropdown = document.createElement( "img" )
-  dropdown.className = "dropdown"
-  dropdown.setAttribute( "src", chevron )
-  selectArrow.appendChild( dropdown )
-
 
   options = [
     {

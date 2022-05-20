@@ -63,12 +63,13 @@
 
 .selectArrow {
   position: absolute;
-  top: 45%;
-  right: 10px;
-  color: white;
+  top: 29.45px;
+  right: 18px;
   width: 16px;
-
+  height:9.88px;
+  background-image: url("../assets/icons/dropdown.svg");
 }
+
 
 .up {
   transform: rotate(180deg);
