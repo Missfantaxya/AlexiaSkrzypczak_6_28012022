@@ -3,7 +3,7 @@
  * @property {string[]} gallery - Chemins des medias de la lightbox
  * @property {string} url - média actuellement affichée
  */
-// TODO rendre possible la navigation clavier après ouverture au clavier
+
 class Lightbox
 {
   static init ()
