@@ -246,7 +246,7 @@ async function displayData ( photographers, media )
     selectArrow.classList.remove( "up" )
   }
 
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ test accessibilité avec le select 
 
 
 
@@ -297,6 +297,15 @@ async function displayData ( photographers, media )
       } )
     } )
   }
+
+
+  selectArrow.addEventListener( "click", function ()
+  {
+    console.log( "selectArrow.hasAttribute( 'up' ) : ", selectArrow.hasAttribute( "up" ) )
+    closeSelection()
+  } )
+
+
 
   //ouverture de la selection
   selectButton.addEventListener( "click", function ()
