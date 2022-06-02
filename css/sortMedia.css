@@ -26,13 +26,8 @@
   overflow: hidden;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.select{
-  display:none;
-}
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 .selectButton {
+  padding: 0;
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -49,6 +44,8 @@
 }
 
 .selectOptions {
+  padding: 0;
+  margin:0;
   font-weight: bold;
   color: white;
   width: 170px;
@@ -59,6 +56,7 @@
   cursor: pointer;
   position: relative;
 }
+
 
 .date {
   top: -70px;
@@ -83,7 +81,7 @@
   transform: rotate(180deg);
 }
 
-.hidden>.selectOptions>.selectOption:first-child {
+.hidden>.selectButton>.selectOptions>.selectOption:first-child {
 height: 70px;
 }
 
@@ -96,6 +94,7 @@ height: 70px;
   padding-left: 0.5em;
   border-top: 1px solid white;
 }
+
 .selectOption:first-child{
   border-top: none;
   height:60px;

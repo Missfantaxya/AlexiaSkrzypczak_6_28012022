@@ -170,6 +170,7 @@ async function displayData ( photographers, media )
   mediaSection.insertBefore( selectForm, medias )
   const selectLabel = document.createElement( "label" )
   selectLabel.className = "selectLabel"
+  selectLabel.id = "selectLabel"
   selectLabel.textContent = "Trier par"
   selectForm.appendChild( selectLabel )
   const selection = document.createElement( "div" )
@@ -193,15 +194,25 @@ async function displayData ( photographers, media )
   const selectButton = document.createElement( "button" )
   selectButton.className = "selectButton"
   selectButton.setAttribute( "type", "button" )
+  selectButton.setAttribute( "role", "button" )
+  selectButton.ariaHasPopup = "listbox"
+  // TODO ajouter un aria-controls = "id de ul"  ???
+  selectButton.setAttribute( "aria-expanded", "" )
+  // selectButton.setAttribute( "tabindex", "0" )  //?
   selection.appendChild( selectButton )
 
-  const selectOptions = document.createElement( "div" )
+  const selectOptions = document.createElement( "ul" )
   selectOptions.className = "selectOptions"
-  selection.appendChild( selectOptions )
+  selectOptions.setAttribute( "role", "listbox" )
+  selectOptions.setAttribute( "aria-activedescendant", "" )
+  selectOptions.setAttribute( "aria-selected", "" )
+  selectOptions.setAttribute( "aria-labelledby", "selectLabel" )
+  // selectOptions.setAttribute( "tabindex", "-1" )  //?
+  selectButton.appendChild( selectOptions )
 
   const selectArrow = document.createElement( "div" )
   selectArrow.className = "selectArrow"
-  selection.appendChild( selectArrow )
+  selectButton.appendChild( selectArrow )
 
   /**
    * construction du DOM de la selection pour le classement des médias
@@ -212,8 +223,9 @@ async function displayData ( photographers, media )
     selectOptions.innerHTML = ""
     options.map( selectOption =>
     {
-      const optionSelect = document.createElement( "p" )
+      const optionSelect = document.createElement( "li" )
       optionSelect.className = `selectOption ${ selectOption.classe }`
+      optionSelect.setAttribute( "role", "option" )
       optionSelect.textContent = selectOption.content
       selectOptions.appendChild( optionSelect )
       return optionSelect
@@ -224,18 +236,28 @@ async function displayData ( photographers, media )
 
   // ----- Fonctionnement de la selection -----
 
-  function closeSelection ()
+  //ouverture de la selection
+  selectButton.addEventListener( "click", function ()
   {
-    selection.classList.add( "hidden" )
-    selectButton.classList.remove( "open" )
-    selectArrow.classList.remove( "up" )
+    selection.classList.remove( "hidden" )
+    selectButton.classList.add( "open" )
+    selectArrow.classList.add( "up" )
+    sortMedia()
+  } )
+
+  // TODO ne ferme plus
+  function closeSelection () 
+  {
+    console.log( "selection : ", selection ) //*
+    console.log( "selectButton : ", selectButton ) //*
+    console.log( "selectArrow : ", selectArrow ) //*
+    console.log( "contien hidden ? ", selection.classList.contains( "hidden" ) )//*
+    console.log( "contien open ? ", selectButton.classList.contains( "open" ) )//*
+    console.log( "contien up ? ", selectArrow.classList.contains( "up" ) )//*
+    selection.classList.add( "hidden" ) //! ne fonctionne plus
+    selectButton.classList.remove( "open" ) //! ne fonctionne plus
+    selectArrow.classList.remove( "up" ) //! ne fonctionne plus
   }
-
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ test accessibilité avec le select 
-
-
-
-  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   /**
    * Permet de faire le tri des médias selon la selection choisi
@@ -252,18 +274,18 @@ async function displayData ( photographers, media )
       {
         closeSelection()
         // récupère l'indice de l'élément cliqué 
-        const indice = options.findIndex( oneOption => oneOption.content === item.textContent )
+        const indice = options.findIndex( oneOption => oneOption.content === item.textContent ) //*ok
         // suppression de l'élément cliqué du tableau
         const optionMove = options.splice( indice, 1 )
         // ajout de l'élément supprimé au début du tableau (à l'index 0)
         const optionMoved = options.splice( 0, 0, optionMove[ 0 ] )
         // classement des médias en fonctione de l'option cliqué
-        if ( item.textContent === "Date" )
+        if ( item.textContent === "Date" ) //* ok
         {
           // classer photographMedias par date
           photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
           displayMedias()
-        } else if ( item.textContent === "Titre" )
+        } else if ( item.textContent === "Titre" )  //* ok
         {
           // classer photographMedias par titre (alphabétique)
           photographMedias.sort( function compare ( a, b )
@@ -273,7 +295,7 @@ async function displayData ( photographers, media )
             return 0
           } )
           displayMedias()
-        } else if ( item.textContent === "Popularité" )
+        } else if ( item.textContent === "Popularité" )  //* ok
         {
           popularitySort()
           displayMedias()
@@ -286,19 +308,8 @@ async function displayData ( photographers, media )
 
   selectArrow.addEventListener( "click", function ()
   {
-    console.log( "selectArrow.hasAttribute( 'up' ) : ", selectArrow.hasAttribute( "up" ) )
+    // console.log( "click selectArrow" ) //*
     closeSelection()
-  } )
-
-
-
-  //ouverture de la selection
-  selectButton.addEventListener( "click", function ()
-  {
-    selection.classList.remove( "hidden" )
-    selectButton.classList.add( "open" )
-    selectArrow.classList.add( "up" )
-    sortMedia()
   } )
 
   // initialisation de la lightbox:
