@@ -196,13 +196,14 @@ async function displayData ( photographers, media )
   selectButton.setAttribute( "type", "button" )
   selectButton.setAttribute( "role", "button" )
   selectButton.ariaHasPopup = "listbox"
-  // TODO ajouter un aria-controls = "id de ul"  ???
+  // TODO ??? ajouter un aria-controls = "id de ul"  ???
   selectButton.setAttribute( "aria-expanded", "" )
   // selectButton.setAttribute( "tabindex", "0" )  //?
   selection.appendChild( selectButton )
 
   const selectOptions = document.createElement( "ul" )
   selectOptions.className = "selectOptions"
+  selectOptions.id = "selectOptions"
   selectOptions.setAttribute( "role", "listbox" )
   selectOptions.setAttribute( "aria-activedescendant", "" )
   selectOptions.setAttribute( "aria-selected", "" )
@@ -248,15 +249,33 @@ async function displayData ( photographers, media )
   // TODO ne ferme plus
   function closeSelection () 
   {
-    console.log( "selection : ", selection ) //*
-    console.log( "selectButton : ", selectButton ) //*
-    console.log( "selectArrow : ", selectArrow ) //*
-    console.log( "contien hidden ? ", selection.classList.contains( "hidden" ) )//*
-    console.log( "contien open ? ", selectButton.classList.contains( "open" ) )//*
-    console.log( "contien up ? ", selectArrow.classList.contains( "up" ) )//*
+    console.log( "selection 1: ", selection ) //*
+    console.log( "selectButton 1 : ", selectButton ) //*
+    console.log( "selectArrow 1 : ", selectArrow ) //*
+
+    console.log( "selection.classList.contains('hidden') 1 : ", selection.classList.contains( "hidden" ) )//*
+    console.log( "selectButton.classList.contains('open') 1 : ", selectButton.classList.contains( "open" ) )//*
+    console.log( "selectArrow.classList.contains('up') 1 : ", selectArrow.classList.contains( "up" ) )//*
+
+    console.log( "selection.classList 1 : ", selection.classList )
+    console.log( "selectButton.classList 1 : ", selectButton.classList )
+    console.log( "selectArrow.classList 1 : ", selectArrow.classList )
+
     selection.classList.add( "hidden" ) //! ne fonctionne plus
     selectButton.classList.remove( "open" ) //! ne fonctionne plus
     selectArrow.classList.remove( "up" ) //! ne fonctionne plus
+
+    console.log( "selection 2: ", selection ) //*
+    console.log( "selectButton 2 : ", selectButton ) //*
+    console.log( "selectArrow 2 : ", selectArrow ) //*
+
+    console.log( "selection.classList.contains('hidden') 2 : ", selection.classList.contains( "hidden" ) )//*
+    console.log( "selectButton.classList.contains('open') 2 : ", selectButton.classList.contains( "open" ) )//*
+    console.log( "selectArrow.classList.contains('up') 2 : ", selectArrow.classList.contains( "up" ) )//*
+
+    console.log( "selection.classList 2 : ", selection.classList ) //* 
+    console.log( "selectButton.classList 2 : ", selectButton.classList )
+    console.log( "selectArrow.classList 2 : ", selectArrow.classList )
   }
 
   /**
