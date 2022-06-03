@@ -173,9 +173,6 @@ async function displayData ( photographers, media )
   selectLabel.id = "selectLabel"
   selectLabel.textContent = "Trier par"
   selectForm.appendChild( selectLabel )
-  const selection = document.createElement( "div" )
-  selection.className = "selection hidden"
-  selectForm.appendChild( selection )
 
   options = [
     {
@@ -192,14 +189,14 @@ async function displayData ( photographers, media )
   ]
 
   const selectButton = document.createElement( "button" )
-  selectButton.className = "selectButton"
+  selectButton.className = "selectButton hidden"
   selectButton.setAttribute( "type", "button" )
   selectButton.setAttribute( "role", "button" )
   selectButton.ariaHasPopup = "listbox"
   // TODO ??? ajouter un aria-controls = "id de ul"  ???
-  selectButton.setAttribute( "aria-expanded", "" )
+  selectButton.ariaExpanded = "false"
   // selectButton.setAttribute( "tabindex", "0" )  //?
-  selection.appendChild( selectButton )
+  selectForm.appendChild( selectButton )
 
   const selectOptions = document.createElement( "ul" )
   selectOptions.className = "selectOptions"
@@ -240,42 +237,26 @@ async function displayData ( photographers, media )
   //ouverture de la selection
   selectButton.addEventListener( "click", function ()
   {
-    selection.classList.remove( "hidden" )
-    selectButton.classList.add( "open" )
-    selectArrow.classList.add( "up" )
+    toggleSelection()
+    console.log( "click sur le bouton" )
     sortMedia()
   } )
 
-  // TODO ne ferme plus
-  function closeSelection () 
+  function toggleSelection ()
   {
-    console.log( "selection 1: ", selection ) //*
-    console.log( "selectButton 1 : ", selectButton ) //*
-    console.log( "selectArrow 1 : ", selectArrow ) //*
+    console.log( "je passe dans toggleSelection" )
+    selectButton.classList.toggle( "hidden" )
+    selectArrow.classList.toggle( "up" )
+    if ( selectButton.ariaExpanded == "false" )
+    {
+      console.log( "je suis dans if" )//*
+      selectButton.ariaExpanded = "true"
+    } else
+    {
+      console.log( "je suis dans else" ) // *
+      selectButton.ariaExpanded = "false"
+    }
 
-    console.log( "selection.classList.contains('hidden') 1 : ", selection.classList.contains( "hidden" ) )//*
-    console.log( "selectButton.classList.contains('open') 1 : ", selectButton.classList.contains( "open" ) )//*
-    console.log( "selectArrow.classList.contains('up') 1 : ", selectArrow.classList.contains( "up" ) )//*
-
-    console.log( "selection.classList 1 : ", selection.classList )
-    console.log( "selectButton.classList 1 : ", selectButton.classList )
-    console.log( "selectArrow.classList 1 : ", selectArrow.classList )
-
-    selection.classList.add( "hidden" ) //! ne fonctionne plus
-    selectButton.classList.remove( "open" ) //! ne fonctionne plus
-    selectArrow.classList.remove( "up" ) //! ne fonctionne plus
-
-    console.log( "selection 2: ", selection ) //*
-    console.log( "selectButton 2 : ", selectButton ) //*
-    console.log( "selectArrow 2 : ", selectArrow ) //*
-
-    console.log( "selection.classList.contains('hidden') 2 : ", selection.classList.contains( "hidden" ) )//*
-    console.log( "selectButton.classList.contains('open') 2 : ", selectButton.classList.contains( "open" ) )//*
-    console.log( "selectArrow.classList.contains('up') 2 : ", selectArrow.classList.contains( "up" ) )//*
-
-    console.log( "selection.classList 2 : ", selection.classList ) //* 
-    console.log( "selectButton.classList 2 : ", selectButton.classList )
-    console.log( "selectArrow.classList 2 : ", selectArrow.classList )
   }
 
   /**
@@ -291,7 +272,7 @@ async function displayData ( photographers, media )
     {
       item.addEventListener( "click", function ()
       {
-        closeSelection()
+        console.log( "click sur item" )
         // récupère l'indice de l'élément cliqué 
         const indice = options.findIndex( oneOption => oneOption.content === item.textContent ) //*ok
         // suppression de l'élément cliqué du tableau
@@ -323,13 +304,6 @@ async function displayData ( photographers, media )
       } )
     } )
   }
-
-
-  selectArrow.addEventListener( "click", function ()
-  {
-    // console.log( "click selectArrow" ) //*
-    closeSelection()
-  } )
 
   // initialisation de la lightbox:
   Lightbox.init()
