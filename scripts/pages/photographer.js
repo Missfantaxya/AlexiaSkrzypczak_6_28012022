@@ -177,14 +177,17 @@ async function displayData ( photographers, media )
   options = [
     {
       content: "Popularité",
-      classe: "popularityOption"
+      classe: "popularityOption",
+      selected: "true"
     },
     {
       content: "Date",
-      classe: "dateOption"
+      classe: "dateOption",
+      selected: "false"
     }, {
       content: "Titre",
-      classe: "titleOption"
+      classe: "titleOption",
+      selected: "false"
     }
   ]
 
@@ -192,6 +195,7 @@ async function displayData ( photographers, media )
   selectButton.className = "selectButton hidden"
   selectButton.setAttribute( "type", "button" )
   selectButton.setAttribute( "role", "button" )
+  selectButton.setAttribute( "aria-labelledby", "selectLabel" )
   selectButton.ariaHasPopup = "listbox"
   // TODO ??? ajouter un aria-controls = "id de ul"  ???
   selectButton.ariaExpanded = "false"
@@ -202,8 +206,7 @@ async function displayData ( photographers, media )
   selectOptions.className = "selectOptions"
   selectOptions.id = "selectOptions"
   selectOptions.setAttribute( "role", "listbox" )
-  selectOptions.setAttribute( "aria-activedescendant", "" )
-  selectOptions.setAttribute( "aria-selected", "" )
+  selectOptions.setAttribute( "aria-activedescendant", "popularityOption" )
   selectOptions.setAttribute( "aria-labelledby", "selectLabel" )
   // selectOptions.setAttribute( "tabindex", "-1" )  //?
   selectButton.appendChild( selectOptions )
@@ -223,7 +226,9 @@ async function displayData ( photographers, media )
     {
       const optionSelect = document.createElement( "li" )
       optionSelect.className = `selectOption ${ selectOption.classe }`
+      optionSelect.id = `${ selectOption.classe }`
       optionSelect.setAttribute( "role", "option" )
+      optionSelect.setAttribute( "aria-selected", `${ selectOption.selected }` )
       optionSelect.textContent = selectOption.content
       selectOptions.appendChild( optionSelect )
       return optionSelect
@@ -279,12 +284,18 @@ async function displayData ( photographers, media )
         const optionMove = options.splice( indice, 1 )
         // ajout de l'élément supprimé au début du tableau (à l'index 0)
         const optionMoved = options.splice( 0, 0, optionMove[ 0 ] )
+        options[ 0 ].selected = "true"
+        options[ 1 ].selected = "false"
+        options[ 2 ].selected = "false"
+        console.log( "array options :", options )
+
         // classement des médias en fonctione de l'option cliqué
         if ( item.textContent === "Date" ) //* ok
         {
           // classer photographMedias par date
           photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
           displayMedias()
+          Lightbox.init()
         } else if ( item.textContent === "Titre" )  //* ok
         {
           // classer photographMedias par titre (alphabétique)
@@ -295,10 +306,12 @@ async function displayData ( photographers, media )
             return 0
           } )
           displayMedias()
+          Lightbox.init()
         } else if ( item.textContent === "Popularité" )  //* ok
         {
           popularitySort()
           displayMedias()
+          Lightbox.init()
         }
         selectionDOM()
       } )
