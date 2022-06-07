@@ -130,8 +130,10 @@ async function displayData ( photographers, media )
   medias.className = "medias"
   mediaSection.appendChild( medias )
 
+  // ----- fuonctions des médias -----
+
   /**
-   * Classe les media par popularité
+   * Classement des medias par popularité
    */
   function popularitySort ()
   {
@@ -146,7 +148,7 @@ async function displayData ( photographers, media )
    */
   function displayMedias ()
   {
-    //Vidage des medias
+    //Vide les medias
     medias.textContent = ""
     // Remplissage des médias avec classement
     photographMedias.forEach( ( elementMedia ) =>
@@ -164,7 +166,6 @@ async function displayData ( photographers, media )
 
   // ----- construction du DOM -----
 
-  // TODO faire les ARIA cf maquette
   const selectForm = document.createElement( "form" )
   selectForm.className = "selectForm"
   mediaSection.insertBefore( selectForm, medias )
@@ -177,17 +178,23 @@ async function displayData ( photographers, media )
   options = [
     {
       content: "Popularité",
+      id: "popularityOption",
       classe: "popularityOption",
       selected: "true"
+
     },
     {
       content: "Date",
+      id: "dateOption",
       classe: "dateOption",
       selected: "false"
+
     }, {
       content: "Titre",
+      id: "titleOption",
       classe: "titleOption",
       selected: "false"
+
     }
   ]
 
@@ -197,26 +204,33 @@ async function displayData ( photographers, media )
   selectButton.setAttribute( "role", "button" )
   selectButton.setAttribute( "aria-labelledby", "selectLabel" )
   selectButton.ariaHasPopup = "listbox"
-  // TODO ??? ajouter un aria-controls = "id de ul"  ???
   selectButton.ariaExpanded = "false"
   // selectButton.setAttribute( "tabindex", "0" )  //?
   selectForm.appendChild( selectButton )
-
-  const selectOptions = document.createElement( "ul" )
-  selectOptions.className = "selectOptions"
-  selectOptions.id = "selectOptions"
-  selectOptions.setAttribute( "role", "listbox" )
-  selectOptions.setAttribute( "aria-activedescendant", "popularityOption" )
-  selectOptions.setAttribute( "aria-labelledby", "selectLabel" )
-  // selectOptions.setAttribute( "tabindex", "-1" )  //?
-  selectButton.appendChild( selectOptions )
 
   const selectArrow = document.createElement( "div" )
   selectArrow.className = "selectArrow"
   selectButton.appendChild( selectArrow )
 
   /**
-   * construction du DOM de la selection pour le classement des médias
+    * construction du DOM de la liste des options du classement
+    * @return {HTMLelement}
+    */
+  function selectOptionsDOM ()
+  {
+    const selectOptions = document.createElement( "ul" )
+    selectOptions.className = "selectOptions"
+    selectOptions.id = "selectOptions"
+    selectOptions.setAttribute( "role", "listbox" )
+    selectOptions.setAttribute( "aria-activedescendant", `${ options[ 0 ].id }` )
+    selectOptions.setAttribute( "aria-labelledby", "selectLabel" )
+    // selectOptions.setAttribute( "tabindex", "-1" )  //?
+    selectButton.insertBefore( selectOptions, selectArrow )
+  }
+  selectOptionsDOM()
+
+  /**
+   * construction du DOM des options la selection pour le classement des médias
    * @return {HTMLelement}
    */
   function selectionDOM ()
@@ -239,30 +253,31 @@ async function displayData ( photographers, media )
 
   // ----- Fonctionnement de la selection -----
 
-  //ouverture de la selection
-  selectButton.addEventListener( "click", function ()
-  {
-    toggleSelection()
-    console.log( "click sur le bouton" )
-    sortMedia()
-  } )
-
+  /**
+  * inversion du boléen ariaExpanded de la selection
+  * @function
+  */
   function toggleSelection ()
   {
-    console.log( "je passe dans toggleSelection" )
     selectButton.classList.toggle( "hidden" )
     selectArrow.classList.toggle( "up" )
     if ( selectButton.ariaExpanded == "false" )
     {
-      console.log( "je suis dans if" )//*
       selectButton.ariaExpanded = "true"
     } else
     {
-      console.log( "je suis dans else" ) // *
       selectButton.ariaExpanded = "false"
     }
 
   }
+
+  //ouverture de la selection
+  selectButton.addEventListener( "click", function ()
+  {
+    toggleSelection()
+    sortMedia()
+  } )
+
 
   /**
    * Permet de faire le tri des médias selon la selection choisi
@@ -277,7 +292,6 @@ async function displayData ( photographers, media )
     {
       item.addEventListener( "click", function ()
       {
-        console.log( "click sur item" )
         // récupère l'indice de l'élément cliqué 
         const indice = options.findIndex( oneOption => oneOption.content === item.textContent ) //*ok
         // suppression de l'élément cliqué du tableau
@@ -287,8 +301,6 @@ async function displayData ( photographers, media )
         options[ 0 ].selected = "true"
         options[ 1 ].selected = "false"
         options[ 2 ].selected = "false"
-        console.log( "array options :", options )
-
         // classement des médias en fonctione de l'option cliqué
         if ( item.textContent === "Date" ) //* ok
         {
@@ -313,6 +325,9 @@ async function displayData ( photographers, media )
           displayMedias()
           Lightbox.init()
         }
+        // console.log( "selectOptions :", selectOptions ) //* ok 
+        selectOptions.remove()
+        selectOptionsDOM()
         selectionDOM()
       } )
     } )
