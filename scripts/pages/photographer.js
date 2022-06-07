@@ -224,7 +224,7 @@ async function displayData ( photographers, media )
     selectOptions.setAttribute( "role", "listbox" )
     selectOptions.setAttribute( "aria-activedescendant", `${ options[ 0 ].id }` )
     selectOptions.setAttribute( "aria-labelledby", "selectLabel" )
-    // selectOptions.setAttribute( "tabindex", "-1" )  //?
+    selectOptions.setAttribute( "tabindex", "0" )  //?
     selectButton.insertBefore( selectOptions, selectArrow )
   }
   selectOptionsDOM()
@@ -252,6 +252,24 @@ async function displayData ( photographers, media )
   selectionDOM()
 
   // ----- Fonctionnement de la selection -----
+
+  // TODO faire la navigation au clavier de la selection (exemple de la lightbox)
+  // /**
+  // * @param {keyboardEvent} e
+  // */
+  // onKeyUp( e )
+  // {
+  //   if ( e.key === 'Escape' )
+  //   {
+  //     this.close( e )
+  //   } else if ( e.key === 'ArrowLeft' )
+  //   {
+  //     this.prev( e )
+  //   } else if ( e.key === 'ArrowRight' )
+  //   {
+  //     this.next( e )
+  //   }
+  // }
 
   /**
   * inversion du boléen ariaExpanded de la selection
