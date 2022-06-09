@@ -92,13 +92,14 @@ async function displayData ( photographers, media )
 
   const photographLike = document.createElement( "p" )
   photographLike.className = "photograph__likes"
-  // TODO aria-description FAUX
-  // photographLike.setAttribute( "aria-description", "nombre de likes du photographe" )
+  // TODO
+  photographLike.setAttribute( "aria-describedby", "photograph__heart" )
   photographLike.textContent = photographerAllLikes
   photographWrapperLikes.appendChild( photographLike )
 
   const photographHeart = document.createElement( "img" )
   photographHeart.className = "photograph__heart"
+  photographHeart.id = "photograph__heart"
   photographHeart.setAttribute( "src", heartSvg )
   photographHeart.setAttribute( "alt", "likes" )
   photographWrapperLikes.appendChild( photographHeart )
