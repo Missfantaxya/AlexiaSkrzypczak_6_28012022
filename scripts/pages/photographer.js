@@ -107,7 +107,7 @@ async function displayData ( photographers, media )
   const photographPrice = document.createElement( "p" )
   photographPrice.className = "photograph__price"
   // TODO aria-description FAUX
-  // photographPrice.setAttribute( "aria-description", "tarif du photographe" )
+  photographPrice.setAttribute( "aria-description", "tarif du photographe" )
   photographPrice.textContent = photograph[ 0 ].price + "€ / jour"
   photographPriceAndLike.appendChild( photographPrice )
 
@@ -181,20 +181,23 @@ async function displayData ( photographers, media )
       content: "Popularité",
       id: "popularityOption",
       classe: "popularityOption",
-      selected: "true"
+      selected: "true",
+      tabindex: "0"
 
     },
     {
       content: "Date",
       id: "dateOption",
       classe: "dateOption",
-      selected: "false"
+      selected: "false",
+      tabindex: "1"
 
     }, {
       content: "Titre",
       id: "titleOption",
       classe: "titleOption",
-      selected: "false"
+      selected: "false",
+      tabindex: "2"
 
     }
   ]
@@ -225,7 +228,7 @@ async function displayData ( photographers, media )
     selectOptions.setAttribute( "role", "listbox" )
     selectOptions.setAttribute( "aria-activedescendant", `${ options[ 0 ].id }` )
     selectOptions.setAttribute( "aria-labelledby", "selectLabel" )
-    selectOptions.setAttribute( "tabindex", "0" )  //?
+    selectOptions.setAttribute( "tabindex", "-1" )  //? 
     selectButton.insertBefore( selectOptions, selectArrow )
   }
   selectOptionsDOM()
@@ -243,6 +246,7 @@ async function displayData ( photographers, media )
       optionSelect.className = `selectOption ${ selectOption.classe }`
       optionSelect.id = `${ selectOption.classe }`
       optionSelect.setAttribute( "role", "option" )
+      optionSelect.setAttribute( "tabindex", "0" )
       optionSelect.setAttribute( "aria-selected", `${ selectOption.selected }` )
       optionSelect.textContent = selectOption.content
       selectOptions.appendChild( optionSelect )
@@ -255,6 +259,7 @@ async function displayData ( photographers, media )
   // ----- Fonctionnement de la selection -----
 
   // TODO faire la navigation au clavier de la selection (exemple de la lightbox)
+  // TODO frmer le select au blur du clavier
   // /**
   // * @param {keyboardEvent} e
   // */
