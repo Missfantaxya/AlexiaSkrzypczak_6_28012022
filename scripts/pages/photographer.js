@@ -181,23 +181,20 @@ async function displayData ( photographers, media )
       content: "Popularité",
       id: "popularityOption",
       classe: "popularityOption",
-      selected: "true",
-      tabindex: "0"
+      selected: "true"
 
     },
     {
       content: "Date",
       id: "dateOption",
       classe: "dateOption",
-      selected: "false",
-      tabindex: "1"
+      selected: "false"
 
     }, {
       content: "Titre",
       id: "titleOption",
       classe: "titleOption",
-      selected: "false",
-      tabindex: "2"
+      selected: "false"
 
     }
   ]
