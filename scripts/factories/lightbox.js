@@ -4,20 +4,21 @@
  * @property {string} url - média actuellement affichée
  */
 
-class Lightbox
-{
-  static init ()
-  {
-    const links = Array.from( document.querySelectorAll( '.media__link' ) )
-    const gallery = links.map( ( link ) => link.getAttribute( 'href' ) )
-    const lightboxTitle = links.map( ( link ) => link.getAttribute( 'aria-label' ) )
-    links.forEach( ( links ) =>
-
-      links.addEventListener( 'click', ( e ) =>
-      {
+class Lightbox {
+  static init() {
+    const links = Array.from(document.querySelectorAll('.media__link'))
+    const gallery = links.map((link) => link.getAttribute('href'))
+    const lightboxTitle = links.map((link) => link.getAttribute('aria-label'))
+    links.forEach((links) =>
+      links.addEventListener('click', (e) => {
         e.preventDefault()
-        new Lightbox( e.currentTarget.getAttribute( 'href' ), e.currentTarget.getAttribute( 'aria-label' ), gallery, lightboxTitle )
-      } )
+        new Lightbox(
+          e.currentTarget.getAttribute('href'),
+          e.currentTarget.getAttribute('aria-label'),
+          gallery,
+          lightboxTitle
+        )
+      })
     )
   }
 
@@ -27,49 +28,54 @@ class Lightbox
    * @param {string[]} gallery Chemins des médias de la lightbox
    * @param {string[]} lightboxTitle Titres des medias de la lightbox
    */
-  constructor ( url, title, gallery, lightboxTitle )
-  {
-    const body = document.querySelector( 'body' )
-    this.element = this.buildDom( url )
+  constructor(url, title, gallery, lightboxTitle) {
+    const body = document.querySelector('body')
+    this.element = this.buildDom(url)
     this.gallery = gallery
     this.lightboxTitle = lightboxTitle
-    this.loadMedia( url, title )
-    this.onKeyUp = this.onKeyUp.bind( this )
-    body.appendChild( this.element )
-    document.addEventListener( 'keyup', this.onKeyUp )
+    this.loadMedia(url, title)
+    this.onKeyUp = this.onKeyUp.bind(this)
+    body.appendChild(this.element)
+    document.addEventListener('keyup', this.onKeyUp)
   }
 
   /**
    * @param {string} url URL du média
    * @param {string} title Titre du média
    */
-  loadMedia ( url, title )
-  {
+  loadMedia(url, title) {
     this.url = null
     this.title = null
-    const mediaTitle = document.createElement( 'p' )
-    mediaTitle.className = "lightbox__title"
+    /*// ~~~ maquette : N°3 - comportement : text statique
+    // ~~~ nom accessible : vide
+    // ~~~ états et propriétés : vide
+    */
+    const mediaTitle = document.createElement('p')
+    mediaTitle.className = 'lightbox__title'
     mediaTitle.textContent = title
-    const container = this.element.querySelector( '.lightbox__container' )
+    const container = this.element.querySelector('.lightbox__container')
     container.innerHTML = ''
-    if ( url.split( "." ).pop() === "jpg" ) //*ok
-    {
+    /*// ~~~ maquette : N°2 - comportement : image statique
+    // ~~~ nom accessible : "Lilac breasted roller"
+    // ~~~ états et propriétés : vide
+    */
+    if (url.split('.').pop() === 'jpg') {
+      //*ok
       const image = new Image()
       image.alt = title
       image.src = url
-      container.appendChild( image )
-      container.appendChild( mediaTitle )
+      container.appendChild(image)
+      container.appendChild(mediaTitle)
       this.url = url
       this.title = title
-    } else if ( url.split( "." ).pop() === "mp4" )
-    {
-      const video = document.createElement( 'video' )
-      video.setAttribute( "autoplay", "true" )
-      video.setAttribute( "alt", title )
-      video.setAttribute( "src", url )
-      video.setAttribute( "type", "video/mp4" )
-      container.appendChild( video )
-      container.appendChild( mediaTitle )
+    } else if (url.split('.').pop() === 'mp4') {
+      const video = document.createElement('video')
+      video.setAttribute('autoplay', 'true')
+      video.setAttribute('alt', title)
+      video.setAttribute('src', url)
+      video.setAttribute('type', 'video/mp4')
+      container.appendChild(video)
+      container.appendChild(mediaTitle)
       this.url = url
       this.title = title
     }
@@ -78,17 +84,13 @@ class Lightbox
   /**
    * @param {keyboardEvent} e
    */
-  onKeyUp ( e )
-  {
-    if ( e.key === 'Escape' )
-    {
-      this.close( e )
-    } else if ( e.key === 'ArrowLeft' )
-    {
-      this.prev( e )
-    } else if ( e.key === 'ArrowRight' )
-    {
-      this.next( e )
+  onKeyUp(e) {
+    if (e.key === 'Escape') {
+      this.close(e)
+    } else if (e.key === 'ArrowLeft') {
+      this.prev(e)
+    } else if (e.key === 'ArrowRight') {
+      this.next(e)
     }
   }
 
@@ -96,45 +98,39 @@ class Lightbox
    * Ferme la lightbox
    * @param {MouseEvent/KeyboardEvent} e
    */
-  close ( e )
-  {
+  close(e) {
     event.preventDefault()
-    this.element.classList.add( 'fadeOut' )
-    window.setTimeout( () =>
-    {
-      this.element.parentElement.removeChild( this.element )
-    }, 500 )
-    document.removeEventListener( 'keyup', this.onKeyUp )
+    this.element.classList.add('fadeOut')
+    window.setTimeout(() => {
+      this.element.parentElement.removeChild(this.element)
+    }, 500)
+    document.removeEventListener('keyup', this.onKeyUp)
   }
 
   /**
    * Passe au média suivante
    * @param {MouseEvent/KeyboardEvent} e
    */
-  next ( e )
-  {
+  next(e) {
     e.preventDefault()
-    let i = this.gallery.findIndex( ( media ) => media === this.url )
-    if ( i === this.gallery.length - 1 )
-    {
+    let i = this.gallery.findIndex((media) => media === this.url)
+    if (i === this.gallery.length - 1) {
       i = -1
     }
-    this.loadMedia( this.gallery[ i + 1 ], this.lightboxTitle[ i + 1 ] )
+    this.loadMedia(this.gallery[i + 1], this.lightboxTitle[i + 1])
   }
 
   /**
    * Passe au média précedent
    * @param {MouseEvent/KeyboardEvent} e
    */
-  prev ( e )
-  {
+  prev(e) {
     e.preventDefault()
-    let i = this.gallery.findIndex( ( media ) => media === this.url )
-    if ( i === 0 )
-    {
+    let i = this.gallery.findIndex((media) => media === this.url)
+    if (i === 0) {
       i = this.gallery.length
     }
-    this.loadMedia( this.gallery[ i - 1 ], this.lightboxTitle[ i - 1 ] )
+    this.loadMedia(this.gallery[i - 1], this.lightboxTitle[i - 1])
   }
 
   /**
@@ -142,14 +138,30 @@ class Lightbox
    * @param {string} title Titre du média
    * @return {HTMLelement}
    */
-  //TODO /lightbox-- contnaier : "Contenu non imbriqué dans une région ARIA"
-  buildDom ( url, title )
-  {
-    const dom = document.createElement( 'div' )
+  //TODO lightbox-- containr : "Contenu non imbriqué dans une région ARIA"
+  buildDom(url, title) {
+    /*// ~~~ maquette : N°1 - comportement : la fenêtre s'ouvre quand on clique sur l'image
+    // ~~~ nom accessible : aria-label="image closeup view"
+    // ~~~ états et propriétés : vide
+    */
+    /*// ~~~ maquette : N°6 - comportement : ferme la fenêtre de dialogue
+    // ~~~ nom accessible : "Close-dialogue"
+    // ~~~ états et propriétés : vide
+    */
+    /*// ~~~ maquette : N°4 - comportement : va à l'image précédente
+    // ~~~ nom accessible : "Previous-image"
+    // ~~~ états et propriétés : vide
+    */
+    /*// ~~~ maquette : N°5 - comportement : va à l'image suivante
+    // ~~~ nom accessible : "Next-image"
+    // ~~~ états et propriétés : vide
+    */
+    const dom = document.createElement('div')
     dom.className = 'lightbox'
-    dom.innerHTML = `<div class="lightbox__wrapper">
+    //TODO transformer les boutons previous & next en link (voir maquette)
+    dom.innerHTML = `<div class="lightbox__wrapper" role =""dialog aria-label="image closeup view">
         <button class="lightbox__close">
-          Fermer
+          Close-dialogue
           <img
             class="lightbox__cross"
             src="assets/images/cross.svg"
@@ -176,14 +188,14 @@ class Lightbox
         </div>`
 
     dom
-      .querySelector( '.lightbox__close' )
-      .addEventListener( 'click', this.close.bind( this ) )
+      .querySelector('.lightbox__close')
+      .addEventListener('click', this.close.bind(this))
     dom
-      .querySelector( '.lightbox__next' )
-      .addEventListener( 'click', this.next.bind( this ) )
+      .querySelector('.lightbox__next')
+      .addEventListener('click', this.next.bind(this))
     dom
-      .querySelector( '.lightbox__prev' )
-      .addEventListener( 'click', this.prev.bind( this ) )
+      .querySelector('.lightbox__prev')
+      .addEventListener('click', this.prev.bind(this))
     return dom
   }
 }

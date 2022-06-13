@@ -9,13 +9,13 @@ function photographerFactory(data) {
    * Construction du DOM pour les détails d'un photogarphe sur la page d'accueil
    * @returns {HTMLelement}
    */
+  /*// ~~~ maquette : N°3 - comportement : Le lien est une zone focusable contenant le h2 et l'image. L'image est dans le lien avec text alternatif vide.
+  // ~~~ nom accessible : "Mimi Keel"
+  // ~~~ états et propriétés : vide
+  */
   function getPhotographerCardDOM() {
     const photographerArticle = document.createElement('article')
     photographerArticle.className = 'photographer__article'
-    photographerArticle.setAttribute(
-      'aria-description',
-      'détails du photographe'
-    )
     const photographerLink = document.createElement('a')
     photographerLink.setAttribute('href', `photographer.html?id=${id}`)
     photographerLink.className = 'photographer__link'
@@ -24,30 +24,26 @@ function photographerFactory(data) {
     const photographerAvatar = document.createElement('img')
     photographerAvatar.setAttribute('src', avatar)
     photographerAvatar.className = 'photographer__avatar'
-    photographerAvatar.setAttribute('alt', '')
+    photographerAvatar.setAttribute('alt', ' ')
 
     const photographerName = document.createElement('h2')
     photographerName.className = 'photographer__name'
+
+    /*// ~~~ maquette : N°4 - comportement : text statique
+  // ~~~ nom accessible : vide
+  // ~~~ états et propriétés : vide
+  */
     const photographerDetails = document.createElement('p')
     photographerDetails.className = 'photographer__details'
+
     const photographerLocation = document.createElement('p')
     photographerLocation.className = 'photographer__location'
-    photographerLocation.setAttribute(
-      'aria-description',
-      `localisation du photographe ${name}`
-    )
+
     const photographerSlogan = document.createElement('p')
     photographerSlogan.className = 'photographer__slogan'
-    photographerSlogan.setAttribute(
-      'aria-description',
-      `phrase d'accroche du photographe ${name}`
-    )
+
     const photographerPrice = document.createElement('p')
     photographerPrice.className = 'photographer__price'
-    photographerPrice.setAttribute(
-      'aria-description',
-      `tarifs du photographe ${name}`
-    )
 
     photographerName.textContent = name
     photographerArticle.appendChild(photographerLink)
@@ -71,9 +67,12 @@ function photographerFactory(data) {
     const photographerDetails = document.createElement('div')
     photographerDetails.className = 'photographerDetails'
 
+    /*// ~~~ maquette : N°2 - comportement : text statique
+    // ~~~ nom accessible : vide
+    // ~~~ états et propriétés : vide
+    */
     const photographerName = document.createElement('h1')
     photographerName.className = 'photographerName'
-    photographerName.setAttribute('aria-description', 'nom du photographe')
     photographerName.textContent = data[0].name
     photographerDetails.appendChild(photographerName)
 
@@ -81,27 +80,27 @@ function photographerFactory(data) {
     photographerContent.className = 'photographerContent'
     photographerDetails.appendChild(photographerContent)
 
+    /*// ~~~ maquette : N°3 - comportement : text statique
+    // ~~~ nom accessible : vide
+    // ~~~ états et propriétés : vide
+    */
     const photographerLocation = document.createElement('p')
     photographerLocation.className = 'photographerLocation'
-    photographerLocation.setAttribute(
-      'aria-description',
-      'localisation du photographe'
-    )
     photographerLocation.textContent = data[0].city + ', ' + data[0].country
     photographerContent.appendChild(photographerLocation)
 
     const photographerTagline = document.createElement('p')
     photographerTagline.className = 'photographerTagline'
-    photographerTagline.setAttribute(
-      'aria-description',
-      "phrase d'accroche du photographe"
-    )
     photographerTagline.textContent = data[0].tagline
     photographerContent.appendChild(photographerTagline)
 
     return photographerDetails
   }
 
+  /*// ~~~ maquette : N°5 - comportement : image statique
+    // ~~~ nom accessible : vide
+    // ~~~ états et propriétés : vide
+    */
   function getUserAvatarDOM() {
     const avatar = `assets/photographers/${data[0].portrait}`
     const photographerAvatar = document.createElement('img')

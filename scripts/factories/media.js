@@ -1,6 +1,4 @@
-
-function mediaFactory ( data )
-{
+function mediaFactory(data) {
   let {
     id,
     date,
@@ -16,62 +14,63 @@ function mediaFactory ( data )
   const heartSvg = 'assets/icons/heart-solid-brown.svg'
 
   // La factorie permet un affichage dynamique des medias en fonction des propriétés photo ou vidéo.
-  function getMediaCardDOM ()
-  {
-    const mediaArticle = document.createElement( 'article' )
+  function getMediaCardDOM() {
+    /*// ~~~ maquette : N°9 - comportement : image statique
+    // ~~~ nom accessible : "Lilac breasted roller, closeup view"
+    // ~~~ états et propriétés : vide
+    */
+    const mediaArticle = document.createElement('article')
     mediaArticle.className = 'media__article'
 
-    const mediaLink = document.createElement( 'a' )
+    const mediaLink = document.createElement('a')
     mediaLink.className = 'media__link'
-    mediaLink.setAttribute( "aria-label", title )
-    mediaArticle.appendChild( mediaLink )
+    mediaLink.setAttribute('aria-label', title)
+    mediaArticle.appendChild(mediaLink)
 
-
-    if ( data.hasOwnProperty( 'image' ) )
-    {
-      mediaPhotographie( data, mediaLink )
-    } else if ( data.hasOwnProperty( 'video' ) )
-    {
-      mediaMovie( data, mediaLink )
+    if (data.hasOwnProperty('image')) {
+      mediaPhotographie(data, mediaLink)
+    } else if (data.hasOwnProperty('video')) {
+      mediaMovie(data, mediaLink)
     }
 
-    const mediaDetails = document.createElement( 'div' )
+    const mediaDetails = document.createElement('div')
     mediaDetails.className = 'media__details'
-    mediaArticle.appendChild( mediaDetails )
+    mediaArticle.appendChild(mediaDetails)
 
-    const mediaName = document.createElement( 'h2' )
+    const mediaName = document.createElement('h2')
     mediaName.className = 'media__name'
     mediaName.textContent = title
-    // TODO aria-description FAUX
-    // mediaName.setAttribute( "aria-description", "nom du média" )
-    mediaDetails.appendChild( mediaName )
+    mediaDetails.appendChild(mediaName)
 
-    const mediaContenairLikes = document.createElement( 'div' )
+    const mediaContenairLikes = document.createElement('div')
     mediaContenairLikes.className = 'media__contenairLikes'
-    mediaDetails.appendChild( mediaContenairLikes )
+    mediaDetails.appendChild(mediaContenairLikes)
 
-    const mediaLikes = document.createElement( 'button' )
+    const mediaLikes = document.createElement('button')
     mediaLikes.className = 'media__likes'
-    mediaLikes.setAttribute( "aria-label", `nombre de like du média ${ title }` )
+    mediaLikes.setAttribute('aria-label', `nombre de like du média ${title}`)
     mediaLikes.textContent = likes
-    mediaContenairLikes.appendChild( mediaLikes )
+    mediaContenairLikes.appendChild(mediaLikes)
 
     //incrémentations au click des likes des medias
-    mediaContenairLikes.addEventListener( 'click', function ( e )
-    {
+    mediaContenairLikes.addEventListener('click', function (e) {
       mediaLikes.textContent = ++likes
-      const allLikes = document.querySelector( '.photograph__likes' )
-      var allLikesValueNumber = parseInt( allLikes.innerHTML, 10 )
+      const allLikes = document.querySelector('.photograph__likes')
+      var allLikesValueNumber = parseInt(allLikes.innerHTML, 10)
       ++allLikesValueNumber
       allLikes.innerHTML = ''
       allLikes.innerHTML = allLikesValueNumber
-    } )
+    })
 
-    const mediaHeart = document.createElement( 'img' )
+    /*// ~~~ maquette : N°11 - comportement : icone image statique
+    // ~~~ nom accessible : Si <img>, alt="likes"...
+    // ~~~ états et propriétés : vide
+    */
+    const mediaHeart = document.createElement('img')
     mediaHeart.className = 'media__heart'
-    mediaHeart.setAttribute( 'src', heartSvg )
-    mediaHeart.setAttribute( "alt", "likes" )
-    mediaContenairLikes.appendChild( mediaHeart )
+    mediaHeart.setAttribute('src', heartSvg)
+    mediaHeart.setAttribute('alt', 'likes')
+    mediaContenairLikes.appendChild(mediaHeart)
 
     return mediaArticle
   }

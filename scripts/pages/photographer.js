@@ -1,5 +1,3 @@
-//TODO pb avec gitHub Page
-
 //Mettre le code JavaScript lié à la page photographer.html
 
 // TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
@@ -29,7 +27,6 @@ async function displayData(photographers, media) {
   const heartSvg = 'assets/icons/heart-solid-black.svg'
 
   const photographHeader = document.querySelector('.photograph__header')
-  // wrapper.appendChild( photographHeader )
   const photographContact = document.querySelector('.contact__button')
 
   /**
@@ -83,6 +80,10 @@ async function displayData(photographers, media) {
   )
 
   // ----- construction du DOM -----
+  /*// ~~~ maquette : N°6 - comportement : text statique
+  // ~~~ nom accessible : vide
+  // ~~~ états et propriétés : vide
+  */
   const photographPriceAndLike = document.createElement('div')
   photographPriceAndLike.className = 'photograph__priceAndLike'
   photographHeader.appendChild(photographPriceAndLike)
@@ -93,8 +94,6 @@ async function displayData(photographers, media) {
 
   const photographLike = document.createElement('p')
   photographLike.className = 'photograph__likes'
-  // TODO
-  photographLike.setAttribute('aria-describedby', 'photograph__heart')
   photographLike.textContent = photographerAllLikes
   photographWrapperLikes.appendChild(photographLike)
 
@@ -107,8 +106,6 @@ async function displayData(photographers, media) {
 
   const photographPrice = document.createElement('p')
   photographPrice.className = 'photograph__price'
-  // TODO aria-description FAUX
-  photographPrice.setAttribute('aria-description', 'tarif du photographe')
   photographPrice.textContent = photograph[0].price + '€ / jour'
   photographPriceAndLike.appendChild(photographPrice)
 
@@ -163,7 +160,11 @@ async function displayData(photographers, media) {
   //=========== La selection du classement ==========
 
   // ----- construction du DOM -----
-
+  /*// ~~~ maquette : N°8 - comportement : Ouvre le menu déroulant de tri
+// ~~~ nom accessible : "Order by" (lablled by 8) 
+// ~~~ états et propriétés : le trigger du menu a comme attributs role="button", aria-haspopup="listbox", aria-activedescendant, aria-selected, arai-labelledby qui pointe vers l'input label
+ */
+  //TODO vérifier ARIA du label
   const selectForm = document.createElement('form')
   selectForm.className = 'selectForm'
   mediaSection.insertBefore(selectForm, medias)
@@ -201,7 +202,6 @@ async function displayData(photographers, media) {
   selectButton.setAttribute('aria-labelledby', 'selectLabel')
   selectButton.ariaHasPopup = 'listbox'
   selectButton.ariaExpanded = 'false'
-  // selectButton.setAttribute( "tabindex", "0" )  //?
   selectForm.appendChild(selectButton)
 
   const selectArrow = document.createElement('div')
@@ -219,7 +219,8 @@ async function displayData(photographers, media) {
     selectOptions.setAttribute('role', 'listbox')
     selectOptions.setAttribute('aria-activedescendant', `${options[0].id}`)
     selectOptions.setAttribute('aria-labelledby', 'selectLabel')
-    selectOptions.setAttribute('tabindex', '-1') //?
+    //TODO vérification du tabindex
+    selectOptions.setAttribute('tabindex', '-1')
     selectButton.insertBefore(selectOptions, selectArrow)
   }
   selectOptionsDOM()
@@ -235,6 +236,7 @@ async function displayData(photographers, media) {
       optionSelect.className = `selectOption ${selectOption.classe}`
       optionSelect.id = `${selectOption.classe}`
       optionSelect.setAttribute('role', 'option')
+      //TODO vérification du tabindex : sélectionnable même si fermé
       optionSelect.setAttribute('tabindex', '0')
       optionSelect.setAttribute('aria-selected', `${selectOption.selected}`)
       optionSelect.textContent = selectOption.content
@@ -248,7 +250,8 @@ async function displayData(photographers, media) {
   // ----- Fonctionnement de la selection -----
 
   // TODO faire la navigation au clavier de la selection (exemple de la lightbox)
-  // TODO frmer le select au blur du clavier
+
+  // TODO fermer le select au blur du clavier et au click echap
   // /**
   // * @param {keyboardEvent} e
   // */
@@ -291,7 +294,7 @@ async function displayData(photographers, media) {
    * @function
    */
   function sortMedia() {
-    // TODO rendre les options selectionnablent au clavier
+    // TODO remonter l'option quand valider avec le clavier (entrée et espace)
     const selectOption = document.querySelectorAll('.selectOption')
     selectOption.forEach((item) => {
       item.addEventListener('click', function () {
