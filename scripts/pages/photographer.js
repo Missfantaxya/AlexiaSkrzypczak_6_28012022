@@ -249,26 +249,6 @@ async function displayData(photographers, media) {
 
   // ----- Fonctionnement de la selection -----
 
-  // TODO faire la navigation au clavier de la selection (exemple de la lightbox)
-
-  // TODO fermer le select au blur du clavier et au click echap
-  // /**
-  // * @param {keyboardEvent} e
-  // */
-  // onKeyUp( e )
-  // {
-  //   if ( e.key === 'Escape' )
-  //   {
-  //     this.close( e )
-  //   } else if ( e.key === 'ArrowLeft' )
-  //   {
-  //     this.prev( e )
-  //   } else if ( e.key === 'ArrowRight' )
-  //   {
-  //     this.next( e )
-  //   }
-  // }
-
   /**
    * inversion du boléen ariaExpanded de la selection
    * @function
@@ -294,24 +274,21 @@ async function displayData(photographers, media) {
    * @function
    */
   function sortMedia() {
-    // TODO remonter l'option quand valider avec le clavier (entrée et espace)
     const selectOption = document.querySelectorAll('.selectOption')
     selectOption.forEach((item) => {
-      item.addEventListener('click', function () {
-        // récupère l'indice de l'élément cliqué
+      function select(e) {
         const indice = options.findIndex(
           (oneOption) => oneOption.content === item.textContent
-        ) //*ok
-        // suppression de l'élément cliqué du tableau
+        )
+        // suppression de l'élément sélectioné du tableau
         const optionMove = options.splice(indice, 1)
         // ajout de l'élément supprimé au début du tableau (à l'index 0)
         const optionMoved = options.splice(0, 0, optionMove[0])
         options[0].selected = 'true'
         options[1].selected = 'false'
         options[2].selected = 'false'
-        // classement des médias en fonctione de l'option cliqué
+        // classement des médias en fonction de l'option sélectionée
         if (item.textContent === 'Date') {
-          //* ok
           // classer photographMedias par date
           photographMedias.sort(
             (a, b) => Date.parse(a.date) - Date.parse(b.date)
@@ -319,7 +296,6 @@ async function displayData(photographers, media) {
           displayMedias()
           Lightbox.init()
         } else if (item.textContent === 'Titre') {
-          //* ok
           // classer photographMedias par titre (alphabétique)
           photographMedias.sort(function compare(a, b) {
             if (a.title < b.title) return -1
@@ -329,16 +305,28 @@ async function displayData(photographers, media) {
           displayMedias()
           Lightbox.init()
         } else if (item.textContent === 'Popularité') {
-          //* ok
           popularitySort()
           displayMedias()
           Lightbox.init()
         }
-        // console.log( "selectOptions :", selectOptions ) //* ok
         selectOptions.remove()
         selectOptionsDOM()
         selectionDOM()
+      }
+
+      /**
+       * @param {keyboarEvent} e
+       */
+      item.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          select() //*ok avec latence
+        }
       })
+
+      item.addEventListener(
+        'click',
+        select //*ok
+      )
     })
   }
 
