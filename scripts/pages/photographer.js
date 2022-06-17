@@ -254,21 +254,22 @@ async function displayData(photographers, media) {
    * @function
    */
   function toggleAccessOption() {
-    console.log('toggleAccessOption')
     const optionSelect = document.getElementsByClassName('selectOption')
-    console.log('optionSelect :', optionSelect)
+    const firstOption =
+      document.querySelector('.selectOptions').firstElementChild //? nécessaire ?
+    // console.log('firstOption :', firstOption) //*
     if (selectButton.ariaExpanded == 'true') {
-      console.log('toggleAccessOption true')
       for (const selectOption of optionSelect) {
         selectOption.setAttribute('tabindex', '0')
-        console.log('tabindex : ', selectOption.getAttribute('tabindex'))
       }
+      firstOption.setAttribute('autofocus', 'true') //? nécessaire ?
+      // console.log('autofocus :', firstOption.getAttribute('autofocus')) //*
     } else {
-      console.log('toggleAccessOption false')
       for (const selectOption of optionSelect) {
         selectOption.setAttribute('tabindex', '-1')
-        console.log('tabindex : ', selectOption.getAttribute('tabindex'))
       }
+      firstOption.setAttribute('autofocus', 'false') //? nécessaire ?
+      // console.log('autofocus :', firstOption.getAttribute('autofocus')) //*
     }
   }
 
@@ -284,34 +285,45 @@ async function displayData(photographers, media) {
     } else {
       selectButton.ariaExpanded = 'false'
     }
+    toggleAccessOption()
   }
 
   //alternance ouverture et fermeture de la selection
-  selectButton.addEventListener('click', function () {
+  selectButton.addEventListener('click', function (e) {
     toggleSelection()
-    toggleAccessOption()
     sortMedia()
+    // console.log('cible qui prend le focus :', e.relatedTarget) //*
+    SelectionBlur()
   })
 
-  //TODO WIP : si ecoute du blur sur selecOptions
-  // mettre le focus sur le selecOptions (première option de la liste quand la selection s'ouvre)
-  // if ( selectButton.ariaExpanded == 'true' )
-  // {
-  //   selectOptions.
-  // }
-
-  //TODO WIP ATTENTION pb de fermeture avec cela
-  //fermeture de la selection à la perte du focus
-  // selectButton.addEventListener(
-  //   //! se ferme avec tab sur les option si ouvert et ne fonctionne pas avec la souris si blur du selectOpions
-  //   'blur',
-  //   (event) => {
-  //     console.log('selectButton blur', event) //* mais pas toujours au blur
-  //     selectButton.classList.add('hidden')
-  //     selectArrow.classList.remove('up')
-  //   },
-  //   true //! ne fonctionne qu'une fois avec true mais 0 sans true
-  // )
+  // //TODO WIP ATTENTION pb de fermeture avec cela
+  //! ne fonctionne pas en remontant
+  /**
+   * Permet la fermeture de la selection à la perte du focus
+   * @function
+   */
+  function SelectionBlur() {
+    if (selectButton.ariaExpanded == 'true') {
+      console.log('button ouvert', selectButton.ariaExpanded)
+      //! se ferme en passant sur l'option suivante avec tab
+      // TODO ajouter une condition !classList.contains('selectOption') sur la nouvelle cible
+      //! s'annule avec toogle Selection donc reste ouvert si click sur une option
+      // TODO et ajouter une condition que la nouvelle cible ne soit pas le bouton ou cibler le focusout sur le bouton
+      //* fonctionne si click hors de la sélection
+      selectOptions.addEventListener('focusout', (event) => {
+        console.log('focusout', event)
+        console.log('event.currentTarget', event.currentTarget)
+        selectButton.classList.add('hidden')
+        selectArrow.classList.remove('up')
+        selectButton.ariaExpanded = 'false'
+        toggleAccessOption()
+        console.log('cible qui perd le focus :', event.target)
+        console.log('cible qui prend le focus :', event.relatedTarget) // souvent à null
+      })
+    } else {
+      console.log('button fermé', selectButton.ariaExpanded)
+    }
+  }
 
   /**
    * Permet de faire le tri des médias selon la selection choisi
