@@ -164,7 +164,6 @@ async function displayData(photographers, media) {
 // ~~~ nom accessible : "Order by" (lablled by 8) 
 // ~~~ états et propriétés : le trigger du menu a comme attributs role="button", aria-haspopup="listbox", aria-activedescendant, aria-selected, arai-labelledby qui pointe vers l'input label
  */
-  //TODO vérifier ARIA du label
   const selectForm = document.createElement('form')
   selectForm.className = 'selectForm'
   mediaSection.insertBefore(selectForm, medias)
@@ -296,6 +295,7 @@ async function displayData(photographers, media) {
     SelectionBlur()
   })
 
+  // ~ peut passer sans fermer au blur (a mettre en axe d'amélioration)
   // //TODO WIP ATTENTION pb de fermeture avec cela
   //! ne fonctionne pas en remontant
   /**
@@ -309,6 +309,7 @@ async function displayData(photographers, media) {
       // TODO ajouter une condition !classList.contains('selectOption') sur la nouvelle cible
       //! s'annule avec toogle Selection donc reste ouvert si click sur une option
       // TODO et ajouter une condition que la nouvelle cible ne soit pas le bouton ou cibler le focusout sur le bouton
+      //TODO tab blur sur média suivant (déclenchement) soit bouton contact
       //* fonctionne si click hors de la sélection
       selectOptions.addEventListener('focusout', (event) => {
         console.log('focusout', event)
