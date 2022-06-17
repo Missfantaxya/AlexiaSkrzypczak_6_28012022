@@ -237,7 +237,7 @@ async function displayData(photographers, media) {
       optionSelect.id = `${selectOption.classe}`
       optionSelect.setAttribute('role', 'option')
       //TODO vérification du tabindex : sélectionnable même si fermé
-      optionSelect.setAttribute('tabindex', '0')
+      optionSelect.setAttribute('tabindex', '-1')
       optionSelect.setAttribute('aria-selected', `${selectOption.selected}`)
       optionSelect.textContent = selectOption.content
       selectOptions.appendChild(optionSelect)
@@ -248,6 +248,29 @@ async function displayData(photographers, media) {
   selectionDOM()
 
   // ----- Fonctionnement de la selection -----
+
+  /**
+   * rendre les options selectionnablent au clavier uniquement quand la selection est ouverte
+   * @function
+   */
+  function toggleAccessOption() {
+    console.log('toggleAccessOption')
+    const optionSelect = document.getElementsByClassName('selectOption')
+    console.log('optionSelect :', optionSelect)
+    if (selectButton.ariaExpanded == 'true') {
+      console.log('toggleAccessOption true')
+      for (const selectOption of optionSelect) {
+        selectOption.setAttribute('tabindex', '0')
+        console.log('tabindex : ', selectOption.getAttribute('tabindex'))
+      }
+    } else {
+      console.log('toggleAccessOption false')
+      for (const selectOption of optionSelect) {
+        selectOption.setAttribute('tabindex', '-1')
+        console.log('tabindex : ', selectOption.getAttribute('tabindex'))
+      }
+    }
+  }
 
   /**
    * inversion du boléen ariaExpanded de la selection
@@ -266,27 +289,29 @@ async function displayData(photographers, media) {
   //alternance ouverture et fermeture de la selection
   selectButton.addEventListener('click', function () {
     toggleSelection()
+    toggleAccessOption()
     sortMedia()
   })
 
+  //TODO WIP : si ecoute du blur sur selecOptions
   // mettre le focus sur le selecOptions (première option de la liste quand la selection s'ouvre)
   // if ( selectButton.ariaExpanded == 'true' )
   // {
   //   selectOptions.
   // }
 
-  //TODO WIP
+  //TODO WIP ATTENTION pb de fermeture avec cela
   //fermeture de la selection à la perte du focus
-  selectButton.addEventListener(
-    //! se ferme avec tab sur les option si ouvert et ne fonctionne pas avec la souris si blur du selectOpions
-    'blur',
-    (event) => {
-      console.log('selectButton blur', event)
-      selectButton.classList.add('hidden')
-      selectArrow.classList.remove('up')
-    },
-    true //! ne fonctionne qu'une fois avec true mais 0 sans true
-  )
+  // selectButton.addEventListener(
+  //   //! se ferme avec tab sur les option si ouvert et ne fonctionne pas avec la souris si blur du selectOpions
+  //   'blur',
+  //   (event) => {
+  //     console.log('selectButton blur', event) //* mais pas toujours au blur
+  //     selectButton.classList.add('hidden')
+  //     selectArrow.classList.remove('up')
+  //   },
+  //   true //! ne fonctionne qu'une fois avec true mais 0 sans true
+  // )
 
   /**
    * Permet de faire le tri des médias selon la selection choisi
