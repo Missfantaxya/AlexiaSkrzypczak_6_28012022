@@ -220,7 +220,7 @@ async function displayData(photographers, media) {
     selectOptions.setAttribute('aria-activedescendant', `${options[0].id}`)
     selectOptions.setAttribute('aria-labelledby', 'selectLabel')
     //TODO vérification du tabindex
-    selectOptions.setAttribute('tabindex', '-1')
+    // selectOptions.setAttribute('tabindex', '1')
     selectButton.insertBefore(selectOptions, selectArrow)
   }
   selectOptionsDOM()
@@ -263,11 +263,30 @@ async function displayData(photographers, media) {
     }
   }
 
-  //ouverture de la selection
+  //alternance ouverture et fermeture de la selection
   selectButton.addEventListener('click', function () {
     toggleSelection()
     sortMedia()
   })
+
+  // mettre le focus sur le selecOptions (première option de la liste quand la selection s'ouvre)
+  // if ( selectButton.ariaExpanded == 'true' )
+  // {
+  //   selectOptions.
+  // }
+
+  //TODO WIP
+  //fermeture de la selection à la perte du focus
+  selectButton.addEventListener(
+    //! se ferme avec tab sur les option si ouvert et ne fonctionne pas avec la souris si blur du selectOpions
+    'blur',
+    (event) => {
+      console.log('selectButton blur', event)
+      selectButton.classList.add('hidden')
+      selectArrow.classList.remove('up')
+    },
+    true //! ne fonctionne qu'une fois avec true mais 0 sans true
+  )
 
   /**
    * Permet de faire le tri des médias selon la selection choisi
