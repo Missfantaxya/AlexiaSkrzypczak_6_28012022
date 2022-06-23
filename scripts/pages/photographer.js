@@ -92,6 +92,7 @@ async function displayData(photographers, media) {
   const photographLike = document.createElement('p')
   photographLike.className = 'photograph__likes'
   photographLike.textContent = photographerAllLikes
+  photographLike.setAttribute('aria-description', 'nombre de likes')
   photographWrapperLikes.appendChild(photographLike)
 
   const photographHeart = document.createElement('img')
@@ -114,10 +115,12 @@ async function displayData(photographers, media) {
 
   const mediaSection = document.createElement('section')
   mediaSection.className = 'medias__section'
+  mediaSection.setAttribute('aria-labelledby', 'media__title')
   main.appendChild(mediaSection)
 
   const mediaTitle = document.createElement('h2')
   mediaTitle.className = 'medias__title'
+  mediaTitle.id = 'media__title'
   mediaTitle.textContent = 'Les médias du photographe'
   mediaSection.appendChild(mediaTitle)
 

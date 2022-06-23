@@ -1,12 +1,11 @@
 function modalDOM(data) {
   //----- construction du DOM -----
-  // TODO vérifier avec la maquette la sémantique
   const modal = document.querySelector('.modal')
   modal.setAttribute('aria-labelledby', 'modal__title')
-
   const modalHeader = modal.firstElementChild
   modalHeader.className = 'modal__header'
 
+  //TODO mettre un arie-label ??
   const OriginalModalTitle = modalHeader.firstElementChild
   const modalTitle = document.createElement('h1')
   modalTitle.textContent = 'Contactez-moi'
@@ -43,7 +42,6 @@ function modalDOM(data) {
   formFirstnameInput.className = 'form__input'
   formFirstnameInput.setAttribute('name', 'firstname')
   formFirstnameInput.setAttribute('type', 'text')
-  formFirstnameInput.setAttribute('autocomplete', 'on')
 
   const formLastnameLabel = document.createElement('label')
   formLastnameLabel.setAttribute('for', 'form__lastnameInput')
@@ -55,7 +53,6 @@ function modalDOM(data) {
   formLastnameInput.className = 'form__input'
   formLastnameInput.setAttribute('name', 'lastname')
   formLastnameInput.setAttribute('type', 'text')
-  formLastnameInput.setAttribute('autocomplete', 'family-name')
   formFields.appendChild(formLastnameInput)
 
   const formEmailLabel = document.createElement('label')
