@@ -29,13 +29,14 @@ class Lightbox {
    * @param {string[]} lightboxTitle Titres des medias de la lightbox
    */
   constructor(url, title, gallery, lightboxTitle) {
-    const body = document.querySelector('body')
+    const main = document.getElementById('main')
+    main.ariaHidden = 'true'
     this.element = this.buildDom(url)
     this.gallery = gallery
     this.lightboxTitle = lightboxTitle
     this.loadMedia(url, title)
     this.onKeyUp = this.onKeyUp.bind(this)
-    body.appendChild(this.element)
+    main.after(this.element)
     document.addEventListener('keyup', this.onKeyUp)
   }
 
@@ -91,6 +92,8 @@ class Lightbox {
    */
   close(e) {
     event.preventDefault()
+    const main = document.getElementById('main')
+    main.ariaHidden = 'false'
     this.element.classList.add('fadeOut')
     window.setTimeout(() => {
       this.element.parentElement.removeChild(this.element)

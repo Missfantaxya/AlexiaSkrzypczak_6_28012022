@@ -1,84 +1,68 @@
 function modalDOM(data) {
   //----- construction du DOM -----
   // TODO vérifier avec la maquette la sémantique
-  /*// ~~~ maquette : N°1 - comportement : s'ouvre quand l'utilisateur clique sur "Contactez-moi"
-    // ~~~ nom accessible : "Contact me Mimi Keel" (labelledby 2)
-    // ~~~ états et propriétés : aria-labbelledby (pointe vers l'id 2)
-    */
   const modal = document.querySelector('.modal')
+  modal.setAttribute('aria-labelledby', 'modal__title')
+
   const modalHeader = modal.firstElementChild
   modalHeader.className = 'modal__header'
-  const modalTitle = modalHeader.firstElementChild
-  /*//~~~ role : Heading (h1)
-  // ~~~ maquette : N°2 - comportement : Text statique
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
 
-  // TODO h1 car h2 dans HTML
+  const OriginalModalTitle = modalHeader.firstElementChild
+  const modalTitle = document.createElement('h1')
+  modalTitle.textContent = 'Contactez-moi'
   modalTitle.className = 'modal__title'
-  const modalDetails = document.createElement('div')
-  modalDetails.className = 'modal__details'
-  modalHeader.insertBefore(modalDetails, modalTitle)
-  modalDetails.appendChild(modalTitle)
-  const modalPhotographerName = document.createElement('p')
+  modalTitle.id = 'modal__title'
+  OriginalModalTitle.replaceWith(modalTitle)
+
+  const modalPhotographerName = document.createElement('div')
   modalPhotographerName.className = 'modal__photographerName'
   modalPhotographerName.textContent = data[0].name
-  modalDetails.appendChild(modalPhotographerName)
+  modalTitle.appendChild(modalPhotographerName)
+
+  const closeModal = document.createElement('button')
+  closeModal.className = 'modal__close'
+  closeModal.ariaLabel = 'Close Contact form'
+  closeModal.setAttribute('type', 'button')
+  closeModal.setAttribute('onClick', 'closeModal()')
+  modalTitle.after(closeModal)
+
+  const closeModalImg = modalHeader.lastElementChild
+  closeModalImg.setAttribute('alt', 'croix de fermeture')
+  closeModalImg.removeAttribute('onClick')
+  closeModal.appendChild(closeModalImg)
 
   const form = document.querySelector('div.modal form')
   form.className = 'contact__form'
   const formFields = form.firstElementChild
-  /*// ~~~ maquette : N°3 - comportement : Label de l'input prénom
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
+
   const formFirstnameLabel = formFields.firstElementChild
   formFirstnameLabel.setAttribute('for', 'form__firstnameInput')
-  /*//~~~ role : text field
-    // ~~~ maquette : N°4 - comportement : Input Prénom
-    // ~~~ nom accessible : "Fisrt name"(labelledby 3)
-    // ~~~ états et propriétés : vide
-    */
+
   const formFirstnameInput = formFirstnameLabel.nextElementSibling
   formFirstnameInput.id = 'form__firstnameInput'
   formFirstnameInput.className = 'form__input'
   formFirstnameInput.setAttribute('name', 'firstname')
   formFirstnameInput.setAttribute('type', 'text')
+  formFirstnameInput.setAttribute('autocomplete', 'on')
 
-  /*// ~~~ maquette : N°5 - comportement : Label de l'input Nom
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
   const formLastnameLabel = document.createElement('label')
   formLastnameLabel.setAttribute('for', 'form__lastnameInput')
   formLastnameLabel.textContent = 'Nom'
   formFields.appendChild(formLastnameLabel)
-  /*//~~~ role : text field
-    // ~~~ maquette : N°6 - comportement : Input Nom
-    // ~~~ nom accessible : "Last name"(labelledby 5)
-    // ~~~ états et propriétés : vide
-    */
+
   const formLastnameInput = document.createElement('input')
   formLastnameInput.id = 'form__lastnameInput'
   formLastnameInput.className = 'form__input'
   formLastnameInput.setAttribute('name', 'lastname')
   formLastnameInput.setAttribute('type', 'text')
+  formLastnameInput.setAttribute('autocomplete', 'family-name')
   formFields.appendChild(formLastnameInput)
 
-  /*// ~~~ maquette : N°7 - comportement : Label de l'input Email
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
   const formEmailLabel = document.createElement('label')
   formEmailLabel.setAttribute('for', 'form__emailInput')
   formEmailLabel.textContent = 'Email'
   formFields.appendChild(formEmailLabel)
-  /*//~~~ role : text field
-    // ~~~ maquette : N°8 - comportement : Input de l'Email
-    // ~~~ nom accessible : "Email"(labelledby 7)
-    // ~~~ états et propriétés : vide
-    */
+
   const formEmailInput = document.createElement('input')
   formEmailInput.id = 'form__emailInput'
   formEmailInput.className = 'form__input'
@@ -86,19 +70,11 @@ function modalDOM(data) {
   formEmailInput.setAttribute('type', 'email')
   formFields.appendChild(formEmailInput)
 
-  /*// ~~~ maquette : N°9 - comportement : Label de l'input Votre message
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
   const formMessageLabel = document.createElement('label')
   formMessageLabel.setAttribute('for', 'form__messageInput')
   formMessageLabel.textContent = 'Message'
   formFields.appendChild(formMessageLabel)
-  /*//~~~ role : text field
-    // ~~~ maquette : N°10 - comportement : Input du message
-    // ~~~ nom accessible : "Your message"(labelledby 9)
-    // ~~~ états et propriétés : vide
-    */
+
   const formMessageInput = document.createElement('textarea')
   formMessageInput.id = 'form__messageInput'
   formMessageInput.className = 'form__input form__textarea'
