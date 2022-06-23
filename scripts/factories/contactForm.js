@@ -1,11 +1,13 @@
 function modalDOM(data) {
   //----- construction du DOM -----
+  const modalContact = document.getElementById('contact__modal')
+  // modalContact.setAttribute('role', 'dialog') //! bloque la navigation au clavier mais demandé dans la maquette
+  modalContact.setAttribute('aria-labelledby', 'modal__title')
+
   const modal = document.querySelector('.modal')
-  modal.setAttribute('aria-labelledby', 'modal__title')
   const modalHeader = modal.firstElementChild
   modalHeader.className = 'modal__header'
 
-  //TODO mettre un arie-label ??
   const OriginalModalTitle = modalHeader.firstElementChild
   const modalTitle = document.createElement('h1')
   modalTitle.textContent = 'Contactez-moi'
@@ -78,18 +80,10 @@ function modalDOM(data) {
   formMessageInput.setAttribute('name', 'message')
   formFields.appendChild(formMessageInput)
 
-  /*//*ok : 
-  //~~~ role : button 
+  /*//~~~ role : button 
   //TODO
     // ~~~ maquette : N°11 - comportement : Envoie le formulaire
     // ~~~ nom accessible : "Send"
-    // ~~~ états et propriétés : vide
-    */
-
-  //TODO
-  /*//~~~ role : button
-    // ~~~ maquette : N°12 - comportement : Ferme la modal
-    // ~~~ nom accessible : "Close Contact form"
     // ~~~ états et propriétés : vide
     */
 }

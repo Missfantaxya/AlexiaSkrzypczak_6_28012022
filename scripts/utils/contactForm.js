@@ -2,6 +2,8 @@ function displayModal() {
   const modal = document.getElementById('contact__modal')
   modal.style.display = 'block'
   modal.ariaHidden = 'false'
+  const closeModal = document.querySelector('.modal__close')
+  closeModal.focus()
   const main = document.getElementById('main')
   main.ariaHidden = 'true'
 }

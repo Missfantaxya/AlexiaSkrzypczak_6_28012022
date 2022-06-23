@@ -42,6 +42,10 @@ async function displayData(photographers, media) {
   const photographProfilDOM = photographerModel.getPhotographProfilDOM()
   photographHeader.insertBefore(photographProfilDOM, photographContact)
 
+  //-----Accessibilité du bouton de contact
+  const contactButton = document.querySelector('.contact__button')
+  contactButton.setAttribute('type', 'button')
+
   // ----- Affichage de l'avatar du photographe -----
   const photographerAvatarModel = photographerFactory(photograph)
   const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM()
@@ -92,7 +96,7 @@ async function displayData(photographers, media) {
   const photographLike = document.createElement('p')
   photographLike.className = 'photograph__likes'
   photographLike.textContent = photographerAllLikes
-  photographLike.setAttribute('aria-description', 'nombre de likes')
+  photographLike.setAttribute('aria-label', 'nombre de likes')
   photographWrapperLikes.appendChild(photographLike)
 
   const photographHeart = document.createElement('img')
