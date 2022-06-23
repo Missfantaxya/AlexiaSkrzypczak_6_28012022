@@ -1,7 +1,3 @@
-/*// ~~~ maquette : N°9 - comportement : Ouvre la vue lightbox
-// ~~~ nom accessible : "Lilac breasted roller, closeup view" 
-// ~~~ états et propriétés :vide
- */
 function mediaMovie(data, mediaLink) {
   const videoMedia = `assets/photographies/${data.photographerId}/${data.video}`
   mediaLink.setAttribute('href', videoMedia)

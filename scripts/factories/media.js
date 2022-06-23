@@ -15,10 +15,6 @@ function mediaFactory(data) {
 
   // La factorie permet un affichage dynamique des medias en fonction des propriétés photo ou vidéo.
   function getMediaCardDOM() {
-    /*// ~~~ maquette : N°9 - comportement : image statique
-    // ~~~ nom accessible : "Lilac breasted roller, closeup view"
-    // ~~~ états et propriétés : vide
-    */
     const mediaArticle = document.createElement('article')
     mediaArticle.className = 'media__article'
 

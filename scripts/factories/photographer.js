@@ -9,10 +9,6 @@ function photographerFactory(data) {
    * Construction du DOM pour les détails d'un photogarphe sur la page d'accueil
    * @returns {HTMLelement}
    */
-  /*// ~~~ maquette : N°3 - comportement : Le lien est une zone focusable contenant le h2 et l'image. L'image est dans le lien avec text alternatif vide.
-  // ~~~ nom accessible : "Mimi Keel"
-  // ~~~ états et propriétés : vide
-  */
   function getPhotographerCardDOM() {
     const photographerArticle = document.createElement('article')
     photographerArticle.className = 'photographer__article'
@@ -24,15 +20,12 @@ function photographerFactory(data) {
     const photographerAvatar = document.createElement('img')
     photographerAvatar.setAttribute('src', avatar)
     photographerAvatar.className = 'photographer__avatar'
+    // texte alternatif vide comme demandé sur la maquette
     photographerAvatar.setAttribute('alt', ' ')
 
     const photographerName = document.createElement('h2')
     photographerName.className = 'photographer__name'
 
-    /*// ~~~ maquette : N°4 - comportement : text statique
-  // ~~~ nom accessible : vide
-  // ~~~ états et propriétés : vide
-  */
     const photographerDetails = document.createElement('p')
     photographerDetails.className = 'photographer__details'
 
@@ -67,10 +60,6 @@ function photographerFactory(data) {
     const photographerDetails = document.createElement('div')
     photographerDetails.className = 'photographerDetails'
 
-    /*// ~~~ maquette : N°2 - comportement : text statique
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
     const photographerName = document.createElement('h1')
     photographerName.className = 'photographerName'
     photographerName.textContent = data[0].name
@@ -80,10 +69,6 @@ function photographerFactory(data) {
     photographerContent.className = 'photographerContent'
     photographerDetails.appendChild(photographerContent)
 
-    /*// ~~~ maquette : N°3 - comportement : text statique
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
     const photographerLocation = document.createElement('p')
     photographerLocation.className = 'photographerLocation'
     photographerLocation.textContent = data[0].city + ', ' + data[0].country
@@ -97,10 +82,6 @@ function photographerFactory(data) {
     return photographerDetails
   }
 
-  /*// ~~~ maquette : N°5 - comportement : image statique
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
   function getUserAvatarDOM() {
     const avatar = `assets/photographers/${data[0].portrait}`
     const photographerAvatar = document.createElement('img')
