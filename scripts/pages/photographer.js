@@ -80,10 +80,7 @@ async function displayData(photographers, media) {
   )
 
   // ----- construction du DOM -----
-  /*// ~~~ maquette : N°6 - comportement : text statique
-  // ~~~ nom accessible : vide
-  // ~~~ états et propriétés : vide
-  */
+
   const photographPriceAndLike = document.createElement('div')
   photographPriceAndLike.className = 'photograph__priceAndLike'
   photographHeader.appendChild(photographPriceAndLike)
@@ -110,7 +107,6 @@ async function displayData(photographers, media) {
   photographPriceAndLike.appendChild(photographPrice)
 
   // ========== La parties avec les médias ==========
-  // // TODO https://www.w3schools.com/howto/howto_custom_select.asp style du select
 
   // ----- construction du DOM -----
 
@@ -129,7 +125,7 @@ async function displayData(photographers, media) {
   medias.className = 'medias'
   mediaSection.appendChild(medias)
 
-  // ----- fuonctions des médias -----
+  // ----- fonctions des médias -----
 
   /**
    * Classement des medias par popularité
@@ -160,13 +156,11 @@ async function displayData(photographers, media) {
   //=========== La selection du classement ==========
 
   // ----- construction du DOM -----
-  /*// ~~~ maquette : N°8 - comportement : Ouvre le menu déroulant de tri
-// ~~~ nom accessible : "Order by" (lablled by 8) 
-// ~~~ états et propriétés : le trigger du menu a comme attributs role="button", aria-haspopup="listbox", aria-activedescendant, aria-selected, arai-labelledby qui pointe vers l'input label
- */
+
   const selectForm = document.createElement('form')
   selectForm.className = 'selectForm'
   mediaSection.insertBefore(selectForm, medias)
+
   const selectLabel = document.createElement('label')
   selectLabel.className = 'selectLabel'
   selectLabel.id = 'selectLabel'
@@ -218,8 +212,6 @@ async function displayData(photographers, media) {
     selectOptions.setAttribute('role', 'listbox')
     selectOptions.setAttribute('aria-activedescendant', `${options[0].id}`)
     selectOptions.setAttribute('aria-labelledby', 'selectLabel')
-    //TODO vérification du tabindex
-    // selectOptions.setAttribute('tabindex', '1')
     selectButton.insertBefore(selectOptions, selectArrow)
   }
   selectOptionsDOM()
@@ -235,7 +227,6 @@ async function displayData(photographers, media) {
       optionSelect.className = `selectOption ${selectOption.classe}`
       optionSelect.id = `${selectOption.classe}`
       optionSelect.setAttribute('role', 'option')
-      //TODO vérification du tabindex : sélectionnable même si fermé
       optionSelect.setAttribute('tabindex', '-1')
       optionSelect.setAttribute('aria-selected', `${selectOption.selected}`)
       optionSelect.textContent = selectOption.content
@@ -255,20 +246,17 @@ async function displayData(photographers, media) {
   function toggleAccessOption() {
     const optionSelect = document.getElementsByClassName('selectOption')
     const firstOption =
-      document.querySelector('.selectOptions').firstElementChild //? nécessaire ?
-    // console.log('firstOption :', firstOption) //*
+      document.querySelector('.selectOptions').firstElementChild
     if (selectButton.ariaExpanded == 'true') {
       for (const selectOption of optionSelect) {
         selectOption.setAttribute('tabindex', '0')
       }
-      firstOption.setAttribute('autofocus', 'true') //? nécessaire ?
-      // console.log('autofocus :', firstOption.getAttribute('autofocus')) //*
+      firstOption.setAttribute('autofocus', 'true')
     } else {
       for (const selectOption of optionSelect) {
         selectOption.setAttribute('tabindex', '-1')
       }
-      firstOption.setAttribute('autofocus', 'false') //? nécessaire ?
-      // console.log('autofocus :', firstOption.getAttribute('autofocus')) //*
+      firstOption.setAttribute('autofocus', 'false')
     }
   }
 
@@ -291,40 +279,10 @@ async function displayData(photographers, media) {
   selectButton.addEventListener('click', function (e) {
     toggleSelection()
     sortMedia()
-    // console.log('cible qui prend le focus :', e.relatedTarget) //*
     SelectionBlur()
   })
 
-  // ~ peut passer sans fermer au blur (a mettre en axe d'amélioration)
-  // //TODO WIP ATTENTION pb de fermeture avec cela
-  //! ne fonctionne pas en remontant
-  /**
-   * Permet la fermeture de la selection à la perte du focus
-   * @function
-   */
-  function SelectionBlur() {
-    if (selectButton.ariaExpanded == 'true') {
-      console.log('button ouvert', selectButton.ariaExpanded)
-      //! se ferme en passant sur l'option suivante avec tab
-      // TODO ajouter une condition !classList.contains('selectOption') sur la nouvelle cible
-      //! s'annule avec toogle Selection donc reste ouvert si click sur une option
-      // TODO et ajouter une condition que la nouvelle cible ne soit pas le bouton ou cibler le focusout sur le bouton
-      //TODO tab blur sur média suivant (déclenchement) soit bouton contact
-      //* fonctionne si click hors de la sélection
-      selectOptions.addEventListener('focusout', (event) => {
-        console.log('focusout', event)
-        console.log('event.currentTarget', event.currentTarget)
-        selectButton.classList.add('hidden')
-        selectArrow.classList.remove('up')
-        selectButton.ariaExpanded = 'false'
-        toggleAccessOption()
-        console.log('cible qui perd le focus :', event.target)
-        console.log('cible qui prend le focus :', event.relatedTarget) // souvent à null
-      })
-    } else {
-      console.log('button fermé', selectButton.ariaExpanded)
-    }
-  }
+  // axe d'amélioration : fermeture de la selection à la perte de focus
 
   /**
    * Permet de faire le tri des médias selon la selection choisi
@@ -376,14 +334,11 @@ async function displayData(photographers, media) {
        */
       item.addEventListener('keyup', (e) => {
         if (e.key === 'Enter') {
-          select() //*ok avec latence
+          select()
         }
       })
 
-      item.addEventListener(
-        'click',
-        select //*ok
-      )
+      item.addEventListener('click', select)
     })
   }
 
