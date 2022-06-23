@@ -14,6 +14,7 @@ function modalDOM(data) {
     // ~~~ nom accessible : vide
     // ~~~ états et propriétés : vide
     */
+
   // TODO h1 car h2 dans HTML
   modalTitle.className = 'modal__title'
   const modalDetails = document.createElement('div')

@@ -1,5 +1,4 @@
 function mediaPhotographie(data, mediaLink) {
-  console.log(data)
   const picture = `assets/photographies/${data.photographerId}/${data.image}`
   mediaLink.setAttribute('href', picture)
   const mediaDecsription = document.createElement('p')

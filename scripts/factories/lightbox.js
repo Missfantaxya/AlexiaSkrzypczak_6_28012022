@@ -129,33 +129,21 @@ class Lightbox {
    * @param {string} title Titre du média
    * @return {HTMLelement}
    */
-  //TODO lightbox-- containr : "Contenu non imbriqué dans une région ARIA"
+  //TODO lightbox-- container : "Contenu non imbriqué dans une région ARIA"
   buildDom(url, title) {
-    /*// ~~~ maquette : N°6 - comportement : ferme la fenêtre de dialogue
-    // ~~~ nom accessible : "Close-dialogue"
-    // ~~~ états et propriétés : vide
-    */
-    /*// ~~~ maquette : N°4 - comportement : va à l'image précédente
-    // ~~~ nom accessible : "Previous-image"
-    // ~~~ états et propriétés : vide
-    */
-    /*// ~~~ maquette : N°5 - comportement : va à l'image suivante
-    // ~~~ nom accessible : "Next-image"
-    // ~~~ états et propriétés : vide
-    */
     const dom = document.createElement('div')
     dom.className = 'lightbox'
     dom.innerHTML = `<div class="lightbox__wrapper" role =""dialog aria-label="media closeup view">
-        <button class="lightbox__close" type="button" aria-label="Close-dialogue">
-          Fermeture
+        <button class="lightbox__close" type="button">
+          Close-dialogue
           <img
             class="lightbox__cross"
             src="assets/images/cross.svg"
             alt="croix"
           />
         </button>
-        <button class="lightbox__prev" type="button" aria-label="Previous-image">
-          précédent
+        <button class="lightbox__prev" type="button">
+          Previous-image
           <img
             class="lightbox__arrow lightbox__arrow--prev"
             src="assets/images/arrow.svg"
@@ -163,8 +151,8 @@ class Lightbox {
           />
         </button>
         <div class="lightbox__container"></div>
-        <button class="lightbox__next" type="button"  aria-label="Next-image">
-          suivant
+        <button class="lightbox__next" type="button">
+          Next-image
           <img
             class="lightbox__arrow lightbox__arrow--next"
             src="assets/images/arrow.svg"

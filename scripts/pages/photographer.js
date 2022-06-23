@@ -279,7 +279,6 @@ async function displayData(photographers, media) {
   selectButton.addEventListener('click', function (e) {
     toggleSelection()
     sortMedia()
-    SelectionBlur()
   })
 
   // axe d'amélioration : fermeture de la selection à la perte de focus
