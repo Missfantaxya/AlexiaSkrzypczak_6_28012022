@@ -25,7 +25,7 @@ function modalDOM(data) {
   closeModal.ariaLabel = 'Close Contact form'
   closeModal.setAttribute('type', 'button')
   closeModal.setAttribute('onClick', 'closeModal()')
-  modalTitle.after(closeModal)
+  modalHeader.before(closeModal)
 
   const closeModalImg = modalHeader.lastElementChild
   closeModalImg.setAttribute('alt', 'croix de fermeture')

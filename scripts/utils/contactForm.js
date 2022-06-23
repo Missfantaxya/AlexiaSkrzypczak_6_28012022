@@ -14,6 +14,9 @@ function closeModal() {
   modal.ariaHidden = 'true'
   const main = document.getElementById('main')
   main.ariaHidden = 'false'
+  const contactButton = document.querySelector('.contact__button')
+  contactButton.focus()
+  console.log('contactButton :', contactButton)
 }
 
 /**
