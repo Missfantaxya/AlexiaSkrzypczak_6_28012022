@@ -13,7 +13,10 @@ function mediaFactory(data) {
 
   const heartSvg = 'assets/icons/heart-solid-brown.svg'
 
-  // La factorie permet un affichage dynamique des medias en fonction des propriétés photo ou vidéo.
+  /**
+   * affichage dynamique des mediasselon la propriété photo ou vidéo.
+   * @returns {HTMLelement}
+   */
   function getMediaCardDOM() {
     const mediaArticle = document.createElement('article')
     mediaArticle.className = 'media__article'
@@ -44,7 +47,7 @@ function mediaFactory(data) {
 
     const mediaLikes = document.createElement('button')
     mediaLikes.className = 'media__likes'
-    mediaLikes.setAttribute('aria-label', `nombre de like du média ${title}`)
+    mediaLikes.setAttribute('aria-label', `nombre de likes pour ${title}`)
     mediaLikes.textContent = likes
     mediaContenairLikes.appendChild(mediaLikes)
 
@@ -58,10 +61,6 @@ function mediaFactory(data) {
       allLikes.innerHTML = allLikesValueNumber
     })
 
-    /*// ~~~ maquette : N°11 - comportement : icone image statique
-    // ~~~ nom accessible : Si <img>, alt="likes"...
-    // ~~~ états et propriétés : vide
-    */
     const mediaHeart = document.createElement('img')
     mediaHeart.className = 'media__heart'
     mediaHeart.setAttribute('src', heartSvg)
