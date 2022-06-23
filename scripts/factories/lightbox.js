@@ -1,9 +1,9 @@
+// TODO enlever le contenu sous la lightbox sinon pb d'accessibilité au lecteur d'écran
 /**
  * @property {HTMLElement} element
  * @property {string[]} gallery - Chemins des medias de la lightbox
  * @property {string} url - média actuellement affichée
  */
-
 class Lightbox {
   static init() {
     const links = Array.from(document.querySelectorAll('.media__link'))
@@ -46,21 +46,12 @@ class Lightbox {
   loadMedia(url, title) {
     this.url = null
     this.title = null
-    /*// ~~~ maquette : N°3 - comportement : text statique
-    // ~~~ nom accessible : vide
-    // ~~~ états et propriétés : vide
-    */
     const mediaTitle = document.createElement('p')
     mediaTitle.className = 'lightbox__title'
     mediaTitle.textContent = title
     const container = this.element.querySelector('.lightbox__container')
     container.innerHTML = ''
-    /*// ~~~ maquette : N°2 - comportement : image statique
-    // ~~~ nom accessible : "Lilac breasted roller"
-    // ~~~ états et propriétés : vide
-    */
     if (url.split('.').pop() === 'jpg') {
-      //*ok
       const image = new Image()
       image.alt = title
       image.src = url
@@ -140,10 +131,6 @@ class Lightbox {
    */
   //TODO lightbox-- containr : "Contenu non imbriqué dans une région ARIA"
   buildDom(url, title) {
-    /*// ~~~ maquette : N°1 - comportement : la fenêtre s'ouvre quand on clique sur l'image
-    // ~~~ nom accessible : aria-label="image closeup view"
-    // ~~~ états et propriétés : vide
-    */
     /*// ~~~ maquette : N°6 - comportement : ferme la fenêtre de dialogue
     // ~~~ nom accessible : "Close-dialogue"
     // ~~~ états et propriétés : vide
@@ -158,17 +145,16 @@ class Lightbox {
     */
     const dom = document.createElement('div')
     dom.className = 'lightbox'
-    //TODO transformer les boutons previous & next en link (voir maquette)
-    dom.innerHTML = `<div class="lightbox__wrapper" role =""dialog aria-label="image closeup view">
-        <button class="lightbox__close">
-          Close-dialogue
+    dom.innerHTML = `<div class="lightbox__wrapper" role =""dialog aria-label="media closeup view">
+        <button class="lightbox__close" type="button" aria-label="Close-dialogue">
+          Fermeture
           <img
             class="lightbox__cross"
             src="assets/images/cross.svg"
-            alt="chevron vers la droite"
+            alt="croix"
           />
         </button>
-        <button class="lightbox__prev">
+        <button class="lightbox__prev" type="button" aria-label="Previous-image">
           précédent
           <img
             class="lightbox__arrow lightbox__arrow--prev"
@@ -177,7 +163,7 @@ class Lightbox {
           />
         </button>
         <div class="lightbox__container"></div>
-        <button class="lightbox__next">
+        <button class="lightbox__next" type="button"  aria-label="Next-image">
           suivant
           <img
             class="lightbox__arrow lightbox__arrow--next"

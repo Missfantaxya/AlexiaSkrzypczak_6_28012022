@@ -14,7 +14,7 @@ function mediaFactory(data) {
   const heartSvg = 'assets/icons/heart-solid-brown.svg'
 
   /**
-   * affichage dynamique des mediasselon la propriété photo ou vidéo.
+   * affichage dynamique des medias selon la propriété photo ou vidéo.
    * @returns {HTMLelement}
    */
   function getMediaCardDOM() {
