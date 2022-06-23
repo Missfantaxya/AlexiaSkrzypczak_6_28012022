@@ -4,8 +4,8 @@
   flex-direction: row;
   font-size: 20px;
   margin-top: 1rem;
-  /* TODO aligne avec le headerPhotographer et les média*/
-  margin-left: 1rem;
+  margin-left: 100px;
+  
 }
 
 .selectLabel {
@@ -43,6 +43,7 @@
   border-radius: 5px;
   cursor: pointer;
   position: relative;
+  z-index:5;
 }
 
 
@@ -62,6 +63,7 @@
   height:9.88px;
   background-image: url("../assets/icons/dropdown.svg");
   cursor:pointer;
+  z-index: 5;
 }
 
 
