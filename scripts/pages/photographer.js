@@ -27,7 +27,8 @@ async function displayData(photographers, media) {
   const heartSvg = 'assets/icons/heart-solid-black.svg'
 
   const photographHeader = document.querySelector('.photograph__header')
-  const photographContact = document.querySelector('.contact__button')
+  const photographContact = photographHeader.querySelector('.contact__button')
+  photographContact.setAttribute('type', 'button')
 
   /**
    * Donées du photographe
@@ -358,8 +359,8 @@ async function displayData(photographers, media) {
 
   // ----- inscrption du contenu des input en cosole -----
   const modal = document.querySelector('.modal')
-  const register = modal.querySelector('.contact__button')
-  register.addEventListener('click', function (event) {
+  const contactSubmit = modal.querySelector('.contact__button')
+  contactSubmit.addEventListener('click', function (event) {
     // evite la soumission par default du formulaire
     event.preventDefault()
 
@@ -367,5 +368,8 @@ async function displayData(photographers, media) {
 
     // function temporaire en attendant une soumission fonctionnelle du formulaire
     eraseInput()
+    window.setTimeout(() => {
+      closeModal()
+    }, 500)
   })
 }

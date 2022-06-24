@@ -80,10 +80,6 @@ function modalDOM(data) {
   formMessageInput.setAttribute('name', 'message')
   formFields.appendChild(formMessageInput)
 
-  /*//~~~ role : button 
-  //TODO
-    // ~~~ maquette : N°11 - comportement : Envoie le formulaire
-    // ~~~ nom accessible : "Send"
-    // ~~~ états et propriétés : vide
-    */
+  const modalSubmit = form.querySelector('.contact__button')
+  modalSubmit.setAttribute('type', 'submit')
 }

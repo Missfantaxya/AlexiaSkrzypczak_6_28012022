@@ -115,11 +115,10 @@ class Lightbox {
       this.element.parentElement.removeChild(this.element)
       let mediaClicked = document.getElementById(this.id)
       mediaClicked.focus()
-    }, 300)
+    }, 500)
     document.removeEventListener('keyup', this.onKeyUp)
   }
 
-  // TODO réparer la navigation au clavier des flêches
   /**
    * Passe au média suivante
    * @param {MouseEvent/KeyboardEvent} e
