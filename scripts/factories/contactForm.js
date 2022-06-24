@@ -36,15 +36,6 @@ function modalDOM(data) {
   form.className = 'contact__form'
   const formFields = form.firstElementChild
 
-  // const formFirstnameLabel = formFields.firstElementChild
-  // formFirstnameLabel.setAttribute('for', 'form__firstnameInput')
-
-  // const formFirstnameInput = formFirstnameLabel.nextElementSibling
-  // formFirstnameInput.id = 'form__firstnameInput'
-  // formFirstnameInput.className = 'form__input'
-  // formFirstnameInput.setAttribute('name', 'firstname')
-  // formFirstnameInput.setAttribute('type', 'text')
-
   const formLastnameLabel = document.createElement('label')
   formLastnameLabel.setAttribute('for', 'form__lastnameInput')
   formLastnameLabel.textContent = 'Nom'
