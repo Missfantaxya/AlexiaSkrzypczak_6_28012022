@@ -7,13 +7,9 @@
 class Lightbox {
   static init() {
     const links = Array.from(document.querySelectorAll('.media__link'))
-    console.log('links :', links)
     const gallery = links.map((link) => link.getAttribute('href'))
-    console.log('gallery :', gallery)
     const lightboxTitle = links.map((link) => link.getAttribute('aria-label'))
-    console.log('lightboxTitle :', lightboxTitle)
     const mediaId = links.map((link) => link.getAttribute('id'))
-    console.log('mediaId :', mediaId)
     links.forEach((links) =>
       links.addEventListener('click', (e) => {
         e.preventDefault()
@@ -25,6 +21,9 @@ class Lightbox {
           lightboxTitle,
           mediaId
         )
+
+        const lightboxClose = document.querySelector('.lightbox__close')
+        lightboxClose.focus()
       })
     )
   }
@@ -110,13 +109,17 @@ class Lightbox {
     event.preventDefault()
     const main = document.getElementById('main')
     main.ariaHidden = 'false'
+    this.element.ariaHidden = 'true'
     this.element.classList.add('fadeOut')
     window.setTimeout(() => {
       this.element.parentElement.removeChild(this.element)
-    }, 500)
+      let mediaClicked = document.getElementById(this.id)
+      mediaClicked.focus()
+    }, 300)
     document.removeEventListener('keyup', this.onKeyUp)
   }
 
+  // TODO réparer la navigation au clavier des flêches
   /**
    * Passe au média suivante
    * @param {MouseEvent/KeyboardEvent} e
@@ -162,6 +165,7 @@ class Lightbox {
   buildDom(url, title, id) {
     const dom = document.createElement('div')
     dom.className = 'lightbox'
+    dom.ariaHidden = 'false'
     dom.innerHTML = `<div class="lightbox__wrapper" aria-label="media closeup view">
         <button class="lightbox__close" type="button">
           <img
