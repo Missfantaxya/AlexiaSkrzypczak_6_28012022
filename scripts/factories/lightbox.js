@@ -161,13 +161,11 @@ class Lightbox {
    * @param {string} name Nom du média
    * @return {HTMLelement}
    */
-  //TODO lightbox-- container : "Contenu non imbriqué dans une région ARIA"
-  //TODO voir pourquoi arie-role="dialog" bloque avec accessibilité au clavier et NVDA
   buildDom(url, title, name) {
     const dom = document.createElement('div')
     dom.className = 'lightbox'
     dom.ariaHidden = 'false'
-    dom.innerHTML = `<div class="lightbox__wrapper" aria-label="media closeup view">
+    dom.innerHTML = `<div class="lightbox__wrapper" role="dialog" aria-label="media closeup view">
         <button class="lightbox__close" type="button">
           <img
             class="lightbox__cross"

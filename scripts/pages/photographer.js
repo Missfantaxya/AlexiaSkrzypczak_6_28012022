@@ -355,6 +355,7 @@ async function displayData(photographers, media) {
   // ========== La parties avec la modal ==========
 
   // ----- construction du DOM -----
+  // TODO faire vérifier par Acheker
   modalDOM(photograph)
 
   // ----- inscrption du contenu des input en cosole -----

@@ -1,7 +1,7 @@
 function modalDOM(data) {
   //----- construction du DOM -----
   const modalContact = document.getElementById('contact__modal')
-  // modalContact.setAttribute('role', 'dialog') //! bloque la navigation au clavier mais demandé dans la maquette
+  modalContact.setAttribute('role', 'dialog')
   modalContact.setAttribute('aria-labelledby', 'modal__title')
 
   const modal = document.querySelector('.modal')
@@ -28,6 +28,7 @@ function modalDOM(data) {
   modalHeader.before(closeModal)
 
   const closeModalImg = modalHeader.lastElementChild
+
   closeModalImg.removeAttribute('onClick')
   closeModal.appendChild(closeModalImg)
 
