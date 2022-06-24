@@ -36,6 +36,9 @@
   top: 37px;
   right: 40px;
   color: transparent;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
 }
 
 .lightbox__cross {

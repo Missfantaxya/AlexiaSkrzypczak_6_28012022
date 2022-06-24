@@ -1,14 +1,19 @@
-// TODO enlever le contenu sous la lightbox sinon pb d'accessibilité au lecteur d'écran
 /**
  * @property {HTMLElement} element
  * @property {string[]} gallery - Chemins des medias de la lightbox
  * @property {string} url - média actuellement affichée
+ * @property {number} id - media actuellement affichée
  */
 class Lightbox {
   static init() {
     const links = Array.from(document.querySelectorAll('.media__link'))
+    console.log('links :', links)
     const gallery = links.map((link) => link.getAttribute('href'))
+    console.log('gallery :', gallery)
     const lightboxTitle = links.map((link) => link.getAttribute('aria-label'))
+    console.log('lightboxTitle :', lightboxTitle)
+    const mediaId = links.map((link) => link.getAttribute('id'))
+    console.log('mediaId :', mediaId)
     links.forEach((links) =>
       links.addEventListener('click', (e) => {
         e.preventDefault()
@@ -136,14 +141,14 @@ class Lightbox {
   buildDom(url, title) {
     const dom = document.createElement('div')
     dom.className = 'lightbox'
-    dom.innerHTML = `<div class="lightbox__wrapper" role =""dialog aria-label="media closeup view">
+    dom.innerHTML = `<div class="lightbox__wrapper"  aria-label="media closeup view">
         <button class="lightbox__close" type="button">
-          Close-dialogue
           <img
             class="lightbox__cross"
             src="assets/images/cross.svg"
-            alt="croix"
+            alt="croix de fermeture"
           />
+          Close-dialogue
         </button>
         <button class="lightbox__prev" type="button">
           Previous-image

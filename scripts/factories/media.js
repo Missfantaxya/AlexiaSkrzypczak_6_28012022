@@ -23,6 +23,7 @@ function mediaFactory(data) {
 
     const mediaLink = document.createElement('a')
     mediaLink.className = 'media__link'
+    mediaLink.id = `mediaLink${id}`
     mediaLink.setAttribute('aria-label', title)
     mediaArticle.appendChild(mediaLink)
 
