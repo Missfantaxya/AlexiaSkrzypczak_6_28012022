@@ -1,62 +1,100 @@
-/* selection de l'affichage des médias */
-/* TODO styliser le select voir maquette*/
-
-
-.media__sort {
+/* selection de l'affichege des médias */
+.selectForm {
   display: flex;
   flex-direction: row;
   font-size: 20px;
-  margin-left: 100px;
   margin-top: 1rem;
+  margin-left: 100px;
+  
 }
 
-.media__sortLabel{
-  width:74px;
-  height:23px;
-  font-weight: 700;
-  font-size: 18;
+.selectLabel {
+  font-weight: 600;
+  margin-right: 1em;
+  padding-top: 1.3rem;
 }
 
+.hidden{
+  overflow:hidden;
+}
 
-.media__sortContainer {
+.selectButton {
   position: relative;
-  width: 170px;
-  overflow: hidden;
-  border-radius: 5px;
-  border: 1px solid black;
-}
-
-
-.media__sortSelection {
   display: inline-block;
-  width: 200px;
-  height: 70px;
-  background-color: #911C1C;
-  color: #FFF;
-  font-weight: 700;
-  font-size: 18px;
-  border:none;
+  width: 170px;
+  height: 69px;
+  border-radius: 5px;
+  padding: 0;
+  border: none;
   cursor: pointer;
-  padding-left: 0.5em;
+  background-color: transparent;
+  color: transparent;
 }
 
-.dropdownArrow__img {
-  position: absolute;
-  top: 28.67px;
-  left : 75%;
-  right: -25%;
+.selectOptions {
+  padding: 0;
+  margin:0;
+  font-weight: bold;
   color: white;
-  font-weight: 700;
-  font-size: 20px;
-  width:16px;
-  height: 9.88px;
+  width: 170px;
+  height: 170px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  z-index:5;
 }
 
-option{
-  min-height: 70px;
-  width:170px;
-  margin: 15px 11px;
-  padding: 1em 0.5em;
-  font-weight: 700;
-  font-size: 18px;
+
+.date {
+  top: -70px;
+}
+
+.title {
+  top: -140px;
+}
+
+.selectArrow {
+  position: absolute;
+  top: 29.45px;
+  right: 18px;
+  width: 16px;
+  height:9.88px;
+  background-image: url("../assets/icons/dropdown.svg");
+  cursor:pointer;
+  z-index: 5;
+}
+
+
+.up {
+  transform: rotate(180deg);
+}
+
+.hidden>.selectOptions>.selectOption:first-child {
+height: 70px;
+}
+
+.selectOption {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height : 69 px;
+  margin: auto 11px;
+  padding-left: 0.5em;
+  border-top: 1px solid white;
+}
+
+.selectOption:first-child{
+  border-top: none;
+  height:60px;
+}
+
+.selectOption:nth-child(0n+2) {
+  height: 53px;
+}
+
+
+.selectOption:last-child {
+  height: 57px;
 }

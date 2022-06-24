@@ -19,7 +19,7 @@
   margin-bottom: 1em;
   font-size: 1.2em;
 }
-/* TODO voir maquette hover et focus */
+
 .contact__button {
   font-size: 20px;
   font-weight: bold;
@@ -31,6 +31,13 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.contact__button:hover,
+.contact__button:focus {
+  background-color: #D3573C;
+  color: black;
+  border: none;
 }
 
 

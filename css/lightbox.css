@@ -29,6 +29,7 @@
   border: none;
   background: none;
   padding: 0;
+  z-index: 30;
 }
 
 .lightbox__close {
@@ -36,6 +37,9 @@
   top: 37px;
   right: 40px;
   color: transparent;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
 }
 
 .lightbox__cross {

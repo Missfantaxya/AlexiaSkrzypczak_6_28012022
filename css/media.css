@@ -29,7 +29,7 @@
 /* média -------------------------------------*/
 
 
-.media__title{
+.medias__title{
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -45,19 +45,27 @@
   margin-top: 2rem;
   padding: 0 100px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr)
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0,5em 0;
+}
+.media__article{
+  padding-bottom: 1rem;
 }
 
-.photographie {
+.media__link {
   width: 350px;
-  padding-bottom: 1rem;
   cursor: pointer;
   z-index:4;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
+.mediaDecsription{
+  position: absolute;
+  color: transparent;
+}
 
 .media {
   width: 350px;
@@ -66,7 +74,7 @@
   border-radius: 5px;
 }
 
-.pictureDetails {
+.media__details {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -75,25 +83,31 @@
   padding-top: 0.5em;
 }
 
-.pictureName {
+.media__name {
   font-weight: 400;
   font-size: 24px;
 }
 
-.contenairLikes {
+.media__contenairLikes {
   z-index: 5;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-weight: 400;
+  cursor: pointer;
 }
 
-.pictureLikes {
+.media__likes {
   padding: 0.3em;
   font-size: 16px;
+  border:none;
+  font-weight: 400;
+  cursor: pointer;
+  color: #901c1c;
+  background-color: transparent;
 }
 
-.heart {
+.media__heart {
   width: 17.5px;
   height: 18.35px;
 }

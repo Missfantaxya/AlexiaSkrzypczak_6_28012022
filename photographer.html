@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="Fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <meta
+      charset="utf-8"
+      description="liste des photogrpahe du site Fisheye"
+      content="only light"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
@@ -27,7 +32,6 @@
     <main id="main">
       <section class="photograph__header">
         <button class="contact__button" onclick="displayModal()">
-           <!-- <button class="contact__button"> -->
           Contactez-moi
         </button>
       </section>
@@ -36,12 +40,12 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" alt="croix de fermeture" />
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="form__firstnameInput">Prénom</label>
+            <input id="form__firstnameInput" class="form__input" name="firstname" type="text">
           </div>
           <button class="contact__button">Envoyer</button>
         </form>

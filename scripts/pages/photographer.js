@@ -2,59 +2,55 @@
 
 // TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
 
-// // ----- construction du DOM de base pour la page -----
-
-// const main = document.querySelector( "#main" )
-// const wrapper = document.createElement( "div" )
-// wrapper.className = "wrapper"
-// main.appendChild( wrapper )
-
 // ----- récupération de l'id du photographe dans l'url -----
 
 /**
  * Récupère les paramètres de l'url
  * @type {object}
  */
-let urlResearchParams = new URLSearchParams( window.location.search )
+let urlResearchParams = new URLSearchParams(window.location.search)
 
 /**
  * Récupère l'id du photographe dans les paramètres de l'url
  * @type {number}
  */
-let idUrl = parseInt( urlResearchParams.get( "id" ) )
+let idUrl = parseInt(urlResearchParams.get('id'))
 
 /**
  * Affiche les donées et les médias du photographe
  * @param {object} photographers - la liste des photographes
  * @param {object} media - la liste des médias
  */
-async function displayData ( photographers, media )
-{
+async function displayData(photographers, media) {
   // ========== La parties avec le photographe ==========
 
-  const heartSvg = "assets/icons/heart-solid-black.svg"
+  const heartSvg = 'assets/icons/heart-solid-black.svg'
 
-  const photographHeader = document.querySelector( ".photograph__header" )
-  // wrapper.appendChild( photographHeader )
-  const photographContact = document.querySelector( ".contact__button" )
+  const photographHeader = document.querySelector('.photograph__header')
+  const photographContact = photographHeader.querySelector('.contact__button')
+  photographContact.setAttribute('type', 'button')
 
   /**
    * Donées du photographe
    * @const {object[]}
    */
   const photograph = photographers.filter(
-    ( photograph ) => photograph.id == idUrl
+    (photograph) => photograph.id == idUrl
   )
 
   // ----- Affichage des donées du photographe -----
-  const photographerModel = photographerFactory( photograph )
+  const photographerModel = photographerFactory(photograph)
   const photographProfilDOM = photographerModel.getPhotographProfilDOM()
-  photographHeader.insertBefore( photographProfilDOM, photographContact )
+  photographHeader.insertBefore(photographProfilDOM, photographContact)
+
+  //-----Accessibilité du bouton de contact
+  const contactButton = document.querySelector('.contact__button')
+  contactButton.setAttribute('type', 'button')
 
   // ----- Affichage de l'avatar du photographe -----
-  const photographerAvatarModel = photographerFactory( photograph )
+  const photographerAvatarModel = photographerFactory(photograph)
   const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM()
-  photographHeader.appendChild( UserAvatarDOM )
+  photographHeader.appendChild(UserAvatarDOM)
 
   // ========== La parties avec les likes du photographe ==========
 
@@ -63,14 +59,16 @@ async function displayData ( photographers, media )
    * @const {object[]}
    */
   const photographMedias = media.filter(
-    ( photographMedia ) => photographMedia.photographerId == idUrl
+    (photographMedia) => photographMedia.photographerId == idUrl
   )
 
   /**
    * Les likes par média du pohotographe
    * @const {number[]}
    */
-  const mediasLikes = photographMedias.map( ( oneMediaLikes ) => oneMediaLikes.likes )
+  const mediasLikes = photographMedias.map(
+    (oneMediaLikes) => oneMediaLikes.likes
+  )
 
   /**
    * Initiation du nombre de like
@@ -82,79 +80,82 @@ async function displayData ( photographers, media )
    * @const {number}
    */
   const photographerAllLikes = mediasLikes.reduce(
-    ( previousValue, currentValue ) => previousValue + currentValue,
+    (previousValue, currentValue) => previousValue + currentValue,
     initialLike
   )
 
   // ----- construction du DOM -----
-  const photographPriceAndLike = document.createElement( "div" )
-  photographPriceAndLike.className = "photograph__priceAndLike"
-  photographHeader.appendChild( photographPriceAndLike )
 
-  const photographWrapperLikes = document.createElement( "div" )
-  photographWrapperLikes.className = "photograph__wrapperLikes"
-  photographPriceAndLike.appendChild( photographWrapperLikes )
+  const photographPriceAndLike = document.createElement('div')
+  photographPriceAndLike.className = 'photograph__priceAndLike'
+  photographHeader.appendChild(photographPriceAndLike)
 
-  const photographLike = document.createElement( "p" )
-  photographLike.className = "photograph__likes"
+  const photographWrapperLikes = document.createElement('div')
+  photographWrapperLikes.className = 'photograph__wrapperLikes'
+  photographPriceAndLike.appendChild(photographWrapperLikes)
+
+  const photographLike = document.createElement('p')
+  photographLike.className = 'photograph__likes'
   photographLike.textContent = photographerAllLikes
-  photographWrapperLikes.appendChild( photographLike )
+  photographLike.setAttribute('aria-label', 'nombre de likes')
+  photographWrapperLikes.appendChild(photographLike)
 
-  const photographHeart = document.createElement( "img" )
-  photographHeart.className = "photograph__heart"
-  photographHeart.setAttribute( "src", heartSvg )
-  photographWrapperLikes.appendChild( photographHeart )
+  const photographHeart = document.createElement('img')
+  photographHeart.className = 'photograph__heart'
+  photographHeart.id = 'photograph__heart'
+  photographHeart.setAttribute('src', heartSvg)
+  photographHeart.setAttribute('alt', 'likes')
+  photographWrapperLikes.appendChild(photographHeart)
 
-  const photographPrice = document.createElement( "p" )
-  photographPrice.className = "photograph__price"
-  photographPrice.textContent = photograph[ 0 ].price + "€ / jour"
-  photographPriceAndLike.appendChild( photographPrice )
+  const photographPrice = document.createElement('p')
+  photographPrice.className = 'photograph__price'
+  photographPrice.textContent = photograph[0].price + '€ / jour'
+  photographPriceAndLike.appendChild(photographPrice)
 
   // ========== La parties avec les médias ==========
 
   // ----- construction du DOM -----
 
-  const main = document.querySelector( "#main" )
+  const main = document.querySelector('#main')
 
-  const mediaSection = document.createElement( "section" )
-  mediaSection.className = "media__section"
-  // wrapper.appendChild( mediaSection )
-  main.appendChild( mediaSection )
+  const mediaSection = document.createElement('section')
+  mediaSection.className = 'medias__section'
+  mediaSection.setAttribute('aria-labelledby', 'media__title')
+  main.appendChild(mediaSection)
 
-  const mediaTitle = document.createElement( "h2" )
-  mediaTitle.className = "media__title"
-  mediaTitle.textContent = "Les médias du photographe"
-  mediaSection.appendChild( mediaTitle )
+  const mediaTitle = document.createElement('h2')
+  mediaTitle.className = 'medias__title'
+  mediaTitle.id = 'media__title'
+  mediaTitle.textContent = 'Les médias du photographe'
+  mediaSection.appendChild(mediaTitle)
 
-  const medias = document.createElement( "div" )
-  medias.className = "medias"
-  mediaSection.appendChild( medias )
+  const medias = document.createElement('div')
+  medias.className = 'medias'
+  mediaSection.appendChild(medias)
+
+  // ----- fonctions des médias -----
 
   /**
-   * Classe les media par popularité
+   * Classement des medias par popularité
    */
-  function popularitySort ()
-  {
-    photographMedias.sort( function ( a, b )
-    {
+  function popularitySort() {
+    photographMedias.sort(function (a, b) {
       return a.likes - b.likes
-    } )
+    })
   }
 
   /**
    * Affichage des médias
    */
-  function displayMedias ()
-  {
-    //Vidage des medias
-    medias.textContent = ""
+  function displayMedias() {
+    //Vide les medias
+    medias.textContent = ''
     // Remplissage des médias avec classement
-    photographMedias.forEach( ( elementMedia ) =>
-    {
-      const mediaModel = mediaFactory( elementMedia )
+    photographMedias.forEach((elementMedia) => {
+      const mediaModel = mediaFactory(elementMedia)
       const elementMediaDOM = mediaModel.getMediaCardDOM()
-      medias.appendChild( elementMediaDOM )
-    } )
+      medias.appendChild(elementMediaDOM)
+    })
   }
 
   popularitySort()
@@ -164,81 +165,189 @@ async function displayData ( photographers, media )
 
   // ----- construction du DOM -----
 
-  const mediaSort = document.createElement( "div" )
-  mediaSort.className = "media__sort"
-  mediaSection.insertBefore( mediaSort, medias )
+  const selectForm = document.createElement('form')
+  selectForm.className = 'selectForm'
+  mediaSection.insertBefore(selectForm, medias)
 
-  const mediaSortLabel = document.createElement( "label" )
-  mediaSortLabel.setAttribute( "for", "media__sortSelection" )
-  mediaSortLabel.className = "media__sortLabel"
-  mediaSortLabel.textContent = "Trier par"
-  mediaSort.appendChild( mediaSortLabel )
+  const selectLabel = document.createElement('label')
+  selectLabel.className = 'selectLabel'
+  selectLabel.id = 'selectLabel'
+  selectLabel.textContent = 'Trier par'
+  selectForm.appendChild(selectLabel)
 
-  const mediaSortContainer = document.createElement( "div" )
-  mediaSortContainer.className = "media__sortContainer"
-  mediaSort.appendChild( mediaSortContainer )
-
-  const mediaSortSelection = document.createElement( "select" )
-  mediaSortSelection.id = "media__sortSelection"
-  mediaSortSelection.className = "media__sortSelection"
-  mediaSortSelection.setAttribute( "name", "classement des medias" )
-  mediaSortContainer.appendChild( mediaSortSelection )
-
-  const dropdownArrow = document.createElement( "div" )
-  dropdownArrow.className = "dropdownArrow"
-  mediaSortContainer.appendChild( dropdownArrow )
-
-  const arrowSvg = document.createElement( "img" )
-  arrowSvg.className = "dropdownArrow__img"
-  arrowSvg.setAttribute( "src", "assets/icons/dropdown.svg" )
-  arrowSvg.setAttribute( "alt", "chevron" )
-  dropdownArrow.appendChild( arrowSvg )
-
-  const mediaOptionPopularity = document.createElement( "option" )
-  mediaOptionPopularity.className = "media__selectOption media__selectOption--popularity"
-  mediaOptionPopularity.setAttribute( "value", "popularity" )
-  mediaOptionPopularity.textContent = "Popularité"
-  mediaSortSelection.appendChild( mediaOptionPopularity )
-
-  const mediaOptionDate = document.createElement( "option" )
-  mediaOptionDate.className = "media__selectOption media__selectOption--date"
-  mediaOptionDate.setAttribute( "value", "date" )
-  mediaOptionDate.textContent = "Date"
-  mediaSortSelection.appendChild( mediaOptionDate )
-
-  const mediaOptionTitle = document.createElement( "option" )
-  mediaOptionTitle.className = "media__selectOption media__selectOption--title"
-  mediaOptionTitle.setAttribute( "value", "title" )
-  mediaOptionTitle.textContent = "Titre"
-  mediaSortSelection.appendChild( mediaOptionTitle )
-
-  // ----- fonctionnement du tri des médias -----
-
-  mediaSortSelection.addEventListener( "change", function ()
-  {
-    if ( mediaOptionPopularity.selected )
+  options = [
     {
-      popularitySort()
-      console.log( "photographMedias :", photographMedias )
-      displayMedias()
+      content: 'Popularité',
+      id: 'popularityOption',
+      classe: 'popularityOption',
+      selected: 'true',
+    },
+    {
+      content: 'Date',
+      id: 'dateOption',
+      classe: 'dateOption',
+      selected: 'false',
+    },
+    {
+      content: 'Titre',
+      id: 'titleOption',
+      classe: 'titleOption',
+      selected: 'false',
+    },
+  ]
+
+  const selectButton = document.createElement('button')
+  selectButton.className = 'selectButton hidden'
+  selectButton.setAttribute('type', 'button')
+  selectButton.setAttribute('role', 'button')
+  selectButton.setAttribute('aria-labelledby', 'selectLabel')
+  selectButton.ariaHasPopup = 'listbox'
+  selectButton.ariaExpanded = 'false'
+  selectForm.appendChild(selectButton)
+
+  const selectArrow = document.createElement('div')
+  selectArrow.className = 'selectArrow'
+  selectButton.appendChild(selectArrow)
+
+  /**
+   * construction du DOM de la liste des options du classement
+   * @return {HTMLelement}
+   */
+  function selectOptionsDOM() {
+    const selectOptions = document.createElement('ul')
+    selectOptions.className = 'selectOptions'
+    selectOptions.id = 'selectOptions'
+    selectOptions.setAttribute('role', 'listbox')
+    selectOptions.setAttribute('aria-activedescendant', `${options[0].id}`)
+    selectOptions.setAttribute('aria-labelledby', 'selectLabel')
+    selectButton.insertBefore(selectOptions, selectArrow)
+  }
+  selectOptionsDOM()
+
+  /**
+   * construction du DOM des options la selection pour le classement des médias
+   * @return {HTMLelement}
+   */
+  function selectionDOM() {
+    selectOptions.innerHTML = ''
+    options.map((selectOption) => {
+      const optionSelect = document.createElement('li')
+      optionSelect.className = `selectOption ${selectOption.classe}`
+      optionSelect.id = `${selectOption.classe}`
+      optionSelect.setAttribute('role', 'option')
+      optionSelect.setAttribute('tabindex', '-1')
+      optionSelect.setAttribute('aria-selected', `${selectOption.selected}`)
+      optionSelect.textContent = selectOption.content
+      selectOptions.appendChild(optionSelect)
+      return optionSelect
+    })
+  }
+
+  selectionDOM()
+
+  // ----- Fonctionnement de la selection -----
+
+  /**
+   * rendre les options selectionnablent au clavier uniquement quand la selection est ouverte
+   * @function
+   */
+  function toggleAccessOption() {
+    const optionSelect = document.getElementsByClassName('selectOption')
+    const firstOption =
+      document.querySelector('.selectOptions').firstElementChild
+    if (selectButton.ariaExpanded == 'true') {
+      for (const selectOption of optionSelect) {
+        selectOption.setAttribute('tabindex', '0')
+      }
+      firstOption.setAttribute('autofocus', 'true')
+    } else {
+      for (const selectOption of optionSelect) {
+        selectOption.setAttribute('tabindex', '-1')
+      }
+      firstOption.setAttribute('autofocus', 'false')
     }
-    else if ( mediaOptionDate.selected )
-    {
-      photographMedias.sort( ( a, b ) => Date.parse( a.date ) - Date.parse( b.date ) )
-      console.log( "photographMedias :", photographMedias )
-      displayMedias()
-    } else if ( mediaOptionTitle.selected )
-    {
-      photographMedias.sort( function compare ( a, b )
-      {
-        if ( a.title < b.title ) return -1
-        if ( a.title > b.title ) return 1
-        return 0
-      } )
-      console.log( "photographMedias :", photographMedias )
-      displayMedias()
+  }
+
+  /**
+   * inversion du boléen ariaExpanded de la selection
+   * @function
+   */
+  function toggleSelection() {
+    selectButton.classList.toggle('hidden')
+    selectArrow.classList.toggle('up')
+    if (selectButton.ariaExpanded == 'false') {
+      selectButton.ariaExpanded = 'true'
+    } else {
+      selectButton.ariaExpanded = 'false'
     }
-  } )
+    toggleAccessOption()
+  }
+
+  //alternance ouverture et fermeture de la selection
+  selectButton.addEventListener('click', function (e) {
+    toggleSelection()
+    sortMedia()
+  })
+
+  // axe d'amélioration : fermeture de la selection à la perte de focus
+
+  /**
+   * Permet de faire le tri des médias selon la selection choisi
+   * @function
+   */
+  function sortMedia() {
+    const selectOption = document.querySelectorAll('.selectOption')
+    selectOption.forEach((item) => {
+      function select(e) {
+        const indice = options.findIndex(
+          (oneOption) => oneOption.content === item.textContent
+        )
+        // suppression de l'élément sélectioné du tableau
+        const optionMove = options.splice(indice, 1)
+        // ajout de l'élément supprimé au début du tableau (à l'index 0)
+        const optionMoved = options.splice(0, 0, optionMove[0])
+        options[0].selected = 'true'
+        options[1].selected = 'false'
+        options[2].selected = 'false'
+        // classement des médias en fonction de l'option sélectionée
+        if (item.textContent === 'Date') {
+          // classer photographMedias par date
+          photographMedias.sort(
+            (a, b) => Date.parse(a.date) - Date.parse(b.date)
+          )
+          displayMedias()
+          Lightbox.init()
+        } else if (item.textContent === 'Titre') {
+          // classer photographMedias par titre (alphabétique)
+          photographMedias.sort(function compare(a, b) {
+            if (a.title < b.title) return -1
+            if (a.title > b.title) return 1
+            return 0
+          })
+          displayMedias()
+          Lightbox.init()
+        } else if (item.textContent === 'Popularité') {
+          popularitySort()
+          displayMedias()
+          Lightbox.init()
+        }
+        selectOptions.remove()
+        selectOptionsDOM()
+        selectionDOM()
+      }
+
+      /**
+       * @param {keyboarEvent} e
+       */
+      item.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          select()
+        }
+      })
+
+      item.addEventListener('click', select)
+    })
+  }
 
   // initialisation de la lightbox:
   Lightbox.init()
@@ -246,21 +355,22 @@ async function displayData ( photographers, media )
   // ========== La parties avec la modal ==========
 
   // ----- construction du DOM -----
-  modalDOM( photograph )
+  // TODO faire vérifier par Acheker
+  modalDOM(photograph)
 
   // ----- inscrption du contenu des input en cosole -----
-  const modal = document.querySelector( ".modal" )
-  const register = modal.querySelector( ".contact__button" )
-  register.addEventListener( "click", function ( event )
-  {
+  const modal = document.querySelector('.modal')
+  const contactSubmit = modal.querySelector('.contact__button')
+  contactSubmit.addEventListener('click', function (event) {
     // evite la soumission par default du formulaire
     event.preventDefault()
-
 
     logInput()
 
     // function temporaire en attendant une soumission fonctionnelle du formulaire
     eraseInput()
-  } )
-
+    window.setTimeout(() => {
+      closeModal()
+    }, 500)
+  })
 }

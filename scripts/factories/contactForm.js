@@ -1,63 +1,76 @@
-function modalDOM ( data )
-{
+function modalDOM(data) {
   //----- construction du DOM -----
-  // TODO vérifier avec la maquette la sémantique
-  const modal = document.querySelector( ".modal" )
+  const modalContact = document.getElementById('contact__modal')
+  modalContact.setAttribute('role', 'dialog')
+  modalContact.setAttribute('aria-labelledby', 'modal__title')
+
+  const modal = document.querySelector('.modal')
   const modalHeader = modal.firstElementChild
-  modalHeader.className = "modal__header"
-  const modalTitle = modalHeader.firstElementChild
-  modalTitle.className = "modal__title"
-  const modalDetails = document.createElement( 'div' )
-  modalDetails.className = "modal__details"
-  modalHeader.insertBefore( modalDetails, modalTitle )
-  modalDetails.appendChild( modalTitle )
-  const modalPhotographerName = document.createElement( "p" )
-  modalPhotographerName.className = "modal__photographerName"
-  modalPhotographerName.textContent = data[ 0 ].name
-  modalDetails.appendChild( modalPhotographerName )
+  modalHeader.className = 'modal__header'
 
+  const OriginalModalTitle = modalHeader.firstElementChild
+  const modalTitle = document.createElement('h1')
+  modalTitle.textContent = 'Contactez-moi'
+  modalTitle.className = 'modal__title'
+  modalTitle.id = 'modal__title'
+  OriginalModalTitle.replaceWith(modalTitle)
 
-  const form = document.querySelector( 'form' )
-  form.className = "contact__form"
+  const modalPhotographerName = document.createElement('div')
+  modalPhotographerName.className = 'modal__photographerName'
+  modalPhotographerName.textContent = data[0].name
+  modalTitle.appendChild(modalPhotographerName)
+
+  const closeModal = document.createElement('button')
+  closeModal.className = 'modal__close'
+  closeModal.ariaLabel = 'Close Contact form'
+  closeModal.setAttribute('type', 'button')
+  closeModal.setAttribute('onClick', 'closeModal()')
+  modalHeader.before(closeModal)
+
+  const closeModalImg = modalHeader.lastElementChild
+
+  closeModalImg.removeAttribute('onClick')
+  closeModal.appendChild(closeModalImg)
+
+  const form = document.querySelector('div.modal form')
+  form.className = 'contact__form'
   const formFields = form.firstElementChild
 
-  const formFirstnameLabel = formFields.firstElementChild
-  formFirstnameLabel.setAttribute( "for", "form__firstnameInput" )
-  const formFirstnameInput = formFirstnameLabel.nextElementSibling
-  formFirstnameInput.id = "form__firstnameInput"
-  formFirstnameInput.className = "form__input"
-  formFirstnameInput.setAttribute( "name", "firstname" )
-  formFirstnameInput.setAttribute( "type", "text" )
+  const formLastnameLabel = document.createElement('label')
+  formLastnameLabel.setAttribute('for', 'form__lastnameInput')
+  formLastnameLabel.textContent = 'Nom'
+  formFields.appendChild(formLastnameLabel)
 
-  const formLastnameLabel = document.createElement( "label" )
-  formLastnameLabel.setAttribute( "for", "form__lastnameInput" )
-  formLastnameLabel.textContent = "Nom"
-  formFields.appendChild( formLastnameLabel )
-  const formLastnameInput = document.createElement( "input" )
-  formLastnameInput.id = "form__lastnameInput"
-  formLastnameInput.className = "form__input"
-  formLastnameInput.setAttribute( "name", "lastname" )
-  formLastnameInput.setAttribute( "type", "text" )
-  formFields.appendChild( formLastnameInput )
+  const formLastnameInput = document.createElement('input')
+  formLastnameInput.id = 'form__lastnameInput'
+  formLastnameInput.className = 'form__input'
+  formLastnameInput.setAttribute('name', 'lastname')
+  formLastnameInput.setAttribute('type', 'text')
+  formFields.appendChild(formLastnameInput)
 
-  const formEmailLabel = document.createElement( "label" )
-  formEmailLabel.setAttribute( "for", "form__emailInput" )
-  formEmailLabel.textContent = "Email"
-  formFields.appendChild( formEmailLabel )
-  const formEmailInput = document.createElement( "input" )
-  formEmailInput.id = "form__emailInput"
-  formEmailInput.className = "form__input"
-  formEmailInput.setAttribute( "name", "email" )
-  formEmailInput.setAttribute( "type", "email" )
-  formFields.appendChild( formEmailInput )
+  const formEmailLabel = document.createElement('label')
+  formEmailLabel.setAttribute('for', 'form__emailInput')
+  formEmailLabel.textContent = 'Email'
+  formFields.appendChild(formEmailLabel)
 
-  const formMessageLabel = document.createElement( "label" )
-  formMessageLabel.setAttribute( "for", "form__messageInput" )
-  formMessageLabel.textContent = "Message"
-  formFields.appendChild( formMessageLabel )
-  const formMessageInput = document.createElement( "textarea" )
-  formMessageInput.id = "form__messageInput"
-  formMessageInput.className = "form__input form__textarea"
-  formMessageInput.setAttribute( "name", "message" )
-  formFields.appendChild( formMessageInput )
+  const formEmailInput = document.createElement('input')
+  formEmailInput.id = 'form__emailInput'
+  formEmailInput.className = 'form__input'
+  formEmailInput.setAttribute('name', 'email')
+  formEmailInput.setAttribute('type', 'email')
+  formFields.appendChild(formEmailInput)
+
+  const formMessageLabel = document.createElement('label')
+  formMessageLabel.setAttribute('for', 'form__messageInput')
+  formMessageLabel.textContent = 'Message'
+  formFields.appendChild(formMessageLabel)
+
+  const formMessageInput = document.createElement('textarea')
+  formMessageInput.id = 'form__messageInput'
+  formMessageInput.className = 'form__input form__textarea'
+  formMessageInput.setAttribute('name', 'message')
+  formFields.appendChild(formMessageInput)
+
+  const modalSubmit = form.querySelector('.contact__button')
+  modalSubmit.setAttribute('type', 'submit')
 }
