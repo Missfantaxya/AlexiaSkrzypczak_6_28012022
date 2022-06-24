@@ -117,7 +117,6 @@ class Lightbox {
       this.element.parentElement.removeChild(this.element)
       let mediaClicked = document.getElementById(this.name)
       mediaClicked.focus()
-      console.log(document.activeElement)
     }, 300)
     document.removeEventListener('keyup', this.onKeyUp)
   }
