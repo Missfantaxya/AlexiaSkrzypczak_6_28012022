@@ -28,7 +28,6 @@ function modalDOM(data) {
   modalHeader.before(closeModal)
 
   const closeModalImg = modalHeader.lastElementChild
-  closeModalImg.setAttribute('alt', 'croix de fermeture')
   closeModalImg.removeAttribute('onClick')
   closeModal.appendChild(closeModalImg)
 
