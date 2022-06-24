@@ -16,7 +16,6 @@ function closeModal() {
   main.ariaHidden = 'false'
   const contactButton = document.querySelector('.contact__button')
   contactButton.focus()
-  console.log('contactButton :', contactButton)
 }
 
 /**

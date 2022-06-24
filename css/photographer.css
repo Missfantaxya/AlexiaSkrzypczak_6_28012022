@@ -33,4 +33,11 @@
   cursor: pointer;
 }
 
+.contact__button:hover,
+.contact__button:focus {
+  background-color: #D3573C;
+  color: black;
+  border: none;
+}
+
 
