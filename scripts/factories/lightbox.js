@@ -20,8 +20,10 @@ class Lightbox {
         new Lightbox(
           e.currentTarget.getAttribute('href'),
           e.currentTarget.getAttribute('aria-label'),
+          e.currentTarget.getAttribute('id'),
           gallery,
-          lightboxTitle
+          lightboxTitle,
+          mediaId
         )
       })
     )
@@ -29,17 +31,20 @@ class Lightbox {
 
   /**
    * @param {string} url URL du média
-   * @param {string} title Titre de l'média
+   * @param {string} title Titre du média
    * @param {string[]} gallery Chemins des médias de la lightbox
    * @param {string[]} lightboxTitle Titres des medias de la lightbox
+   * @param {string} id Id du média
+   * @param {srting[]} mediaId Id des médias de la lightbox
    */
-  constructor(url, title, gallery, lightboxTitle) {
+  constructor(url, title, id, gallery, lightboxTitle, mediaId) {
     const main = document.getElementById('main')
     main.ariaHidden = 'true'
-    this.element = this.buildDom(url)
+    this.element = this.buildDom(url, id)
     this.gallery = gallery
     this.lightboxTitle = lightboxTitle
-    this.loadMedia(url, title)
+    this.mediaId = mediaId
+    this.loadMedia(url, title, id)
     this.onKeyUp = this.onKeyUp.bind(this)
     main.after(this.element)
     document.addEventListener('keyup', this.onKeyUp)
@@ -48,10 +53,12 @@ class Lightbox {
   /**
    * @param {string} url URL du média
    * @param {string} title Titre du média
+   * @param {string} id Id du média
    */
-  loadMedia(url, title) {
+  loadMedia(url, title, id) {
     this.url = null
     this.title = null
+    this.id = null
     const mediaTitle = document.createElement('p')
     mediaTitle.className = 'lightbox__title'
     mediaTitle.textContent = title
@@ -61,20 +68,24 @@ class Lightbox {
       const image = new Image()
       image.alt = title
       image.src = url
+      image.id = id
       container.appendChild(image)
       container.appendChild(mediaTitle)
       this.url = url
       this.title = title
+      this.id = id
     } else if (url.split('.').pop() === 'mp4') {
       const video = document.createElement('video')
       video.setAttribute('autoplay', 'true')
       video.setAttribute('alt', title)
       video.setAttribute('src', url)
       video.setAttribute('type', 'video/mp4')
+      video.id = id
       container.appendChild(video)
       container.appendChild(mediaTitle)
       this.url = url
       this.title = title
+      this.id = id
     }
   }
 
@@ -116,7 +127,11 @@ class Lightbox {
     if (i === this.gallery.length - 1) {
       i = -1
     }
-    this.loadMedia(this.gallery[i + 1], this.lightboxTitle[i + 1])
+    this.loadMedia(
+      this.gallery[i + 1],
+      this.lightboxTitle[i + 1],
+      this.mediaId[i + 1]
+    )
   }
 
   /**
@@ -129,19 +144,25 @@ class Lightbox {
     if (i === 0) {
       i = this.gallery.length
     }
-    this.loadMedia(this.gallery[i - 1], this.lightboxTitle[i - 1])
+    this.loadMedia(
+      this.gallery[i - 1],
+      this.lightboxTitle[i - 1],
+      this.mediaId[i - 1]
+    )
   }
 
   /**
    * @param {string} url URL du media
    * @param {string} title Titre du média
+   * @param {string} id Id du média
    * @return {HTMLelement}
    */
   //TODO lightbox-- container : "Contenu non imbriqué dans une région ARIA"
-  buildDom(url, title) {
+  //TODO voir pourquoi arie-role="dialog" bloque avec accessibilité au clavier et NVDA
+  buildDom(url, title, id) {
     const dom = document.createElement('div')
     dom.className = 'lightbox'
-    dom.innerHTML = `<div class="lightbox__wrapper"  aria-label="media closeup view">
+    dom.innerHTML = `<div class="lightbox__wrapper" aria-label="media closeup view">
         <button class="lightbox__close" type="button">
           <img
             class="lightbox__cross"
