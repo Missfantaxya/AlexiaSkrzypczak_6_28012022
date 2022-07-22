@@ -1,6 +1,6 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
-// TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+// Mettre le code JavaScript lié à la page photographer.html
 
 // ----- récupération de l'id du photographe dans l'url -----
 
@@ -8,13 +8,13 @@
  * Récupère les paramètres de l'url
  * @type {object}
  */
-let urlResearchParams = new URLSearchParams(window.location.search);
+const urlResearchParams = new URLSearchParams(window.location.search);
 
 /**
  * Récupère l'id du photographe dans les paramètres de l'url
  * @type {number}
  */
-let idUrl = parseInt(urlResearchParams.get('id'));
+const idUrl = parseInt(urlResearchParams.get('id'), 10);
 
 /**
  * Affiche les donées et les médias du photographe
@@ -35,7 +35,7 @@ async function displayData(photographers, media) {
    * @const {object[]}
    */
   const photograph = photographers.filter(
-    (photograph) => photograph.id == idUrl,
+    (photographer) => photographer.id === idUrl,
   );
 
   // ----- Affichage des donées du photographe -----
@@ -43,7 +43,7 @@ async function displayData(photographers, media) {
   const photographProfilDOM = photographerModel.getPhotographProfilDOM();
   photographHeader.insertBefore(photographProfilDOM, photographContact);
 
-  //-----Accessibilité du bouton de contact
+  // -----Accessibilité du bouton de contact
   const contactButton = document.querySelector('.contact__button');
   contactButton.setAttribute('type', 'button');
 
@@ -59,7 +59,7 @@ async function displayData(photographers, media) {
    * @const {object[]}
    */
   const photographMedias = media.filter(
-    (photographMedia) => photographMedia.photographerId == idUrl,
+    (photographMedia) => photographMedia.photographerId === idUrl,
   );
 
   /**
@@ -74,7 +74,7 @@ async function displayData(photographers, media) {
    * Initiation du nombre de like
    * @var {number}
    */
-  let initialLike = 0;
+  const initialLike = 0;
   /**
    * Nombre total de likes du photographe
    * @const {number}
@@ -109,7 +109,7 @@ async function displayData(photographers, media) {
 
   const photographPrice = document.createElement('p');
   photographPrice.className = 'photograph__price';
-  photographPrice.textContent = photograph[0].price + '€ / jour';
+  photographPrice.textContent = `${photograph[0].price}€ / jour`;
   photographPriceAndLike.appendChild(photographPrice);
 
   // ========== La parties avec les médias ==========
@@ -139,16 +139,14 @@ async function displayData(photographers, media) {
    * Classement des medias par popularité
    */
   function popularitySort() {
-    photographMedias.sort(function (a, b) {
-      return a.likes - b.likes;
-    });
+    photographMedias.sort((a, b) => a.likes - b.likes);
   }
 
   /**
    * Affichage des médias
    */
   function displayMedias() {
-    //Vide les medias
+    // Vide les medias
     medias.textContent = '';
     // Remplissage des médias avec classement
     photographMedias.forEach((elementMedia) => {
@@ -161,7 +159,7 @@ async function displayData(photographers, media) {
   popularitySort();
   displayMedias();
 
-  //=========== La selection du classement ==========
+  // ========== La selection du classement ==========
 
   // ----- construction du DOM -----
 
@@ -175,7 +173,7 @@ async function displayData(photographers, media) {
   selectLabel.textContent = 'Trier par';
   selectForm.appendChild(selectLabel);
 
-  options = [
+  const options = [
     {
       content: 'Popularité',
       id: 'popularityOption',
@@ -209,12 +207,13 @@ async function displayData(photographers, media) {
   selectArrow.className = 'selectArrow';
   selectButton.appendChild(selectArrow);
 
+  const selectOptions = document.createElement('ul');
+
   /**
    * construction du DOM de la liste des options du classement
    * @return {HTMLelement}
    */
   function selectOptionsDOM() {
-    const selectOptions = document.createElement('ul');
     selectOptions.className = 'selectOptions';
     selectOptions.id = 'selectOptions';
     selectOptions.setAttribute('role', 'listbox');
@@ -253,14 +252,16 @@ async function displayData(photographers, media) {
    */
   function toggleAccessOption() {
     const optionSelect = document.getElementsByClassName('selectOption');
-    const firstOption =
-      document.querySelector('.selectOptions').firstElementChild;
-    if (selectButton.ariaExpanded == 'true') {
+    Array.isArray(optionSelect);
+    const firstOption = document.querySelector('.selectOptions').firstElementChild;
+    if (selectButton.ariaExpanded === 'true') {
+      // eslint-disable-next-line no-restricted-syntax
       for (const selectOption of optionSelect) {
         selectOption.setAttribute('tabindex', '0');
       }
       firstOption.setAttribute('autofocus', 'true');
     } else {
+      // eslint-disable-next-line no-restricted-syntax
       for (const selectOption of optionSelect) {
         selectOption.setAttribute('tabindex', '-1');
       }
@@ -275,7 +276,7 @@ async function displayData(photographers, media) {
   function toggleSelection() {
     selectButton.classList.toggle('hidden');
     selectArrow.classList.toggle('up');
-    if (selectButton.ariaExpanded == 'false') {
+    if (selectButton.ariaExpanded === 'false') {
       selectButton.ariaExpanded = 'true';
     } else {
       selectButton.ariaExpanded = 'false';
@@ -283,14 +284,7 @@ async function displayData(photographers, media) {
     toggleAccessOption();
   }
 
-  //alternance ouverture et fermeture de la selection
-  selectButton.addEventListener('click', function (e) {
-    toggleSelection();
-    sortMedia();
-  });
-
   // axe d'amélioration : fermeture de la selection à la perte de focus
-
   /**
    * Permet de faire le tri des médias selon la selection choisi
    * @function
@@ -298,6 +292,7 @@ async function displayData(photographers, media) {
   function sortMedia() {
     const selectOption = document.querySelectorAll('.selectOption');
     selectOption.forEach((item) => {
+      // eslint-disable-next-line no-unused-vars
       function select(e) {
         const indice = options.findIndex(
           (oneOption) => oneOption.content === item.textContent,
@@ -305,7 +300,8 @@ async function displayData(photographers, media) {
         // suppression de l'élément sélectioné du tableau
         const optionMove = options.splice(indice, 1);
         // ajout de l'élément supprimé au début du tableau (à l'index 0)
-        const optionMoved = options.splice(0, 0, optionMove[0]);
+        // eslint-disable-next-line no-unused-vars
+        options.splice(0, 0, optionMove[0]);
         options[0].selected = 'true';
         options[1].selected = 'false';
         options[2].selected = 'false';
@@ -319,7 +315,7 @@ async function displayData(photographers, media) {
           Lightbox.init();
         } else if (item.textContent === 'Titre') {
           // classer photographMedias par titre (alphabétique)
-          photographMedias.sort(function compare(a, b) {
+          photographMedias.sort((a, b) => {
             if (a.title < b.title) return -1;
             if (a.title > b.title) return 1;
             return 0;
@@ -349,19 +345,25 @@ async function displayData(photographers, media) {
     });
   }
 
+  // alternance ouverture et fermeture de la selection
+  // eslint-disable-next-line no-unused-vars
+  selectButton.addEventListener('click', (e) => {
+    toggleSelection();
+    sortMedia();
+  });
+
   // initialisation de la lightbox:
   Lightbox.init();
 
   // ========== La parties avec la modal ==========
 
   // ----- construction du DOM -----
-  // TODO faire vérifier par Acheker
   modalDOM(photograph);
 
   // ----- inscrption du contenu des input en cosole -----
   const modal = document.querySelector('.modal');
   const contactSubmit = modal.querySelector('.contact__button');
-  contactSubmit.addEventListener('click', function (event) {
+  contactSubmit.addEventListener('click', (event) => {
     // evite la soumission par default du formulaire
     event.preventDefault();
 

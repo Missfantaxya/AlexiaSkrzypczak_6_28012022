@@ -1,11 +1,8 @@
+/* eslint-disable no-undef */
 // récupération des données du fichier json
-const getPhotographers = async () => {
-  return await fetch('./data/photographers.json').then((res) => res.json());
-};
+const getPhotographers = async () => fetch('./data/photographers.json').then((res) => res.json());
 
-const getMedia = async () => {
-  return await fetch('./data/photographers.json').then((res) => res.json());
-};
+const getMedia = async () => fetch('./data/photographers.json').then((res) => res.json());
 
 async function init() {
   // Récupère les datas des photographes

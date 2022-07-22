@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 /**
  * @param {object} data
  * @returns
  */
 function photographerFactory(data) {
-  const { name, portrait, country, city, tagline, price, id } = data;
+  const {
+    name, portrait, country, city, tagline, price, id,
+  } = data;
   const avatar = `assets/photographers/${portrait}`;
   /**
    * Construction du DOM pour les détails d'un photogarphe sur la page d'accueil
