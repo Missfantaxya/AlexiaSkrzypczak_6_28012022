@@ -8,13 +8,13 @@
  * Récupère les paramètres de l'url
  * @type {object}
  */
-let urlResearchParams = new URLSearchParams(window.location.search)
+let urlResearchParams = new URLSearchParams(window.location.search);
 
 /**
  * Récupère l'id du photographe dans les paramètres de l'url
  * @type {number}
  */
-let idUrl = parseInt(urlResearchParams.get('id'))
+let idUrl = parseInt(urlResearchParams.get('id'));
 
 /**
  * Affiche les donées et les médias du photographe
@@ -24,33 +24,33 @@ let idUrl = parseInt(urlResearchParams.get('id'))
 async function displayData(photographers, media) {
   // ========== La parties avec le photographe ==========
 
-  const heartSvg = 'assets/icons/heart-solid-black.svg'
+  const heartSvg = 'assets/icons/heart-solid-black.svg';
 
-  const photographHeader = document.querySelector('.photograph__header')
-  const photographContact = photographHeader.querySelector('.contact__button')
-  photographContact.setAttribute('type', 'button')
+  const photographHeader = document.querySelector('.photograph__header');
+  const photographContact = photographHeader.querySelector('.contact__button');
+  photographContact.setAttribute('type', 'button');
 
   /**
    * Donées du photographe
    * @const {object[]}
    */
   const photograph = photographers.filter(
-    (photograph) => photograph.id == idUrl
-  )
+    (photograph) => photograph.id == idUrl,
+  );
 
   // ----- Affichage des donées du photographe -----
-  const photographerModel = photographerFactory(photograph)
-  const photographProfilDOM = photographerModel.getPhotographProfilDOM()
-  photographHeader.insertBefore(photographProfilDOM, photographContact)
+  const photographerModel = photographerFactory(photograph);
+  const photographProfilDOM = photographerModel.getPhotographProfilDOM();
+  photographHeader.insertBefore(photographProfilDOM, photographContact);
 
   //-----Accessibilité du bouton de contact
-  const contactButton = document.querySelector('.contact__button')
-  contactButton.setAttribute('type', 'button')
+  const contactButton = document.querySelector('.contact__button');
+  contactButton.setAttribute('type', 'button');
 
   // ----- Affichage de l'avatar du photographe -----
-  const photographerAvatarModel = photographerFactory(photograph)
-  const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM()
-  photographHeader.appendChild(UserAvatarDOM)
+  const photographerAvatarModel = photographerFactory(photograph);
+  const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM();
+  photographHeader.appendChild(UserAvatarDOM);
 
   // ========== La parties avec les likes du photographe ==========
 
@@ -59,79 +59,79 @@ async function displayData(photographers, media) {
    * @const {object[]}
    */
   const photographMedias = media.filter(
-    (photographMedia) => photographMedia.photographerId == idUrl
-  )
+    (photographMedia) => photographMedia.photographerId == idUrl,
+  );
 
   /**
    * Les likes par média du pohotographe
    * @const {number[]}
    */
   const mediasLikes = photographMedias.map(
-    (oneMediaLikes) => oneMediaLikes.likes
-  )
+    (oneMediaLikes) => oneMediaLikes.likes,
+  );
 
   /**
    * Initiation du nombre de like
    * @var {number}
    */
-  let initialLike = 0
+  let initialLike = 0;
   /**
    * Nombre total de likes du photographe
    * @const {number}
    */
   const photographerAllLikes = mediasLikes.reduce(
     (previousValue, currentValue) => previousValue + currentValue,
-    initialLike
-  )
+    initialLike,
+  );
 
   // ----- construction du DOM -----
 
-  const photographPriceAndLike = document.createElement('div')
-  photographPriceAndLike.className = 'photograph__priceAndLike'
-  photographHeader.appendChild(photographPriceAndLike)
+  const photographPriceAndLike = document.createElement('div');
+  photographPriceAndLike.className = 'photograph__priceAndLike';
+  photographHeader.appendChild(photographPriceAndLike);
 
-  const photographWrapperLikes = document.createElement('div')
-  photographWrapperLikes.className = 'photograph__wrapperLikes'
-  photographPriceAndLike.appendChild(photographWrapperLikes)
+  const photographWrapperLikes = document.createElement('div');
+  photographWrapperLikes.className = 'photograph__wrapperLikes';
+  photographPriceAndLike.appendChild(photographWrapperLikes);
 
-  const photographLike = document.createElement('p')
-  photographLike.className = 'photograph__likes'
-  photographLike.textContent = photographerAllLikes
-  photographLike.setAttribute('aria-label', 'nombre de likes')
-  photographWrapperLikes.appendChild(photographLike)
+  const photographLike = document.createElement('p');
+  photographLike.className = 'photograph__likes';
+  photographLike.textContent = photographerAllLikes;
+  photographLike.setAttribute('aria-label', 'nombre de likes');
+  photographWrapperLikes.appendChild(photographLike);
 
-  const photographHeart = document.createElement('img')
-  photographHeart.className = 'photograph__heart'
-  photographHeart.id = 'photograph__heart'
-  photographHeart.setAttribute('src', heartSvg)
-  photographHeart.setAttribute('alt', 'likes')
-  photographWrapperLikes.appendChild(photographHeart)
+  const photographHeart = document.createElement('img');
+  photographHeart.className = 'photograph__heart';
+  photographHeart.id = 'photograph__heart';
+  photographHeart.setAttribute('src', heartSvg);
+  photographHeart.setAttribute('alt', 'likes');
+  photographWrapperLikes.appendChild(photographHeart);
 
-  const photographPrice = document.createElement('p')
-  photographPrice.className = 'photograph__price'
-  photographPrice.textContent = photograph[0].price + '€ / jour'
-  photographPriceAndLike.appendChild(photographPrice)
+  const photographPrice = document.createElement('p');
+  photographPrice.className = 'photograph__price';
+  photographPrice.textContent = photograph[0].price + '€ / jour';
+  photographPriceAndLike.appendChild(photographPrice);
 
   // ========== La parties avec les médias ==========
 
   // ----- construction du DOM -----
 
-  const main = document.querySelector('#main')
+  const main = document.querySelector('#main');
 
-  const mediaSection = document.createElement('section')
-  mediaSection.className = 'medias__section'
-  mediaSection.setAttribute('aria-labelledby', 'media__title')
-  main.appendChild(mediaSection)
+  const mediaSection = document.createElement('section');
+  mediaSection.className = 'medias__section';
+  mediaSection.setAttribute('aria-labelledby', 'media__title');
+  main.appendChild(mediaSection);
 
-  const mediaTitle = document.createElement('h2')
-  mediaTitle.className = 'medias__title'
-  mediaTitle.id = 'media__title'
-  mediaTitle.textContent = 'Les médias du photographe'
-  mediaSection.appendChild(mediaTitle)
+  const mediaTitle = document.createElement('h2');
+  mediaTitle.className = 'medias__title';
+  mediaTitle.id = 'media__title';
+  mediaTitle.textContent = 'Les médias du photographe';
+  mediaSection.appendChild(mediaTitle);
 
-  const medias = document.createElement('div')
-  medias.className = 'medias'
-  mediaSection.appendChild(medias)
+  const medias = document.createElement('div');
+  medias.className = 'medias';
+  mediaSection.appendChild(medias);
 
   // ----- fonctions des médias -----
 
@@ -140,8 +140,8 @@ async function displayData(photographers, media) {
    */
   function popularitySort() {
     photographMedias.sort(function (a, b) {
-      return a.likes - b.likes
-    })
+      return a.likes - b.likes;
+    });
   }
 
   /**
@@ -149,31 +149,31 @@ async function displayData(photographers, media) {
    */
   function displayMedias() {
     //Vide les medias
-    medias.textContent = ''
+    medias.textContent = '';
     // Remplissage des médias avec classement
     photographMedias.forEach((elementMedia) => {
-      const mediaModel = mediaFactory(elementMedia)
-      const elementMediaDOM = mediaModel.getMediaCardDOM()
-      medias.appendChild(elementMediaDOM)
-    })
+      const mediaModel = mediaFactory(elementMedia);
+      const elementMediaDOM = mediaModel.getMediaCardDOM();
+      medias.appendChild(elementMediaDOM);
+    });
   }
 
-  popularitySort()
-  displayMedias()
+  popularitySort();
+  displayMedias();
 
   //=========== La selection du classement ==========
 
   // ----- construction du DOM -----
 
-  const selectForm = document.createElement('form')
-  selectForm.className = 'selectForm'
-  mediaSection.insertBefore(selectForm, medias)
+  const selectForm = document.createElement('form');
+  selectForm.className = 'selectForm';
+  mediaSection.insertBefore(selectForm, medias);
 
-  const selectLabel = document.createElement('label')
-  selectLabel.className = 'selectLabel'
-  selectLabel.id = 'selectLabel'
-  selectLabel.textContent = 'Trier par'
-  selectForm.appendChild(selectLabel)
+  const selectLabel = document.createElement('label');
+  selectLabel.className = 'selectLabel';
+  selectLabel.id = 'selectLabel';
+  selectLabel.textContent = 'Trier par';
+  selectForm.appendChild(selectLabel);
 
   options = [
     {
@@ -194,56 +194,56 @@ async function displayData(photographers, media) {
       classe: 'titleOption',
       selected: 'false',
     },
-  ]
+  ];
 
-  const selectButton = document.createElement('button')
-  selectButton.className = 'selectButton hidden'
-  selectButton.setAttribute('type', 'button')
-  selectButton.setAttribute('role', 'button')
-  selectButton.setAttribute('aria-labelledby', 'selectLabel')
-  selectButton.ariaHasPopup = 'listbox'
-  selectButton.ariaExpanded = 'false'
-  selectForm.appendChild(selectButton)
+  const selectButton = document.createElement('button');
+  selectButton.className = 'selectButton hidden';
+  selectButton.setAttribute('type', 'button');
+  selectButton.setAttribute('role', 'button');
+  selectButton.setAttribute('aria-labelledby', 'selectLabel');
+  selectButton.ariaHasPopup = 'listbox';
+  selectButton.ariaExpanded = 'false';
+  selectForm.appendChild(selectButton);
 
-  const selectArrow = document.createElement('div')
-  selectArrow.className = 'selectArrow'
-  selectButton.appendChild(selectArrow)
+  const selectArrow = document.createElement('div');
+  selectArrow.className = 'selectArrow';
+  selectButton.appendChild(selectArrow);
 
   /**
    * construction du DOM de la liste des options du classement
    * @return {HTMLelement}
    */
   function selectOptionsDOM() {
-    const selectOptions = document.createElement('ul')
-    selectOptions.className = 'selectOptions'
-    selectOptions.id = 'selectOptions'
-    selectOptions.setAttribute('role', 'listbox')
-    selectOptions.setAttribute('aria-activedescendant', `${options[0].id}`)
-    selectOptions.setAttribute('aria-labelledby', 'selectLabel')
-    selectButton.insertBefore(selectOptions, selectArrow)
+    const selectOptions = document.createElement('ul');
+    selectOptions.className = 'selectOptions';
+    selectOptions.id = 'selectOptions';
+    selectOptions.setAttribute('role', 'listbox');
+    selectOptions.setAttribute('aria-activedescendant', `${options[0].id}`);
+    selectOptions.setAttribute('aria-labelledby', 'selectLabel');
+    selectButton.insertBefore(selectOptions, selectArrow);
   }
-  selectOptionsDOM()
+  selectOptionsDOM();
 
   /**
    * construction du DOM des options la selection pour le classement des médias
    * @return {HTMLelement}
    */
   function selectionDOM() {
-    selectOptions.innerHTML = ''
+    selectOptions.innerHTML = '';
     options.map((selectOption) => {
-      const optionSelect = document.createElement('li')
-      optionSelect.className = `selectOption ${selectOption.classe}`
-      optionSelect.id = `${selectOption.classe}`
-      optionSelect.setAttribute('role', 'option')
-      optionSelect.setAttribute('tabindex', '-1')
-      optionSelect.setAttribute('aria-selected', `${selectOption.selected}`)
-      optionSelect.textContent = selectOption.content
-      selectOptions.appendChild(optionSelect)
-      return optionSelect
-    })
+      const optionSelect = document.createElement('li');
+      optionSelect.className = `selectOption ${selectOption.classe}`;
+      optionSelect.id = `${selectOption.classe}`;
+      optionSelect.setAttribute('role', 'option');
+      optionSelect.setAttribute('tabindex', '-1');
+      optionSelect.setAttribute('aria-selected', `${selectOption.selected}`);
+      optionSelect.textContent = selectOption.content;
+      selectOptions.appendChild(optionSelect);
+      return optionSelect;
+    });
   }
 
-  selectionDOM()
+  selectionDOM();
 
   // ----- Fonctionnement de la selection -----
 
@@ -252,19 +252,19 @@ async function displayData(photographers, media) {
    * @function
    */
   function toggleAccessOption() {
-    const optionSelect = document.getElementsByClassName('selectOption')
+    const optionSelect = document.getElementsByClassName('selectOption');
     const firstOption =
-      document.querySelector('.selectOptions').firstElementChild
+      document.querySelector('.selectOptions').firstElementChild;
     if (selectButton.ariaExpanded == 'true') {
       for (const selectOption of optionSelect) {
-        selectOption.setAttribute('tabindex', '0')
+        selectOption.setAttribute('tabindex', '0');
       }
-      firstOption.setAttribute('autofocus', 'true')
+      firstOption.setAttribute('autofocus', 'true');
     } else {
       for (const selectOption of optionSelect) {
-        selectOption.setAttribute('tabindex', '-1')
+        selectOption.setAttribute('tabindex', '-1');
       }
-      firstOption.setAttribute('autofocus', 'false')
+      firstOption.setAttribute('autofocus', 'false');
     }
   }
 
@@ -273,21 +273,21 @@ async function displayData(photographers, media) {
    * @function
    */
   function toggleSelection() {
-    selectButton.classList.toggle('hidden')
-    selectArrow.classList.toggle('up')
+    selectButton.classList.toggle('hidden');
+    selectArrow.classList.toggle('up');
     if (selectButton.ariaExpanded == 'false') {
-      selectButton.ariaExpanded = 'true'
+      selectButton.ariaExpanded = 'true';
     } else {
-      selectButton.ariaExpanded = 'false'
+      selectButton.ariaExpanded = 'false';
     }
-    toggleAccessOption()
+    toggleAccessOption();
   }
 
   //alternance ouverture et fermeture de la selection
   selectButton.addEventListener('click', function (e) {
-    toggleSelection()
-    sortMedia()
-  })
+    toggleSelection();
+    sortMedia();
+  });
 
   // axe d'amélioration : fermeture de la selection à la perte de focus
 
@@ -296,44 +296,44 @@ async function displayData(photographers, media) {
    * @function
    */
   function sortMedia() {
-    const selectOption = document.querySelectorAll('.selectOption')
+    const selectOption = document.querySelectorAll('.selectOption');
     selectOption.forEach((item) => {
       function select(e) {
         const indice = options.findIndex(
-          (oneOption) => oneOption.content === item.textContent
-        )
+          (oneOption) => oneOption.content === item.textContent,
+        );
         // suppression de l'élément sélectioné du tableau
-        const optionMove = options.splice(indice, 1)
+        const optionMove = options.splice(indice, 1);
         // ajout de l'élément supprimé au début du tableau (à l'index 0)
-        const optionMoved = options.splice(0, 0, optionMove[0])
-        options[0].selected = 'true'
-        options[1].selected = 'false'
-        options[2].selected = 'false'
+        const optionMoved = options.splice(0, 0, optionMove[0]);
+        options[0].selected = 'true';
+        options[1].selected = 'false';
+        options[2].selected = 'false';
         // classement des médias en fonction de l'option sélectionée
         if (item.textContent === 'Date') {
           // classer photographMedias par date
           photographMedias.sort(
-            (a, b) => Date.parse(a.date) - Date.parse(b.date)
-          )
-          displayMedias()
-          Lightbox.init()
+            (a, b) => Date.parse(a.date) - Date.parse(b.date),
+          );
+          displayMedias();
+          Lightbox.init();
         } else if (item.textContent === 'Titre') {
           // classer photographMedias par titre (alphabétique)
           photographMedias.sort(function compare(a, b) {
-            if (a.title < b.title) return -1
-            if (a.title > b.title) return 1
-            return 0
-          })
-          displayMedias()
-          Lightbox.init()
+            if (a.title < b.title) return -1;
+            if (a.title > b.title) return 1;
+            return 0;
+          });
+          displayMedias();
+          Lightbox.init();
         } else if (item.textContent === 'Popularité') {
-          popularitySort()
-          displayMedias()
-          Lightbox.init()
+          popularitySort();
+          displayMedias();
+          Lightbox.init();
         }
-        selectOptions.remove()
-        selectOptionsDOM()
-        selectionDOM()
+        selectOptions.remove();
+        selectOptionsDOM();
+        selectionDOM();
       }
 
       /**
@@ -341,36 +341,36 @@ async function displayData(photographers, media) {
        */
       item.addEventListener('keyup', (e) => {
         if (e.key === 'Enter') {
-          select()
+          select();
         }
-      })
+      });
 
-      item.addEventListener('click', select)
-    })
+      item.addEventListener('click', select);
+    });
   }
 
   // initialisation de la lightbox:
-  Lightbox.init()
+  Lightbox.init();
 
   // ========== La parties avec la modal ==========
 
   // ----- construction du DOM -----
   // TODO faire vérifier par Acheker
-  modalDOM(photograph)
+  modalDOM(photograph);
 
   // ----- inscrption du contenu des input en cosole -----
-  const modal = document.querySelector('.modal')
-  const contactSubmit = modal.querySelector('.contact__button')
+  const modal = document.querySelector('.modal');
+  const contactSubmit = modal.querySelector('.contact__button');
   contactSubmit.addEventListener('click', function (event) {
     // evite la soumission par default du formulaire
-    event.preventDefault()
+    event.preventDefault();
 
-    logInput()
+    logInput();
 
     // function temporaire en attendant une soumission fonctionnelle du formulaire
-    eraseInput()
+    eraseInput();
     window.setTimeout(() => {
-      closeModal()
-    }, 500)
-  })
+      closeModal();
+    }, 500);
+  });
 }
