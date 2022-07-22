@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 /**
  * Affiche la liste des photographes
  * @param {Object[]} photographers Liste des photographes

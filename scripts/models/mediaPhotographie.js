@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function mediaPhotographie(data, mediaLink) {
   const picture = `assets/photographies/${data.photographerId}/${data.image}`;
   mediaLink.setAttribute('href', picture);

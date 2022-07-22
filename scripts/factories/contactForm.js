@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function modalDOM(data) {
   // ----- construction du DOM -----
   const modalContact = document.getElementById('contact__modal');

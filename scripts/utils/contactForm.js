@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 function displayModal() {
   const modal = document.getElementById('contact__modal');
   modal.style.display = 'block';

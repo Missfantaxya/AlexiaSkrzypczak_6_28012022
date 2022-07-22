@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function mediaMovie(data, mediaLink) {
   const videoMedia = `assets/photographies/${data.photographerId}/${data.video}`;
   mediaLink.setAttribute('href', videoMedia);

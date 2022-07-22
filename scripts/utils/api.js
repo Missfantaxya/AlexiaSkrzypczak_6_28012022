@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // récupération des données du fichier json
 const getPhotographers = async () => fetch('./data/photographers.json').then((res) => res.json());
 
