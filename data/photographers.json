@@ -63,8 +63,7 @@
       "image": "Fashion_Yellow_Beach.jpg",
       "likes": 62,
       "date": "2011-12-08",
-      "price": 55,
-      "description": "Femme avec un jogging jaune"
+      "price": 55
     },
     {
       "id": 8520927,
@@ -73,8 +72,7 @@
       "image": "Fashion_Urban_Jungle.jpg",
       "likes": 11,
       "date": "2011-11-06",
-      "price": 55,
-      "description": "Femme en tenu verte"
+      "price": 55
     },
     {
       "id": 9025895,
@@ -83,8 +81,7 @@
       "image": "Fashion_Pattern_on_Pattern.jpg",
       "likes": 72,
       "date": "2013-08-12",
-      "price": 55,
-      "description": "Femme avec des vêtements rayés"
+      "price": 55
     },
     {
       "id": 9275938,
@@ -93,8 +90,7 @@
       "image": "Event_WeddingGazebo.jpg",
       "likes": 69,
       "date": "2018-02-22",
-      "price": 55,
-      "description": "Décors de mariage en plein air"
+      "price": 55
     },
     {
       "id": 2053494,
@@ -103,8 +99,7 @@
       "image": "Event_Sparklers.jpg",
       "likes": 2,
       "date": "2020-05-25",
-      "price": 55,
-      "description": "Mariage la nuit"
+      "price": 55
     },
     {
       "id": 7324238,
@@ -113,8 +108,7 @@
       "image": "Event_18thAnniversary.jpg",
       "likes": 33,
       "date": "2019-06-12",
-      "price": 55,
-      "description": "table d'anniversaire"
+      "price": 55
     },
     {
       "id": 8328953,
@@ -123,8 +117,7 @@
       "video": "Art_Wooden_Horse_Sculpture.mp4",
       "likes": 24,
       "date": "2011-12-08",
-      "price": 100,
-      "description": "vidéo d'une sculture en bois représentant un cheval"
+      "price": 100
     },
     {
       "id": 7502053,
@@ -133,8 +126,7 @@
       "image": "Art_Triangle_Man.jpg",
       "likes": 88,
       "date": "2007-05-07",
-      "price": 55,
-      "description": "un Triangle blanc sur fond bleu  "
+      "price": 55
     },
     {
       "id": 8523492,
@@ -143,8 +135,7 @@
       "image": "Art_Purple_light.jpg",
       "likes": 24,
       "date": "2018-05-05",
-      "price": 55,
-      "description": "Tunnel avec des tags"
+      "price": 55
     },
     {
       "id": 75902334,
@@ -153,8 +144,7 @@
       "image": "Art_Mine.jpg",
       "likes": 75,
       "date": "2019-11-25",
-      "price": 55,
-      "description": "peinture moderne de têtes d'oiseaux"
+      "price": 55
     },
 
     {
@@ -164,8 +154,7 @@
       "image": "Sport_2000_with_8.jpg",
       "likes": 52,
       "date": "2013-02-30",
-      "price": 70,
-      "description": "vue du dessus d'un aviron"
+      "price": 70
     },
     {
       "id": 92758372,
@@ -174,8 +163,7 @@
       "image": "Fashion_Wings.jpg",
       "likes": 58,
       "date": "2018-07-17",
-      "price": 70,
-      "description": "un duo en vêtement pâle"
+      "price": 70
     },
     {
       "id": 32958383,
@@ -184,8 +172,7 @@
       "image": "Fashion_Melody_Red_on_Stripes.jpg",
       "likes": 11,
       "date": "2019-08-12",
-      "price": 70,
-      "description": "femme en robe rouge"
+      "price": 70
     },
     {
       "id": 928587383,
@@ -194,8 +181,7 @@
       "image": "Event_VentureConference.jpg",
       "likes": 2,
       "date": "2019-01-02",
-      "price": 70,
-      "description": "réunion professionnelle"
+      "price": 70
     },
     {
       "id": 725639493,
@@ -204,8 +190,7 @@
       "image": "Event_ProductPitch.jpg",
       "likes": 3,
       "date": "2019-05-20",
-      "price": 70,
-      "description": "présentation professionnel"
+      "price": 70
     },
     {
       "id": 23394384,
@@ -214,8 +199,7 @@
       "image": "Event_KeyboardCheck.jpg",
       "likes": 52,
       "date": "2019-07-18",
-      "price": 70,
-      "description": "pianiste devant un synthétiseur"
+      "price": 70
     },
     {
       "id": 87367293,
@@ -224,8 +208,7 @@
       "image": "Event_Emcee.jpg",
       "likes": 23,
       "date": "2018-02-22",
-      "price": 70,
-      "description": "Chanteuse"
+      "price": 70
     },
     {
       "id": 593834784,
@@ -234,8 +217,7 @@
       "image": "Animals_Majesty.jpg",
       "likes": 52,
       "date": "2017-03-13",
-      "price": 70,
-      "description": "Un cerf qui regarde l'objectif"
+      "price": 70
     },
     {
       "id": 83958935,
@@ -244,8 +226,7 @@
       "video": "Animals_Puppiness.mp4",
       "likes": 52,
       "date": "2016-06-12",
-      "price": 70,
-      "description": "Vidéo d'un chiot qui joue sur la plage"
+      "price": 70
     },
     {
       "id": 394583434,
@@ -254,8 +235,7 @@
       "video": "Travel_Rock_Mountains.mp4",
       "likes": 23,
       "date": "2017-03-18",
-      "price": 45,
-      "description": "vidéo aérienne de sommets montagneux"
+      "price": 45
     },
     {
       "id": 343423425,
@@ -264,8 +244,7 @@
       "image": "Travel_Outdoor_Baths.jpg",
       "likes": 101,
       "date": "2017-04-03",
-      "price": 45,
-      "description": "grand bains chaud naturel avec des personnes qui s'y baignent"
+      "price": 45
     },
     {
       "id": 73434243,
@@ -274,8 +253,7 @@
       "image": "Travel_Road_into_Hill.jpg",
       "likes": 99,
       "date": "2018-04-30",
-      "price": 45,
-      "description": "route qui traverses des champs"
+      "price": 45
     },
     {
       "id": 23425523,
@@ -284,8 +262,7 @@
       "image": "Travel_Bridge_into_Forest.jpg",
       "likes": 34,
       "date": "2016-04-05",
-      "price": 45,
-      "description": "Pont dans la forêt"
+      "price": 45
     },
     {
       "id": 23134513,
@@ -294,8 +271,7 @@
       "image": "Travel_Boat_Wanderer.jpg",
       "likes": 23,
       "date": "2017-03-18",
-      "price": 45,
-      "description": "avant d'un bateau sur un lac entre des montagnes"
+      "price": 45
     },
     {
       "id": 92352352,
@@ -304,8 +280,7 @@
       "image": "Portrait_Sunkissed.jpg",
       "likes": 66,
       "date": "2018-05-24",
-      "price": 45,
-      "description": "portrait d'une femme souriante"
+      "price": 45
     },
     {
       "id": 34513453,
@@ -314,8 +289,7 @@
       "image": "Portrait_Shaw.jpg",
       "likes": 52,
       "date": "2017-04-21",
-      "price": 45,
-      "description": "portrait en noir et blanc d'un homme avec un pull sombre, sur fond sombre"
+      "price": 45
     },
     {
       "id": 23523533,
@@ -324,8 +298,7 @@
       "image": "Portrait_Alexandra.jpg",
       "likes": 95,
       "date": "2018-11-02",
-      "price": 45,
-      "description": "protrait en noir et blenc d'une femme sur fonc clair"
+      "price": 45
     },
     {
       "id": 525834234,
@@ -334,8 +307,7 @@
       "image": "Portrait_AfternoonBreak.jpg",
       "likes": 25,
       "date": "2019-01-02",
-      "price": 45,
-      "description": "portrait en noir et blanc d'un homme tenant une cigarette"
+      "price": 45
     },
 
     {
@@ -345,8 +317,7 @@
       "image": "Travel_Lonesome.jpg",
       "likes": 88,
       "date": "2019-02-03",
-      "price": 45,
-      "description": "personne au sommet d'un rocher dans une étendu de forêt"
+      "price": 45
     },
     {
       "id": 625025343,
@@ -355,8 +326,7 @@
       "image": "Travel_HillsideColor.jpg",
       "likes": 85,
       "date": "2019-04-03",
-      "price": 45,
-      "description": "village au bord de mer avec les façades de différentes couleurs"
+      "price": 45
     },
     {
       "id": 2525345343,
@@ -365,8 +335,7 @@
       "image": "Portrait_Wednesday.jpg",
       "likes": 34,
       "date": "2019-04-07",
-      "price": 45,
-      "description": "portrait en noir et blanc d'une petite fille qui déforme sa bouche avec ses mains"
+      "price": 45
     },
     {
       "id": 2523434634,
@@ -375,8 +344,7 @@
       "image": "Portrait_Nora.jpg",
       "likes": 63,
       "date": "2019-04-07",
-      "price": 45,
-      "description": "portrait une femme avec des lunettes"
+      "price": 45
     },
     {
       "id": 398847109,
@@ -385,8 +353,7 @@
       "image": "Portrait_Background.jpg",
       "likes": 55,
       "date": "2019-06-20",
-      "price": 45,
-      "description": "portrait en noir et balnc d'une femme en pulle sombre sur un fond sombre"
+      "price": 45
     },
     {
       "id": 2534342,
@@ -395,8 +362,7 @@
       "image": "Event_SeasideWedding.jpg",
       "likes": 25,
       "date": "2019-06-21",
-      "price": 45,
-      "description": "une longue table dressée pour un repas sur la plage"
+      "price": 45
     },
     {
       "id": 65235234,
@@ -405,8 +371,7 @@
       "image": "Event_PintoWedding.jpg",
       "likes": 52,
       "date": "2019-06-25",
-      "price": 45,
-      "description": "un couple de mariés front à front dans un décors avec des rochers"
+      "price": 45
     },
     {
       "id": 23523434,
@@ -415,8 +380,7 @@
       "image": "Event_BenevidesWedding.jpg",
       "likes": 77,
       "date": "2019-06-28",
-      "price": 45,
-      "description": "un couple de marié qui s'enlasse dans un décors d'espace de mariage en pleine air"
+      "price": 45
     },
     {
       "id": 5234343,
@@ -425,8 +389,7 @@
       "video": "Animals_Wild_Horses_in_the_mountains.mp4",
       "likes": 142,
       "date": "2019-08-23",
-      "price": 60,
-      "description": "vidéo d'un troupeau de chevaux qui passe"
+      "price": 60
     },
     {
       "id": 95234343,
@@ -435,8 +398,7 @@
       "image": "Animals_Rainbow.jpg",
       "likes": 59,
       "date": "2019-07-02",
-      "price": 60,
-      "description": "un oiseau multicolor"
+      "price": 60
     },
 
     {
@@ -446,8 +408,7 @@
       "image": "Travel_Tower.jpg",
       "likes": 25,
       "date": "2019-04-03",
-      "price": 60,
-      "description": "deux femmes en tenues traditionnelle japonnaise de dos dans un décors de rue traditionnelle japonnaise"
+      "price": 60
     },
     {
       "id": 2523434,
@@ -456,8 +417,7 @@
       "image": "Travel_SunsetonCanals.jpg",
       "likes": 53,
       "date": "2019-05-06",
-      "price": 60,
-      "description": "Canal de Venise avec des gondoles"
+      "price": 60
     },
     {
       "id": 95293534,
@@ -466,8 +426,7 @@
       "image": "Travel_OpenMountain.jpg",
       "likes": 33,
       "date": "2019-05-12",
-      "price": 60,
-      "description": "lac entouré de forêts et de montagnes"
+      "price": 60
     },
     {
       "id": 356234343,
@@ -476,8 +435,7 @@
       "image": "Travel_Bike_and_Stair.jpg",
       "likes": 53,
       "date": "2019-06-20",
-      "price": 60,
-      "description": "vélo au pieds d'escalier dans la rue"
+      "price": 60
     },
     {
       "id": 235234343,
@@ -486,8 +444,7 @@
       "image": "Travel_Adventure_Door.jpg",
       "likes": 63,
       "date": "2019-06-26",
-      "price": 60,
-      "description": "ouverture de type orientale d'un bâtiment avec vu sur une ville"
+      "price": 60
     },
     {
       "id": 6234234343,
@@ -496,8 +453,7 @@
       "image": "Architecture_Contrast.jpg",
       "likes": 52,
       "date": "2019-06-30",
-      "price": 60,
-      "description": "bâtiment rouge en brique devant un bâtiment en briques jaunes avec des coupoles"
+      "price": 60
     },
     {
       "id": 6525666253,
@@ -506,8 +462,7 @@
       "image": "Architecture_On_a_hill.jpg",
       "likes": 63,
       "date": "2019-07-20",
-      "price": 60,
-      "description": "village sur un rocher dans des monatgnes"
+      "price": 60
     },
     {
       "id": 98252523433,
@@ -516,8 +471,7 @@
       "image": "Architecture_Dome.jpg",
       "likes": 88,
       "date": "2020-01-05",
-      "price": 60,
-      "description": "tour de Pise vue d'en bas"
+      "price": 60
     },
     {
       "id": 9259398453,
@@ -526,8 +480,7 @@
       "video": "Architecture_coverr_circle_empty_highway_in_buenos_aires_587740985637.mp4",
       "likes": 57,
       "date": "2020-01-20",
-      "price": 65,
-      "description": "video aérienne d'un échangeur d'autauroute qui remonte vers la ville"
+      "price": 65
     },
     {
       "id": 3523523534,
@@ -536,8 +489,7 @@
       "image": "Architecture_Corner_Room.jpg",
       "likes": 54,
       "date": "2020-05-05",
-      "price": 60,
-      "description": "immeuble d'angle rouge avec toit bleu"
+      "price": 60
     },
     {
       "id": 952343423,
@@ -546,8 +498,7 @@
       "video": "Sport_Tricks_in_the_air.mp4",
       "likes": 150,
       "date": "2018-02-30",
-      "price": 70,
-      "description": "video d'une acrobate arérienne"
+      "price": 70
     },
     {
       "id": 235234343,
@@ -556,8 +507,7 @@
       "image": "Sport_Next_Hold.jpg",
       "likes": 101,
       "date": "2018-03-05",
-      "price": 65,
-      "description": "une personne qui escalade vu du dessus"
+      "price": 65
     },
     {
       "id": 235343222,
@@ -566,8 +516,7 @@
       "image": "sport_water_tunnel.jpg",
       "likes": 103,
       "date": "2018-03-10",
-      "price": 70,
-      "description": "un surfer dans un vague vue d'en face"
+      "price": 70
     },
     {
       "id": 7775342343,
@@ -576,8 +525,7 @@
       "image": "Sport_Sky_Cross.jpg",
       "likes": 77,
       "date": "2018-04-16",
-      "price": 50,
-      "description": "un skieur qui fait un saut"
+      "price": 50
     },
     {
       "id": 9253445784,
@@ -586,8 +534,7 @@
       "image": "Sport_Race_End.jpg",
       "likes": 88,
       "date": "2018-04-22",
-      "price": 65,
-      "description": "des coureuses sur la piste de course"
+      "price": 65
     },
     {
       "id": 22299394,
@@ -596,8 +543,7 @@
       "image": "Sport_Jump.jpg",
       "likes": 95,
       "date": "2018-04-27",
-      "price": 70,
-      "description": "un skatter qui fait un saut"
+      "price": 70
     },
     {
       "id": 3452342633,
@@ -606,8 +552,7 @@
       "image": "Architecture_White_Light.jpg",
       "likes": 52,
       "date": "2018-05-03",
-      "price": 75,
-      "description": "un dôme de vers au dessus d'un intérieur blanc vue d'en-bas"
+      "price": 75
     },
     {
       "id": 939234243,
@@ -616,8 +561,7 @@
       "image": "Architecture_Water_on_Modern.jpg",
       "likes": 55,
       "date": "2018-05-10",
-      "price": 72,
-      "description": "exterieur d'un bâitment en forme de vague"
+      "price": 72
     },
     {
       "id": 222959233,
@@ -626,8 +570,7 @@
       "image": "Architecture_Horseshoe.jpg",
       "likes": 85,
       "date": "2018-05-15",
-      "price": 71,
-      "description": "vu du ciel  entre les courbures circulaires d'un bâtiment"
+      "price": 71
     },
     {
       "id": 965933434,
@@ -636,8 +579,7 @@
       "image": "Architecture_Cross_Bar.jpg",
       "likes": 66,
       "date": "2018-05-20",
-      "price": 58,
-      "description": "vue du ciel entre deux bâtiments parrallèles"
+      "price": 58
     },
     {
       "id": 777723343,
@@ -646,8 +588,7 @@
       "image": "Architecture_Connected_Curves.jpg",
       "likes": 79,
       "date": "2018-05-21",
-      "price": 80,
-      "description": "un bâtiment courbes avec un trou"
+      "price": 80
     }
   ]
 }
