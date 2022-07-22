@@ -2,8 +2,6 @@
 /* eslint-disable no-unused-vars */
 // Mettre le code JavaScript lié à la page photographer.html
 
-// TODO revoir les descriptions des médias (j'ai inversé certaines) dans la data
-
 // ----- récupération de l'id du photographe dans l'url -----
 
 /**
@@ -360,7 +358,6 @@ async function displayData(photographers, media) {
   // ========== La parties avec la modal ==========
 
   // ----- construction du DOM -----
-  // TODO faire vérifier par Acheker
   modalDOM(photograph);
 
   // ----- inscrption du contenu des input en cosole -----
