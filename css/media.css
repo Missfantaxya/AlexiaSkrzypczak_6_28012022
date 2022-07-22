@@ -46,7 +46,7 @@
   padding: 0 100px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0,5em 0;
+  gap: 71px 95px;
 }
 .media__article{
   padding-bottom: 1rem;
