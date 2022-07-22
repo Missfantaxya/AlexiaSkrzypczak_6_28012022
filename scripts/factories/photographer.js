@@ -55,43 +55,33 @@ function photographerFactory(data) {
     return photographerArticle;
   }
 
-  /**
-   * Construction du DOM pour les détails d'un photographe sur sa page
-   * @returns {HTMLElement}
-   */
-  function getPhotographProfilDOM() {
-    const photographerDetails = document.createElement('div');
-    photographerDetails.className = 'photographerDetails';
-
-    const photographerName = document.createElement('h1');
-    photographerName.className = 'photographerName';
-    photographerName.textContent = data[0].name;
-    photographerDetails.appendChild(photographerName);
-
-    const photographerContent = document.createElement('div');
-    photographerContent.className = 'photographerContent';
-    photographerDetails.appendChild(photographerContent);
-
-    const photographerLocation = document.createElement('p');
-    photographerLocation.className = 'photographerLocation';
-    photographerLocation.textContent = `${data[0].city}, ${data[0].country}`;
-    photographerContent.appendChild(photographerLocation);
-
-    const photographerTagline = document.createElement('p');
-    photographerTagline.className = 'photographerTagline';
-    photographerTagline.textContent = data[0].tagline;
-    photographerContent.appendChild(photographerTagline);
-
-    return photographerDetails;
+  function getPhotographName() {
+    const photographName = document.createElement('h1');
+    photographName.className = 'photograph__name';
+    photographName.textContent = data[0].name;
+    return photographName;
   }
 
-  function getUserAvatarDOM() {
+  function getPhotographLocation() {
+    const photographLocation = document.createElement('p');
+    photographLocation.className = 'photograph__location';
+    photographLocation.textContent = `${data[0].city}, ${data[0].country}`;
+    return photographLocation;
+  }
+
+  function getPhotographTagline() {
+    const photographTagline = document.createElement('p');
+    photographTagline.className = 'photograph__tagline';
+    photographTagline.textContent = data[0].tagline;
+    return photographTagline;
+  }
+
+  function getPhotographAvatar() {
     const figure = `assets/photographers/${data[0].portrait}`;
     const photographerAvatar = document.createElement('img');
-    photographerAvatar.className = 'photographerAvatar';
+    photographerAvatar.className = 'photograph__avatar';
     photographerAvatar.setAttribute('src', figure);
     photographerAvatar.setAttribute('alt', data[0].name);
-
     return photographerAvatar;
   }
 
@@ -104,7 +94,9 @@ function photographerFactory(data) {
     price,
     id,
     getPhotographerCardDOM,
-    getPhotographProfilDOM,
-    getUserAvatarDOM,
+    getPhotographName,
+    getPhotographLocation,
+    getPhotographTagline,
+    getPhotographAvatar,
   };
 }

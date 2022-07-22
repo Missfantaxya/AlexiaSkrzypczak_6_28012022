@@ -40,8 +40,12 @@ async function displayData(photographers, media) {
 
   // ----- Affichage des donées du photographe -----
   const photographerModel = photographerFactory(photograph);
-  const photographProfilDOM = photographerModel.getPhotographProfilDOM();
-  photographHeader.insertBefore(photographProfilDOM, photographContact);
+  const photographNameDOM = photographerModel.getPhotographName();
+  photographHeader.insertBefore(photographNameDOM, photographContact);
+  const photographLocationDOM = photographerModel.getPhotographLocation();
+  photographHeader.insertBefore(photographLocationDOM, photographContact);
+  const photographTaglineDOM = photographerModel.getPhotographTagline();
+  photographHeader.insertBefore(photographTaglineDOM, photographContact);
 
   // -----Accessibilité du bouton de contact
   const contactButton = document.querySelector('.contact__button');
@@ -49,8 +53,8 @@ async function displayData(photographers, media) {
 
   // ----- Affichage de l'avatar du photographe -----
   const photographerAvatarModel = photographerFactory(photograph);
-  const UserAvatarDOM = photographerAvatarModel.getUserAvatarDOM();
-  photographHeader.appendChild(UserAvatarDOM);
+  const PhotographAvatarDOM = photographerAvatarModel.getPhotographAvatar();
+  photographHeader.appendChild(PhotographAvatarDOM);
 
   // ========== La parties avec les likes du photographe ==========
 

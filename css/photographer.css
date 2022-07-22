@@ -1,23 +1,44 @@
 .photograph__header {
   background-color: #fafafa;
-  height: 300px;
+  height: 313px;
   margin: 0 100px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-weight: 400;
+  position:relative;
 }
 
-.photographerAvatar {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
+.photograph__name {
+grid-column: 1;
+grid-row: 1;
+width: 282px;
+height: 83px;
+margin-top: 71px;
+margin-left: 50px;
+font-size: 64px;
 }
 
-.photographerLocation {
+.photograph__location {
+  width: 124px;
+  height: 31px;
   color: #901c1c;
   margin-bottom: 1em;
-  font-size: 1.2em;
+  font-size: 24px;
+  grid-column: 1;
+  grid-row: 1;
+  margin-left: 50px;
+  position:relative;
+  top: 154px;
+}
+
+.photograph__tagline{
+  grid-column: 1;
+  grid-row: 1;
+  width: 348px;
+  height: 23px;
+  margin-left: 50px; 
+  position:relative;
+  top: 204px;
 }
 
 .contact__button {
@@ -31,6 +52,9 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
 }
 
 .contact__button:hover,
@@ -38,6 +62,15 @@
   background-color: #D3573C;
   color: black;
   border: none;
+}
+
+.photograph__avatar {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  grid-column: 3;
+  grid-row: 1;
+  align-self: center;
 }
 
 
