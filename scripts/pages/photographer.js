@@ -368,7 +368,7 @@ async function displayData(photographers, media) {
   // ----- construction du DOM -----
   modalDOM(photograph);
 
-  // ----- inscrption du contenu des input en cosole -----
+  // ----- inscription du contenu des inputs en console -----
   const modal = document.querySelector('.modal');
   const contactSubmit = modal.querySelector('.contact__button');
   contactSubmit.addEventListener('click', (event) => {

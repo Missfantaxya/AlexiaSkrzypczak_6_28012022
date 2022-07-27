@@ -1,10 +1,8 @@
  #contact__modal{
     display: none;
-    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 40px 86px 0 101px;
     width: 100vw;
     height: 100vh;
     background: white;
@@ -12,23 +10,20 @@
 }
 
 .modal {
+  box-sizing: border-box;
+  margin: 62px 386px 62px 385px;
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  width: 669px;
+  height: 900px;
   padding: 15px 35px;
-  margin: auto;
-  max-width: 669px;
   position:relative;
 }
 
 .modal__header {
   justify-content: space-between;
-  width: 100%;
-  height:min-content
+  width: 599px;
+  height: 166px;
 }
 
 .modal header img {
@@ -38,6 +33,7 @@
 }
 
 .modal__title {
+  height: 166px;
   font-weight: 400;
   font-size: 64px;
   color:black;
@@ -45,8 +41,8 @@
 }
 
 .modal__photographerName{
-font-weight: 400;
-font-size: 64px;
+  font-weight: 400;
+  font-size: 64px;
 }
 
 .modal__close{
@@ -64,34 +60,42 @@ font-size: 64px;
 
 .modal form {
   display: flex;
-  width: 100%;
+  width: 599px;
   flex-direction: column;
   align-items: flex-start;
-}
-
-.modal form label {
-  color: #312e2e;
-  font-size: 36px;
 }
 
 .modal form div {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 599px;
   align-items: self-start;
-  margin-bottom: 26px;
+}
+
+.modal form label {
+  color: #312e2e;
+  font-size: 36px;
+  font-weight: 400;
+  height:47px;
 }
 
 .modal form input {
-  width: 100%;
+  box-sizing: border-box;
+  width: 599px;
   height: 68px;
   border: none;
   border-radius: 5px;
 }
 
 .form__textarea {
-  width: 100%;
+  box-sizing: border-box;
+  width:599px;
   height: 170px;
   border-radius: 5px;
   resize: none;
+}
+
+.modal__submit {
+  align-self: flex-start;
+  margin-top:26px;
 }

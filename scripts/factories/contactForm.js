@@ -74,4 +74,5 @@ function modalDOM(data) {
 
   const modalSubmit = form.querySelector('.contact__button');
   modalSubmit.setAttribute('type', 'submit');
+  modalSubmit.classList.add('modal__submit');
 }
