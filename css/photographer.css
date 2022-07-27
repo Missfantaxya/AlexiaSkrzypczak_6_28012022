@@ -30,7 +30,6 @@ margin: 6px 100px 0 100px;
 }
 
 .photograph__name {
-width: 282px;
 height: 83px;
 font-size: 64px;
 font-weight: 400;
@@ -39,7 +38,6 @@ color:#D3573C;
 }
 
 .photograph__location {
-  width: 124px;
   height: 31px;
   color: #901c1c;
   font-size: 24px;
@@ -48,7 +46,6 @@ color:#D3573C;
 }
 
 .photograph__tagline{
-  width: 348px;
   height: 23px;
   font-size: 18px;
   font-weight: 400;

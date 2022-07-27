@@ -1,8 +1,14 @@
+.main__index {
+margin-top: 8px;
+
+}
+
 .photographer__section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
-  margin-top: 100px;
+  gap: 79px 0;
+  padding-top: 54px;
+  padding-bottom: 114px;
 }
 
 .photographer__section article {
@@ -26,6 +32,9 @@
 .photographer__section article a h2 {
   color: #d3573c;
   font-size: 36px;
+  height: 47px;
+  font-weight: 400;
+  margin-top: 10px;
 }
 
 .photographer__section article a img {
@@ -45,13 +54,17 @@
 .photographer__location {
   color: #901c1c;
   font-size :13px;
+  height: 17px;
 }
 
 .photographer__slogan{
   font-size :10px;
+  height: 13px;
+  margin: 3px 0;
 }
 
 .photographer__price {
   color: #757575;
   font-size :9px;
+  height: 12px;
 }
