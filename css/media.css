@@ -1,20 +1,22 @@
 /* photographer ------------------------------------------------*/
 
 .photograph__priceAndLike {
+  box-sizing: border-box;
   z-index: 10;
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: -21px;
+  right: 36px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-right: 2rem;
-  padding: 1em;
-  background-color: #d3573c;
-  width: 250px;
-  font-weight: 600;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  padding: 21px 34px 37px 31px;
+  background-color: #DB8876;
+  width: 376px;
+  height: 89px;
+  font-weight: 500;
+  font-size: 24px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .photograph__wrapperLikes {
@@ -23,7 +25,13 @@
 }
 
 .photograph__likes {
-  padding-right: 0.5em;
+  margin-right: 6.38px;
+}
+
+#photograph__heart{
+  width: 17.5px;
+  height: 18.5px;
+  align-self: center;
 }
 
 /* média -------------------------------------*/

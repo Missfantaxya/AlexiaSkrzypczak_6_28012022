@@ -1,5 +1,10 @@
+.header{
+  height: 157px;
+}
+
 .main__photographer{
 margin-left: 100px;
+margin-top:6px;
 }
 
 .photograph__header {
@@ -14,6 +19,7 @@ margin-left: 100px;
 
 .photograph__details{
   margin-left: 50px;
+  margin-top: 71px;
 }
 
 .photograp__title{ 
@@ -31,6 +37,7 @@ width: 282px;
 height: 83px;
 font-size: 64px;
 font-weight: 400;
+margin: 0;
 }
 
 .photograph__location {
@@ -78,8 +85,6 @@ font-weight: 400;
   position: absolute;
   margin-left: 990px;
   align-self: center;
-
-
 }
 
 

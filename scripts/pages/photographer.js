@@ -26,6 +26,8 @@ async function displayData(photographers, media) {
 
   const photographerMain = document.getElementById('main');
   photographerMain.className = 'main__photographer';
+  const header = document.querySelector('header');
+  header.className = 'header';
   // ========== La parties avec le photographe ==========
 
   const heartSvg = 'assets/icons/heart-solid-black.svg';
