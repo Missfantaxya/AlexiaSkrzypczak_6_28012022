@@ -16,14 +16,16 @@
   background-color: #db8876;
   width: 669px;
   height: 900px;
-  padding: 15px 35px;
+  padding: 15px 35px 38px 35px;
   position:relative;
 }
 
 .modal__header {
   justify-content: space-between;
   width: 599px;
-  height: 166px;
+  height: 156px;
+  margin-bottom: 19px;
+
 }
 
 .modal header img {
@@ -43,6 +45,9 @@
 .modal__photographerName{
   font-weight: 400;
   font-size: 64px;
+  height: 83px;
+  position: absolute;
+  top: 88px;
 }
 
 .modal__close{
@@ -79,6 +84,11 @@
   height:47px;
 }
 
+.form__messageLabel{
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
 .modal form input {
   box-sizing: border-box;
   width: 599px;
@@ -96,6 +106,5 @@
 }
 
 .modal__submit {
-  align-self: flex-start;
   margin-top:26px;
 }

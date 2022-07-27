@@ -37,6 +37,7 @@ height: 83px;
 font-size: 64px;
 font-weight: 400;
 margin: 0;
+color:#D3573C;
 }
 
 .photograph__location {
@@ -53,27 +54,19 @@ margin: 0;
   height: 23px;
   font-size: 18px;
   font-weight: 400;
+  color:#525252;
 }
 
-.contact__button {
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  color: white;
-  width: 170px;
-  height: 69px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
-  cursor: pointer;
+
+.photograph__contact{
   margin: 137px 535px 107px 535px;
   position: absolute;
 }
 
 .contact__button:hover,
 .contact__button:focus {
-  background-color: #D3573C;
-  color: black;
+  background-color: #DB8876;
+  color: #000000;
   border: none;
 }
 

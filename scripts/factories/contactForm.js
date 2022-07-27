@@ -62,8 +62,9 @@ function modalDOM(data) {
   formFields.appendChild(formEmailInput);
 
   const formMessageLabel = document.createElement('label');
+  formMessageLabel.className = 'form__messageLabel';
   formMessageLabel.setAttribute('for', 'form__messageInput');
-  formMessageLabel.textContent = 'Message';
+  formMessageLabel.textContent = 'Votre message';
   formFields.appendChild(formMessageLabel);
 
   const formMessageInput = document.createElement('textarea');

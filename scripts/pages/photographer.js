@@ -38,6 +38,7 @@ async function displayData(photographers, media) {
   photographTitle.textContent = 'Données du photographe';
   photographHeader.prepend(photographTitle);
   const photographContact = photographHeader.querySelector('.contact__button');
+  photographContact.classList.add('photograph__contact');
   photographContact.setAttribute('type', 'button');
   const photographDetails = document.createElement('div');
   photographDetails.className = 'photograph__details';
