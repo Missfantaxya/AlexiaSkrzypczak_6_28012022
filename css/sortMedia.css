@@ -2,13 +2,14 @@
 .selectForm {
   display: flex;
   flex-direction: row;
-  font-size: 20px;
   margin-top: 9px;
-  
 }
 
 .selectLabel {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
+  width: 74px;
+  height: 23px;
   margin-right: 25px;
   padding-top: 11px;
 }
@@ -31,7 +32,8 @@
 }
 
 .selectOptions {
-  padding: 0;
+  box-sizing: border-box;
+  padding: 0 10px;
   margin:0;
   font-weight: bold;
   color: white;
@@ -43,15 +45,6 @@
   cursor: pointer;
   position: relative;
   z-index:5;
-}
-
-
-.date {
-  top: -70px;
-}
-
-.title {
-  top: -140px;
 }
 
 .selectArrow {
@@ -68,32 +61,45 @@
 
 .up {
   transform: rotate(180deg);
+  top:28.67px;
+
 }
 
 .hidden>.selectOptions>.selectOption:first-child {
 height: 70px;
+padding-bottom: 23px;
+
 }
 
 .selectOption {
+  box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 150px;
   height : 69px;
-  margin: auto 11px;
-  padding-left: 0.5em;
+  padding-left: 10px;
   border-top: 1px solid white;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .selectOption:first-child{
   border-top: none;
   height:60px;
+  padding-top: 23px;
+  padding-bottom: 14px;
 }
 
 .selectOption:nth-child(0n+2) {
-  height: 53px;
+  height: 52px;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 
 .selectOption:last-child {
-  height: 57px;
+  height: 58px;
+  padding-top: 14px;
+  padding-bottom: 20px;
 }

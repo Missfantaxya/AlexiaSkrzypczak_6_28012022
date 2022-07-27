@@ -30,7 +30,7 @@
 
 #photograph__heart{
   width: 17.5px;
-  height: 18.5px;
+  height: 18.35px;
   align-self: center;
 }
 
@@ -52,10 +52,10 @@
   margin-top: 58px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 71px 95px;
+  gap: 30px 95px;
 }
 .media__article{
-  padding-bottom: 1rem;
+  width: 350px;
 }
 
 .media__link {
@@ -85,8 +85,9 @@
   flex-direction: row;
   justify-content: space-between;
   width: 350px;
+  height: 31px;
   color: #901c1c;
-  padding-top: 0.5em;
+  margin-top: 10px;
 }
 
 .media__name {
@@ -105,9 +106,9 @@
 
 .media__likes {
   padding: 0.3em;
-  font-size: 16px;
+  font-size: 24px;
   border:none;
-  font-weight: 400;
+  font-weight: 500;
   cursor: pointer;
   color: #901c1c;
   background-color: transparent;
