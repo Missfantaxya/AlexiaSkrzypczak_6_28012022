@@ -22,6 +22,10 @@ const idUrl = parseInt(urlResearchParams.get('id'), 10);
  * @param {object} media - la liste des médias
  */
 async function displayData(photographers, media) {
+  // ========== Pour la mise en page ==========
+
+  const photographerMain = document.getElementById('main');
+  photographerMain.className = 'main__photographer';
   // ========== La parties avec le photographe ==========
 
   const heartSvg = 'assets/icons/heart-solid-black.svg';
@@ -33,6 +37,9 @@ async function displayData(photographers, media) {
   photographHeader.prepend(photographTitle);
   const photographContact = photographHeader.querySelector('.contact__button');
   photographContact.setAttribute('type', 'button');
+  const photographDetails = document.createElement('div');
+  photographDetails.className = 'photograph__details';
+  photographHeader.insertBefore(photographDetails, photographContact);
 
   /**
    * Donées du photographe
@@ -45,11 +52,11 @@ async function displayData(photographers, media) {
   // ----- Affichage des donées du photographe -----
   const photographerModel = photographerFactory(photograph);
   const photographNameDOM = photographerModel.getPhotographName();
-  photographHeader.insertBefore(photographNameDOM, photographContact);
+  photographDetails.appendChild(photographNameDOM);
   const photographLocationDOM = photographerModel.getPhotographLocation();
-  photographHeader.insertBefore(photographLocationDOM, photographContact);
+  photographDetails.appendChild(photographLocationDOM);
   const photographTaglineDOM = photographerModel.getPhotographTagline();
-  photographHeader.insertBefore(photographTaglineDOM, photographContact);
+  photographDetails.appendChild(photographTaglineDOM);
 
   // -----Accessibilité du bouton de contact
   const contactButton = document.querySelector('.contact__button');

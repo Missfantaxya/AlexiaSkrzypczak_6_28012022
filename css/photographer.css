@@ -1,16 +1,24 @@
+.main__photographer{
+margin-left: 100px;
+}
+
 .photograph__header {
   background-color: #fafafa;
+  width:1240px;
   height: 313px;
-  margin: 0 100px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   font-weight: 400;
   position:relative;
+  display: flex;
+  border-radius: 5px;
 }
+
+.photograph__details{
+  margin-left: 50px;
+}
+
 .photograp__title{ 
   border: 0;
   height: 1px;
-  margin: -1px;
   overflow: hidden;
   padding: 0;
   position: absolute;
@@ -19,52 +27,41 @@
 }
 
 .photograph__name {
-grid-column: 1;
-grid-row: 1;
 width: 282px;
 height: 83px;
-margin-top: 71px;
-margin-left: 50px;
 font-size: 64px;
+font-weight: 400;
 }
 
 .photograph__location {
   width: 124px;
   height: 31px;
   color: #901c1c;
-  margin-bottom: 1em;
   font-size: 24px;
-  grid-column: 1;
-  grid-row: 1;
-  margin-left: 50px;
-  position:relative;
-  top: 154px;
+  font-weight: 400;
+  margin-bottom: 19px;
 }
 
 .photograph__tagline{
-  grid-column: 1;
-  grid-row: 1;
   width: 348px;
   height: 23px;
-  margin-left: 50px; 
-  position:relative;
-  top: 204px;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .contact__button {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
+  text-align: center;
   color: white;
-  padding: 11px;
   width: 170px;
   height: 69px;
   border: none;
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
-  grid-column: 2;
-  grid-row: 1;
-  align-self: center;
+  margin: 137px 535px 107px 535px;
+  position: absolute;
 }
 
 .contact__button:hover,
@@ -78,9 +75,11 @@ font-size: 64px;
   height: 200px;
   width: 200px;
   border-radius: 50%;
-  grid-column: 3;
-  grid-row: 1;
+  position: absolute;
+  margin-left: 990px;
   align-self: center;
+
+
 }
 
 

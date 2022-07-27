@@ -41,8 +41,7 @@
 }
 
 .medias {
-  margin-top: 2rem;
-  padding: 0 100px;
+  margin-top: 58px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 71px 95px;
