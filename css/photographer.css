@@ -7,6 +7,16 @@
   font-weight: 400;
   position:relative;
 }
+.photograp__title{ 
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
 
 .photograph__name {
 grid-column: 1;

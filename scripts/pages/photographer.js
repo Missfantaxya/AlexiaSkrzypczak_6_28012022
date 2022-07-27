@@ -27,6 +27,10 @@ async function displayData(photographers, media) {
   const heartSvg = 'assets/icons/heart-solid-black.svg';
 
   const photographHeader = document.querySelector('.photograph__header');
+  const photographTitle = document.createElement('h2');
+  photographTitle.className = 'photograp__title';
+  photographTitle.textContent = 'Données du photographe';
+  photographHeader.prepend(photographTitle);
   const photographContact = photographHeader.querySelector('.contact__button');
   photographContact.setAttribute('type', 'button');
 
