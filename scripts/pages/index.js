@@ -11,4 +11,7 @@ async function displayData(photographers) {
     const photographerCardDOM = photographerModel.getPhotographerCardDOM();
     photographersSection.appendChild(photographerCardDOM);
   });
+
+  const ourPphotographers = document.querySelector('h1');
+  ourPphotographers.className = 'header__presentation';
 }
