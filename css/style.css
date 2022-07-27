@@ -1,4 +1,5 @@
 @import url("index.css");
+@import url("header.css");
 @import url("photographer.css");
 @import url("media.css");
 @import url("sortMedia.css");
@@ -19,26 +20,15 @@ a {
   text-decoration: none;
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 120px;
-}
+
 
 main{
 margin-top:8px;
 }
 
-h1 {
-  color: #901c1c;
-  margin-right: 100px;
-}
-
 .logo {
-  height: 50px;
-  margin-left: 100px;
+  height: 49.09px;
+  margin-top: 42.91px;
 }
 
 .contact__button {

@@ -1,0 +1,21 @@
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.header__presentation {
+  color: #901c1c;
+}
+
+.header{
+  height: 157px;
+}
+
+.header>a>img {
+  margin-top: 43.91px;
+}
