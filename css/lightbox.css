@@ -11,7 +11,7 @@
   background: white;
   z-index: 100;
   color: #901c1c;
-  transition: opacity 0.3;
+  transition: opacity 0.3s;
 }
 
 .lightbox.fadeOut {
