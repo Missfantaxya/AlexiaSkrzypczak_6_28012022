@@ -49,7 +49,7 @@
 }
 
 .medias {
-  margin-top: 58px;
+  margin-top: 23px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px 95px;
