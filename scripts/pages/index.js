@@ -14,4 +14,6 @@ async function displayData(photographers) {
 
   const ourPphotographers = document.querySelector('h1');
   ourPphotographers.className = 'header__presentation';
+  const mainIndex = document.querySelector('main');
+  mainIndex.className = 'main__index';
 }
