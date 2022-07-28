@@ -32,21 +32,23 @@ async function displayData(photographers, media) {
 
   const heartSvg = 'assets/icons/heart-solid-black.svg';
 
-  let photographHeader = document.querySelector('.photograph__header');
-  const photographHeaderNew = document.createElement('div');
-  photographHeaderNew.className = 'photograph__header';
-  photographHeader = photographerMain.replaceChild(photographHeaderNew, photographHeader);
-  const photographTitle = document.createElement('h2');
-  photographTitle.className = 'photograp__title';
-  photographTitle.textContent = 'Données du photographe';
-  photographHeaderNew.prepend(photographTitle);
+  const photographHeader = document.querySelector('.photograph__header');
+  // const photographHeaderNew = document.createElement('div');
+  // photographHeaderNew.className = 'photograph__header';
+  // photographHeader = photographerMain.replaceChild(photographHeaderNew, photographHeader);
+  // const photographTitle = document.createElement('h2');
+  // photographTitle.className = 'photograph__title';
+  // photographTitle.textContent = 'Données du photographe';
+  // photographHeaderNew.prepend(photographTitle);
   const photographContact = photographHeader.querySelector('.contact__button');
   photographContact.classList.add('photograph__contact');
   photographContact.setAttribute('type', 'button');
-  photographHeaderNew.appendChild(photographContact);
+  // photographHeaderNew.appendChild( photographContact );
+  photographHeader.appendChild(photographContact);
   const photographDetails = document.createElement('div');
   photographDetails.className = 'photograph__details';
-  photographHeaderNew.insertBefore(photographDetails, photographContact);
+  // photographHeaderNew.insertBefore( photographDetails, photographContact );
+  photographHeader.insertBefore(photographDetails, photographContact);
 
   /**
    * Donées du photographe
@@ -72,7 +74,8 @@ async function displayData(photographers, media) {
   // ----- Affichage de l'avatar du photographe -----
   const photographerAvatarModel = photographerFactory(photograph);
   const PhotographAvatarDOM = photographerAvatarModel.getPhotographAvatar();
-  photographHeaderNew.appendChild(PhotographAvatarDOM);
+  // photographHeaderNew.appendChild(PhotographAvatarDOM);
+  photographHeader.appendChild(PhotographAvatarDOM);
 
   // ========== La parties avec les likes du photographe ==========
 
